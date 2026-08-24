@@ -1,0 +1,1950 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>LANZZ PROJECT</title>
+
+<meta name="description" content="LANZZ PROJECT - Developer, Modder, Creator, Editor & Gamer. Layanan website, HTML, CSS, JS dan APK Android.">
+<meta name="theme-color" content="#080405">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&family=Rajdhani:wght@600;700&display=swap" rel="stylesheet">
+
+<style>
+
+:root{
+    --bg:#080405;
+    --card:#120608;
+    --text:#F5F5F5;
+    --sub:#8A8585;
+    --cyan:#FF0A1A;
+    --magenta:#E50914;
+
+    --glowCyan:
+        0 0 8px rgba(255,10,26,.45);
+
+    --glowMag:
+        0 0 8px rgba(229,9,20,.45);
+}
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    font-family:Rajdhani,sans-serif;
+    color:var(--text);
+
+    padding-bottom:70px;
+
+    background-color:var(--bg);
+
+    background-image:
+        url('https://i.imgur.com/FEf8DRG.png');
+
+    background-size:contain;
+    background-position:center -90px;
+    background-repeat:no-repeat;
+    background-attachment:scroll;
+
+    overflow-x:hidden;
+}
+
+body::before{
+    content:"";
+
+    position:fixed;
+    inset:0;
+
+    background:
+        linear-gradient(
+            180deg,
+            rgba(5,2,20,.65) 0%,
+            rgba(5,2,20,.75) 100%
+        );
+
+    z-index:-1;
+
+    pointer-events:none;
+}
+
+
+/* =========================
+   HEADER
+========================= */
+
+header{
+    position:relative;
+
+    text-align:center;
+
+    padding:
+        28px 15px
+        15px;
+}
+
+header h1{
+    font-family:Orbitron,sans-serif;
+
+    font-size:26px;
+
+    font-weight:900;
+
+    letter-spacing:2px;
+
+    background:
+        linear-gradient(
+            90deg,
+            var(--magenta),
+            var(--cyan),
+            var(--magenta)
+        );
+
+    -webkit-background-clip:text;
+    -webkit-text-fill-color:transparent;
+}
+
+header h1 i{
+    color:var(--cyan);
+
+    font-size:16px;
+
+    -webkit-text-fill-color:var(--cyan);
+
+    filter:
+        drop-shadow(
+            0 0 7px
+            rgba(0,212,255,.8)
+        );
+}
+
+header .sub{
+    color:var(--cyan);
+
+    font-size:11px;
+
+    font-weight:700;
+
+    letter-spacing:1.5px;
+
+    margin:
+        7px 0 16px;
+
+    text-shadow:
+        var(--glowCyan);
+}
+
+header .tag{
+    color:var(--magenta);
+
+    font-size:11px;
+
+    font-weight:700;
+
+    margin-top:12px;
+
+    text-shadow:
+        0 0 8px
+        var(--magenta);
+}
+
+
+/* =========================
+   TOP BUTTON
+========================= */
+
+.btn-desain{
+    padding:10px 20px;
+
+    background:
+        linear-gradient(
+            90deg,
+            var(--cyan),
+            var(--magenta)
+        );
+
+    border:none;
+
+    border-radius:50px;
+
+    color:#fff;
+
+    font-weight:800;
+
+    font-family:Orbitron,sans-serif;
+
+    font-size:11px;
+
+    letter-spacing:.3px;
+
+    box-shadow:
+        0 0 8px rgba(255,10,26,.35);
+
+    text-decoration:none;
+
+    display:inline-flex;
+
+    align-items:center;
+
+    gap:8px;
+
+    transition:
+        transform .25s ease,
+        box-shadow .25s ease;
+}
+
+.btn-desain:hover{
+    transform:
+        translateY(-3px)
+        scale(1.05);
+
+    box-shadow:
+        0 0 12px rgba(255,10,26,.45);
+}
+
+.btn-desain:active{
+    transform:scale(.96);
+}
+
+
+/* =========================
+   TOOLBAR
+========================= */
+
+.toolbar{
+    max-width:900px;
+
+    margin:
+        10px auto 20px;
+
+    padding:
+        0 14px;
+}
+
+.toolbar-box{
+    display:flex;
+
+    align-items:center;
+
+    gap:8px;
+
+    padding:9px;
+
+    border:
+        1px solid
+        rgba(255,10,26,.22);
+
+    border-radius:16px;
+
+    background:
+        rgba(18,6,8,.62);
+
+    
+
+    box-shadow:
+        0 0 20px
+        rgba(255,10,26,.08);
+}
+
+.search-wrap{
+    position:relative;
+
+    flex:1;
+}
+
+.search-wrap i{
+    position:absolute;
+
+    left:14px;
+    top:50%;
+
+    transform:
+        translateY(-50%);
+
+    color:var(--cyan);
+
+    font-size:14px;
+}
+
+#searchInput{
+    width:100%;
+
+    height:42px;
+
+    padding:
+        0 38px;
+
+    border:
+        1px solid
+        rgba(255,255,255,.08);
+
+    border-radius:11px;
+
+    outline:none;
+
+    background:
+        rgba(0,0,0,.18);
+
+    color:#fff;
+
+    font-family:Rajdhani,sans-serif;
+
+    font-size:13px;
+
+    transition:.25s;
+}
+
+#searchInput::placeholder{
+    color:#777;
+}
+
+#searchInput:focus{
+    border-color:
+        rgba(0,212,255,.55);
+
+    box-shadow:
+        0 0 14px
+        rgba(0,212,255,.1);
+}
+
+.clear-search{
+    position:absolute;
+
+    right:7px;
+    top:7px;
+
+    width:28px;
+    height:28px;
+
+    border:0;
+
+    border-radius:8px;
+
+    background:transparent;
+
+    color:#777;
+
+    display:none;
+
+    cursor:pointer;
+}
+
+.clear-search.show{
+    display:block;
+}
+
+.tool-btn{
+    flex:0 0 42px;
+
+    width:42px;
+    height:42px;
+
+    border:
+        1px solid
+        rgba(255,255,255,.1);
+
+    border-radius:11px;
+
+    background:
+        rgba(0,0,0,.18);
+
+    color:#fff;
+
+    cursor:pointer;
+
+    transition:.25s;
+}
+
+.tool-btn:hover{
+    color:var(--cyan);
+
+    border-color:var(--cyan);
+
+    box-shadow:
+        0 0 13px
+        rgba(0,212,255,.2);
+}
+
+
+/* =========================
+   FILTER
+========================= */
+
+.filter-panel{
+    display:none;
+
+    max-width:900px;
+
+    margin:
+        -10px auto 18px;
+
+    padding:
+        0 14px;
+}
+
+.filter-panel.show{
+    display:block;
+}
+
+.filter-inner{
+    display:flex;
+
+    gap:8px;
+
+    flex-wrap:wrap;
+
+    padding:10px;
+
+    border:
+        1px solid
+        rgba(229,9,20,.2);
+
+    border-radius:14px;
+
+    background:
+        rgba(18,6,8,.72);
+
+    
+}
+
+.filter-btn{
+    border:1px solid
+        rgba(255,255,255,.08);
+
+    background:
+        rgba(255,255,255,.03);
+
+    color:#aaa;
+
+    padding:
+        7px 12px;
+
+    border-radius:30px;
+
+    font-family:Rajdhani,sans-serif;
+
+    font-weight:700;
+
+    font-size:11px;
+
+    cursor:pointer;
+
+    transition:.2s;
+}
+
+.filter-btn:hover{
+    color:#fff;
+
+    border-color:var(--cyan);
+}
+
+.filter-btn.active{
+    color:#000;
+
+    background:
+        linear-gradient(
+            90deg,
+            var(--cyan),
+            var(--magenta)
+        );
+
+    border-color:transparent;
+
+    box-shadow:
+        0 0 12px
+        rgba(0,212,255,.2);
+}
+
+
+/* =========================
+   SECTION
+========================= */
+
+.section-title{
+    font-family:Orbitron,sans-serif;
+
+    text-align:center;
+
+    font-size:18px;
+
+    font-weight:900;
+
+    margin:
+        35px 0 18px;
+
+    background:
+        linear-gradient(
+            90deg,
+            var(--magenta),
+            var(--cyan)
+        );
+
+    -webkit-background-clip:text;
+    -webkit-text-fill-color:transparent;
+}
+
+.section-title i{
+    margin-right:8px;
+}
+
+
+/* =========================
+   SERVICE CARD
+========================= */
+
+.layanan-card{
+    position:relative;
+
+    background:
+        rgba(18,6,8,.6);
+
+    border:
+        1px solid
+        #ffffff;
+
+    border-radius:15px;
+
+    padding:16px;
+
+    margin:14px;
+
+    
+
+    box-shadow:
+        0 0 25px
+        rgba(0,212,255,.15);
+
+    transition:
+        transform .3s ease,
+        border-color .3s ease,
+        box-shadow .3s ease;
+
+    overflow:hidden;
+}
+
+
+.layanan-card:hover{
+    transform:
+        translateY(-4px);
+
+    border-color:
+        var(--magenta);
+
+    box-shadow:
+        var(--glowMag);
+}
+
+.layanan-card h3{
+    font-family:Orbitron,sans-serif;
+
+    font-size:14px;
+
+    color:var(--cyan);
+
+    margin-bottom:10px;
+
+    display:flex;
+
+    align-items:center;
+
+    gap:8px;
+}
+
+.layanan-card h3 i{
+    width:25px;
+
+    text-align:center;
+
+    color:var(--magenta);
+}
+
+.layanan-card li{
+    list-style:none;
+
+    color:var(--sub);
+
+    font-size:12px;
+
+    margin:5px 0;
+
+    padding-left:5px;
+
+    transition:
+        color .2s,
+        transform .2s;
+}
+
+.layanan-card li::before{
+    content:"•";
+
+    color:var(--magenta);
+
+    font-weight:700;
+
+    margin-right:5px;
+}
+
+.layanan-card li:hover{
+    color:#fff;
+
+    transform:
+        translateX(4px);
+}
+
+
+/* =========================
+   FAVORITE
+========================= */
+
+.favorite-btn{
+    position:absolute;
+
+    top:12px;
+    right:12px;
+
+    width:30px;
+    height:30px;
+
+    border:
+        1px solid
+        rgba(255,255,255,.1);
+
+    border-radius:50%;
+
+    background:
+        rgba(0,0,0,.2);
+
+    color:#777;
+
+    cursor:pointer;
+
+    transition:.25s;
+
+    z-index:3;
+}
+
+.favorite-btn:hover{
+    color:#ff4f9a;
+
+    border-color:#ff4f9a;
+}
+
+.favorite-btn.active{
+    color:#ff4f9a;
+
+    background:
+        rgba(255,79,154,.08);
+
+    border-color:
+        rgba(255,79,154,.5);
+
+    box-shadow:
+        0 0 12px
+        rgba(255,79,154,.2);
+}
+
+
+/* =========================
+   SEARCH EMPTY
+========================= */
+
+.empty-state{
+    display:none;
+
+    text-align:center;
+
+    margin:
+        30px 15px;
+
+    padding:35px 15px;
+
+    border:
+        1px dashed
+        rgba(0,212,255,.25);
+
+    border-radius:15px;
+
+    background:
+        rgba(18,6,8,.4);
+
+    color:#777;
+}
+
+.empty-state.show{
+    display:block;
+}
+
+.empty-state i{
+    color:var(--cyan);
+
+    font-size:30px;
+
+    margin-bottom:10px;
+}
+
+.empty-state h3{
+    color:#aaa;
+
+    font-family:Orbitron;
+
+    font-size:13px;
+}
+
+.empty-state p{
+    font-size:11px;
+
+    margin-top:5px;
+}
+
+
+/* =========================
+   BOTTOM BUTTONS
+========================= */
+
+.btn-wrap{
+    display:flex;
+
+    gap:15px;
+
+    justify-content:center;
+
+    flex-wrap:wrap;
+
+    margin:
+        25px 12px 40px;
+}
+
+.btn-bawah{
+    padding:
+        10px 22px;
+
+    border-radius:50px;
+
+    font-size:12px;
+
+    font-weight:800;
+
+    font-family:Orbitron,sans-serif;
+
+    text-decoration:none;
+
+    color:#fff;
+
+    background:
+        linear-gradient(
+            90deg,
+            #FF0A1A,
+            #00AAFF
+        );
+
+    box-shadow:
+        0 0 10px rgba(255,10,26,.35);
+
+    transition:.3s;
+
+    border:none;
+}
+
+.btn-bawah:hover{
+    transform:
+        translateY(-3px)
+        scale(1.03);
+}
+
+.btn-bawah:active{
+    transform:scale(.96);
+}
+
+.btn-bawah.back{
+    background:#000;
+
+    border:
+        2px solid
+        var(--cyan);
+
+    box-shadow:
+        0 0 25px
+        rgba(0,212,255,.5);
+}
+
+
+/* =========================
+   SOCIAL MEDIA
+========================= */
+
+.sosmed-wrap{
+    text-align:center;
+
+    margin:
+        20px 12px 30px;
+}
+
+.sosmed-wrap h3{
+    font-size:16px;
+
+    color:var(--cyan);
+
+    margin-bottom:15px;
+
+    font-family:Orbitron,sans-serif;
+}
+
+.sosmed-btn{
+    display:flex;
+
+    flex-wrap:wrap;
+
+    gap:10px;
+
+    justify-content:center;
+}
+
+.sosmed{
+    padding:
+        10px 18px;
+
+    border-radius:50px;
+
+    font-size:12px;
+
+    font-weight:700;
+
+    text-decoration:none;
+
+    color:#fff;
+
+    display:flex;
+
+    align-items:center;
+
+    gap:8px;
+
+    transition:.3s;
+
+    border:2px solid;
+
+    
+}
+
+.sosmed i{
+    font-size:16px;
+}
+
+.sosmed:hover{
+    transform:
+        translateY(-3px)
+        scale(1.05);
+}
+
+.sosmed:active{
+    transform:scale(.96);
+}
+
+.sosmed.wa{
+    background:
+        linear-gradient(
+            90deg,
+            #25D366,
+            #128C7E
+        );
+
+    border-color:#25D366;
+
+    box-shadow:
+        0 0 8px rgba(37,211,102,.2);
+}
+
+.sosmed.ig{
+    background:
+        linear-gradient(
+            90deg,
+            #F58529,
+            #DD2A7B,
+            #8134AF
+        );
+
+    border-color:#DD2A7B;
+
+    box-shadow:
+        0 0 8px rgba(221,42,123,.2);
+}
+
+.sosmed.tt{
+    background:
+        linear-gradient(
+            90deg,
+            #000,
+            #25F4EE
+        );
+
+    border-color:#25F4EE;
+
+    box-shadow:
+        0 0 8px rgba(37,244,238,.2);
+}
+
+
+/* =========================
+   FOOTER
+========================= */
+
+footer{
+    text-align:center;
+
+    color:var(--sub);
+
+    font-size:10px;
+
+    margin-top:25px;
+
+    padding:
+        0 15px;
+}
+
+
+/* =========================
+   SCROLL TOP
+========================= */
+
+
+
+
+/* =========================
+   TOAST
+========================= */
+
+.toast{
+    position:fixed;
+
+    left:50%;
+    bottom:75px;
+
+    transform:
+        translate(-50%,20px);
+
+    opacity:0;
+
+    pointer-events:none;
+
+    z-index:1000;
+
+    padding:
+        10px 16px;
+
+    border-radius:50px;
+
+    background:
+        rgba(15,10,36,.95);
+
+    border:
+        1px solid
+        rgba(0,212,255,.3);
+
+    color:#fff;
+
+    font-size:11px;
+
+    box-shadow:
+        0 8px 25px
+        rgba(0,0,0,.4);
+
+    transition:.25s;
+}
+
+.toast.show{
+    opacity:1;
+
+    transform:
+        translate(-50%,0);
+}
+
+
+/* =========================
+   SCROLL ANIMATION
+========================= */
+
+.scroll-animate{
+    opacity:0;
+
+    transform:
+        translateY(35px);
+
+    transition:
+        opacity .65s ease,
+        transform .65s ease;
+}
+
+.scroll-animate.show{
+    opacity:1;
+
+    transform:
+        translateY(0);
+}
+
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media(max-width:600px){
+
+    body{
+        background-attachment:scroll;
+    }
+
+    header{
+        padding-top:25px;
+    }
+
+    header h1{
+        font-size:23px;
+    }
+
+    header .sub{
+        font-size:9px;
+
+        letter-spacing:1px;
+    }
+
+    .toolbar{
+        margin-top:5px;
+    }
+
+    .toolbar-box{
+        padding:7px;
+    }
+
+    #searchInput{
+        font-size:12px;
+    }
+
+    .filter-inner{
+        gap:6px;
+    }
+
+    .filter-btn{
+        font-size:10px;
+
+        padding:
+            6px 10px;
+    }
+
+    .layanan-card{
+        margin:
+            12px;
+    }
+
+    .layanan-card h3{
+        font-size:12px;
+
+        padding-right:35px;
+    }
+
+    .layanan-card li{
+        font-size:11px;
+    }
+
+    .btn-wrap{
+        gap:10px;
+    }
+
+    .btn-bawah{
+        font-size:10px;
+
+        padding:
+            9px 16px;
+    }
+
+    .sosmed{
+        font-size:11px;
+
+        padding:
+            9px 14px;
+    }
+
+    #btnUp{
+        width:42px;
+        height:42px;
+
+        right:14px;
+        bottom:15px;
+    }
+
+}
+
+
+@media (max-width:600px){
+    .layanan-card:hover{transform:none;border-color:rgba(255,255,255,.08);box-shadow:none}
+    .btn-desain:hover,.btn-bawah:hover,.sosmed:hover{transform:none}
+}
+
+/* REDUCE MOTION */
+
+@media(prefers-reduced-motion:reduce){
+
+    *,
+    *::before,
+    *::after{
+        animation:none !important;
+
+        transition:none !important;
+
+        scroll-behavior:auto !important;
+    }
+
+    .scroll-animate{
+        opacity:1;
+
+        transform:none;
+    }
+
+}
+
+</style>
+</head>
+
+
+<body>
+
+
+<!-- =========================
+     HEADER
+========================= -->
+
+<header>
+
+    <h1>
+        LANZZ PROJECT
+        <i class="fa-solid fa-circle-check"></i>
+    </h1>
+
+    <p class="sub">
+        DEVELOPER | MODDER | CREATOR | EDITOR | GAMER
+    </p>
+
+    <div class="btn-wrap">
+
+        <a
+            href="https://lanzz-project.github.io/contoh-design.html"
+            class="btn-desain"
+        >
+            <i class="fa-solid fa-palette"></i>
+            LIHAT DESAIN
+        </a>
+
+    </div>
+
+    <p class="tag">
+        PROJECT TERSEDIA | MAU DIBUATIN APA?
+    </p>
+
+</header>
+
+
+<!-- =========================
+     SEARCH
+========================= -->
+
+<div class="toolbar">
+
+    <div class="toolbar-box">
+
+        <div class="search-wrap">
+
+            <i class="fa-solid fa-magnifying-glass"></i>
+
+            <input
+                type="search"
+                id="searchInput"
+                placeholder="Cari layanan..."
+                autocomplete="off"
+            >
+
+            <button
+                class="clear-search"
+                id="clearSearch"
+                aria-label="Hapus pencarian"
+            >
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+
+        </div>
+
+
+        <button
+            class="tool-btn"
+            id="filterToggle"
+            aria-label="Filter layanan"
+        >
+            <i class="fa-solid fa-sliders"></i>
+        </button>
+
+
+        <button
+            class="tool-btn"
+            id="shareBtn"
+            aria-label="Bagikan"
+        >
+            <i class="fa-solid fa-share-nodes"></i>
+        </button>
+
+    </div>
+
+</div>
+
+
+<!-- =========================
+     FILTER
+========================= -->
+
+<div
+    class="filter-panel"
+    id="filterPanel"
+>
+
+    <div class="filter-inner">
+
+        <button
+            class="filter-btn active"
+            data-filter="all"
+        >
+            SEMUA
+        </button>
+
+        <button
+            class="filter-btn"
+            data-filter="jualan"
+        >
+            JUALAN
+        </button>
+
+        <button
+            class="filter-btn"
+            data-filter="portfolio"
+        >
+            PORTFOLIO
+        </button>
+
+        <button
+            class="filter-btn"
+            data-filter="android"
+        >
+            ANDROID
+        </button>
+
+        <button
+            class="filter-btn"
+            data-filter="web"
+        >
+            HTML/CSS/JS
+        </button>
+
+        <button
+            class="filter-btn"
+            data-filter="favorite"
+        >
+            <i class="fa-solid fa-heart"></i>
+            FAVORIT
+        </button>
+
+    </div>
+
+</div>
+
+
+<!-- =========================
+     TITLE
+========================= -->
+
+<h2 class="section-title scroll-animate">
+    <i class="fa-solid fa-layer-group"></i>
+    SEMUA LAYANAN
+</h2>
+
+
+<!-- =========================
+     SERVICE 1
+========================= -->
+
+<div
+    class="layanan-card scroll-animate"
+    data-category="jualan"
+    data-search="landing page jualan website katalog webstore ecommerce marketplace toko warung"
+>
+
+    <button
+        class="favorite-btn"
+        data-id="jualan"
+        aria-label="Tambah ke favorit"
+    >
+        <i class="fa-regular fa-heart"></i>
+    </button>
+
+    <h3>
+        <i class="fa-solid fa-bag-shopping"></i>
+        1. Landing Page Jualan
+    </h3>
+
+    <li>Website Katalog</li>
+    <li>Webstore</li>
+    <li>E-Commerce</li>
+    <li>Marketplace</li>
+    <li>Web Toko/Warung</li>
+
+</div>
+
+
+<!-- =========================
+     SERVICE 2
+========================= -->
+
+<div
+    class="layanan-card scroll-animate"
+    data-category="portfolio"
+    data-search="website portfolio cv online company profile tugas sekolah profile pribadi"
+>
+
+    <button
+        class="favorite-btn"
+        data-id="portfolio"
+        aria-label="Tambah ke favorit"
+    >
+        <i class="fa-regular fa-heart"></i>
+    </button>
+
+    <h3>
+        <i class="fa-solid fa-briefcase"></i>
+        2. Website Portfolio
+    </h3>
+
+    <li>CV Online</li>
+    <li>Portfolio</li>
+    <li>Company Profile</li>
+    <li>Website Tugas Sekolah</li>
+
+</div>
+
+
+<!-- =========================
+     SERVICE 3
+========================= -->
+
+<div
+    class="layanan-card scroll-animate"
+    data-category="android"
+    data-search="apk android mod booster sosial media game tools apk custom"
+>
+
+    <button
+        class="favorite-btn"
+        data-id="android"
+        aria-label="Tambah ke favorit"
+    >
+        <i class="fa-regular fa-heart"></i>
+    </button>
+
+    <h3>
+        <i class="fa-solid fa-robot"></i>
+        3. APK Android Mod
+    </h3>
+
+    <li>Booster Sosmed & Game</li>
+    <li>Tools</li>
+    <li>Mod</li>
+    <li>APK Custom</li>
+
+</div>
+
+
+<!-- =========================
+     SERVICE 4
+========================= -->
+
+<div
+    class="layanan-card scroll-animate"
+    data-category="web"
+    data-search="html css javascript html profile surat undangan ulang tahun kata kata pacar website"
+>
+
+    <button
+        class="favorite-btn"
+        data-id="web"
+        aria-label="Tambah ke favorit"
+    >
+        <i class="fa-regular fa-heart"></i>
+    </button>
+
+    <h3>
+        <i class="fa-solid fa-code"></i>
+        4. HTML CSS JS
+    </h3>
+
+    <li>HTML Profile</li>
+    <li>Surat Undangan Digital</li>
+    <li>Ucapan Ulang Tahun</li>
+    <li>Kata-Kata Buat Pacar</li>
+
+</div>
+
+
+<!-- =========================
+     EMPTY STATE
+========================= -->
+
+<div
+    class="empty-state"
+    id="emptyState"
+>
+
+    <i class="fa-solid fa-box-open"></i>
+
+    <h3>
+        LAYANAN TIDAK DITEMUKAN
+    </h3>
+
+    <p>
+        Coba kata pencarian atau kategori lainnya.
+    </p>
+
+</div>
+
+
+<footer>
+
+    © 2026 LANZZ PROJECT.
+    All Rights Reserved
+
+</footer>
+
+
+<!-- =========================
+     SCROLL UP
+========================= -->
+
+
+
+
+<!-- =========================
+     TOAST
+========================= -->
+
+<div
+    class="toast"
+    id="toast"
+>
+    Berhasil
+</div>
+
+
+<script>
+
+/* =========================
+   ELEMENTS
+========================= */
+
+const cards =
+    document.querySelectorAll(
+        ".layanan-card"
+    );
+
+const searchInput =
+    document.getElementById(
+        "searchInput"
+    );
+
+const clearSearch =
+    document.getElementById(
+        "clearSearch"
+    );
+
+const filterToggle =
+    document.getElementById(
+        "filterToggle"
+    );
+
+const filterPanel =
+    document.getElementById(
+        "filterPanel"
+    );
+
+const filterButtons =
+    document.querySelectorAll(
+        ".filter-btn"
+    );
+
+const emptyState =
+    document.getElementById(
+        "emptyState"
+    );
+
+const shareBtn =
+    document.getElementById(
+        "shareBtn"
+    );
+
+const toast =
+    document.getElementById(
+        "toast"
+    );
+
+
+let activeFilter = "all";
+
+let favorites = [];
+
+
+/* =========================
+   LOCAL STORAGE
+========================= */
+
+try{
+
+    favorites =
+        JSON.parse(
+            localStorage.getItem(
+                "lanzz_service_favorites"
+            ) || "[]"
+        );
+
+    if(
+        !Array.isArray(favorites)
+    ){
+        favorites = [];
+    }
+
+}catch(error){
+
+    favorites = [];
+
+}
+
+
+/* =========================
+   TOAST
+========================= */
+
+let toastTimer;
+
+function showToast(message){
+
+    toast.textContent =
+        message;
+
+    toast.classList.add(
+        "show"
+    );
+
+    clearTimeout(
+        toastTimer
+    );
+
+    toastTimer =
+        setTimeout(
+            ()=>{
+                toast.classList.remove(
+                    "show"
+                );
+            },
+            1800
+        );
+
+}
+
+
+/* =========================
+   FAVORITE UI
+========================= */
+
+function updateFavorites(){
+
+    document
+    .querySelectorAll(
+        ".favorite-btn"
+    )
+    .forEach(button=>{
+
+        const id =
+            button.dataset.id;
+
+        const icon =
+            button.querySelector(
+                "i"
+            );
+
+        const active =
+            favorites.includes(id);
+
+        button.classList.toggle(
+            "active",
+            active
+        );
+
+        if(active){
+
+            icon.className =
+                "fa-solid fa-heart";
+
+        }else{
+
+            icon.className =
+                "fa-regular fa-heart";
+
+        }
+
+    });
+
+}
+
+
+/* =========================
+   FAVORITE CLICK
+========================= */
+
+document
+.querySelectorAll(
+    ".favorite-btn"
+)
+.forEach(button=>{
+
+    button.addEventListener(
+        "click",
+        event=>{
+
+            event.preventDefault();
+            event.stopPropagation();
+
+            const id =
+                button.dataset.id;
+
+            if(
+                favorites.includes(id)
+            ){
+
+                favorites =
+                    favorites.filter(
+                        item =>
+                        item !== id
+                    );
+
+                showToast(
+                    "Dihapus dari favorit"
+                );
+
+            }else{
+
+                favorites.push(id);
+
+                showToast(
+                    "Ditambahkan ke favorit ❤️"
+                );
+
+            }
+
+            try{
+
+                localStorage.setItem(
+                    "lanzz_service_favorites",
+                    JSON.stringify(
+                        favorites
+                    )
+                );
+
+            }catch(error){}
+
+            updateFavorites();
+
+            filterServices();
+
+        }
+    );
+
+});
+
+
+/* =========================
+   FILTER SERVICES
+========================= */
+
+function filterServices(){
+
+    const keyword =
+        searchInput.value
+            .toLowerCase()
+            .trim();
+
+    let visible = 0;
+
+    cards.forEach(card=>{
+
+        const text =
+            (
+                card.dataset.search ||
+                card.textContent
+            )
+            .toLowerCase();
+
+        const category =
+            card.dataset.category;
+
+        const favoriteButton =
+            card.querySelector(
+                ".favorite-btn"
+            );
+
+        const id =
+            favoriteButton.dataset.id;
+
+        const matchesSearch =
+            !keyword ||
+            text.includes(keyword);
+
+        let matchesFilter = true;
+
+        if(
+            activeFilter !== "all" &&
+            activeFilter !== "favorite"
+        ){
+
+            matchesFilter =
+                category ===
+                activeFilter;
+
+        }
+
+        if(
+            activeFilter === "favorite"
+        ){
+
+            matchesFilter =
+                favorites.includes(id);
+
+        }
+
+        const show =
+            matchesSearch &&
+            matchesFilter;
+
+        card.style.display =
+            show
+            ? ""
+            : "none";
+
+        if(show){
+            visible++;
+        }
+
+    });
+
+    emptyState.classList.toggle(
+        "show",
+        visible === 0
+    );
+
+    clearSearch.classList.toggle(
+        "show",
+        Boolean(keyword)
+    );
+
+}
+
+
+/* =========================
+   SEARCH
+========================= */
+
+searchInput.addEventListener(
+    "input",
+    filterServices
+);
+
+
+clearSearch.addEventListener(
+    "click",
+    ()=>{
+
+        searchInput.value = "";
+
+        searchInput.focus();
+
+        filterServices();
+
+    }
+);
+
+
+/* =========================
+   FILTER PANEL
+========================= */
+
+filterToggle.addEventListener(
+    "click",
+    ()=>{
+
+        filterPanel.classList.toggle(
+            "show"
+        );
+
+    }
+);
+
+
+/* =========================
+   FILTER BUTTON
+========================= */
+
+filterButtons.forEach(button=>{
+
+    button.addEventListener(
+        "click",
+        ()=>{
+
+            filterButtons.forEach(
+                item =>
+                item.classList.remove(
+                    "active"
+                )
+            );
+
+            button.classList.add(
+                "active"
+            );
+
+            activeFilter =
+                button.dataset.filter;
+
+            filterServices();
+
+        }
+    );
+
+});
+
+
+/* =========================
+   SHARE
+========================= */
+
+shareBtn.addEventListener(
+    "click",
+    async()=>{
+
+        const shareData = {
+
+            title:
+                "LANZZ PROJECT",
+
+            text:
+                "Lihat LANZZ PROJECT - Developer | Modder | Creator",
+
+            url:
+                window.location.href
+
+        };
+
+        if(
+            navigator.share
+        ){
+
+            try{
+
+                await navigator.share(
+                    shareData
+                );
+
+            }catch(error){}
+
+            return;
+
+        }
+
+
+        try{
+
+            await navigator.clipboard.writeText(
+                window.location.href
+            );
+
+            showToast(
+                "Link berhasil disalin!"
+            );
+
+        }catch(error){
+
+            showToast(
+                "Link: " +
+                window.location.href
+            );
+
+        }
+
+    }
+);
+
+
+/* =========================
+   SCROLL ANIMATION
+========================= */
+
+const observer =
+    new IntersectionObserver(
+        entries=>{
+
+            entries.forEach(entry=>{
+
+                if(
+                    entry.isIntersecting
+                ){
+
+                    entry.target.classList.add(
+                        "show"
+                    );
+
+                    observer.unobserve(
+                        entry.target
+                    );
+
+                }
+
+            });
+
+        },
+        {
+            threshold:.08
+        }
+    );
+
+
+document
+.querySelectorAll(
+    ".scroll-animate"
+)
+.forEach(element=>{
+
+    observer.observe(
+        element
+    );
+
+});
+
+
+/* =========================
+   INIT
+========================= */
+
+updateFavorites();
+
+filterServices();
+
+</script>
+
+</body>
+</html>
