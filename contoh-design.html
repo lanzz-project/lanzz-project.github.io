@@ -1,0 +1,2049 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LANZZ PROJECT - Contoh Desain</title>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@800;900&family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+
+<style>
+:root{
+    --bg:#050002;
+    --card:#170208;
+    --primary:#ff1744;
+    --secondary:#8b0000;
+}
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    background:var(--bg);
+    color:#fff;
+    font-family:'Poppins',sans-serif;
+
+    background-image:
+        radial-gradient(circle at 20% 20%, rgba(255,10,26,0.15), transparent 50%),
+        radial-gradient(circle at 80% 80%, rgba(229,9,20,0.12), transparent 50%);
+}
+
+/* HEADER */
+
+header{
+    padding:50px 20px 40px;
+    text-align:center;
+}
+
+.logo{
+    font-family:'Orbitron';
+    font-size:36px;
+    font-weight:900;
+
+    background:linear-gradient(
+        90deg,
+        var(--primary),
+        var(--secondary)
+    );
+
+    -webkit-background-clip:text;
+    -webkit-text-fill-color:transparent;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:10px;
+}
+
+.verified{
+    color:var(--secondary);
+    font-size:24px;
+}
+
+.subtitle{
+    color:var(--primary);
+    margin-top:8px;
+    font-weight:600;
+    font-size:13px;
+    letter-spacing:1px;
+}
+
+
+/* =========================
+   SEARCH / FILTER / SHARE
+========================= */
+
+.tools{
+    max-width:1150px;
+    margin:0 auto 22px;
+    padding:0 20px;
+}
+
+.tools-box{
+    padding:10px;
+
+    border:1px solid rgba(255,10,26,.08);
+    border-radius:18px;
+
+    background:rgba(18,6,8,.65);
+
+    box-shadow:
+        0 0 10px rgba(0,0,0,.12);
+}
+
+.search-row{
+    display:flex;
+    gap:10px;
+}
+
+.search-box{
+    position:relative;
+    flex:1;
+}
+
+.search-box i{
+    position:absolute;
+
+    left:17px;
+    top:50%;
+
+    transform:translateY(-50%);
+
+    color:var(--primary);
+
+    font-size:19px;
+}
+
+#search{
+    width:100%;
+    height:48px;
+
+    padding:0 45px;
+
+    border:1px solid rgba(255,255,255,.08);
+
+    outline:none;
+
+    border-radius:14px;
+
+    background:rgba(255,255,255,.035);
+
+    color:#fff;
+
+    font-family:'Poppins',sans-serif;
+    font-size:13px;
+
+    transition:.3s;
+}
+
+#search::placeholder{
+    color:#777;
+}
+
+#search:focus{
+    border-color:rgba(255,10,26,.5);
+
+    box-shadow:
+        0 0 15px rgba(255,10,26,.08);
+}
+
+#clearSearch{
+    position:absolute;
+
+    right:8px;
+    top:8px;
+
+    width:32px;
+    height:32px;
+
+    border:0;
+    border-radius:8px;
+
+    background:transparent;
+
+    color:#777;
+
+    cursor:pointer;
+
+    display:none;
+}
+
+.tool-button{
+    width:48px;
+    height:48px;
+
+    border:1px solid rgba(255,255,255,.08);
+
+    border-radius:14px;
+
+    background:rgba(255,255,255,.035);
+
+    color:#fff;
+
+    cursor:pointer;
+
+    font-size:17px;
+
+    transition:.3s;
+}
+
+.tool-button:hover{
+    color:var(--primary);
+
+    border-color:var(--primary);
+
+    box-shadow:
+        0 0 15px rgba(255,10,26,.08);
+}
+
+
+/* FILTER MENU */
+
+.filter-area{
+    position:relative;
+}
+
+.filter-menu{
+    display:none;
+
+    position:absolute;
+
+    top:60px;
+    right:0;
+
+    width:190px;
+
+    padding:8px;
+
+    border:1px solid rgba(255,10,26,.2);
+
+    border-radius:14px;
+
+    background:#120608;
+
+    box-shadow:
+        0 10px 30px rgba(0,0,0,.4);
+
+    z-index:100;
+}
+
+.filter-menu.active{
+    display:block;
+}
+
+.filter-option{
+    display:block;
+
+    width:100%;
+
+    padding:10px 12px;
+
+    border:0;
+
+    border-radius:8px;
+
+    background:transparent;
+
+    color:#aaa;
+
+    text-align:left;
+
+    font-family:'Poppins';
+
+    font-size:11px;
+
+    cursor:pointer;
+
+    transition:.2s;
+}
+
+.filter-option:hover,
+.filter-option.active{
+    color:var(--primary);
+
+    background:rgba(255,10,26,.08);
+}
+
+
+/* CATEGORY */
+
+.category-bar{
+    max-width:1150px;
+
+    margin:0 auto 20px;
+
+    padding:0 20px;
+
+    display:flex;
+
+    gap:10px;
+
+    overflow-x:auto;
+
+    scrollbar-width:none;
+}
+
+.category-bar::-webkit-scrollbar{
+    display:none;
+}
+
+.category{
+    flex:0 0 auto;
+
+    padding:9px 18px;
+
+    border:1px solid rgba(255,255,255,.08);
+
+    border-radius:50px;
+
+    background:rgba(255,255,255,.025);
+
+    color:#aaa;
+
+    font-family:'Poppins';
+
+    font-size:11px;
+
+    font-weight:700;
+
+    cursor:pointer;
+
+    transition:.3s;
+}
+
+.category:hover{
+    color:#fff;
+
+    border-color:var(--primary);
+}
+
+.category.active{
+    color:#000;
+
+    background:
+        linear-gradient(
+            90deg,
+            var(--primary),
+            var(--secondary)
+        );
+
+    border-color:transparent;
+
+    box-shadow:
+        0 0 18px rgba(255,10,26,.08);
+}
+
+
+/* GRID RESPONSIVE */
+
+.container{
+    max-width:1150px;
+
+    margin:0 auto;
+
+    padding:0 20px 40px;
+
+    display:grid;
+
+    grid-template-columns:repeat(4,1fr);
+
+    gap:20px;
+}
+
+
+/* CARD */
+
+.card{
+    position:relative;
+
+    background:rgba(18,6,8,0.8);
+
+    backdrop-filter:none;
+
+    border:1.5px solid rgba(255,10,26,0.25);
+
+    border-radius:16px;
+
+    padding:22px 16px;
+
+    text-align:center;
+
+    transition:.5s;
+
+    opacity:0;
+
+    transform:translateY(40px);
+}
+
+.card.show{
+    opacity:1;
+
+    transform:translateY(0);
+}
+
+.card:hover{
+    border-color:var(--primary);
+
+    box-shadow:0 0 12px rgba(255,10,26,0.18);
+
+    transform:translateY(-8px);
+}
+
+.card.hidden{
+    display:none;
+}
+
+
+/* FAVORITE */
+
+.favorite{
+    position:absolute;
+
+    top:10px;
+    right:10px;
+
+    width:31px;
+    height:31px;
+
+    border:1px solid rgba(255,255,255,.1);
+
+    border-radius:50%;
+
+    background:rgba(0,0,0,.15);
+
+    color:#777;
+
+    cursor:pointer;
+
+    transition:.3s;
+
+    z-index:5;
+}
+
+.favorite:hover{
+    color:#FF0A1A;
+
+    border-color:#FF0A1A;
+}
+
+.favorite.active{
+    color:#FF0A1A;
+
+    border-color:rgba(255,10,26,.5);
+
+    background:rgba(255,10,26,.08);
+}
+
+
+/* CARD ICON */
+
+.card i.card-main-icon{
+    font-size:35px;
+
+    color:var(--primary);
+
+    margin-bottom:14px;
+}
+
+.card h3{
+    font-size:16px;
+
+    font-weight:700;
+
+    margin-bottom:10px;
+}
+
+.card p{
+    color:#8A8585;
+
+    font-size:12.5px;
+
+    line-height:1.5;
+
+    margin-bottom:16px;
+
+    min-height:55px;
+}
+
+.btn-card{
+    display:inline-block;
+
+    padding:10px 20px;
+
+    background:
+        linear-gradient(
+            90deg,
+            var(--primary),
+            var(--secondary)
+        );
+
+    color:#000;
+
+    border-radius:50px;
+
+    font-weight:800;
+
+    font-size:12px;
+
+    text-decoration:none;
+
+    font-family:'Orbitron';
+
+    transition:.3s;
+}
+
+.btn-card:hover{
+    transform:scale(1.08);
+
+    box-shadow:0 0 10px var(--primary);
+}
+
+
+/* EMPTY */
+
+.empty{
+    display:none;
+
+    grid-column:1 / -1;
+
+    text-align:center;
+
+    padding:50px 20px;
+
+    color:#777;
+}
+
+.empty i{
+    font-size:35px;
+
+    margin-bottom:12px;
+}
+
+.empty h3{
+    color:#aaa;
+
+    font-size:15px;
+}
+
+.empty p{
+    font-size:11px;
+
+    margin-top:5px;
+}
+
+
+/* FOOTER */
+
+footer{
+    text-align:center;
+
+    padding:30px 20px;
+
+    border-top:
+        1px solid rgba(255,10,26,.08);
+
+    color:#8A8585;
+
+    font-size:13px;
+}
+
+
+/* TOAST */
+
+.toast{
+    position:fixed;
+
+    left:50%;
+    bottom:25px;
+
+    transform:
+        translate(-50%,20px);
+
+    opacity:0;
+
+    pointer-events:none;
+
+    z-index:999;
+
+    padding:11px 18px;
+
+    border-radius:50px;
+
+    background:#120608;
+
+    border:1px solid rgba(255,10,26,.25);
+
+    color:#ddd;
+
+    font-size:11px;
+
+    box-shadow:
+        0 8px 30px rgba(0,0,0,.4);
+
+    transition:.3s;
+}
+
+.toast.show{
+    opacity:1;
+
+    transform:
+        translate(-50%,0);
+}
+
+
+/* RESPONSIVE */
+
+@media(max-width:1024px){
+
+    .container{
+        grid-template-columns:repeat(3,1fr);
+    }
+
+}
+
+@media(max-width:768px){
+
+    .container{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+}
+
+@media(max-width:600px){
+
+    header{
+        padding:40px 15px 30px;
+    }
+
+    .logo{
+        font-size:30px;
+    }
+
+    .subtitle{
+        font-size:11px;
+    }
+
+    .tools{
+        padding:0 12px;
+    }
+
+    .category-bar{
+        padding:0 12px;
+    }
+
+    .search-row{
+        display:grid;
+
+        grid-template-columns:1fr 48px 48px;
+    }
+
+    #search{
+        height:48px;
+    }
+
+    .container{
+        padding-left:12px;
+        padding-right:12px;
+
+        gap:12px;
+    }
+
+    .card{
+        padding:20px 11px;
+    }
+
+    .card h3{
+        font-size:13px;
+    }
+
+    .card p{
+        font-size:10.5px;
+
+        min-height:60px;
+    }
+
+    .btn-card{
+        padding:9px 12px;
+
+        font-size:10px;
+    }
+
+}
+
+@media(max-width:380px){
+
+    .container{
+        grid-template-columns:1fr 1fr;
+    }
+
+    .card h3{
+        font-size:12px;
+    }
+
+    .card p{
+        font-size:9.5px;
+    }
+
+}
+
+/* RED HOLOGRAM THEME */
+body{
+ background-image:
+ radial-gradient(circle at 15% 15%, rgba(255,10,26,.18), transparent 45%),
+ radial-gradient(circle at 85% 85%, rgba(139,0,0,.18), transparent 50%);
+}
+.card,.tools-box,.toast,.filter-menu{
+ background:linear-gradient(145deg,rgba(255,10,26,.08),rgba(10,0,2,.75));
+ backdrop-filter:blur(14px);
+}
+.card,.tools-box{
+ box-shadow:0 0 25px rgba(255,10,26,.08);
+}
+.logo{
+ background:linear-gradient(90deg,#ff1744,#ff6b81,#8b0000);
+ -webkit-background-clip:text;
+}
+
+
+/* FIX REQUEST */
+.subtitle{
+    color:#fff !important;
+}
+.category.active{
+    color:#fff !important;
+}
+.category{
+    position:relative;
+    z-index:1;
+    white-space:nowrap;
+}
+.category.active{
+    z-index:2;
+}
+
+
+    /* FINAL FIX CATEGORY / FILTER OVERLAP */
+    .filter-area{
+        position:relative;
+        z-index:10;
+    }
+
+    .filter-menu{
+        top:58px;
+        z-index:9999;
+    }
+
+    .category-bar{
+        position:relative;
+        z-index:1;
+        padding-top:12px;
+        padding-bottom:12px;
+        overflow-x:auto;
+        overflow-y:visible;
+    }
+
+    .category{
+        position:relative;
+        z-index:2;
+        white-space:nowrap;
+    }
+
+    .category.active{
+        z-index:3;
+        color:#fff !important;
+    }
+
+/* FINAL FIX FILTER OVERLAY */
+.tools{
+    position:relative;
+    z-index:10;
+}
+
+.filter-menu{
+    z-index:999;
+}
+
+.category-bar{
+    position:relative;
+    z-index:1;
+}
+
+
+/* CLEAN PREMIUM FIX */
+header{padding:35px 15px 25px;}
+.logo{font-size:32px;}
+.subtitle{line-height:1.6;}
+.tools{margin-bottom:12px;}
+.category-bar{margin-bottom:12px;padding-top:5px;padding-bottom:5px;}
+.filter-menu{top:55px;width:210px;animation:filterDrop .2s ease;}
+@keyframes filterDrop{from{opacity:0;transform:translateY(-8px) scale(.98);}to{opacity:1;transform:translateY(0) scale(1);}}
+.container{gap:14px;}
+.card{padding:18px 12px;}
+.card p{min-height:45px;}
+@media(max-width:600px){.logo{font-size:28px;}.subtitle{font-size:10.5px;}.card{border-radius:14px;}}
+
+
+/* PERFORMANCE MODE */
+.filter-menu{
+    background:#18050a;
+    border:1px solid #ff1744;
+    backdrop-filter:none;
+}
+.card{
+    will-change:auto;
+    transform:translateY(0);
+}
+.card:hover{
+    transform:translateY(-3px);
+}
+
+</style>
+</head>
+
+<body>
+
+<header>
+
+    <h1 class="logo">
+        BUTUH WEBSITE?<br>GASS KITA BIKININ
+    </h1>
+
+    <p class="subtitle">
+        Mau model apapun bisa, tinggal REQ<br>Yang dibawah ini cuma contoh kecil aja<br>Mau di upgrade biar makin kece? Bisa banget!!
+    </p>
+
+</header>
+
+
+<!-- SEARCH / FILTER / SHARE -->
+
+<div class="tools">
+
+    <div class="tools-box">
+
+        <div class="search-row">
+
+            <div class="search-box">
+
+                <i class="fa-solid fa-magnifying-glass"></i>
+
+                <input
+                    type="search"
+                    id="search"
+                    placeholder="Cari desain..."
+                    autocomplete="off"
+                >
+
+                <button id="clearSearch">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+
+            </div>
+
+
+            <div class="filter-area">
+
+                <button
+                    class="tool-button"
+                    id="filterBtn"
+                    aria-label="Filter"
+                >
+                    <i class="fa-solid fa-sliders"></i>
+                </button>
+
+
+                <div
+                    class="filter-menu"
+                    id="filterMenu"
+                >
+
+                    <button
+                        class="filter-option active"
+                        data-filter="all"
+                    >
+                        SEMUA DESIGN
+                    </button>
+
+                    <button
+                        class="filter-option"
+                        data-filter="business"
+                    >
+                        BISNIS
+                    </button>
+
+                    <button
+                        class="filter-option"
+                        data-filter="personal"
+                    >
+                        PERSONAL
+                    </button>
+
+                    <button
+                        class="filter-option"
+                        data-filter="tools"
+                    >
+                        TOOLS
+                    </button>
+
+                    <button
+                        class="filter-option"
+                        data-filter="event"
+                    >
+                        EVENT
+                    </button>
+
+                    <button
+                        class="filter-option"
+                        data-filter="game"
+                    >
+                        GAME
+                    </button>
+
+                    <button
+                        class="filter-option"
+                        data-filter="favorite"
+                    >
+                        ⭐ FAVORIT
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <button
+                class="tool-button"
+                id="shareBtn"
+                aria-label="Share"
+            >
+                <i class="fa-solid fa-share-nodes"></i>
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- CATEGORY -->
+
+<div class="category-bar">
+
+    <button
+        class="category active"
+        data-category="all"
+    >
+        SEMUA
+    </button>
+
+    <button
+        class="category"
+        data-category="business"
+    >
+        BISNIS
+    </button>
+
+    <button
+        class="category"
+        data-category="personal"
+    >
+        PERSONAL
+    </button>
+
+    <button
+        class="category"
+        data-category="tools"
+    >
+        TOOLS
+    </button>
+
+    <button
+        class="category"
+        data-category="event"
+    >
+        EVENT
+    </button>
+
+    <button
+        class="category"
+        data-category="game"
+    >
+        GAME
+    </button>
+
+</div>
+
+
+<!-- DESIGN GRID -->
+
+<div class="container">
+
+
+    <div
+        class="card"
+        data-category="business"
+        data-search="webstore toko online bisnis"
+    >
+
+        <button
+            class="favorite"
+            data-id="webstore"
+            aria-label="Favorit"
+        >
+            <i class="fa-regular fa-heart"></i>
+        </button>
+
+        <i class="fa-solid fa-store card-main-icon"></i>
+
+        <h3>Webstore</h3>
+
+        <p>
+            Website toko online simple.
+            Upload produk langsung jualan.
+        </p>
+
+        <a
+            href="https://lanzz-official.github.io/Project/webstore.html"
+            class="btn-card"
+        >
+            LIAT DESIGN
+        </a>
+
+    </div>
+
+
+    <div
+        class="card"
+        data-category="business"
+        data-search="ecommerce e-commerce keranjang checkout payment"
+    >
+
+        <button
+            class="favorite"
+            data-id="ecommerce"
+            aria-label="Favorit"
+        >
+            <i class="fa-regular fa-heart"></i>
+        </button>
+
+        <i class="fa-solid fa-cart-shopping card-main-icon"></i>
+
+        <h3>E-Commerce</h3>
+
+        <p>
+            Sistem jual beli lengkap.
+            Keranjang + checkout + payment.
+        </p>
+
+        <a
+            href="https://lanzz-official.github.io/Project/e-commerce.html"
+            class="btn-card"
+        >
+            LIAT DESIGN
+        </a>
+
+    </div>
+
+
+    <div
+        class="card"
+        data-category="business"
+        data-search="toko warung umkm katalog"
+    >
+
+        <button
+            class="favorite"
+            data-id="warung"
+            aria-label="Favorit"
+        >
+            <i class="fa-regular fa-heart"></i>
+        </button>
+
+        <i class="fa-solid fa-shop card-main-icon"></i>
+
+        <h3>Web Toko/Warung</h3>
+
+        <p>
+            Katalog digital buat warung & UMKM.
+            Akses mudah via HP.
+        </p>
+
+        <a
+            href="https://lanzz-official.github.io/Project/toko-warung.html"
+            class="btn-card"
+        >
+            LIAT DESIGN
+        </a>
+
+    </div>
+
+
+    <div
+        class="card"
+        data-category="personal"
+        data-search="cv online curriculum vitae kerja resume"
+    >
+
+        <button
+            class="favorite"
+            data-id="cv"
+            aria-label="Favorit"
+        >
+            <i class="fa-regular fa-heart"></i>
+        </button>
+
+        <i class="fa-solid fa-id-card card-main-icon"></i>
+
+        <h3>CV Online</h3>
+
+        <p>
+            CV digital interaktif.
+            Lamar kerja lebih profesional.
+        </p>
+
+        <a
+            href="https://lanzz-official.github.io/Project/cv.html"
+            class="btn-card"
+        >
+            LIAT DESIGN
+        </a>
+
+    </div>
+
+
+    <div
+        class="card"
+        data-category="personal"
+        data-search="portfolio portofolio karya skill"
+    >
+
+        <button
+            class="favorite"
+            data-id="portfolio"
+            aria-label="Favorit"
+        >
+            <i class="fa-regular fa-heart"></i>
+        </button>
+
+        <i class="fa-solid fa-briefcase card-main-icon"></i>
+
+        <h3>Portfolio</h3>
+
+        <p>
+            Tampilkan semua karya dan skill
+            dalam 1 website.
+        </p>
+
+        <a
+            href="https://lanzz-official.github.io/Project/portfolio.html"
+            class="btn-card"
+        >
+            LIAT DESIGN
+        </a>
+
+    </div>
+
+
+    <div
+        class="card"
+        data-category="business"
+        data-search="company profile perusahaan bisnis"
+    >
+
+        <button
+            class="favorite"
+            data-id="company"
+            aria-label="Favorit"
+        >
+            <i class="fa-regular fa-heart"></i>
+        </button>
+
+        <i class="fa-solid fa-building card-main-icon"></i>
+
+        <h3>Company Profile</h3>
+
+        <p>
+            Website profil perusahaan.
+            Biar bisnis terpercaya.
+        </p>
+
+        <a
+            href="https://lanzz-official.github.io/Project/company.html"
+            class="btn-card"
+        >
+            LIAT DESIGN
+        </a>
+
+    </div>
+
+
+    <div
+        class="card"
+        data-category="personal"
+        data-search="sekolah tugas school pendidikan"
+    >
+
+        <button
+            class="favorite"
+            data-id="school"
+            aria-label="Favorit"
+        >
+            <i class="fa-regular fa-heart"></i>
+        </button>
+
+        <i class="fa-solid fa-school card-main-icon"></i>
+
+        <h3>Website Tugas Sekolah</h3>
+
+        <p>
+            Bikin tugas jadi website.
+            Dijamin nilai naik.
+        </p>
+
+        <a
+            href="https://lanzz-official.github.io/Project/tugas-school.html"
+            class="btn-card"
+        >
+            LIAT DESIGN
+        </a>
+
+    </div>
+
+
+    <div
+        class="card"
+        data-category="tools"
+        data-search="tools generator converter"
+    >
+
+        <button
+            class="favorite"
+            data-id="tools"
+            aria-label="Favorit"
+        >
+            <i class="fa-regular fa-heart"></i>
+        </button>
+
+        <i class="fa-solid fa-screwdriver-wrench card-main-icon"></i>
+
+        <h3>Tools</h3>
+
+        <p>
+            Kumpulan tools berguna.
+            Generator, converter, dll.
+        </p>
+
+        <a
+            href="https://lanzz-official.github.io/Project/tools.html"
+            class="btn-card"
+        >
+            LIAT DESIGN
+        </a>
+
+    </div>
+
+
+    <div
+        class="card"
+        data-category="game"
+        data-search="mod game aplikasi premium unlock"
+    >
+
+        <button
+            class="favorite"
+            data-id="mod"
+            aria-label="Favorit"
+        >
+            <i class="fa-regular fa-heart"></i>
+        </button>
+
+        <i class="fa-solid fa-gamepad card-main-icon"></i>
+
+        <h3>Mod</h3>
+
+        <p>
+            Mod game & aplikasi premium.
+            Fitur unlock semua.
+        </p>
+
+        <a
+            href="https://lanzz-official.github.io/Project/mod.html"
+            class="btn-card"
+        >
+            LIAT DESIGN
+        </a>
+
+    </div>
+
+
+    <div
+        class="card"
+        data-category="tools"
+        data-search="apk android aplikasi custom mobile"
+    >
+
+        <button
+            class="favorite"
+            data-id="apk"
+            aria-label="Favorit"
+        >
+            <i class="fa-regular fa-heart"></i>
+        </button>
+
+        <i class="fa-solid fa-mobile-screen card-main-icon"></i>
+
+        <h3>APK Custom</h3>
+
+        <p>
+            Buat aplikasi android custom.
+            Bebas request fitur.
+        </p>
+
+        <a
+            href="https://lanzz-official.github.io/Project/apk-custom.html"
+            class="btn-card"
+        >
+            LIAT DESIGN
+        </a>
+
+    </div>
+
+
+    <div
+        class="card"
+        data-category="event"
+        data-search="undangan digital invitation rsvp galeri"
+    >
+
+        <button
+            class="favorite"
+            data-id="undangan"
+            aria-label="Favorit"
+        >
+            <i class="fa-regular fa-heart"></i>
+        </button>
+
+        <i class="fa-solid fa-envelope-open-text card-main-icon"></i>
+
+        <h3>Surat Undangan Digital</h3>
+
+        <p>
+            Undangan online.
+            Ada musik + RSVP + galeri.
+        </p>
+
+        <a
+            href="https://lanzz-official.github.io/Project/undangan.html"
+            class="btn-card"
+        >
+            LIAT DESIGN
+        </a>
+
+    </div>
+
+
+    <div
+        class="card"
+        data-category="event"
+        data-search="ulang tahun ultah birthday ucapan"
+    >
+
+        <button
+            class="favorite"
+            data-id="ultah"
+            aria-label="Favorit"
+        >
+            <i class="fa-regular fa-heart"></i>
+        </button>
+
+        <i class="fa-solid fa-cake-candles card-main-icon"></i>
+
+        <h3>Ucapan Ulang Tahun</h3>
+
+        <p>
+            Website ucapan ultah animasi.
+            Kirim ke pacar/temen.
+        </p>
+
+        <a
+            href="https://lanzz-official.github.io/Project/ultah.html"
+            class="btn-card"
+        >
+            LIAT DESIGN
+        </a>
+
+    </div>
+
+
+    <div
+        class="card"
+        data-category="game"
+        data-search="turnamen tournament ml ff pubg bracket"
+    >
+
+        <button
+            class="favorite"
+            data-id="turnamen"
+            aria-label="Favorit"
+        >
+            <i class="fa-regular fa-heart"></i>
+        </button>
+
+        <i class="fa-solid fa-gamepad card-main-icon"></i>
+
+        <h3>TURNAMEN</h3>
+
+        <p>
+            Buat & kelola turnamen ML, FF, PUBG.
+            Sistem bracket otomatis.
+        </p>
+
+        <a
+            href="https://lanzz-official.github.io/Project/turnamen.html"
+            class="btn-card"
+        >
+            LIAT DESIGN
+        </a>
+
+    </div>
+
+
+    <div
+        class="card"
+        data-category="business"
+        data-search="penginapan vila hotel booking wisata"
+    >
+
+        <button
+            class="favorite"
+            data-id="penginapan"
+            aria-label="Favorit"
+        >
+            <i class="fa-regular fa-heart"></i>
+        </button>
+
+        <i class="fa-solid fa-hotel card-main-icon"></i>
+
+        <h3>Penginapan / Vila</h3>
+
+        <p>
+            Website booking vila & penginapan.
+            Ada galeri, harga & form booking WA.
+        </p>
+
+        <a
+            href="https://lanzz-official.github.io/Project/penginapan.html"
+            class="btn-card"
+        >
+            LIAT DESIGN
+        </a>
+
+    </div>
+
+
+    <div
+        class="empty"
+        id="emptyState"
+    >
+
+        <i class="fa-solid fa-magnifying-glass"></i>
+
+        <h3>Desain tidak ditemukan</h3>
+
+        <p>
+            Coba kata kunci atau kategori lain.
+        </p>
+
+    </div>
+
+</div>
+
+
+<footer>
+
+    <p>
+        © 2026 LANZZ PROJECT. All Rights Reserved
+    </p>
+
+</footer>
+
+
+<div
+    class="toast"
+    id="toast"
+>
+    <span id="toastText">
+        Berhasil
+    </span>
+</div>
+
+
+<script>
+
+/* ==========================
+   CARD SCROLL ANIMATION
+========================== */
+
+const cards =
+    document.querySelectorAll(".card");
+
+const observer =
+    new IntersectionObserver(
+        entries=>{
+
+            entries.forEach(
+                (entry,index)=>{
+
+                    if(entry.isIntersecting){
+
+                        setTimeout(
+                            ()=>{
+                                entry.target
+                                    .classList
+                                    .add("show");
+                            },
+                            index * 100
+                        );
+
+                        observer
+                            .unobserve(
+                                entry.target
+                            );
+                    }
+
+                }
+            );
+
+        },
+        {
+            threshold:.1
+        }
+    );
+
+cards.forEach(
+    card=>observer.observe(card)
+);
+
+
+/* ==========================
+   SEARCH
+========================== */
+
+const search =
+    document.getElementById("search");
+
+const clearSearch =
+    document.getElementById("clearSearch");
+
+const emptyState =
+    document.getElementById("emptyState");
+
+let activeCategory = "all";
+let activeFilter = "all";
+
+
+function filterCards(){
+
+    const keyword =
+        search.value
+            .toLowerCase()
+            .trim();
+
+    let found = 0;
+
+    cards.forEach(card=>{
+
+        const text =
+            (
+                card.innerText +
+                " " +
+                (
+                    card.dataset.search || ""
+                )
+            ).toLowerCase();
+
+        const category =
+            card.dataset.category;
+
+        const favoriteButton =
+            card.querySelector(".favorite");
+
+        const id =
+            favoriteButton.dataset.id;
+
+        const searchMatch =
+            !keyword ||
+            text.includes(keyword);
+
+        const categoryMatch =
+            activeCategory === "all" ||
+            category === activeCategory;
+
+        const filterMatch =
+            activeFilter === "all" ||
+            (
+                activeFilter === "favorite" &&
+                favorites.includes(id)
+            ) ||
+            category === activeFilter;
+
+        const show =
+            searchMatch &&
+            categoryMatch &&
+            filterMatch;
+
+        card.classList.toggle(
+            "hidden",
+            !show
+        );
+
+        if(show){
+            found++;
+        }
+
+    });
+
+    emptyState.style.display =
+        found === 0
+        ? "block"
+        : "none";
+
+    clearSearch.style.display =
+        keyword
+        ? "block"
+        : "none";
+}
+
+
+search.addEventListener(
+    "input",
+    filterCards
+);
+
+
+/* CLEAR SEARCH */
+
+clearSearch.addEventListener(
+    "click",
+    ()=>{
+
+        search.value = "";
+
+        search.focus();
+
+        filterCards();
+
+    }
+);
+
+
+/* ==========================
+   CATEGORY
+========================== */
+
+document
+.querySelectorAll(".category")
+.forEach(button=>{
+
+    button.addEventListener(
+        "click",
+        ()=>{
+
+            document
+            .querySelectorAll(".category")
+            .forEach(
+                item =>
+                item.classList.remove(
+                    "active"
+                )
+            );
+
+            button.classList.add(
+                "active"
+            );
+
+            activeCategory =
+                button.dataset.category;
+
+            activeFilter = "all";
+
+            document
+            .querySelectorAll(
+                ".filter-option"
+            )
+            .forEach(
+                item =>
+                item.classList.remove(
+                    "active"
+                )
+            );
+
+            document
+            .querySelector(
+                '[data-filter="all"]'
+            )
+            .classList.add(
+                "active"
+            );
+
+            filterCards();
+
+        }
+    );
+
+});
+
+
+/* ==========================
+   FILTER MENU
+========================== */
+
+const filterBtn =
+    document.getElementById(
+        "filterBtn"
+    );
+
+const filterMenu =
+    document.getElementById(
+        "filterMenu"
+    );
+
+
+filterBtn.addEventListener(
+    "click",
+    event=>{
+
+        event.stopPropagation();
+
+        filterMenu.classList.toggle(
+            "active"
+        );
+
+        // filter floating, tidak menggeser kategori
+
+    }
+);
+
+
+document.addEventListener(
+    "click",
+    event=>{
+
+        if(
+            !filterMenu.contains(
+                event.target
+            ) &&
+            !filterBtn.contains(
+                event.target
+            )
+        ){
+
+            filterMenu.classList.remove(
+                "active"
+            );
+
+        }
+
+    }
+);
+
+
+document
+.querySelectorAll(".filter-option")
+.forEach(button=>{
+
+    button.addEventListener(
+        "click",
+        ()=>{
+
+            document
+            .querySelectorAll(
+                ".filter-option"
+            )
+            .forEach(
+                item =>
+                item.classList.remove(
+                    "active"
+                )
+            );
+
+            button.classList.add(
+                "active"
+            );
+
+            activeFilter =
+                button.dataset.filter;
+
+            activeCategory = "all";
+
+            document
+            .querySelectorAll(".category")
+            .forEach(
+                item =>
+                item.classList.remove(
+                    "active"
+                )
+            );
+
+            document
+            .querySelector(
+                '[data-category="all"]'
+            )
+            .classList.add(
+                "active"
+            );
+
+            filterMenu.classList.remove(
+                "active"
+            );
+
+            filterCards();
+
+        }
+    );
+
+});
+
+
+/* ==========================
+   FAVORITE
+========================== */
+
+let favorites = [];
+
+
+try{
+
+    favorites =
+        JSON.parse(
+            localStorage.getItem(
+                "lanzz_favorites"
+            ) || "[]"
+        );
+
+}catch(error){
+
+    favorites = [];
+
+}
+
+
+function updateFavorites(){
+
+    document
+    .querySelectorAll(".favorite")
+    .forEach(button=>{
+
+        const id =
+            button.dataset.id;
+
+        const icon =
+            button.querySelector("i");
+
+        if(
+            favorites.includes(id)
+        ){
+
+            button.classList.add(
+                "active"
+            );
+
+            icon.className =
+                "fa-solid fa-heart";
+
+        }else{
+
+            button.classList.remove(
+                "active"
+            );
+
+            icon.className =
+                "fa-regular fa-heart";
+
+        }
+
+    });
+
+}
+
+
+document
+.querySelectorAll(".favorite")
+.forEach(button=>{
+
+    button.addEventListener(
+        "click",
+        event=>{
+
+            event.preventDefault();
+            event.stopPropagation();
+
+            const id =
+                button.dataset.id;
+
+            if(
+                favorites.includes(id)
+            ){
+
+                favorites =
+                    favorites.filter(
+                        item =>
+                        item !== id
+                    );
+
+                showToast(
+                    "Dihapus dari favorit"
+                );
+
+            }else{
+
+                favorites.push(id);
+
+                showToast(
+                    "Ditambahkan ke favorit ❤️"
+                );
+
+            }
+
+            localStorage.setItem(
+                "lanzz_favorites",
+                JSON.stringify(
+                    favorites
+                )
+            );
+
+            updateFavorites();
+
+            filterCards();
+
+        }
+    );
+
+});
+
+
+/* ==========================
+   SHARE
+========================== */
+
+const shareBtn =
+    document.getElementById(
+        "shareBtn"
+    );
+
+
+shareBtn.addEventListener(
+    "click",
+    async()=>{
+
+        if(
+            navigator.share
+        ){
+
+            try{
+
+                await navigator.share({
+
+                    title:
+                        "LANZZ PROJECT - Contoh Design",
+
+                    text:
+                        "Lihat koleksi desain LANZZ PROJECT!",
+
+                    url:
+                        window.location.href
+
+                });
+
+            }catch(error){}
+
+        }else{
+
+            try{
+
+                await navigator.clipboard
+                    .writeText(
+                        window.location.href
+                    );
+
+                showToast(
+                    "Link berhasil disalin!"
+                );
+
+            }catch(error){
+
+                showToast(
+                    "Gagal menyalin link"
+                );
+
+            }
+
+        }
+
+    }
+);
+
+
+/* ==========================
+   TOAST
+========================== */
+
+const toast =
+    document.getElementById(
+        "toast"
+    );
+
+const toastText =
+    document.getElementById(
+        "toastText"
+    );
+
+let toastTimer;
+
+
+function showToast(message){
+
+    toastText.textContent =
+        message;
+
+    toast.classList.add(
+        "show"
+    );
+
+    clearTimeout(
+        toastTimer
+    );
+
+    toastTimer =
+        setTimeout(
+            ()=>{
+                toast.classList.remove(
+                    "show"
+                );
+            },
+            2000
+        );
+
+}
+
+
+/* ==========================
+   START
+========================== */
+
+updateFavorites();
+filterCards();
+
+</script>
+
+</body>
+</html>
