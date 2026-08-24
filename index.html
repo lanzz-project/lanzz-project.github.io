@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="R - Lanzz | Developer, Modder, Creator, Editor & Gamer">
+<title>R - Lanzz — Developer & Creator</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+
+:root{
+  --bg:#060707;
+  --bg2:#0b0d0d;
+  --card:#101313;
+  --line:#292d2d;
+  --text:#f3f3f3;
+  --muted:#929797;
+  --red:#ff1616;
+  --red2:#ff3b3b;
+  --glow:rgba(255,22,22,.28);
+  --max:1120px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  font-family:Inter,Arial,sans-serif;background:
+  radial-gradient(circle at 80% 10%,rgba(255,20,20,.07),transparent 30%),
+  radial-gradient(circle at 10% 55%,rgba(255,20,20,.04),transparent 28%),var(--bg);
+  color:var(--text);overflow-x:hidden;
+}
+body:before{
+  content:"";position:fixed;inset:0;pointer-events:none;opacity:.16;
+  background-image:linear-gradient(rgba(255,255,255,.025) 1px,transparent 1px),
+  linear-gradient(90deg,rgba(255,255,255,.025) 1px,transparent 1px);
+  background-size:45px 45px;mask-image:linear-gradient(to bottom,black,transparent 90%);
+}
+a{text-decoration:none;color:inherit}
+.container{width:min(var(--max),92%);margin:auto}
+header{
+  position:fixed;top:0;left:0;right:0;z-index:1000;height:72px;
+  background:rgba(6,7,7,.84);backdrop-filter:blur(16px);
+  border-bottom:1px solid rgba(255,255,255,.07)
+}
+.nav{height:100%;display:flex;align-items:center;justify-content:space-between}
+.logo{font-weight:800;font-size:20px;letter-spacing:-1px}
+.logo span{color:var(--red)}
+.navlinks{display:flex;gap:27px;align-items:center}
+.navlinks a{font-size:12px;color:#aaa;transition:.25s}
+.navlinks a:hover,.navlinks a.active{color:#fff}
+.navlinks a.active:after{content:"";display:block;height:2px;background:var(--red);margin-top:7px;border-radius:9px}
+.menu{display:none;border:1px solid var(--line);background:#111;color:#fff;border-radius:8px;padding:9px;cursor:pointer}
+section{padding:105px 0;scroll-margin-top:70px}
+.hero{min-height:100vh;display:flex;align-items:center;padding-top:120px}
+.hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:60px;align-items:center}
+.kicker{color:var(--muted);font-size:13px;margin-bottom:12px}
+.kicker span,.accent{color:var(--red)}
+h1{font-size:clamp(45px,7vw,82px);line-height:.95;letter-spacing:-4px;margin-bottom:20px}
+.hero h1 .typed-prefix{color:#fff}.hero h1 .typed-main{color:var(--red)}
+.role{font-size:17px;color:#f2f2f2;margin-bottom:18px;text-shadow:0 0 8px rgba(255,20,20,.28)}
+.role .dot{color:var(--red);text-shadow:0 0 8px var(--red),0 0 18px rgba(255,0,0,.6);margin:0 7px}
+.desc{max-width:570px;color:var(--muted);font-size:13px;line-height:1.9}
+.hero-actions{display:flex;gap:10px;margin-top:27px;flex-wrap:wrap}
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:8px;
+  min-width:128px;padding:12px 18px;border-radius:4px;border:1px solid var(--red);
+  background:var(--red);color:#fff;font-size:11px;font-weight:700;transition:.25s;
+  box-shadow:0 0 0 transparent
+}
+.btn:hover{transform:translateY(-3px);box-shadow:0 10px 35px var(--glow)}
+.btn.ghost{background:transparent;color:#fff}
+.profile-wrap{display:flex;justify-content:center;position:relative}
+.profile-wrap:before,.profile-wrap:after{
+  content:"";position:absolute;border:1px solid var(--red);border-radius:50%;
+  width:220px;height:220px;opacity:.20;animation:pulse 4s infinite;top:50%;left:50%;transform:translate(-50%,-50%)
+}
+.profile-wrap:after{width:245px;height:245px;opacity:.07;animation-delay:1s}
+.profile{
+  width:180px;height:180px;border-radius:50%;object-fit:cover;
+  border:2px solid var(--red);padding:2px;background:#080808;
+  box-shadow:0 0 40px var(--glow),0 0 100px rgba(255,0,0,.08);
+  position:relative;z-index:2
+}
+@keyframes pulse{0%,100%{transform:translate(-50%,-50%) scale(1);opacity:.22}50%{transform:translate(-50%,-50%) scale(1.035);opacity:.10}}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:55px}
+.stat{border-left:2px solid var(--red);padding:7px 15px;background:rgba(255,255,255,.015)}
+.stat b{font-size:25px}.stat small{display:block;color:#777;margin-top:4px;font-size:10px}
+.section-head{display:flex;justify-content:space-between;align-items:end;margin-bottom:34px}
+.eyebrow{font-size:11px;color:var(--red);font-weight:800;text-transform:uppercase;letter-spacing:2px;margin-bottom:9px}
+h2{font-size:34px;letter-spacing:-1.5px}
+.section-head p{max-width:420px;color:#777;font-size:12px;line-height:1.8}
+.services{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;max-width:940px;margin:auto}
+.card{
+  border:1px solid var(--line);background:linear-gradient(145deg,#111414,#0a0c0c);
+  border-radius:7px;padding:21px;position:relative;overflow:hidden;transition:.3s;min-height:225px
+}
+.card:before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 85% 0,rgba(255,20,20,.14),transparent 30%);opacity:0;transition:.3s}
+.card:hover{transform:translateY(-7px);border-color:#4a2525;box-shadow:0 18px 50px rgba(0,0,0,.4)}
+.card:hover:before{opacity:1}
+.card>*{position:relative}
+.card-icon{width:39px;height:39px;border:1px solid #522020;border-radius:7px;display:grid;place-items:center;color:var(--red);margin-bottom:20px}
+.card-icon svg{width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:1.8}
+.card h3{font-size:18px;margin-bottom:9px}.card p{color:#777;font-size:12px;line-height:1.8}
+.card .more{display:inline-flex;align-items:center;gap:7px;color:#fff;font-size:10px;font-weight:800;margin-top:17px;border:1px solid #3b2525;border-radius:4px;padding:8px 10px;background:rgba(255,0,0,.035);transition:.25s}.more span{color:var(--red);text-shadow:0 0 8px var(--red)}.card:hover .more{border-color:var(--red);background:rgba(255,0,0,.08)}
+.skills{display:grid;grid-template-columns:1fr;gap:10px;max-width:900px}
+.skill-row{
+  margin:0;padding:0;border:0;border-radius:0;background:transparent;
+  transition:.3s;position:relative;overflow:visible
+}
+.skill-row:hover{transform:none;border-color:transparent;box-shadow:none}
+.skill-meta{display:flex;justify-content:space-between;align-items:center;font-size:13px;font-weight:500;margin-bottom:12px}
+.skill-meta b{color:var(--red);font-size:12px;font-weight:500;text-shadow:0 0 8px rgba(255,0,0,.4)}
+.skill-level{height:5px;background:#202426;border-radius:99px;overflow:hidden}
+.skill-level i{display:block;height:100%;background:linear-gradient(90deg,#c90000,#ff1717);border-radius:99px;box-shadow:0 0 7px rgba(255,0,0,.3)}
+.experience{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.exp{padding:25px;border:1px solid var(--line);border-radius:8px;background:#0c0f0f}
+.exp .date{color:var(--red);font-size:10px;font-weight:800;letter-spacing:1px}.exp h3{margin:10px 0;font-size:17px}.exp p{font-size:12px;color:#777;line-height:1.9}
+.about{display:grid;grid-template-columns:1.2fr .8fr;gap:55px;align-items:center}
+.about p{color:#858a8a;font-size:11.5px;line-height:1.9}
+.socials{display:flex;gap:10px;margin-top:22px}
+.social{
+  width:38px;height:38px;display:grid;place-items:center;border:1px solid var(--line);
+  border-radius:6px;color:#bbb;transition:.25s
+}
+.social:hover{color:#fff;border-color:var(--red);background:rgba(255,0,0,.08);transform:translateY(-3px)}
+.social svg{width:17px;height:17px;fill:currentColor}
+footer{border-top:1px solid var(--line);padding:25px 0;color:#666;font-size:10px}
+.footer{display:flex;justify-content:space-between;gap:15px}
+.reveal{opacity:0;transform:translateY(25px);transition:opacity .7s,transform .7s}.reveal.show{opacity:1;transform:none}
+.cursor{display:inline-block;width:3px;height:.9em;background:var(--red);margin-left:4px;animation:blink .8s infinite;vertical-align:-2px}
+@keyframes blink{50%{opacity:0}}
+@media(max-width:800px){
+  .navlinks{position:absolute;top:72px;left:0;right:0;background:rgba(6,7,7,.97);padding:20px;display:none;flex-direction:column;align-items:flex-start;border-bottom:1px solid var(--line)}
+  .navlinks.open{display:flex}.menu{display:block}.hero-grid,.about,.skills,.experience{grid-template-columns:1fr}
+  .profile-wrap{order:-1}.profile{width:165px;height:165px}.profile-wrap:before{width:205px;height:205px}.profile-wrap:after{width:230px;height:230px}
+  h1{letter-spacing:-2.5px}.stats{gap:8px}.stat b{font-size:19px}.services{grid-template-columns:1fr}
+  .section-head{display:block}.section-head p{margin-top:12px}.footer{flex-direction:column}.skills{grid-template-columns:1fr;gap:9px}.skill-row{padding:15px 12px}.services{gap:10px}.card{min-height:205px;padding:19px}
+}
+</style>
+</head>
+<body>
+<header>
+  <div class="container nav">
+    <a class="logo" href="#home">R - <span>Lanzz</span></a>
+    <button class="menu" id="menu" aria-label="Menu">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+    </button>
+    <nav class="navlinks" id="nav">
+      <a class="active" href="#home">Home</a><a href="#services">Services</a><a href="#ai">AI</a>
+      <a href="#tools">Tools</a><a href="#game">Games</a><a href="#about">About</a><a href="#contact">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+<section class="hero" id="home">
+ <div class="container">
+  <div class="hero-grid">
+   <div class="reveal">
+    <div class="kicker">Hello, <span>I am</span></div>
+    <h1><span class="typed-prefix">R -</span><span class="typed-space"> </span><span class="typed-main">Lanzz</span><i class="cursor"></i></h1>
+    <div class="role">From<span class="dot">Lebak</span>-<span class="dot">Banten</span>-<span class="dot">Indonesia</span></div>
+    <p class="desc">I create modern websites, digital applications, smart tools, and innovative solutions to bring ideas into powerful digital experiences. with a focus on modern design, high performance, and seamless user experience, I build products that are simple, functional, and impactful.</p>
+    <div class="hero-actions"><a class="btn" href="#contact">Contact</a><a class="btn ghost" href="#about">About</a></div>
+    <div class="socials" id="social">
+      <a class="social" href="https://www.instagram.com/lanzz.offcl" target="_blank" aria-label="Instagram"><svg viewBox="0 0 24 24"><path d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5Zm5 5.5A4.5 4.5 0 1 0 16.5 12 4.5 4.5 0 0 0 12 7.5Zm0 7.2A2.7 2.7 0 1 1 14.7 12 2.7 2.7 0 0 1 12 14.7ZM17.7 6.1a1.2 1.2 0 1 0 1.2 1.2 1.2 1.2 0 0 0-1.2-1.2Z"/></svg></a>
+      <a class="social" href="https://wa.me/6283894480846" target="_blank" aria-label="WhatsApp"><svg viewBox="0 0 24 24"><path d="M20.5 3.5A11.8 11.8 0 0 0 12.1 0C5.6 0 .4 5.2.4 11.7c0 2.1.5 4.1 1.6 5.9L.3 24l6.5-1.7a11.7 11.7 0 0 0 5.3 1.3h.1c6.4 0 11.7-5.2 11.7-11.7 0-3.1-1.2-6.1-3.4-8.4ZM12.1 21.5c-1.7 0-3.4-.5-4.9-1.4l-.4-.2-3.8 1 1-3.7-.2-.4a9.7 9.7 0 1 1 8.3 4.7Zm5.3-7.3c-.3-.2-1.8-.9-2.1-1-.3-.1-.5-.2-.7.2-.2.3-.8 1-1 1.2-.2.2-.4.2-.7.1-2-.9-3.3-1.6-4.6-3.7-.4-.7.4-.6 1.1-2 0-.2 0-.4-.1-.6l-.9-2.1c-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.6.1-.9.4-.3.3-1.1 1.1-1.1 2.7s1.1 3.1 1.3 3.3c.2.2 2.2 3.4 5.3 4.7 2 .9 2.8 1 3.8.8.6-.1 1.8-.7 2-1.4.2-.7.2-1.3.1-1.4-.1-.2-.3-.3-.6-.4Z"/></svg></a>
+      <a class="social" href="https://www.facebook.com/lanzz.offcl" target="_blank" aria-label="Facebook"><svg viewBox="0 0 24 24"><path d="M13.5 22v-8h2.7l.4-3h-3.1V9.1c0-.9.3-1.6 1.7-1.6h1.8V4.8c-.3 0-1.3-.1-2.5-.1-2.5 0-4.2 1.5-4.2 4.3V11H7.5v3h2.8v8h3.2Z"/></svg></a>
+      <a class="social" href="https://www.tiktok.com/@lanzz.offc" target="_blank" aria-label="TikTok"><svg viewBox="0 0 24 24"><path d="M15 2h3c.2 1.6 1.2 3.1 3 3.7v3.1c-1.1-.1-2.1-.4-3-1v6.4a6.8 6.8 0 1 1-5.9-6.7v3.2a3.6 3.6 0 1 0 2.9 3.5V2Z"/></svg></a>
+    </div>
+   </div>
+   <div class="profile-wrap reveal"><img class="profile" src="https://i.imgur.com/EMove2l.jpeg" alt="Foto profil R - Lanzz"></div>
+  </div>
+  <div class="stats reveal">
+    <div class="stat"><b>500+</b><small>Website dibuat</small></div>
+    <div class="stat"><b>5+</b><small>Tahun pengalaman</small></div>
+    <div class="stat"><b>700+</b><small>Project selesai</small></div>
+  </div>
+ </div>
+</section>
+
+<section id="services">
+ <div class="container">
+  <div class="section-head reveal"><div><div class="eyebrow">Digital solutions</div><h2>Lanzz <span class="accent">Services</span></h2></div><p>Beberapa layanan utama yang bisa digunakan untuk kebutuhan personal, bisnis maupun project digital.</p></div>
+  <div class="services">
+   <div class="card reveal"><div class="card-icon"><svg viewBox="0 0 24 24"><path d="m8 9-3 3 3 3M16 9l3 3-3 3M14 5l-4 14"/></svg></div><h3>Web Services</h3><p>Buat semua jenis website, bebas request, full fitur & database<br>Cocok untuk personal brand, bisnis, landing page, dashboard dan project custom.</p><a class="more" href="ISI LINK DISINI" target="_blank">View Services <span>→</span></a>
+  </div>
+ </div>
+</section>
+
+<section id="ai">
+ <div class="container">
+  <div class="section-head reveal"><div><div class="eyebrow">AI Assistant by Lanzz Project</div><h2>Lanzz<span class="accent">.Ai</span></h2></div><p>Asisten AI modern untuk bantu kerjaan, belajar & ide kamu</p></div>
+  <div class="services">
+   <div class="card reveal"><div class="card-icon"><svg viewBox="0 0 24 24"><rect x="5" y="5" width="14" height="14" rx="4"/><path d="M9 9h6v6H9zM3 10h2M19 10h2M10 3v2M14 19v2"/></svg></div><h3>AI Assistant</h3><p>Tanya apa saja ke Lanzz.Ai, asisten AI modern by Lanzz Project yang dapat digunakan untuk membantu berbagai kebutuhan.</p><a class="more" href="ISI LINK DISINI" target="_blank">Explore AI <span>→</span></a>
+  </div>
+ </div>
+</section>
+
+<section id="tools">
+ <div class="container">
+  <div class="section-head reveal"><div><div class="eyebrow">Tools All In One</div><h2>Lanzz <span class="accent">Tools</span></h2></div><p>Semua tools kebutuhan digital dalam 1 tempat</p></div>
+  <div class="services">
+   <div class="card reveal"><div class="card-icon"><svg viewBox="0 0 24 24"><path d="m14.7 6.3 3-3a5 5 0 0 0-6.1 6.1l-7.2 7.2a2.1 2.1 0 0 0 3 3l7.2-7.2a5 5 0 0 0 6.1-6.1l-3 3-3-3Z"/></svg></div><h3>Tools</h3><p>80+ Tools All In One, gratis, aman & tanpa login<br>Praktis untuk berbagai kebutuhan sehari-hari dan kebutuhan digital.</p><a class="more" href="ISI LINK DISINI" target="_blank">Try the Tools <span>→</span></a>
+  </div>
+ </div>
+</section>
+
+<section id="game">
+ <div class="container">
+  <div class="section-head reveal"><div><div class="eyebrow">Gaming hub</div><h2>Lanzz <span class="accent">Play</span></h2></div><p>Platform game gratis, main langsung tanpa ribet</p></div>
+  <div class="services">
+   <div class="card reveal"><div class="card-icon"><svg viewBox="0 0 24 24"><path d="M7 8h10a5 5 0 0 1 4.8 6.4l-1.2 4A2.1 2.1 0 0 1 16.5 20L14 17H10l-2.5 3a2.1 2.1 0 0 1-4.1-1.6l-1.2-4A5 5 0 0 1 7 8Z"/></svg></div><h3>Games</h3><p>Mainkan 1000+ game gratis, aman & tanpa APK<br>Pilih game langsung dari browser tanpa instalasi tambahan.</p><a class="more" href="ISI LINK DISINI" target="_blank">Play Games <span>→</span></a>
+  </div>
+ </div>
+</section>
+
+<section>
+ <div class="container">
+  <div class="section-head reveal"><div><div class="eyebrow">My Skills</div><h2>Keahlian <span class="accent">Utama</span></h2></div></div>
+  <div class="skills">
+   <div class="skill-row reveal"><div class="skill-meta"><span>Web Development</span><b>90%</b></div><div class="skill-level"><i style="width:90%"></i></div></div>
+   <div class="skill-row reveal"><div class="skill-meta"><span>App APK Creation</span><b>85%</b></div><div class="skill-level"><i style="width:85%"></i></div></div>
+   <div class="skill-row reveal"><div class="skill-meta"><span>Landing Page</span><b>95%</b></div><div class="skill-level"><i style="width:95%"></i></div></div>
+   <div class="skill-row reveal"><div class="skill-meta"><span>UI/UX Design</span><b>80%</b></div><div class="skill-level"><i style="width:80%"></i></div></div>
+ </div>
+</section>
+
+<section>
+ <div class="container">
+  <div class="section-head reveal"><div><div class="eyebrow">My Experience</div><h2>Pengalaman <span class="accent">Kerja</span></h2></div></div>
+  <div class="experience">
+   <article class="exp reveal"><div class="date">2020 — SEKARANG</div><h3>Freelance Web Developer</h3><p>Menangani 500+ project Website, APK dan Landing Page untuk UMKM, personal brand dan berbagai kebutuhan digital.</p></article>
+   <article class="exp reveal"><div class="date">2021 — SEKARANG</div><h3>Content Creator & Digital Solutions</h3><p>Membantu pengguna melalui aplikasi dan konten digital di Instagram, TikTok dan Facebook.</p></article>
+  </div>
+ </div>
+</section>
+
+<section id="about">
+ <div class="container">
+  <div class="section-head reveal"><div><div class="eyebrow">About</div><h2>About <span class="accent">Lanzz</span></h2></div></div>
+  <div class="about">
+   <div class="reveal"><p>Hello, I'm <b style="color:#fff">LANZZ</b>, Web & App, Developer, Modder, Creator & Gamer with experience in the IT field, my specializations include website development, APK app creation, landing pages, UI/UX design, and various digital solutions for personal and business needs.</p><p style="margin-top:18px">Based in <b style="color:#fff">Lebak - Banten - Indonesia</b>, I am dedicated to creating modern, lightweight, responsive, and user-friendly digital products, my goal is to deliver digital solutions that are not only functional but also provide the best experience for every user, whether for personal projects or business needs.</p></div>
+  </div>
+ </div>
+</section>
+
+<section id="contact">
+ <div class="container">
+  <div class="section-head reveal"><div><div class="eyebrow">Contact</div><h2>Contact <span class="accent">Me</span></h2></div></div>
+  <div class="about">
+   <div class="reveal"><p>I offer services for a wide range of projects tailored to your needs. I am also open to partnerships and collaborations with anyone. I enjoy making new connections and discussing a variety of topics. If you are interested, please feel free to contact me via WhatsApp or Email. Let’s bring your ideas to life together.</p>
+   <div class="socials">
+    <a class="btn" href="https://wa.me/6283894480846" target="_blank">WhatsApp</a>
+    <a class="btn ghost" href="mailto:lanzz.project.id@gmail.com">Email</a>
+   </div></div>
+  </div>
+ </div>
+</section>
+</main>
+
+<footer><div class="container footer"><span>© 2026 Lanzz. All Rights Reserved.</span><span>Designed & Developed by Lanzz<br>Made with HTML - CSS - JavaScript and a cup of coffee☕</span></div></footer>
+
+<script>
+const menu=document.getElementById('menu'),nav=document.getElementById('nav');
+menu.onclick=()=>nav.classList.toggle('open');
+document.querySelectorAll('.navlinks a').forEach(a=>{
+  a.onclick=(e)=>{
+    nav.classList.remove('open');
+    const target=a.getAttribute('href');
+    if(target && target.startsWith('#')){
+      e.preventDefault();
+      const el=document.querySelector(target);
+      if(el){
+        el.scrollIntoView({behavior:'smooth'});
+      }
+    }
+  };
+});
+
+const observer=new IntersectionObserver(entries=>{
+ entries.forEach(e=>{
+   if(e.isIntersecting){
+     e.target.classList.add('show');
+     e.target.querySelectorAll?.('.fill').forEach(x=>x.style.width=x.dataset.width);
+     observer.unobserve(e.target);
+   }
+ })
+},{threshold:.14});
+document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
+
+const sections=[...document.querySelectorAll('section[id]')];
+const links=[...document.querySelectorAll('.navlinks a')];
+window.addEventListener('scroll',()=>{
+ let current='home';
+ sections.forEach(s=>{if(scrollY>=s.offsetTop-180) current=s.id});
+ links.forEach(a=>a.classList.toggle('active',a.getAttribute('href')==='#'+current || (current==='services' && a.getAttribute('href')==='#services')));
+});
+
+const typedPrefix=document.querySelector('.typed-prefix');
+const typedSpace=document.querySelector('.typed-space');
+const typedMain=document.querySelector('.typed-main');
+
+if(typedPrefix && typedMain){
+  const sequences=[
+    {text:'R - Lanzz', branded:true},
+    {text:'Developer', branded:false},
+    {text:'Modder', branded:false},
+    {text:'Creator', branded:false},
+    {text:'Editor', branded:false},
+    {text:'Gamer', branded:false}
+  ];
+
+  let index=0, pos=0, deleting=false;
+
+  const render=(value, branded)=>{
+    if(branded){
+      const prefix='R -';
+      const prefixPart=value.slice(0, Math.min(value.length, prefix.length));
+      const rest=value.length > prefix.length ? value.slice(prefix.length) : '';
+
+      typedPrefix.textContent=prefixPart;
+      typedSpace.textContent=rest ? ' ' : '';
+      typedMain.textContent=rest;
+    }else{
+      typedPrefix.textContent='';
+      typedSpace.textContent='';
+      typedMain.textContent=value;
+    }
+  };
+
+  const tick=()=>{
+    const item=sequences[index];
+
+    if(!deleting){
+      pos++;
+      render(item.text.slice(0,pos), item.branded);
+
+      if(pos < item.text.length){
+        setTimeout(tick,115);
+      }else{
+        deleting=true;
+        setTimeout(tick,1200);
+      }
+    }else{
+      pos--;
+      render(item.text.slice(0,pos), item.branded);
+
+      if(pos > 0){
+        setTimeout(tick,70);
+      }else{
+        deleting=false;
+        index=(index+1)%sequences.length;
+        setTimeout(tick,300);
+      }
+    }
+  };
+
+  render('', true);
+  setTimeout(tick,450);
+}
+</script>
+</body>
+</html>
