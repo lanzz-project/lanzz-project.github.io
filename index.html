@@ -1,0 +1,2426 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="R - Lanzz | Developer, Modder & Creator — Premium Portfolio Ultra">
+<meta name="theme-color" content="#060707">
+<meta name="color-scheme" content="dark">
+<title>R - Lanzz — Developer & Creator</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;700&display=swap');
+
+:root{
+  --bg:#060707;--card:#101313;--line:#292d2d;--text:#f3f3f3;
+  --muted:#929797;--red:#ff1616;--red2:#ff3b3b;--glow:rgba(255,22,22,.28);
+  --soft:rgba(255,22,22,.08);--max:1120px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{
+  font-family:Inter,Arial,sans-serif;
+  color:var(--text);overflow-x:hidden;min-height:100vh;line-height:1.5;
+  -webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;
+  transition:background .5s ease,color .5s ease;
+  background:radial-gradient(circle at 80% 10%,rgba(255,20,20,.07),transparent 30%),radial-gradient(circle at 10% 55%,rgba(255,20,20,.04),transparent 28%),#060707;
+}
+body:before{content:"";position:fixed;inset:0;pointer-events:none;opacity:.14;background-image:linear-gradient(rgba(255,255,255,.025) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.025) 1px,transparent 1px);background-size:45px 45px;mask-image:linear-gradient(to bottom,black,transparent 90%);-webkit-mask-image:linear-gradient(to bottom,black,transparent 90%);z-index:-1}
+body:after{content:"";position:fixed;inset:0;pointer-events:none;z-index:-1;background:radial-gradient(circle at 50% 0,var(--soft),transparent 35%)}
+a{text-decoration:none;color:inherit}
+img{max-width:100%;display:block}
+button{font-family:inherit}
+::selection{background:var(--soft);color:#fff}
+::-webkit-scrollbar{width:8px;height:8px}
+::-webkit-scrollbar-track{background:#0a0c0c}
+::-webkit-scrollbar-thumb{background:linear-gradient(180deg,#2b2e2e,#181a1a);border-radius:99px;border:1px solid rgba(255,255,255,.05)}
+::-webkit-scrollbar-thumb:hover{background:linear-gradient(180deg,var(--red),var(--red2))}
+.container{width:min(var(--max),92%);margin:auto}
+:focus-visible{outline:1px solid var(--red);outline-offset:3px}
+
+header{position:fixed;top:0;left:0;right:0;z-index:1000;height:58px;background:rgba(6,7,7,.85);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-bottom:1px solid rgba(255,255,255,.06);transition:background .3s ease,border-color .3s ease}
+header.scrolled{background:rgba(4,5,5,.95);border-bottom-color:var(--glow);box-shadow:0 8px 30px rgba(0,0,0,.45)}
+.nav{height:100%;display:flex;align-items:center;justify-content:space-between;gap:14px}
+.logo{font-weight:800;font-size:18px;letter-spacing:-.8px;white-space:nowrap;transition:transform .25s ease,filter .25s ease;cursor:pointer}
+.logo span{color:var(--red)}
+.logo:hover{transform:translateY(-1px);filter:drop-shadow(0 0 12px var(--glow))}
+.navlinks{display:flex;gap:16px;align-items:center;margin-left:auto}
+.navlinks a{font-size:11px;color:#aaa;transition:.25s;position:relative;padding:6px 0}
+.navlinks a:hover,.navlinks a.active{color:#fff}
+.navlinks a.active:after{content:"";position:absolute;left:0;right:0;bottom:-2px;height:2px;background:var(--red);border-radius:99px;box-shadow:0 0 10px var(--glow)}
+.menu{display:none;border:1px solid var(--line);background:#111;color:#fff;border-radius:8px;padding:8px;cursor:pointer;transition:.25s}
+.menu:hover{border-color:var(--red);box-shadow:0 0 18px var(--soft)}
+.menu svg{width:18px;height:18px}
+
+.live-clock{display:flex;align-items:center;gap:8px;margin-left:auto;padding:5px 9px;border:1px solid rgba(255,255,255,.12);border-radius:14px;background:linear-gradient(135deg,rgba(255,255,255,.07),var(--soft));box-shadow:0 8px 24px rgba(0,0,0,.24);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);white-space:nowrap;position:relative;overflow:hidden;min-width:170px}
+.live-clock:before{content:"";position:absolute;inset:0;background:linear-gradient(105deg,transparent 15%,rgba(255,255,255,.1) 48%,transparent 82%);transform:translateX(-120%);animation:clockShine 12s ease-in-out infinite}
+.clock-icon{width:24px;height:24px;flex:0 0 24px;border-radius:9px;display:grid;place-items:center;border:1px solid var(--red);background:var(--soft);color:var(--red);position:relative;z-index:1;transition:.5s}
+.clock-icon svg{width:13px;height:13px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.clock-dot{width:5px;height:5px;flex:0 0 5px;border-radius:50%;background:var(--red);box-shadow:0 0 10px var(--red);animation:clockPulse 1.5s ease-in-out infinite;position:relative;z-index:1}
+.clock-info{display:flex;flex-direction:column;line-height:1.05;position:relative;z-index:1}
+.clock-time{font-size:11.5px;font-weight:900;letter-spacing:.04em;font-variant-numeric:tabular-nums}
+.clock-seconds{color:var(--red)}
+.clock-seconds i{font-style:normal;color:#fff}
+.clock-date{margin-top:5px;font-size:8.5px;font-weight:700;color:rgba(255,255,255,.6);letter-spacing:.05em;text-transform:uppercase}
+.clock-zone{margin-left:auto;font-size:6.5px;font-weight:800;letter-spacing:.1em;color:rgba(255,255,255,.38);align-self:flex-end;margin-bottom:2px;position:relative;z-index:1}
+@keyframes clockPulse{50%{opacity:.35;transform:scale(.72)}}
+@keyframes clockShine{0%,55%{transform:translateX(-120%)}75%,100%{transform:translateX(120%)}}
+
+section{padding:90px 0;scroll-margin-top:68px;position:relative}
+section:first-of-type{padding-top:120px}
+.hero{min-height:100vh;display:flex;align-items:center;padding-top:110px;overflow:hidden}
+.hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:55px;align-items:center}
+.kicker{color:var(--muted);font-size:12.5px;margin-bottom:10px;letter-spacing:.3px}
+.kicker span,.accent{color:var(--red)}
+h1{font-size:clamp(38px,5.5vw,64px);line-height:.98;letter-spacing:-2.5px;margin-bottom:16px}
+.hero h1 .typed-prefix{color:#fff}
+.hero h1 .typed-main{color:var(--red);text-shadow:0 0 28px var(--glow)}
+.role{font-size:15.5px;color:#f2f2f2;margin-bottom:16px}
+.role .dot{color:var(--red);text-shadow:0 0 8px var(--red);margin:0 6px}
+.desc{max-width:540px;color:var(--muted);font-size:12.5px;line-height:1.85}
+.hero-actions{display:flex;gap:10px;margin-top:24px;flex-wrap:wrap}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-width:120px;padding:11px 16px;border-radius:6px;border:1px solid var(--red);background:var(--red);color:#fff;font-size:11px;font-weight:700;transition:.28s;cursor:pointer;position:relative;overflow:hidden;letter-spacing:.3px}
+.btn:hover{transform:translateY(-2px);box-shadow:0 12px 32px var(--glow),0 0 20px var(--soft)}
+.btn:before{content:"";position:absolute;top:-20%;bottom:-20%;left:-55%;width:32%;background:linear-gradient(90deg,transparent,rgba(255,255,255,.35),transparent);transform:skewX(-20deg);transition:left .6s ease;pointer-events:none}
+.btn:hover:before{left:125%}
+.btn.ghost{background:transparent;color:#fff;border-color:rgba(255,255,255,.2)}
+.btn.ghost:hover{border-color:var(--red);background:var(--soft)}
+
+.hero-badge{display:inline-flex;align-items:center;gap:8px;padding:6px 11px 6px 7px;border:1px solid var(--red);border-radius:999px;background:var(--soft);font-size:9.5px;font-weight:700;letter-spacing:1px;color:#ccc;margin-bottom:16px;box-shadow:0 0 20px var(--soft);transition:border-color .5s,background .5s}
+.hero-badge i{display:grid;place-items:center;width:20px;height:20px;border-radius:50%;background:var(--soft);color:var(--red)}
+.hero-badge i svg{width:11px;height:11px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.hero-badge b{color:#fff}
+.hero-badge em{font-style:normal;color:#7dff9c;display:inline-flex;align-items:center;gap:5px}
+.hero-badge em:before{content:"";display:inline-block;width:5px;height:5px;border-radius:50%;background:#7dff9c;box-shadow:0 0 8px #7dff9c;animation:clockPulse 1.6s infinite}
+
+/* ============ LANYARD (transplanted from bahan) ============ */
+.profile-wrap{display:flex;justify-content:center;align-items:flex-start;position:relative;min-height:380px;perspective:1200px;touch-action:none;overflow:visible}
+.profile-wrap:before{content:"";position:absolute;width:350px;height:350px;top:60px;left:50%;transform:translateX(-50%);border-radius:50%;background:radial-gradient(circle,rgba(255,22,22,.18),transparent 68%);filter:blur(20px);pointer-events:none}
+.lanyard-stage{position:relative;width:230px;height:350px;transform-style:preserve-3d;will-change:transform;backface-visibility:hidden;cursor:grab;user-select:none;transform-origin:50% 0;touch-action:none}
+.lanyard-stage.dragging{cursor:grabbing}
+.lanyard-scene{position:absolute;inset:0;transform-style:preserve-3d;transform-origin:50% 0;animation:lanyardAppear 1.2s cubic-bezier(.16,1.25,.28,1) both}
+.lanyard-stage:before{content:"";position:absolute;top:-10px;left:50%;width:12px;height:18px;transform:translateX(-50%);border-radius:50%;background:linear-gradient(135deg,#888,#111 70%);border:1px solid #aaa;box-shadow:0 3px 6px rgba(0,0,0,.9),inset 1px 1px 2px rgba(255,255,255,.5);z-index:10}
+.lanyard-strap{position:absolute;top:0;left:50%;width:16px;height:142px;transform:translateX(-50%);background:linear-gradient(90deg,#050505 0,#1a1a1a 25%,#333 50%,#1a1a1a 75%,#050505 100%);border:1px solid #333;border-radius:3px 3px 0 0;box-shadow:inset 1px 0 2px rgba(255,255,255,.15),inset -1px 0 3px rgba(0,0,0,.95),0 4px 12px rgba(0,0,0,.5);z-index:2;overflow:hidden}
+.lanyard-strap:before{content:"";position:absolute;inset:0;background:repeating-linear-gradient(to bottom,transparent 0 10px,rgba(255,255,255,.05) 11px,transparent 12px);opacity:.7}
+.lanyard-strap:after{content:"LANZZ  •  LANZZ  •  LANZZ";position:absolute;top:6px;left:50%;height:124px;transform:translateX(-50%) rotate(180deg);writing-mode:vertical-rl;font-size:6.5px;font-weight:800;letter-spacing:2px;color:#ececec;opacity:.85;text-align:center;white-space:nowrap}
+.lanyard-clip{position:absolute;top:136px;left:50%;width:22px;height:24px;transform:translateX(-50%);background:linear-gradient(135deg,#e0e0e0 0,#8a8a8a 45%,#333 80%,#666 100%);border-radius:4px 4px 6px 6px;border:1px solid rgba(255,255,255,.6);box-shadow:0 4px 10px rgba(0,0,0,.8),inset 0 1px 3px rgba(255,255,255,.8);z-index:5}
+.lanyard-clip:before{content:"";position:absolute;top:-4px;left:50%;width:18px;height:6px;transform:translateX(-50%);background:linear-gradient(90deg,#666,#fff,#888,#222);border-radius:2px;box-shadow:0 1px 3px rgba(0,0,0,.6)}
+.lanyard-clip:after{content:"";position:absolute;bottom:-10px;left:50%;width:10px;height:12px;transform:translateX(-50%);border:2px solid #ccc;border-bottom:0;border-radius:6px 6px 0 0;background:transparent;box-shadow:inset 1px 0 2px rgba(255,255,255,.4)}
+.lanyard-cord{position:absolute;top:158px;left:50%;width:3px;height:22px;transform:translateX(-50%);background:linear-gradient(90deg,#222,#888,#111);border-radius:99px;box-shadow:0 2px 4px rgba(0,0,0,.7);z-index:4}
+.profile-card{position:absolute;top:178px;left:50%;width:186px;height:236px;transform:translateX(-50%);transform-style:preserve-3d;border:1px solid rgba(255,65,65,.95);border-radius:10px;padding:6px;background:linear-gradient(145deg,#1c1e1e,#0a0b0b 60%,#020202);box-shadow:0 30px 55px rgba(0,0,0,.8),0 0 35px rgba(255,22,22,.22),inset 0 0 0 1px rgba(255,255,255,.1);overflow:hidden;z-index:3;transition:box-shadow .2s}
+.profile-card:before{content:"";position:absolute;inset:0;background:linear-gradient(115deg,rgba(255,255,255,.2),transparent 25%,transparent 55%,rgba(255,35,35,.12));pointer-events:none;z-index:3;mix-blend-mode:screen}
+.profile-card:after{content:"R-LANZZ";position:absolute;left:10px;bottom:8px;font-size:7.5px;font-weight:800;letter-spacing:2px;color:#fff;opacity:.7;z-index:4}
+.profile-card:hover{box-shadow:0 32px 60px rgba(0,0,0,.85),0 0 45px rgba(255,22,22,.32),inset 0 0 0 1px rgba(255,255,255,.15)}
+.profile{width:100%;height:100%;display:block;border-radius:6px;object-fit:cover;object-position:center;background:#080808;position:relative;z-index:1;pointer-events:none}
+.lanyard-hint{position:absolute;top:336px;left:50%;transform:translateX(-50%);font-size:8px;letter-spacing:1.2px;text-transform:uppercase;color:#777;white-space:nowrap;pointer-events:none}
+@keyframes lanyardAppear{0%{opacity:0;transform:translateY(-150px) rotateZ(-12deg)}40%{opacity:1;transform:translateY(15px) rotateZ(7deg)}60%{transform:translateY(-6px) rotateZ(-4deg)}80%{transform:translateY(2px) rotateZ(2deg)}100%{opacity:1;transform:translateY(0) rotateZ(0)}}
+
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:48px}
+.stat{border:1px solid rgba(255,255,255,.06);border-left:2px solid var(--red);border-radius:6px;padding:12px 14px;background:linear-gradient(135deg,rgba(255,255,255,.02),rgba(255,255,255,.005));transition:.3s;position:relative;overflow:hidden}
+.stat:after{content:"";position:absolute;left:-30%;right:-30%;top:0;height:1px;background:linear-gradient(90deg,transparent,var(--red),transparent);transform:translateX(-60%);animation:premiumSweep 14s ease-in-out infinite;opacity:.3}
+.stat:hover{transform:translateY(-3px);border-color:var(--red);box-shadow:0 12px 30px rgba(0,0,0,.25),0 0 20px var(--soft)}
+.stat b{font-size:22px;display:block;letter-spacing:-.4px}
+.stat small{display:block;color:#777;margin-top:3px;font-size:9.5px;letter-spacing:.3px}
+
+.section-head{display:flex;justify-content:space-between;align-items:end;margin-bottom:30px;position:relative;flex-wrap:wrap;gap:14px}
+.eyebrow{font-size:10px;color:var(--red);font-weight:800;text-transform:uppercase;letter-spacing:1.8px;margin-bottom:8px;display:inline-flex;align-items:center;gap:8px}
+h2{font-size:clamp(22px,2.6vw,30px);letter-spacing:-.8px;line-height:1.15}
+.section-head p{max-width:420px;color:#777;font-size:11.5px;line-height:1.75}
+.section-head:after{content:"";position:absolute;left:0;bottom:-12px;width:44px;height:1px;background:linear-gradient(90deg,var(--red),transparent);opacity:.65}
+.lnz-section-tag{display:inline-flex;align-items:center;gap:6px;margin-top:8px;color:#4f5555;font-size:7px;font-weight:800;letter-spacing:1.4px;text-transform:uppercase}
+.lnz-section-tag i{width:5px;height:5px;border-radius:50%;background:var(--red);box-shadow:0 0 8px var(--glow)}
+
+.services{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;max-width:920px;margin:auto}
+.card{border:1px solid var(--line);background:linear-gradient(145deg,rgba(18,21,21,.88),rgba(8,10,10,.94));border-radius:8px;padding:20px;position:relative;overflow:hidden;transition:.3s;min-height:200px;backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);box-shadow:0 10px 28px rgba(0,0,0,.12)}
+.card:before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 85% 0,var(--soft),transparent 30%);opacity:0;transition:.3s;pointer-events:none}
+.card:hover{transform:translateY(-6px) scale(1.005);border-color:var(--red);box-shadow:0 20px 48px rgba(0,0,0,.4),0 0 30px var(--soft)}
+.card:hover:before{opacity:1}
+.card>*{position:relative;z-index:2}
+.card-icon{width:38px;height:38px;border:1px solid var(--line);border-radius:9px;display:grid;place-items:center;color:var(--red);margin-bottom:16px;transition:.35s;box-shadow:inset 0 0 15px var(--soft);background:var(--soft)}
+.card-icon svg{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+.card:hover .card-icon{transform:translateY(-3px) rotate(-3deg);border-color:var(--red);box-shadow:0 0 22px var(--glow)}
+.card h3{font-size:16.5px;margin-bottom:8px;letter-spacing:-.3px}
+.card p{color:#777;font-size:11.5px;line-height:1.75}
+.card .more{display:inline-flex;align-items:center;gap:7px;color:#fff;font-size:9.5px;font-weight:800;margin-top:14px;border:1px solid rgba(255,255,255,.12);border-radius:5px;padding:7px 10px;background:var(--soft);transition:.25s;letter-spacing:.3px}
+.more span{color:var(--red);transition:transform .25s}
+.card:hover .more{border-color:var(--red);gap:9px}
+.card:hover .more span{transform:translateX(3px)}
+
+.about{display:grid;grid-template-columns:1.2fr .8fr;gap:40px;align-items:center}
+.about p{color:#858a8a;font-size:11.5px;line-height:1.9}
+.socials{display:flex;gap:8px;margin-top:20px;flex-wrap:wrap}
+.social{width:36px;height:36px;display:grid;place-items:center;border:1px solid var(--line);border-radius:8px;color:#bbb;transition:.28s}
+.social:hover{color:#fff;border-color:var(--red);background:var(--soft);transform:translateY(-3px);box-shadow:0 8px 20px rgba(0,0,0,.3),0 0 12px var(--glow)}
+.social svg{width:15px;height:15px;fill:currentColor}
+
+.skills{display:grid;grid-template-columns:1fr;gap:10px;max-width:880px}
+.skill-row{padding:6px 0;transition:.3s}
+.skill-meta{display:flex;justify-content:space-between;align-items:center;font-size:12px;font-weight:500;margin-bottom:10px}
+.skill-meta b{color:var(--red);font-size:11px;font-weight:600;font-variant-numeric:tabular-nums}
+.skill-level{height:6px;background:#191d1d;border:1px solid rgba(255,255,255,.05);border-radius:99px;overflow:hidden}
+.skill-level i{display:block;height:100%;background:linear-gradient(90deg,var(--red),var(--red2));border-radius:99px;box-shadow:0 0 8px var(--glow);position:relative;overflow:hidden;transform-origin:left center;transition:width 1.4s cubic-bezier(.2,.8,.2,1),filter .25s}
+.skill-level i:after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,transparent,rgba(255,255,255,.4),transparent);transform:translateX(-100%);animation:barShine 7s infinite}
+@keyframes barShine{50%,100%{transform:translateX(120%)}}
+
+.lnz-timeline{position:relative;padding-left:28px;max-width:880px;margin:auto}
+.lnz-timeline:before{content:"";position:absolute;left:8px;top:6px;bottom:6px;width:2px;background:linear-gradient(180deg,var(--red),var(--soft));border-radius:99px}
+.lnz-tl-item{position:relative;padding:0 0 22px}
+.lnz-tl-item:last-child{padding-bottom:0}
+.lnz-tl-dot{position:absolute;left:-28px;top:5px;width:18px;height:18px;border-radius:50%;border:2px solid var(--red);background:#0a0c0c;display:grid;place-items:center;z-index:1}
+.lnz-tl-dot:after{content:"";width:6px;height:6px;border-radius:50%;background:var(--red);box-shadow:0 0 10px var(--red)}
+.lnz-tl-card{padding:16px 18px;border:1px solid var(--line);border-radius:10px;background:linear-gradient(145deg,rgba(18,21,21,.88),rgba(8,10,10,.94));transition:.3s}
+.lnz-tl-card:hover{transform:translateX(6px);border-color:var(--red);box-shadow:0 12px 30px rgba(0,0,0,.35)}
+.lnz-tl-card .date{color:var(--red);font-size:9.5px;font-weight:800;letter-spacing:1.2px}
+.lnz-tl-card h3{margin:7px 0 7px;font-size:14.5px}
+.lnz-tl-card p{font-size:11.5px;color:#888;line-height:1.7}
+.lnz-tl-tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}
+.lnz-tl-tag{padding:3px 8px;border:1px solid rgba(255,255,255,.09);border-radius:99px;font-size:8.5px;color:#999;font-weight:600}
+
+
+.faq{max-width:800px;margin:auto;display:grid;gap:10px}
+.faq-item{border:1px solid var(--line);border-radius:9px;background:linear-gradient(150deg,rgba(18,21,21,.75),rgba(8,10,10,.9));overflow:hidden;transition:.3s}
+.faq-item.open{border-color:var(--red);background:linear-gradient(150deg,var(--soft),rgba(8,10,10,.9))}
+.faq-q{width:100%;display:flex;align-items:center;gap:12px;padding:15px 18px;background:transparent;border:0;color:#e5e8e8;font:inherit;font-size:12.5px;font-weight:600;text-align:left;cursor:pointer;transition:.25s}
+.faq-q:hover{color:#fff}
+.faq-icon{width:24px;height:24px;flex:0 0 24px;border-radius:7px;display:grid;place-items:center;border:1px solid var(--red);background:var(--soft);color:var(--red);transition:.3s}
+.faq-icon svg{width:11px;height:11px;fill:none;stroke:currentColor;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round;transition:transform .3s}
+.faq-item.open .faq-icon{background:var(--red);color:#fff;box-shadow:0 0 16px var(--glow)}
+.faq-item.open .faq-icon svg{transform:rotate(45deg)}
+.faq-a{max-height:0;overflow:hidden;transition:max-height .4s cubic-bezier(.2,.8,.2,1)}
+.faq-a-inner{padding:0 18px 16px 54px;color:#888;font-size:11.5px;line-height:1.8}
+.faq-item.open .faq-a{max-height:300px}
+
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;align-items:start}
+.contact-card{padding:24px;border:1px solid var(--line);border-radius:12px;background:linear-gradient(150deg,rgba(18,21,21,.85),rgba(8,10,10,.92));position:relative;overflow:hidden}
+.contact-card:before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 100% 0,var(--soft),transparent 40%);pointer-events:none}
+.contact-form{display:grid;gap:11px;position:relative;z-index:1}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:11px}
+.form-field{display:grid;gap:6px}
+.form-field label{font-size:9px;font-weight:800;letter-spacing:1.3px;color:#666;text-transform:uppercase}
+.form-field input,.form-field textarea{width:100%;border:1px solid rgba(255,255,255,.09);border-radius:8px;background:#0a0c0c;color:#eee;padding:10px 12px;font:inherit;font-size:11.5px;outline:none;transition:.25s;resize:vertical}
+.form-field textarea{min-height:110px}
+.form-field input:focus,.form-field textarea:focus{border-color:var(--red);box-shadow:0 0 0 3px var(--soft)}
+.form-field input::placeholder,.form-field textarea::placeholder{color:#494f4f}
+.form-submit{display:inline-flex;align-items:center;justify-content:center;gap:9px;padding:12px 18px;border:1px solid var(--red);border-radius:8px;background:var(--red);color:#fff;font:inherit;font-size:10.5px;font-weight:800;letter-spacing:.4px;cursor:pointer;transition:.25s;margin-top:2px}
+.form-submit:hover{transform:translateY(-2px);box-shadow:0 12px 30px var(--glow)}
+.form-submit svg{width:13px;height:13px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+
+footer{border-top:1px solid var(--line);padding:32px 0 20px;color:#666;font-size:9.5px;background:linear-gradient(180deg,transparent,var(--soft))}
+.footer-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:26px;margin-bottom:24px}
+.footer-brand .logo{font-size:18px;margin-bottom:10px;display:inline-block}
+.footer-brand p{color:#666;font-size:10px;line-height:1.75;max-width:270px}
+.footer-col h5{font-size:9px;letter-spacing:1.5px;color:var(--red);text-transform:uppercase;margin-bottom:12px;font-weight:800}
+.footer-col a{display:block;color:#777;font-size:10px;padding:4px 0;transition:.2s}
+.footer-col a:hover{color:#fff;transform:translateX(3px)}
+.footer-bottom{padding-top:18px;border-top:1px solid rgba(255,255,255,.05);display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;color:#555;font-size:9px}
+.footer-status{display:inline-flex;align-items:center;gap:7px}
+.footer-status i{width:6px;height:6px;border-radius:50%;background:#7dff9c;box-shadow:0 0 10px #7dff9c;animation:clockPulse 1.6s infinite}
+
+.reveal{opacity:0;transform:translateY(24px);transition:opacity .7s cubic-bezier(.2,.8,.2,1),transform .7s cubic-bezier(.2,.8,.2,1);will-change:opacity,transform}
+.reveal.show{opacity:1;transform:none}
+.cursor-blink{display:inline-block;width:2px;height:.9em;background:var(--red);margin-left:3px;animation:blink .8s infinite;vertical-align:-2px}
+@keyframes blink{50%{opacity:0}}
+.scroll-progress{position:fixed;top:0;left:0;width:0;height:2px;background:linear-gradient(90deg,var(--red),var(--red2));z-index:2000;box-shadow:0 0 12px var(--red);transition:width .08s linear}
+.toast{position:fixed;left:50%;bottom:22px;transform:translate(-50%,20px);padding:10px 15px;border:1px solid var(--red);border-radius:9px;background:rgba(10,12,12,.95);color:#eee;font-size:10.5px;z-index:2100;opacity:0;pointer-events:none;transition:.3s;box-shadow:0 15px 40px rgba(0,0,0,.4);backdrop-filter:blur(12px)}
+.toast.show{opacity:1;transform:translate(-50%,0)}
+#backTop,.back-top{display:none!important}
+@keyframes premiumSweep{0%,100%{transform:translateX(-70%);opacity:0}25%{opacity:.55}60%{transform:translateX(70%);opacity:.25}80%{opacity:0}}
+
+/* ============ BOOT SCREEN (NO MARK) ============ */
+.lnz-boot{position:fixed;inset:0;z-index:100000;background:#040505;display:grid;place-items:center;transition:opacity .55s ease,visibility .55s ease;overflow:hidden}
+.lnz-boot.hide{opacity:0;visibility:hidden;pointer-events:none}
+.lnz-boot:before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 50% 42%,rgba(255,22,22,.09),transparent 55%);pointer-events:none}
+.lnz-boot:after{content:"";position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.012) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.012) 1px,transparent 1px);background-size:44px 44px;mask-image:radial-gradient(circle at 50% 45%,black,transparent 68%);-webkit-mask-image:radial-gradient(circle at 50% 45%,black,transparent 68%);pointer-events:none}
+.lnz-boot-stage{position:relative;width:min(320px,84%);text-align:center;z-index:1;animation:bootIn .8s cubic-bezier(.2,.8,.2,1) both}
+@keyframes bootIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+.lnz-boot-brand{font-family:'Inter',sans-serif;font-weight:800;font-size:28px;letter-spacing:-1px;color:#fff;margin-bottom:8px;line-height:1}
+.lnz-boot-brand span{color:var(--red)}
+.lnz-boot-tag{font-family:'Inter',sans-serif;font-size:9px;letter-spacing:3.6px;color:#555;text-transform:uppercase;font-weight:600;margin-bottom:40px}
+.lnz-boot-progress{width:100%}
+.lnz-boot-track{height:2px;background:#141616;border-radius:99px;overflow:hidden;position:relative;margin-bottom:13px}
+.lnz-boot-fill{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--red),var(--red2));border-radius:99px;box-shadow:0 0 14px var(--glow);transition:width .3s cubic-bezier(.2,.8,.2,1);position:relative;overflow:hidden}
+.lnz-boot-fill:after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,transparent,rgba(255,255,255,.6),transparent);transform:translateX(-100%);animation:bootShine 1.8s ease-in-out infinite}
+@keyframes bootShine{to{transform:translateX(100%)}}
+.lnz-boot-meta{display:flex;justify-content:space-between;align-items:center;font-family:'Inter',sans-serif;font-size:10px;letter-spacing:1.6px;color:#555;text-transform:uppercase;font-weight:600}
+.lnz-boot-meta b{color:#fff;font-weight:800;font-variant-numeric:tabular-nums;font-size:11px;letter-spacing:1px}
+
+#lnzParticles{position:fixed;inset:0;z-index:-2;pointer-events:none;opacity:.35}
+#lnzMatrix{position:fixed;inset:0;z-index:-1;pointer-events:none;opacity:0;transition:opacity .5s;mix-blend-mode:screen}
+body.matrix-on #lnzMatrix{opacity:.25}
+body.performance-mode #lnzParticles,body.performance-mode #lnzMatrix{display:none}
+
+@media (max-width:800px){
+  #lnzParticles,#lnzMatrix,.lnz-orb,.lnz-cursor-glow{display:none!important}
+  .stat:after,.skill-level i:after,.live-clock:before{animation:none!important}
+  .reveal{transition-duration:.35s!important}
+}
+
+.lnz-orb{position:fixed;border-radius:50%;pointer-events:none;z-index:-1;filter:blur(50px);opacity:.12}
+.lnz-orb.o1{width:360px;height:360px;top:-100px;right:-120px;background:radial-gradient(circle,var(--glow),transparent 70%);animation:orbFloat 40s ease-in-out infinite;transition:background .5s}
+.lnz-orb.o2{width:300px;height:300px;bottom:10%;left:-120px;background:radial-gradient(circle,var(--glow),transparent 70%);animation:orbFloat 48s ease-in-out infinite reverse;opacity:.2}
+@keyframes orbFloat{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(40px,30px) scale(1.08)}}
+.lnz-cursor-glow{position:fixed;width:160px;height:160px;border-radius:50%;pointer-events:none;z-index:1;background:radial-gradient(circle,var(--glow),transparent 60%);transform:translate(-50%,-50%);mix-blend-mode:screen;opacity:0;transition:opacity .3s,background .5s;will-change:transform}
+@media(hover:hover){.lnz-cursor-glow{opacity:.65}}
+
+.lnz-ctrl-dock{position:fixed;right:20px;bottom:20px;z-index:999;display:flex;flex-direction:column;gap:9px;align-items:center}
+.lnz-ctrl-btn{width:48px;height:48px;border-radius:50%;border:1px solid rgba(255,255,255,.1);background:rgba(10,12,12,.92);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);color:#ccc;display:grid;place-items:center;cursor:pointer;transition:.25s;box-shadow:0 10px 28px rgba(0,0,0,.4);position:relative;overflow:hidden}
+.lnz-ctrl-btn:hover{color:#fff;border-color:var(--red);transform:translateY(-2px);box-shadow:0 12px 32px rgba(0,0,0,.4),0 0 20px var(--glow)}
+.lnz-ctrl-btn:active{transform:translateY(0) scale(.96)}
+.lnz-ctrl-btn svg{width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round;transition:.25s}
+.lnz-ctrl-btn.active{border-color:var(--red);color:var(--red);background:var(--soft)}
+.lnz-ctrl-btn.active svg{filter:drop-shadow(0 0 8px var(--glow))}
+.lnz-ctrl-btn .lnz-dot-badge{position:absolute;top:3px;right:3px;width:7px;height:7px;border-radius:50%;background:var(--red);box-shadow:0 0 8px var(--red);opacity:0;transition:opacity .3s}
+.lnz-ctrl-btn.active .lnz-dot-badge{opacity:1}
+.lnz-ctrl-btn.scroll{width:50px;height:50px;padding:0;background:rgba(10,12,12,.95)}
+.lnz-ctrl-btn.scroll svg{width:100%;height:100%;transform:rotate(-90deg);stroke:none}
+.lnz-ctrl-btn.scroll circle{fill:none;stroke-width:2.5}
+.lnz-ctrl-btn.scroll .track{stroke:rgba(255,255,255,.06)}
+.lnz-ctrl-btn.scroll .bar{stroke:var(--red);stroke-dasharray:138;stroke-dashoffset:138;transition:stroke-dashoffset .15s linear,stroke .5s;stroke-linecap:round}
+.lnz-ctrl-btn.scroll .ring-num{position:absolute;inset:0;display:grid;place-items:center;font:800 9px 'JetBrains Mono',monospace;color:#fff;pointer-events:none}
+
+.lnz-popup{position:fixed;right:80px;bottom:20px;z-index:1001;border:1px solid rgba(255,255,255,.1);border-radius:16px;background:rgba(10,12,12,.97);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);box-shadow:0 25px 70px rgba(0,0,0,.65);opacity:0;visibility:hidden;transform:translateX(12px) scale(.98);transition:opacity .28s cubic-bezier(.2,.8,.2,1),visibility .28s,transform .28s cubic-bezier(.2,.8,.2,1);overflow:hidden}
+.lnz-popup.show{opacity:1;visibility:visible;transform:none}
+.lnz-pop-head{display:flex;align-items:center;gap:10px;padding:12px 14px;border-bottom:1px solid rgba(255,255,255,.06);background:linear-gradient(135deg,var(--soft),transparent)}
+.lnz-pop-title{display:inline-flex;align-items:center;gap:8px;font-size:10.5px;font-weight:800;letter-spacing:1.2px;color:#ddd;text-transform:uppercase}
+.lnz-pop-title svg{width:14px;height:14px;fill:none;stroke:var(--red);stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round}
+.lnz-pop-title b{color:var(--red);font-weight:800}
+.lnz-pop-close{margin-left:auto;width:26px;height:26px;border:0;background:rgba(255,255,255,.05);color:#999;border-radius:50%;cursor:pointer;display:grid;place-items:center;transition:.2s}
+.lnz-pop-close:hover{background:var(--soft);color:#fff}
+.lnz-pop-close svg{width:12px;height:12px;fill:none;stroke:currentColor;stroke-width:2.2;stroke-linecap:round}
+.lnz-pop-body{padding:14px}
+
+.lnz-theme-pop{width:min(420px,calc(100vw - 100px))}
+.lnz-theme-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;max-height:52vh;overflow-y:auto;padding-right:4px}
+.lnz-theme-grid::-webkit-scrollbar{width:4px}
+.lnz-theme-grid::-webkit-scrollbar-thumb{background:#2a2c2c;border-radius:10px}
+.lnz-theme-opt{position:relative;display:flex;flex-direction:column;align-items:center;gap:8px;padding:11px 8px;border:1px solid rgba(255,255,255,.08);border-radius:10px;background:rgba(255,255,255,.014);cursor:pointer;transition:.22s;font:inherit;color:#ccc;text-align:center;overflow:hidden}
+.lnz-theme-opt:hover{border-color:rgba(255,255,255,.2);background:rgba(255,255,255,.035);transform:translateY(-1px)}
+.lnz-theme-opt.active{border-color:var(--red);background:var(--soft);box-shadow:0 0 18px var(--soft)}
+.lnz-theme-opt.active:after{content:"";position:absolute;top:6px;right:6px;width:6px;height:6px;border-radius:50%;background:var(--red);box-shadow:0 0 10px var(--red)}
+.lnz-theme-opt .sw{width:34px;height:34px;border-radius:50%;background:linear-gradient(135deg,var(--c),var(--c2));border:2px solid rgba(255,255,255,.15);box-shadow:0 0 14px var(--c);position:relative}
+.lnz-theme-opt .sw:after{content:"";position:absolute;inset:5px;border-radius:50%;background:radial-gradient(circle at 30% 30%,rgba(255,255,255,.4),transparent 60%)}
+.lnz-theme-opt b{display:block;font-size:10px;font-weight:700;color:#fff;line-height:1.2}
+.lnz-theme-opt small{display:block;font-size:8px;color:#666;margin-top:2px;letter-spacing:.3px}
+.lnz-theme-foot{margin-top:12px;padding-top:10px;border-top:1px solid rgba(255,255,255,.06);display:flex;align-items:center;gap:10px;font-size:9.5px;color:#888}
+.lnz-perf-toggle{margin-left:auto;display:inline-flex;align-items:center;gap:6px;padding:6px 10px;border:1px solid rgba(255,255,255,.1);border-radius:99px;background:rgba(255,255,255,.02);color:#999;font:inherit;font-size:9px;font-weight:700;cursor:pointer;transition:.2s}
+.lnz-perf-toggle:hover{color:#fff;border-color:var(--red)}
+.lnz-perf-toggle.active{background:var(--red);color:#fff;border-color:var(--red);box-shadow:0 0 14px var(--glow)}
+.lnz-perf-toggle svg{width:11px;height:11px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+
+
+.lnz-chat-pop{width:min(360px,calc(100vw - 100px));max-height:min(560px,78vh);display:flex;flex-direction:column}
+.lnz-chat-body{flex:1;overflow-y:auto;padding:14px;display:flex;flex-direction:column;gap:10px;min-height:220px;max-height:340px}
+.lnz-chat-body::-webkit-scrollbar{width:4px}
+.lnz-chat-body::-webkit-scrollbar-thumb{background:#2a2c2c;border-radius:10px}
+.lnz-msg{max-width:82%;padding:9px 12px;border-radius:13px;font-size:11.5px;line-height:1.55;animation:msgIn .3s cubic-bezier(.2,.8,.2,1);word-wrap:break-word}
+@keyframes msgIn{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+.lnz-msg.bot{background:rgba(255,255,255,.05);color:#d8dcdc;border-bottom-left-radius:4px;align-self:flex-start;border:1px solid rgba(255,255,255,.04)}
+.lnz-msg.user{background:linear-gradient(135deg,var(--red),var(--red2));color:#fff;border-bottom-right-radius:4px;align-self:flex-end;box-shadow:0 4px 14px var(--soft)}
+.lnz-chat-quick{padding:8px 12px;display:flex;gap:6px;flex-wrap:wrap;border-top:1px solid rgba(255,255,255,.06)}
+.lnz-chat-quick button{padding:5px 10px;border:1px solid rgba(255,255,255,.1);border-radius:99px;background:transparent;color:#aaa;font-size:9.5px;cursor:pointer;transition:.2s;font-weight:600}
+.lnz-chat-quick button:hover{border-color:var(--red);color:#fff;background:var(--soft)}
+.lnz-chat-foot{padding:10px 12px;border-top:1px solid rgba(255,255,255,.06);display:flex;gap:8px;align-items:flex-end}
+.lnz-chat-foot textarea{flex:1;border:1px solid rgba(255,255,255,.09);border-radius:10px;background:rgba(255,255,255,.02);color:#fff;padding:9px 11px;font:inherit;font-size:11.5px;outline:none;resize:none;min-height:38px;max-height:100px;line-height:1.5;transition:.2s}
+.lnz-chat-foot textarea:focus{border-color:var(--red)}
+.lnz-chat-foot button{width:36px;height:36px;flex:0 0 36px;border:1px solid var(--red);border-radius:10px;background:var(--red);color:#fff;cursor:pointer;display:grid;place-items:center;transition:.2s}
+.lnz-chat-foot button:hover{transform:scale(1.05);box-shadow:0 4px 14px var(--glow)}
+.lnz-chat-foot button svg{width:14px;height:14px;fill:currentColor}
+
+.lnz-notif-panel{position:fixed;right:80px;bottom:20px;z-index:1001;width:min(340px,calc(100vw - 100px));max-height:70vh;border:1px solid rgba(255,255,255,.08);border-radius:14px;background:rgba(10,12,12,.97);backdrop-filter:blur(14px);box-shadow:0 25px 70px rgba(0,0,0,.6);opacity:0;visibility:hidden;transform:translateX(12px) scale(.98);transition:.3s;display:flex;flex-direction:column;overflow:hidden}
+.lnz-notif-panel.show{opacity:1;visibility:visible;transform:none}
+.lnz-notif-head{padding:12px 14px;border-bottom:1px solid rgba(255,255,255,.06);display:flex;align-items:center;gap:8px}
+.lnz-notif-head b{font-size:10.5px;font-weight:800;letter-spacing:1.3px;color:#bbb;text-transform:uppercase}
+.lnz-notif-head button{margin-left:auto;border:0;background:transparent;color:#666;font-size:8.5px;cursor:pointer;font-weight:700;letter-spacing:1px;padding:4px}
+.lnz-notif-head button:hover{color:#fff}
+.lnz-notif-list{overflow-y:auto;padding:6px;max-height:60vh}
+.lnz-notif-list::-webkit-scrollbar{width:4px}
+.lnz-notif-list::-webkit-scrollbar-thumb{background:#2a2c2c;border-radius:10px}
+.lnz-notif-item{display:flex;gap:11px;padding:10px;border-radius:9px;transition:.2s;cursor:pointer;position:relative;border:1px solid transparent}
+.lnz-notif-item:hover{background:var(--soft);border-color:var(--red)}
+.lnz-notif-item.unread:after{content:"";position:absolute;left:5px;top:50%;width:4px;height:4px;transform:translateY(-50%);border-radius:50%;background:var(--red);box-shadow:0 0 8px var(--red)}
+.lnz-notif-icon{width:30px;height:30px;flex:0 0 30px;border-radius:9px;display:grid;place-items:center;background:var(--soft);color:var(--red);border:1px solid var(--soft)}
+.lnz-notif-icon svg{width:13px;height:13px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.lnz-notif-item b{display:block;font-size:10.5px;color:#ddd;font-weight:600;line-height:1.35}
+.lnz-notif-item small{display:block;font-size:9.5px;color:#777;margin-top:3px;line-height:1.5}
+.lnz-notif-item time{display:block;font-size:8px;color:#555;margin-top:4px;letter-spacing:.5px}
+.lnz-notif-empty{padding:36px 20px;text-align:center;color:#555;font-size:11px}
+.lnz-notif-empty svg{width:30px;height:30px;fill:none;stroke:#333;stroke-width:1.5;margin-bottom:10px;stroke-linecap:round;stroke-linejoin:round}
+.lnz-notif-empty b{display:block;color:#777;font-weight:600;margin-bottom:4px;font-size:11px}
+
+.lnz-cookie{position:fixed;left:50%;bottom:20px;z-index:5000;transform:translate(-50%,150%);width:min(640px,calc(100vw - 40px));padding:14px 18px;border:1px solid rgba(255,255,255,.1);border-radius:14px;background:rgba(10,12,12,.96);backdrop-filter:blur(14px);box-shadow:0 25px 70px rgba(0,0,0,.6);display:flex;align-items:center;gap:14px;transition:transform .5s cubic-bezier(.2,.8,.2,1)}
+.lnz-cookie.show{transform:translate(-50%,0)}
+.lnz-cookie-icon{width:34px;height:34px;flex:0 0 34px;border-radius:10px;background:var(--soft);border:1px solid var(--red);display:grid;place-items:center;color:var(--red)}
+.lnz-cookie-icon svg{width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.lnz-cookie-text{flex:1;min-width:0}
+.lnz-cookie-text b{display:block;font-size:11.5px;color:#fff;margin-bottom:3px}
+.lnz-cookie-text small{display:block;font-size:10px;color:#888;line-height:1.5}
+.lnz-cookie-actions{display:flex;gap:8px;flex-shrink:0}
+.lnz-cookie-actions button{padding:8px 13px;border-radius:8px;font:inherit;font-size:9.5px;font-weight:800;letter-spacing:.4px;cursor:pointer;transition:.2s;white-space:nowrap}
+.lnz-cookie-actions .reject{background:transparent;border:1px solid rgba(255,255,255,.12);color:#999}
+.lnz-cookie-actions .reject:hover{color:#fff;border-color:rgba(255,255,255,.3)}
+.lnz-cookie-actions .accept{background:var(--red);border:1px solid var(--red);color:#fff;box-shadow:0 4px 14px var(--soft)}
+.lnz-cookie-actions .accept:hover{transform:translateY(-1px)}
+
+.lnz-ach-pop{position:fixed;top:20px;left:50%;transform:translate(-50%,-140%);z-index:9999;display:flex;align-items:center;gap:12px;padding:12px 16px;border:1px solid rgba(255,215,80,.45);border-radius:14px;background:linear-gradient(135deg,rgba(30,20,5,.96),rgba(15,10,3,.96));backdrop-filter:blur(14px);box-shadow:0 20px 55px rgba(0,0,0,.6),0 0 40px rgba(255,215,80,.15);transition:transform .5s cubic-bezier(.2,.8,.2,1);pointer-events:none;min-width:290px;max-width:90vw}
+.lnz-ach-pop.show{transform:translate(-50%,0)}
+.lnz-ach-pop-icon{width:40px;height:40px;flex:0 0 40px;border-radius:12px;background:linear-gradient(135deg,#ffd750,#ff9c00);display:grid;place-items:center;color:#1a0d00;box-shadow:0 0 22px rgba(255,215,80,.5)}
+.lnz-ach-pop-icon svg{width:20px;height:20px;fill:currentColor;stroke:none}
+.lnz-ach-pop-txt b{display:block;font-size:8.5px;letter-spacing:2px;color:#ffd750;font-weight:800;text-transform:uppercase}
+.lnz-ach-pop-txt strong{display:block;font-size:12.5px;color:#fff;font-weight:800;margin-top:3px}
+.lnz-ach-pop-txt small{display:block;font-size:9.5px;color:#999;margin-top:3px}
+#lnzConfetti{position:fixed;inset:0;z-index:9998;pointer-events:none;opacity:0;transition:opacity .3s}
+#lnzConfetti.active{opacity:1}
+
+.lnz-cmdk{position:fixed;inset:0;z-index:4000;background:rgba(0,0,0,.72);display:none;align-items:flex-start;justify-content:center;padding:12vh 20px 20px;backdrop-filter:blur(8px)}
+.lnz-cmdk.open{display:flex}
+.lnz-cmdk-box{width:min(600px,100%);border:1px solid var(--red);border-radius:14px;background:#0b0d0d;box-shadow:0 30px 80px rgba(0,0,0,.7);overflow:hidden;animation:cmdIn .22s cubic-bezier(.2,.8,.2,1)}
+@keyframes cmdIn{from{opacity:0;transform:translateY(-12px) scale(.98)}to{opacity:1;transform:none}}
+.lnz-cmdk-head{display:flex;align-items:center;gap:10px;padding:13px 15px;border-bottom:1px solid #252929}
+.lnz-cmdk-head svg{width:16px;height:16px;fill:none;stroke:#666;stroke-width:2;stroke-linecap:round}
+.lnz-cmdk-head input{flex:1;border:0;outline:0;background:transparent;color:#fff;font:inherit;font-size:12.5px}
+.lnz-cmdk-head input::placeholder{color:#555}
+.lnz-cmdk-kbd{display:inline-flex;padding:3px 7px;border:1px solid rgba(255,255,255,.1);border-radius:5px;font:700 9px ui-monospace,monospace;color:#888;background:#111414}
+.lnz-cmdk-list{max-height:56vh;overflow-y:auto;padding:8px}
+.lnz-cmdk-list::-webkit-scrollbar{width:4px}
+.lnz-cmdk-list::-webkit-scrollbar-thumb{background:#2a2c2c;border-radius:10px}
+.lnz-cmdk-group{padding:8px 10px 4px;font-size:8px;letter-spacing:1.6px;color:#555;font-weight:800;text-transform:uppercase}
+.lnz-cmdk-item{width:100%;display:flex;align-items:center;gap:11px;padding:10px 12px;border:0;border-radius:8px;background:transparent;color:#b8bdbd;text-align:left;cursor:pointer;font:inherit;font-size:11.5px;transition:.15s}
+.lnz-cmdk-item:hover,.lnz-cmdk-item.selected{background:var(--soft);color:#fff}
+.lnz-cmdk-item svg{width:15px;height:15px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;color:var(--red);flex:0 0 15px}
+.lnz-cmdk-foot{padding:9px 14px;border-top:1px solid #252929;display:flex;gap:14px;font-size:9px;color:#555}
+.lnz-cmdk-foot b{color:#999;font-weight:600}
+
+.lnz-keys{position:fixed;left:20px;top:80px;z-index:997;width:225px;padding:13px;border:1px solid rgba(255,255,255,.08);border-radius:14px;background:rgba(10,12,12,.92);backdrop-filter:blur(14px);box-shadow:0 20px 55px rgba(0,0,0,.5);opacity:0;visibility:hidden;transform:translateX(-10px);transition:.3s}
+.lnz-keys.show{opacity:1;visibility:visible;transform:none}
+.lnz-keys-head{display:flex;align-items:center;gap:8px;margin-bottom:10px}
+.lnz-keys-head b{font-size:9.5px;letter-spacing:1.4px;color:#bbb;font-weight:800;text-transform:uppercase}
+.lnz-keys-head svg{width:13px;height:13px;fill:none;stroke:#666;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;margin-left:auto}
+.lnz-keys-row{display:flex;align-items:center;gap:8px;padding:5px 0;font-size:10px;color:#999;border-bottom:1px dashed rgba(255,255,255,.05)}
+.lnz-keys-row:last-child{border:0}
+.lnz-keys-row kbd{margin-left:auto;padding:2px 6px;border:1px solid rgba(255,255,255,.11);border-radius:5px;background:rgba(255,255,255,.03);font:700 9px ui-monospace,monospace;color:#ccc}
+
+.lnz-proj-filters{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:18px}
+.lnz-proj-filter{padding:7px 13px;border:1px solid rgba(255,255,255,.1);border-radius:99px;background:transparent;color:#999;font:inherit;font-size:10px;font-weight:700;letter-spacing:.4px;cursor:pointer;transition:.25s}
+.lnz-proj-filter:hover{color:#fff;border-color:var(--red);background:var(--soft)}
+.lnz-proj-filter.active{color:#fff;background:var(--red);border-color:var(--red);box-shadow:0 6px 18px var(--glow)}
+.lnz-proj-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.lnz-proj-card{position:relative;min-height:220px;padding:18px;border:1px solid var(--line);border-radius:12px;background:linear-gradient(150deg,rgba(18,21,21,.88),rgba(8,10,10,.94));overflow:hidden;transition:.35s}
+.lnz-proj-card:before{content:"";position:absolute;top:-70px;right:-70px;width:150px;height:150px;border-radius:50%;background:var(--soft);pointer-events:none;transition:.35s}
+.lnz-proj-card:hover{transform:translateY(-6px);border-color:var(--red);box-shadow:0 20px 50px rgba(0,0,0,.4),0 0 28px var(--soft)}
+.lnz-proj-card:hover:before{transform:scale(1.3)}
+.lnz-proj-card.is-hidden{display:none}
+.lnz-proj-tag{display:inline-block;padding:3px 9px;border:1px solid var(--red);border-radius:99px;font-size:8.5px;font-weight:800;letter-spacing:1.2px;color:var(--red);margin-bottom:14px;background:var(--soft)}
+.lnz-proj-card h3{font-size:16px;margin-bottom:8px;letter-spacing:-.3px}
+.lnz-proj-card p{color:#888;font-size:11px;line-height:1.7;min-height:55px}
+.lnz-proj-actions{display:flex;gap:8px;margin-top:14px;align-items:center}
+.lnz-proj-link{display:inline-flex;align-items:center;gap:6px;padding:7px 11px;border:1px solid rgba(255,255,255,.1);border-radius:7px;background:transparent;color:#ccc;font-size:9.5px;font-weight:700;letter-spacing:.4px;cursor:pointer;transition:.2s}
+.lnz-proj-link:hover{border-color:var(--red);color:#fff;background:var(--soft)}
+.lnz-proj-link.primary{background:var(--red);border-color:var(--red);color:#fff}
+.lnz-proj-link.primary:hover{box-shadow:0 6px 18px var(--glow)}
+.lnz-proj-link svg{width:11px;height:11px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+
+.lnz-articles{display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:12px}
+.lnz-article{border:1px solid var(--line);border-radius:12px;background:linear-gradient(150deg,rgba(18,21,21,.85),rgba(8,10,10,.92));overflow:hidden;transition:.3s;cursor:pointer;display:flex;flex-direction:column}
+.lnz-article:hover{transform:translateY(-5px);border-color:var(--red);box-shadow:0 18px 45px rgba(0,0,0,.4)}
+.lnz-article-cover{height:130px;background:linear-gradient(135deg,#1a0505,#2a0808,#0a0303);position:relative;overflow:hidden;display:grid;place-items:center}
+.lnz-article-cover:before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 30% 40%,var(--glow),transparent 60%),radial-gradient(circle at 70% 70%,var(--soft),transparent 60%)}
+.lnz-article-cover svg{width:44px;height:44px;color:var(--red);position:relative;z-index:1;fill:none;stroke:currentColor;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round;filter:drop-shadow(0 0 12px var(--glow))}
+.lnz-article-cat{position:absolute;top:10px;left:10px;padding:3px 9px;border-radius:99px;background:rgba(0,0,0,.55);backdrop-filter:blur(10px);border:1px solid var(--red);color:var(--red);font-size:8.5px;font-weight:800;letter-spacing:1.2px;z-index:2}
+.lnz-article-body{padding:15px;display:flex;flex-direction:column;gap:7px;flex:1}
+.lnz-article-meta{display:flex;align-items:center;gap:8px;font-size:8.5px;color:#666;letter-spacing:.4px;font-weight:700}
+.lnz-article-meta i{width:3px;height:3px;border-radius:50%;background:#444}
+.lnz-article h3{font-size:13px;line-height:1.4}
+.lnz-article p{font-size:10.5px;color:#888;line-height:1.65;flex:1}
+.lnz-article-more{display:inline-flex;align-items:center;gap:6px;font-size:9.5px;font-weight:800;letter-spacing:.4px;color:#fff;margin-top:4px}
+.lnz-article-more span{color:var(--red);transition:transform .25s}
+.lnz-article:hover .lnz-article-more span{transform:translateX(4px)}
+
+
+
+
+.lnz-weather{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;padding:16px;border:1px solid var(--line);border-radius:14px;background:linear-gradient(150deg,rgba(18,21,21,.85),rgba(8,10,10,.9));max-width:900px;margin:auto;position:relative}
+.lnz-weather-head{grid-column:1/-1;display:flex;justify-content:space-between;align-items:center;padding-bottom:12px;border-bottom:1px solid rgba(255,255,255,.06);margin-bottom:6px}
+.lnz-weather-head b{font-size:12px;color:#fff;font-weight:700}
+.lnz-weather-head small{font-size:9px;color:#666;letter-spacing:.5px;display:inline-flex;align-items:center;gap:5px}
+.lnz-weather-head small:before{content:"";width:5px;height:5px;border-radius:50%;background:#7dff9c;box-shadow:0 0 8px #7dff9c;animation:clockPulse 1.6s infinite}
+.lnz-weather-day{padding:12px 10px;border-radius:10px;background:rgba(255,255,255,.015);border:1px solid rgba(255,255,255,.04);text-align:center;transition:.25s}
+.lnz-weather-day:hover{border-color:var(--red);background:var(--soft)}
+.lnz-weather-day small{display:block;font-size:9px;color:#777;letter-spacing:1px;font-weight:800;text-transform:uppercase;margin-bottom:9px}
+.lnz-weather-day svg{width:30px;height:30px;margin:0 auto 7px;color:var(--red);fill:none;stroke:currentColor;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+.lnz-weather-day b{display:block;font-size:17px;font-weight:800;letter-spacing:-.4px}
+.lnz-weather-day span{display:block;font-size:9px;color:#888;margin-top:3px;font-weight:600}
+
+.lnz-carousel{position:relative;overflow:hidden;border:1px solid var(--line);border-radius:16px;background:linear-gradient(150deg,rgba(18,21,21,.85),rgba(8,10,10,.9));padding:30px 28px}
+.lnz-carousel-track{display:flex;transition:transform .55s cubic-bezier(.2,.8,.2,1)}
+.lnz-slide{flex:0 0 100%;padding:0 4px;text-align:center}
+.lnz-slide-avatar{width:54px;height:54px;border-radius:50%;margin:0 auto 12px;display:grid;place-items:center;background:var(--soft);border:2px solid var(--red);color:var(--red);font-weight:900;font-size:16px;box-shadow:0 0 22px var(--soft)}
+.lnz-slide-stars{display:flex;gap:3px;justify-content:center;margin-bottom:12px}
+.lnz-slide-stars svg{width:13px;height:13px;fill:var(--red)}
+.lnz-slide p{max-width:620px;margin:0 auto 16px;color:#b8bdbd;font-size:13px;line-height:1.8;font-style:italic}
+.lnz-slide p:before,.lnz-slide p:after{content:'"';color:var(--red);font-size:20px;font-weight:900;vertical-align:-6px}
+.lnz-slide b{display:block;font-size:12px;color:#fff;font-weight:700}
+.lnz-slide small{display:block;font-size:9.5px;color:#777;margin-top:3px}
+.lnz-carousel-nav{display:flex;justify-content:center;gap:8px;margin-top:18px;align-items:center}
+.lnz-carousel-dot{width:8px;height:8px;border-radius:50%;border:0;background:rgba(255,255,255,.15);cursor:pointer;transition:.3s;padding:0}
+.lnz-carousel-dot.active{width:24px;border-radius:99px;background:var(--red);box-shadow:0 0 12px var(--glow)}
+.lnz-carousel-arrow{width:30px;height:30px;border:1px solid rgba(255,255,255,.1);border-radius:50%;background:transparent;color:#999;cursor:pointer;display:grid;place-items:center;transition:.25s}
+.lnz-carousel-arrow:hover{color:#fff;border-color:var(--red);background:var(--soft)}
+.lnz-carousel-arrow svg{width:11px;height:11px;fill:none;stroke:currentColor;stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round}
+
+.lnz-news{padding:28px 26px;border:1px solid var(--red);border-radius:18px;background:linear-gradient(120deg,var(--soft),rgba(255,255,255,.02));position:relative;overflow:hidden}
+.lnz-news-inner{position:relative;z-index:1;display:grid;grid-template-columns:1.2fr 1fr;gap:22px;align-items:center}
+.lnz-news h3{font-size:22px;letter-spacing:-.6px;line-height:1.15;margin-bottom:6px}
+.lnz-news h3 span{color:var(--red)}
+.lnz-news p{color:#8b9494;font-size:11.5px;line-height:1.7;max-width:440px}
+.lnz-news-form{display:flex;gap:8px;background:rgba(10,12,12,.6);padding:5px;border-radius:12px;border:1px solid rgba(255,255,255,.1)}
+.lnz-news-form input{flex:1;border:0;background:transparent;color:#fff;padding:9px 13px;font:inherit;font-size:11.5px;outline:none;min-width:0}
+.lnz-news-form input::placeholder{color:#555}
+.lnz-news-form button{padding:9px 16px;border-radius:8px;border:0;background:var(--red);color:#fff;font:inherit;font-size:10px;font-weight:800;letter-spacing:.5px;cursor:pointer;transition:.25s;white-space:nowrap}
+.lnz-news-form button:hover{transform:translateY(-1px);box-shadow:0 8px 22px var(--glow)}
+
+.lnz-livestats{display:flex;flex-wrap:wrap;gap:18px;justify-content:center;padding:14px 20px;border:1px solid rgba(255,255,255,.06);border-radius:12px;background:rgba(255,255,255,.012);max-width:900px;margin:auto;font-family:'JetBrains Mono',ui-monospace,monospace}
+.lnz-livestats>div{display:flex;align-items:center;gap:8px;font-size:9.5px;color:#888;font-weight:700;letter-spacing:.7px;text-transform:uppercase}
+.lnz-livestats b{color:#fff;font-size:11px}
+.lnz-livestats i{width:6px;height:6px;border-radius:50%;background:#7dff9c;box-shadow:0 0 8px #7dff9c;animation:clockPulse 1.6s infinite}
+
+.tech-marquee{padding:22px 0 50px;border-top:1px solid rgba(255,255,255,.05);border-bottom:1px solid rgba(255,255,255,.05);overflow:hidden;background:linear-gradient(180deg,var(--soft),transparent)}
+.tech-marquee-track{display:inline-flex;gap:44px;align-items:center;padding:12px 0;animation:techMar 32s linear infinite;white-space:nowrap}
+.tech-marquee:hover .tech-marquee-track{animation-play-state:paused}
+.tech-item{display:inline-flex;align-items:center;gap:9px;color:#6b7171;font-size:12px;font-weight:600;transition:color .25s}
+.tech-item svg{width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round;color:var(--red);flex:0 0 16px}
+.tech-item:hover{color:#fff}
+.tech-marquee-track i{display:inline-block;width:5px;height:5px;background:var(--red);border-radius:50%;box-shadow:0 0 10px var(--red);opacity:.6}
+@keyframes techMar{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+.secret-panel-backdrop{position:fixed;inset:0;z-index:3000;background:rgba(0,0,0,.72);display:flex;align-items:center;justify-content:center;padding:20px;opacity:0;visibility:hidden;pointer-events:none;transition:opacity .2s ease,visibility .2s ease;backdrop-filter:blur(8px)}
+.secret-panel-backdrop.open{opacity:1;visibility:visible;pointer-events:auto}
+.secret-panel{position:relative;width:min(540px,100%);max-height:min(90vh,760px);overflow:auto;border:1px solid rgba(255,255,255,.1);border-radius:20px;background:linear-gradient(160deg,#0d0f0f,#08090a);padding:0;box-shadow:0 30px 80px rgba(0,0,0,.7),0 0 60px var(--soft);scrollbar-width:thin}
+.secret-panel::-webkit-scrollbar{width:4px}
+.secret-panel::-webkit-scrollbar-thumb{background:#292b2b;border-radius:10px}
+.secret-head{position:relative;padding:22px 24px 18px;border-bottom:1px solid rgba(255,255,255,.06);background:radial-gradient(circle at 80% 0,var(--soft),transparent 50%)}
+.secret-head:before{content:"";position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--red),transparent)}
+.secret-close{position:absolute;right:16px;top:16px;width:34px;height:34px;border:1px solid rgba(255,255,255,.1);border-radius:10px;background:rgba(255,255,255,.03);color:#999;display:grid;place-items:center;cursor:pointer;transition:.2s}
+.secret-close:hover{color:#fff;border-color:var(--red);background:var(--soft)}
+.secret-close svg{width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round}
+.secret-topline{display:flex;align-items:center;gap:8px;margin-bottom:12px;flex-wrap:wrap}
+.secret-badge{display:inline-flex;align-items:center;gap:6px;padding:5px 10px;border:1px solid var(--red);border-radius:99px;background:var(--soft);font-size:9px;letter-spacing:1.4px;font-weight:800;color:var(--red)}
+.secret-badge svg{width:12px;height:12px;fill:none;stroke:currentColor;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round}
+.secret-status{display:inline-flex;padding:4px 9px;border:1px solid rgba(125,255,156,.35);border-radius:999px;color:#7dff9c;font-size:8px;letter-spacing:1px;font-weight:800;background:rgba(125,255,156,.05)}
+.secret-status:before{content:"";width:5px;height:5px;border-radius:50%;background:#7dff9c;box-shadow:0 0 8px #7dff9c;margin-right:5px;animation:clockPulse 1.6s infinite}
+.secret-panel h3{margin:0;font-size:24px;letter-spacing:-.6px;color:#fff}
+.secret-desc{margin:6px 0 0;color:#777;font-size:11.5px;line-height:1.6}
+.secret-body{padding:18px 22px 22px}
+.secret-kicker{display:flex;align-items:center;gap:8px;margin:0 0 12px;color:#555;font-size:8.5px;letter-spacing:1.6px;font-weight:800;justify-content:space-between}
+.secret-kicker span{display:inline-flex;padding:3px 8px;border:1px solid rgba(255,255,255,.06);border-radius:99px;background:rgba(255,255,255,.02)}
+.secret-actions{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}
+.secret-action{width:100%;display:flex;align-items:center;gap:11px;text-align:left;padding:11px;border:1px solid rgba(255,255,255,.07);border-radius:12px;background:rgba(255,255,255,.018);color:#ddd;cursor:pointer;transition:.22s;min-height:66px;font:inherit}
+.secret-action:hover,.secret-action.enabled{border-color:var(--red);background:var(--soft);transform:translateY(-1px)}
+.secret-icon{width:34px;height:34px;flex:0 0 34px;border-radius:10px;display:grid;place-items:center;background:var(--soft);color:var(--red);border:1px solid var(--soft)}
+.secret-icon svg{width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+.secret-action span:nth-child(2){display:flex;flex-direction:column;gap:3px;min-width:0}
+.secret-action b{font-size:11px;color:#fff}
+.secret-action small{font-size:9px;color:#777;line-height:1.35}
+.secret-toggle{margin-left:auto;font-style:normal;font-size:8px;letter-spacing:1px;color:#666;font-weight:800}
+.secret-action.enabled .secret-toggle{color:var(--red)}
+.secret-output{margin-top:12px;padding:12px;border:1px solid rgba(255,255,255,.07);border-radius:12px;background:rgba(255,255,255,.02);color:#888;font-size:10px;line-height:1.6}
+.secret-detail-title{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:8px;color:#bbb;font-size:9.5px;letter-spacing:1px;font-weight:800}
+.secret-chip{display:inline-flex;align-items:center;padding:3px 8px;border:1px solid var(--red);border-radius:999px;color:var(--red);font-size:7.5px;letter-spacing:1px;background:var(--soft)}
+.secret-jumps{display:grid;grid-template-columns:repeat(3,1fr);gap:6px}
+.secret-jump{border:1px solid rgba(255,255,255,.07);border-radius:8px;background:rgba(255,255,255,.02);color:#999;padding:8px 6px;font-size:8.5px;cursor:pointer;transition:.2s;font-weight:700;letter-spacing:.4px}
+.secret-jump:hover{border-color:var(--red);color:#fff;background:var(--soft)}
+.secret-terminal{display:flex;gap:6px;margin-top:8px}
+.secret-terminal input{flex:1;min-width:0;border:1px solid rgba(255,255,255,.08);border-radius:8px;background:#050606;color:#ddd;padding:8px;font:inherit;font-size:10px;outline:none;font-family:ui-monospace,monospace}
+.secret-terminal button,.secret-code button{border:1px solid var(--red);border-radius:8px;background:var(--soft);color:var(--red);padding:8px 12px;font-size:9px;cursor:pointer;font-weight:800;letter-spacing:.5px}
+.secret-terminal button:hover,.secret-code button:hover{background:var(--red);color:#fff}
+.secret-field{display:grid;gap:5px;margin-top:8px}
+.secret-field label{color:#555;font-size:7.5px;letter-spacing:1.4px;font-weight:800}
+.secret-field input{width:100%;box-sizing:border-box;border:1px solid rgba(255,255,255,.08);border-radius:8px;background:#050606;color:#ddd;padding:9px;font:inherit;font-size:10px;outline:none}
+.secret-field input:focus{border-color:var(--red);box-shadow:0 0 0 2px var(--soft)}
+.secret-code{display:flex;gap:6px;margin-top:10px}
+.secret-code button{width:100%}
+.secret-access-copy{margin:0 0 12px;color:#666;font-size:10px;line-height:1.55}
+.secret-access-success{color:#9dffc1}
+.secret-access-error{color:#ff8888}
+.secret-achievements{display:grid;gap:6px}
+.achievement{display:flex;align-items:center;gap:9px;padding:9px;border:1px solid rgba(255,255,255,.06);border-radius:10px;background:rgba(255,255,255,.015)}
+.achievement-icon{width:26px;height:26px;display:grid;place-items:center;border-radius:8px;background:rgba(255,255,255,.04);color:#666;flex:0 0 26px}
+.achievement-icon svg{width:13px;height:13px;fill:none;stroke:currentColor;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+.achievement b{font-size:9.5px;color:#aaa}
+.achievement small{display:block;margin-top:2px;font-size:8px;color:#555}
+.achievement.unlocked{border-color:var(--red)}
+.achievement.unlocked .achievement-icon{color:var(--red);background:var(--soft)}
+.achievement.unlocked b{color:#ddd}
+.sys-row{display:flex;justify-content:space-between;gap:16px;padding:4px 0;border-bottom:1px dashed rgba(255,255,255,.04)}
+.sys-row:last-child{border:0}
+.sys-row b{color:#bbb;font-weight:600;font-size:10px}
+.sys-row span{color:#777;text-align:right;font-family:ui-monospace,monospace;font-size:9.5px}
+.theme-options{display:grid;grid-template-columns:repeat(3,1fr);gap:6px}
+.theme-option{border:1px solid rgba(255,255,255,.07);border-radius:8px;background:rgba(255,255,255,.02);color:#999;padding:9px 6px;font-size:8.5px;cursor:pointer;font-weight:800;letter-spacing:.5px;transition:.2s}
+.theme-option:hover,.theme-option.active{border-color:var(--red);color:#fff;background:var(--soft)}
+.session-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin-top:8px}
+.session-stat{padding:9px;border:1px solid rgba(255,255,255,.06);border-radius:8px;background:rgba(255,255,255,.015)}
+.session-stat b{display:block;color:#ddd;font-size:14px;font-variant-numeric:tabular-nums}
+.session-stat small{display:block;margin-top:3px;color:#555;font-size:7.5px;letter-spacing:.4px}
+.session-progress{height:4px;border-radius:99px;background:#181a1a;overflow:hidden;margin-top:10px}
+.session-progress i{display:block;height:100%;width:0;background:var(--red);transition:width .25s ease;box-shadow:0 0 10px var(--glow)}
+.session-time{margin-top:8px;color:#666;font-size:9px;font-family:ui-monospace,monospace}
+
+.performance-mode *{scroll-behavior:auto}
+.performance-mode .hero:before,.performance-mode .hero:after{animation:none!important}
+.performance-mode .card:before,.performance-mode .exp:before{display:none!important}
+.performance-mode .stat:after,.performance-mode .lnz-orb,.performance-mode .cursor-glow{animation:none!important}
+.performance-mode .lnz-orb{display:none}
+.performance-mode .lnz-cursor-glow{display:none}
+.performance-mode .tech-marquee-track{animation-duration:60s}
+.performance-mode .live-clock:before{animation:none}
+.performance-mode .skill-level i:after,.performance-mode .skill-level i{animation:none}
+.performance-mode .btn:before{display:none}
+.performance-mode *{transition-duration:.15s!important}
+.focus-mode .scroll-progress{opacity:.65}
+body.lnz-mode .showcase-frame{border-color:var(--red)!important}
+
+body.theme-maroon{--red:#ff1616;--red2:#ff3b3b;--glow:rgba(255,22,22,.28);--soft:rgba(255,22,22,.08);background:radial-gradient(circle at 80% 10%,rgba(255,20,20,.07),transparent 30%),radial-gradient(circle at 10% 55%,rgba(255,20,20,.04),transparent 28%),#060707}
+body.theme-navy{--red:#2563eb;--red2:#3b82f6;--glow:rgba(37,99,235,.32);--soft:rgba(37,99,235,.1);background:radial-gradient(circle at 80% 10%,rgba(37,99,235,.1),transparent 30%),radial-gradient(circle at 10% 55%,rgba(37,99,235,.05),transparent 28%),#050a1c}
+body.theme-gold{--red:#d4af37;--red2:#fbbf24;--glow:rgba(212,175,55,.32);--soft:rgba(212,175,55,.1);background:radial-gradient(circle at 80% 10%,rgba(212,175,55,.1),transparent 30%),radial-gradient(circle at 10% 55%,rgba(212,175,55,.05),transparent 28%),#0d0903}
+body.theme-coffee{--red:#a0522d;--red2:#c87941;--glow:rgba(160,82,45,.32);--soft:rgba(160,82,45,.1);background:radial-gradient(circle at 80% 10%,rgba(160,82,45,.1),transparent 30%),radial-gradient(circle at 10% 55%,rgba(160,82,45,.05),transparent 28%),#0f0805}
+body.theme-ocean{--red:#0ea5e9;--red2:#38bdf8;--glow:rgba(14,165,233,.32);--soft:rgba(14,165,233,.1);background:radial-gradient(circle at 80% 10%,rgba(14,165,233,.1),transparent 30%),radial-gradient(circle at 10% 55%,rgba(14,165,233,.05),transparent 28%),#031018}
+body.theme-deepblue{--red:#1e40af;--red2:#3b82f6;--glow:rgba(30,64,175,.4);--soft:rgba(30,64,175,.12);background:radial-gradient(circle at 80% 10%,rgba(30,64,175,.12),transparent 30%),radial-gradient(circle at 10% 55%,rgba(30,64,175,.06),transparent 28%),#030820}
+body.theme-purple{--red:#a855f7;--red2:#c084fc;--glow:rgba(168,85,247,.32);--soft:rgba(168,85,247,.1);background:radial-gradient(circle at 80% 10%,rgba(168,85,247,.1),transparent 30%),radial-gradient(circle at 10% 55%,rgba(168,85,247,.05),transparent 28%),#0a0614}
+body.theme-gray{--red:#9ca3af;--red2:#d1d5db;--glow:rgba(156,163,175,.28);--soft:rgba(156,163,175,.08);background:radial-gradient(circle at 80% 10%,rgba(156,163,175,.07),transparent 30%),radial-gradient(circle at 10% 55%,rgba(156,163,175,.04),transparent 28%),#0a0b0d}
+body.theme-cyber{--red:#00ff88;--red2:#5cffb0;--glow:rgba(0,255,136,.32);--soft:rgba(0,255,136,.1);background:radial-gradient(circle at 80% 10%,rgba(0,255,136,.1),transparent 30%),radial-gradient(circle at 10% 55%,rgba(0,255,136,.05),transparent 28%),#020a06}
+body.theme-mint{--red:#10b981;--red2:#34d399;--glow:rgba(16,185,129,.32);--soft:rgba(16,185,129,.1);background:radial-gradient(circle at 80% 10%,rgba(16,185,129,.1),transparent 30%),radial-gradient(circle at 10% 55%,rgba(16,185,129,.05),transparent 28%),#02100b}
+body.theme-frost{--red:#22c55e;--red2:#4ade80;--glow:rgba(34,197,94,.32);--soft:rgba(34,197,94,.1);background:radial-gradient(circle at 80% 10%,rgba(34,197,94,.1),transparent 30%),radial-gradient(circle at 10% 55%,rgba(34,197,94,.05),transparent 28%),#041008}
+body.theme-rose{--red:#ec4899;--red2:#f472b6;--glow:rgba(236,72,153,.32);--soft:rgba(236,72,153,.1);background:radial-gradient(circle at 80% 10%,rgba(236,72,153,.1),transparent 30%),radial-gradient(circle at 10% 55%,rgba(236,72,153,.05),transparent 28%),#12050c}
+body.theme-sunset{--red:#f97316;--red2:#fb923c;--glow:rgba(249,115,22,.32);--soft:rgba(249,115,22,.1);background:radial-gradient(circle at 80% 10%,rgba(249,115,22,.1),transparent 30%),radial-gradient(circle at 10% 55%,rgba(249,115,22,.05),transparent 28%),#0f0603}
+body.theme-aurora{--red:#00ffaa;--red2:#c084fc;--glow:rgba(0,255,170,.32);--soft:rgba(0,255,170,.1);background:radial-gradient(circle at 20% 10%,rgba(0,255,170,.12),transparent 35%),radial-gradient(circle at 80% 60%,rgba(168,85,247,.12),transparent 35%),#030a0a}
+
+@media(max-width:1100px){.navlinks{gap:12px}.navlinks a{font-size:10.5px}}
+@media(max-width:900px){
+  .live-clock{padding:4px 7px;gap:6px;min-width:150px}
+  .clock-icon{width:22px;height:22px;flex-basis:22px}
+  .clock-time{font-size:10px}
+  .clock-date{font-size:7.5px;margin-top:4px}
+  .clock-zone{font-size:6px}
+  .footer-grid{grid-template-columns:1fr 1fr;gap:20px}
+  .contact-grid{grid-template-columns:1fr}
+  
+  .lnz-news-inner{grid-template-columns:1fr;gap:14px}
+  .lnz-weather{grid-template-columns:repeat(2,1fr)}
+  .lnz-proj-grid{grid-template-columns:repeat(2,1fr)}
+  .lnz-keys{display:none}
+  .lnz-theme-grid{grid-template-columns:repeat(2,1fr)}
+}
+@media(max-width:800px){
+  .navlinks{position:absolute;top:58px;left:16px;right:16px;background:rgba(6,7,7,.98);padding:0;display:grid;grid-template-columns:1fr;gap:4px;border:1px solid var(--line);border-top:1px solid var(--red);border-radius:12px;box-shadow:0 18px 45px rgba(0,0,0,.55);max-height:0;overflow:hidden;opacity:0;pointer-events:none;transform:translateY(-6px);transition:max-height .3s ease,opacity .22s ease,padding .3s ease,transform .22s ease}
+  .navlinks.open{max-height:calc(100vh - 80px);padding:10px;overflow-y:auto;opacity:1;pointer-events:auto;transform:translateY(0)}
+  .navlinks a{width:100%;padding:10px 12px;border-radius:8px;font-size:11.5px}
+  .navlinks a.active:after{display:none}
+  .navlinks a.active,.navlinks a:hover{background:var(--soft)}
+  .menu{display:flex;align-items:center;justify-content:center;width:38px;height:38px;padding:0}
+  .hero-grid,.about,.skills,.contact-grid{grid-template-columns:1fr}
+  .profile-wrap{order:-1;min-height:360px}
+  .lanyard-stage{transform:scale(.92);transform-origin:top center}
+  .profile-card{width:172px;height:220px}
+  h1{letter-spacing:-2px;font-size:clamp(34px,8vw,48px)}
+  .stats{gap:8px}
+  .stat b{font-size:19px}
+  .services{grid-template-columns:1fr}
+  .section-head{display:block}
+  .section-head p{margin-top:10px}
+  .section-head:after{margin-top:12px}
+  .footer-bottom{flex-direction:column}
+  .skills{gap:9px}
+  .card{min-height:190px;padding:18px}
+  .form-row{grid-template-columns:1fr}
+  .footer-grid{grid-template-columns:1fr;gap:18px}
+  .tech-marquee-track{gap:30px}
+  .lnz-orb{filter:blur(60px);opacity:.2}
+  .lnz-popup,.lnz-chat-panel,.lnz-notif-panel{width:calc(100vw - 96px);right:76px;bottom:16px}
+  .lnz-ctrl-dock{right:12px;bottom:12px;gap:7px}
+  .lnz-ctrl-btn{width:42px;height:42px}
+  .lnz-ctrl-btn svg{width:19px;height:19px}
+  .lnz-ctrl-btn.scroll{width:44px;height:44px}
+  .lnz-cookie{width:calc(100vw - 24px);left:12px;transform:translate(0,150%);padding:12px;flex-direction:column;align-items:flex-start;gap:10px}
+  .lnz-cookie.show{transform:translate(0,0)}
+  .lnz-cookie-actions{width:100%}
+  .lnz-cookie-actions button{flex:1}
+  .lnz-proj-grid{grid-template-columns:1fr}
+  
+  .lnz-weather{grid-template-columns:1fr 1fr}
+  .lnz-theme-grid{grid-template-columns:repeat(2,1fr)}
+}
+@media(max-width:560px){
+  .live-clock{min-width:0;padding:4px 6px;gap:5px;border-radius:10px}
+  .clock-icon{display:none}
+  .clock-dot{width:5px;height:5px;flex-basis:5px}
+  .clock-time{font-size:9.5px}
+  .clock-date{font-size:7px;letter-spacing:.03em}
+  .clock-zone{display:none}
+  .secret-actions{grid-template-columns:1fr}
+  .secret-jumps{grid-template-columns:repeat(2,1fr)}
+  .session-grid{grid-template-columns:1fr 1fr}
+  .lnz-weather{grid-template-columns:1fr}
+  .lnz-livestats{gap:12px;font-size:9px;padding:12px}
+  .lnz-popup,.lnz-chat-panel,.lnz-notif-panel{width:calc(100vw - 24px);right:12px}
+}
+@media(prefers-reduced-motion:reduce){
+  *,*:before,*:after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}
+  .reveal{opacity:1!important;transform:none!important}
+  #lnzParticles,#lnzMatrix{display:none}
+}
+@media print{
+  header,footer,.lnz-ctrl-dock,.lnz-popup,.lnz-chat-panel,.lnz-notif-panel,.lnz-keys,.scroll-progress,.toast,.lnz-cookie,.lnz-orb,.lnz-cursor-glow,#lnzParticles,#lnzMatrix{display:none!important}
+  body{background:#fff;color:#000}
+  body:before,body:after{display:none}
+  .reveal{opacity:1!important;transform:none!important}
+}
+
+/* force articles grid — always 3 columns */
+.lnz-articles{display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:10px!important}
+.lnz-article{min-width:0}
+.lnz-article h3{font-size:clamp(10px,2.8vw,13px)!important}
+.lnz-article p{font-size:clamp(8px,2.2vw,10.5px)!important}
+.lnz-article-cover{height:clamp(72px,22vw,130px)!important}
+.lnz-article-more{font-size:clamp(8px,2vw,9.5px)!important}
+/* ARTICLES 3COL LOCK */
+.lnz-articles{display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:8px!important}
+.lnz-article{min-width:0!important}
+@media (max-width:800px){
+  .lnz-articles{grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:6px!important}
+  .lnz-article-cover{height:70px!important}
+  .lnz-article h3{font-size:10px!important;line-height:1.3!important}
+  .lnz-article p{font-size:8px!important;line-height:1.4!important;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+  .lnz-article-body{padding:8px!important;gap:4px!important}
+  .lnz-article-cat{font-size:7px!important;padding:2px 6px!important}
+  .lnz-article-meta{font-size:7px!important}
+  .lnz-article-more{font-size:8px!important}
+  .lnz-article-cover svg{width:28px!important;height:28px!important}
+}
+</style>
+</head>
+<body class="theme-maroon">
+
+<div class="lnz-boot" id="lnzBoot" aria-hidden="true">
+  <div class="lnz-boot-stage">
+    <div class="lnz-boot-brand">R - <span>Lanzz</span></div>
+    <div class="lnz-boot-tag">Developer · Modder · Creator</div>
+    <div class="lnz-boot-progress">
+      <div class="lnz-boot-track"><span class="lnz-boot-fill" id="lnzBootFill"></span></div>
+      <div class="lnz-boot-meta"><span id="lnzBootMsg">Loading</span><b id="lnzBootPct">0%</b></div>
+    </div>
+  </div>
+</div>
+
+<canvas id="lnzParticles" aria-hidden="true"></canvas>
+<canvas id="lnzMatrix" aria-hidden="true"></canvas>
+<canvas id="lnzConfetti" aria-hidden="true"></canvas>
+<div class="lnz-orb o1" aria-hidden="true"></div>
+<div class="lnz-orb o2" aria-hidden="true"></div>
+<div class="lnz-cursor-glow" id="lnzCursorGlow" aria-hidden="true"></div>
+
+<header id="lnzHeader">
+  <div class="container nav">
+    <a class="logo" href="#home" id="lnzLogo" aria-label="R-Lanzz Home">R - <span>Lanzz</span></a>
+    <div class="live-clock" aria-label="Waktu saat ini">
+      <div class="clock-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></div>
+      <span class="clock-dot" aria-hidden="true"></span>
+      <div class="clock-info">
+        <span class="clock-time" id="liveTime"><span class="clock-main">00:00</span><span class="clock-seconds"><i>:</i>00</span></span>
+        <span class="clock-date" id="liveDate">Memuat…</span>
+      </div>
+      <span class="clock-zone">WIB</span>
+    </div>
+    <button class="menu" id="menu" aria-label="Toggle menu" aria-expanded="false">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+    </button>
+    <nav class="navlinks" id="nav">
+      <a class="active" href="#home">Home</a>
+      <a href="#services">Services</a>
+      <a href="#game">Games</a>
+      <a href="#bros">Mini Games</a>
+      <a href="#space">Space</a>
+      <a href="#ai">Assistant</a>
+      <a href="#tools">Tools</a>
+      <a href="#informatika">Informatika</a>
+      <a href="#persija">Portal</a>
+      <a href="#skills">Skills</a>
+      <a href="#experience">Experience</a>
+      <a href="#faq">FAQ</a>
+      <a href="#newsletter">Subscribe</a>
+      <a href="#contact">Contact</a>
+      <a href="#about">About</a>
+    </nav>
+  </div>
+</header>
+
+<div aria-hidden="true" class="scroll-progress" id="scrollProgress"></div>
+<div aria-live="polite" class="toast" id="toast" role="status"></div>
+
+<div class="lnz-ctrl-dock" role="toolbar" aria-label="Portfolio controls">
+  <button class="lnz-ctrl-btn" id="lnzThemeOpenBtn" aria-label="Ganti tema" title="Ganti Tema">
+    <svg viewBox="0 0 24 24"><path d="M12 22a10 10 0 1 1 0-20c5 0 8 3 8 6 0 2-1 3-3 3h-2a2 2 0 0 0-1 3c0 1 1 2 1 3 0 2-2 5-3 5Z"/><circle cx="8" cy="9.5" r="1.3" fill="currentColor"/><circle cx="12" cy="7" r="1.3" fill="currentColor"/><circle cx="16" cy="9" r="1.3" fill="currentColor"/><circle cx="9" cy="14" r="1.3" fill="currentColor"/></svg>
+    <span class="lnz-dot-badge"></span>
+  </button>
+  <button class="lnz-ctrl-btn" id="lnzChatOpenBtn" aria-label="Buka Lanzz Assistant" title="Lanzz Assistant">
+    <svg viewBox="0 0 24 24"><rect x="4" y="7" width="16" height="12" rx="3"/><path d="M12 3v4M9 4h6"/><circle cx="9" cy="12" r="1.2" fill="currentColor"/><circle cx="15" cy="12" r="1.2" fill="currentColor"/><path d="M9 15.5h6M2 11v4M22 11v4"/></svg>
+    <span class="lnz-dot-badge"></span>
+  </button>
+  <button class="lnz-ctrl-btn scroll" id="lnzScrollRing" aria-label="Kembali ke atas" title="Kembali ke atas">
+    <svg viewBox="0 0 50 50">
+      <circle class="track" cx="25" cy="25" r="22"/>
+      <circle class="bar" id="lnzRingBar" cx="25" cy="25" r="22"/>
+    </svg>
+    <span class="ring-num" id="lnzRingNum">0%</span>
+  </button>
+</div>
+
+<div class="lnz-popup lnz-theme-pop" id="lnzThemePopup" role="dialog" aria-label="Theme picker">
+  <div class="lnz-pop-head">
+    <span class="lnz-pop-title">
+      <svg viewBox="0 0 24 24"><path d="M12 22a10 10 0 1 1 0-20c5 0 8 3 8 6 0 2-1 3-3 3h-2a2 2 0 0 0-1 3c0 1 1 2 1 3 0 2-2 5-3 5Z"/></svg>
+      Tema <b>Warna</b>
+    </span>
+    <button class="lnz-pop-close" type="button" aria-label="Close" data-close="lnzThemePopup"><svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+  </div>
+  <div class="lnz-pop-body">
+    <div class="lnz-theme-grid" id="lnzThemeGrid">
+      <button type="button" class="lnz-theme-opt active" data-theme="maroon"><span class="sw" style="--c:#ff1616;--c2:#ff3b3b"></span><span><b>Red Maroon</b><small>Default</small></span></button>
+      <button type="button" class="lnz-theme-opt" data-theme="navy"><span class="sw" style="--c:#2563eb;--c2:#60a5fa"></span><span><b>Navy Premium</b><small>Classic</small></span></button>
+      <button type="button" class="lnz-theme-opt" data-theme="gold"><span class="sw" style="--c:#d4af37;--c2:#fbbf24"></span><span><b>Gold Premium</b><small>Luxury</small></span></button>
+      <button type="button" class="lnz-theme-opt" data-theme="coffee"><span class="sw" style="--c:#a0522d;--c2:#c87941"></span><span><b>Warm Coffee</b><small>Cozy</small></span></button>
+      <button type="button" class="lnz-theme-opt" data-theme="ocean"><span class="sw" style="--c:#0ea5e9;--c2:#38bdf8"></span><span><b>Ocean Blue</b><small>Fresh</small></span></button>
+      <button type="button" class="lnz-theme-opt" data-theme="deepblue"><span class="sw" style="--c:#1e40af;--c2:#3b82f6"></span><span><b>Deep Blue</b><small>Bold</small></span></button>
+      <button type="button" class="lnz-theme-opt" data-theme="purple"><span class="sw" style="--c:#a855f7;--c2:#c084fc"></span><span><b>Midnight Purple</b><small>Royal</small></span></button>
+      <button type="button" class="lnz-theme-opt" data-theme="gray"><span class="sw" style="--c:#9ca3af;--c2:#d1d5db"></span><span><b>Graphite Gray</b><small>Minimal</small></span></button>
+      <button type="button" class="lnz-theme-opt" data-theme="cyber"><span class="sw" style="--c:#00ff88;--c2:#5cffb0"></span><span><b>Cyber Neon</b><small>Neon</small></span></button>
+      <button type="button" class="lnz-theme-opt" data-theme="mint"><span class="sw" style="--c:#10b981;--c2:#34d399"></span><span><b>Mint Fresh</b><small>Cool</small></span></button>
+      <button type="button" class="lnz-theme-opt" data-theme="frost"><span class="sw" style="--c:#22c55e;--c2:#4ade80"></span><span><b>Frost Green</b><small>Natural</small></span></button>
+      <button type="button" class="lnz-theme-opt" data-theme="rose"><span class="sw" style="--c:#ec4899;--c2:#f472b6"></span><span><b>Rose Pink</b><small>Soft</small></span></button>
+      <button type="button" class="lnz-theme-opt" data-theme="sunset"><span class="sw" style="--c:#f97316;--c2:#fb923c"></span><span><b>Sunset Orange</b><small>Warm</small></span></button>
+      <button type="button" class="lnz-theme-opt" data-theme="aurora"><span class="sw" style="--c:#00ffaa;--c2:#c084fc"></span><span><b>Aurora Special</b><small>Gradient</small></span></button>
+    </div>
+    <div class="lnz-theme-foot">
+      <span>14 tema tersedia</span>
+      <button class="lnz-perf-toggle" id="lnzPerfToggle" type="button" aria-label="Toggle performance mode">
+        <svg viewBox="0 0 24 24"><path d="M13 2 3 14h9l-1 8 10-12h-9l1-8Z"/></svg>
+        Performance
+      </button>
+    </div>
+  </div>
+</div>
+
+<div class="lnz-popup lnz-chat-pop" id="lnzChatPanel" role="dialog" aria-label="Lanzz Assistant">
+  <div class="lnz-pop-head">
+    <span class="lnz-pop-title">
+      <svg viewBox="0 0 24 24"><rect x="4" y="7" width="16" height="12" rx="3"/><path d="M12 3v4M9 4h6"/><circle cx="9" cy="12" r="1.2" fill="currentColor"/><circle cx="15" cy="12" r="1.2" fill="currentColor"/><path d="M9 15.5h6"/></svg>
+      Lanzz <b>Assistant</b>
+    </span>
+    <button class="lnz-pop-close" type="button" aria-label="Close" id="lnzChatClose"><svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+  </div>
+  <div class="lnz-chat-body" id="lnzChatBody"></div>
+  <div class="lnz-chat-quick" id="lnzChatQuick">
+    <button type="button" data-q="Layanan apa saja yang tersedia?">Layanan</button>
+    <button type="button" data-q="Berapa harga pembuatan website?">Harga</button>
+    <button type="button" data-q="Bagaimana cara memulai project?">Mulai</button>
+    <button type="button" data-q="Kontak WhatsApp kamu?">Kontak</button>
+  </div>
+  <div class="lnz-chat-foot">
+    <textarea id="lnzChatInput" rows="1" placeholder="Tulis pesan…" aria-label="Message"></textarea>
+    <button type="button" id="lnzChatSend" aria-label="Send"><svg viewBox="0 0 24 24"><path d="m3 3 18 9-18 9 4-9-4-9Z"/></svg></button>
+  </div>
+</div>
+
+<aside class="lnz-notif-panel" id="lnzNotifPanel" role="dialog" aria-label="Notification center">
+  <div class="lnz-notif-head">
+    <b>Notifications</b>
+    <button type="button" id="lnzNotifClear">MARK ALL READ</button>
+  </div>
+  <div class="lnz-notif-list" id="lnzNotifList"></div>
+</aside>
+
+<div class="lnz-keys" id="lnzKeys" role="region" aria-label="Keyboard shortcuts">
+  <div class="lnz-keys-head">
+    <b>Shortcuts</b>
+    <svg viewBox="0 0 24 24"><rect x="2" y="6" width="20" height="12" rx="2"/><path d="M6 10h.01M10 10h.01M14 10h.01M18 10h.01M8 14h8"/></svg>
+  </div>
+  <div class="lnz-keys-row"><span>Command Palette</span><kbd>⌘K</kbd></div>
+  <div class="lnz-keys-row"><span>Toggle Matrix</span><kbd>M</kbd></div>
+  <div class="lnz-keys-row"><span>Toggle Sound</span><kbd>S</kbd></div>
+  <div class="lnz-keys-row"><span>Secret Room</span><kbd>3× Logo</kbd></div>
+  <div class="lnz-keys-row"><span>Close/Reset</span><kbd>Esc</kbd></div>
+</div>
+
+<div class="lnz-cmdk" id="lnzCmdk" role="dialog" aria-label="Command palette">
+  <div class="lnz-cmdk-box">
+    <div class="lnz-cmdk-head">
+      <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+      <input id="lnzCmdkInput" type="text" placeholder="Ketik perintah atau cari section…" autocomplete="off" spellcheck="false">
+      <span class="lnz-cmdk-kbd">ESC</span>
+    </div>
+    <div class="lnz-cmdk-list" id="lnzCmdkList"></div>
+    <div class="lnz-cmdk-foot">
+      <span><b>↑↓</b> navigasi</span>
+      <span><b>↵</b> pilih</span>
+      <span><b>ESC</b> tutup</span>
+    </div>
+  </div>
+</div>
+
+
+<div class="lnz-cookie" id="lnzCookie" role="dialog" aria-label="Cookie consent">
+  <div class="lnz-cookie-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><circle cx="9" cy="9" r="1"/><circle cx="15" cy="10" r="1"/><circle cx="11" cy="15" r="1"/><circle cx="16" cy="15" r="1"/></svg></div>
+  <div class="lnz-cookie-text">
+    <b>Kami menggunakan cookie</b>
+    <small>Cookie membantu meningkatkan pengalaman browsing, mengingat preferensi tema, dan menyimpan pengaturan sesi.</small>
+  </div>
+  <div class="lnz-cookie-actions">
+    <button type="button" class="reject" data-cookie="reject">Tolak</button>
+    <button type="button" class="accept" data-cookie="accept">Terima</button>
+  </div>
+</div>
+
+<div class="lnz-ach-pop" id="lnzAchPop">
+  <div class="lnz-ach-pop-icon"><svg viewBox="0 0 24 24"><path d="M7 4h10v5a5 5 0 0 1-10 0V4Z"/><path d="M7 6H4v2a4 4 0 0 0 4 4M17 6h3v2a4 4 0 0 1-4 4M12 14v5M8 20h8"/></svg></div>
+  <div class="lnz-ach-pop-txt">
+    <b>Achievement Unlocked</b>
+    <strong id="lnzAchTitle">Explorer</strong>
+    <small id="lnzAchDesc">Menemukan area tersembunyi</small>
+  </div>
+</div>
+
+<main>
+<section class="hero" id="home">
+  <div class="container">
+    <div class="hero-grid">
+      <div class="reveal">
+        <div class="hero-badge">
+          <i><svg viewBox="0 0 24 24"><path d="M12 2v4M12 18v4M4.9 4.9l2.8 2.8M16.3 16.3l2.8 2.8M2 12h4M18 12h4M4.9 19.1l2.8-2.8M16.3 7.7l2.8-2.8"/></svg></i>
+          <b>AVAILABLE</b> FOR PROJECTS <em>ONLINE</em>
+        </div>
+        <div class="kicker">Hello, <span>I am</span></div>
+        <h1><span class="typed-prefix">R -</span><span class="typed-space"> </span><span class="typed-main">Lanzz</span><i class="cursor-blink"></i></h1>
+        <div class="role">From<span class="dot">Lebak</span>-<span class="dot">Banten</span>-<span class="dot">Indonesia</span></div>
+        <p class="desc">I create modern websites, digital applications, smart tools, and innovative solutions to bring ideas into powerful digital experiences. With a focus on modern design, high performance, and seamless user experience, I build products that are simple, functional, and impactful.</p>
+        <div class="hero-actions"><a class="btn" href="#contact">Contact</a><a class="btn ghost" href="#about">About</a></div>
+        <div class="socials" id="social">
+          <a class="social" href="https://www.instagram.com/lanzz.offcl" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><svg viewBox="0 0 24 24"><path d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5Zm5 5.5A4.5 4.5 0 1 0 16.5 12 4.5 4.5 0 0 0 12 7.5Zm0 7.2A2.7 2.7 0 1 1 14.7 12 2.7 2.7 0 0 1 12 14.7ZM17.7 6.1a1.2 1.2 0 1 0 1.2 1.2 1.2 1.2 0 0 0-1.2-1.2Z"/></svg></a>
+          <a class="social" href="https://wa.me/6283894480846" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp"><svg viewBox="0 0 24 24"><path d="M20.5 3.5A11.8 11.8 0 0 0 12.1 0C5.6 0 .4 5.2.4 11.7c0 2.1.5 4.1 1.6 5.9L.3 24l6.5-1.7a11.7 11.7 0 0 0 5.3 1.3h.1c6.4 0 11.7-5.2 11.7-11.7 0-3.1-1.2-6.1-3.4-8.4ZM12.1 21.5c-1.7 0-3.4-.5-4.9-1.4l-.4-.2-3.8 1 1-3.7-.2-.4a9.7 9.7 0 1 1 8.3 4.7Zm5.3-7.3c-.3-.2-1.8-.9-2.1-1-.3-.1-.5-.2-.7.2-.2.3-.8 1-1 1.2-.2.2-.4.2-.7.1-2-.9-3.3-1.6-4.6-3.7-.4-.7.4-.6 1.1-2 0-.2 0-.4-.1-.6l-.9-2.1c-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.6.1-.9.4-.3.3-1.1 1.1-1.1 2.7s1.1 3.1 1.3 3.3c.2.2 2.2 3.4 5.3 4.7 2 .9 2.8 1 3.8.8.6-.1 1.8-.7 2-1.4.2-.7.2-1.3.1-1.4-.1-.2-.3-.3-.6-.4Z"/></svg></a>
+          <a class="social" href="https://www.facebook.com/profile.php?id=61593681814129" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><svg viewBox="0 0 24 24"><path d="M13.5 22v-8h2.7l.4-3h-3.1V9.1c0-.9.3-1.6 1.7-1.6h1.8V4.8c-.3 0-1.3-.1-2.5-.1-2.5 0-4.2 1.5-4.2 4.3V11H7.5v3h2.8v8h3.2Z"/></svg></a>
+          <a class="social" href="https://www.tiktok.com/@lanzz.offcl" target="_blank" rel="noopener noreferrer" aria-label="TikTok"><svg viewBox="0 0 24 24"><path d="M15 2h3c.2 1.6 1.2 3.1 3 3.7v3.1c-1.1-.1-2.1-.4-3-1v6.4a6.8 6.8 0 1 1-5.9-6.7v3.2a3.6 3.6 0 1 0 2.9 3.5V2Z"/></svg></a>
+        </div>
+      </div>
+      <div class="profile-wrap reveal" id="profile3d">
+        <div class="lanyard-stage" id="lanyardStage" aria-label="Foto profil 3D interaktif — seret untuk memutar">
+          <div class="lanyard-scene">
+            <div class="lanyard-strap"></div>
+            <div class="lanyard-clip"></div>
+            <div class="lanyard-cord"></div>
+            <div class="profile-card" id="profileCard">
+              <img class="profile" src="https://i.imgur.com/EMove2l.jpeg" alt="Foto profil R - Lanzz" width="186" height="236" loading="eager">
+            </div>
+          </div>
+          <span class="lanyard-hint"> </span>
+        </div>
+      </div>
+    </div>
+    <div class="stats reveal">
+      <div class="stat"><b data-count="500" data-suffix="+">0</b><small>Website dibuat</small></div>
+      <div class="stat"><b data-count="5" data-suffix="+">0</b><small>Tahun pengalaman</small></div>
+      <div class="stat"><b data-count="700" data-suffix="+">0</b><small>Project selesai</small></div>
+    </div>
+  </div>
+</section>
+
+<section id="services">
+  <div class="container">
+    <div class="section-head reveal">
+      <div>
+        <div class="eyebrow">Digital Solutions</div>
+        <h2>Lanzz <span class="accent">Services</span></h2>
+        <span class="lnz-section-tag"><i></i> AVAILABLE</span>
+      </div>
+      <p>Beberapa layanan utama yang bisa digunakan untuk kebutuhan personal, bisnis maupun project digital.</p>
+    </div>
+    <div class="services">
+      <div class="card reveal">
+        <div class="card-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.5 3.8 5.5 3.8 9S14.5 17.5 12 21M12 3c-2.5 2.5-3.8 5.5-3.8 9S9.5 18.5 12 21"/></svg></div>
+        <h3>Website Development</h3>
+        <p>Buat website sesuai kebutuhan dengan fitur dan database yang dapat disesuaikan. Cocok untuk personal brand, bisnis, landing page, dashboard, dan project custom.</p>
+        <a class="more" href="https://lanzz-project.github.io/halaman-design.html" target="_blank" rel="noopener noreferrer">View Services <span>→</span></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="game">
+  <div class="container">
+    <div class="section-head reveal">
+      <div>
+        <div class="eyebrow">Gaming Hub</div>
+        <h2>Lanzz <span class="accent">Play</span></h2>
+        <span class="lnz-section-tag"><i></i> PLAYABLE</span>
+      </div>
+      <p>Nikmati 1.000+ game gratis yang bisa dimainkan langsung dari browser.</p>
+    </div>
+    <div class="services">
+      <div class="card reveal">
+        <div class="card-icon"><svg viewBox="0 0 24 24"><path d="M6 8h12a4 4 0 0 1 3.8 5.2l-1.1 4A2.3 2.3 0 0 1 16.2 19L13.8 16h-3.6l-2.4 3a2.3 2.3 0 0 1-4.5-1.8l-1.1-4A4 4 0 0 1 6 8Z"/><path d="M8 11v4M6 13h4M16 12h.01M18 14h.01"/></svg></div>
+        <h3>Game Library</h3>
+        <p>Mainkan 1.000+ game gratis langsung dari browser. Pilih game favoritmu tanpa perlu instalasi tambahan.</p>
+        <a class="more" href="https://lanzz-project.github.io/lanzz-play.html" target="_blank" rel="noopener noreferrer">Play Games <span>→</span></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="bros">
+  <div class="container">
+    <div class="section-head reveal">
+      <div>
+        <div class="eyebrow">Mini Games</div>
+        <h2>Lanzz <span class="accent">Bros</span></h2>
+        <span class="lnz-section-tag"><i></i> MINI GAME</span>
+      </div>
+      <p>Game platformer bergaya klasik by Lanzz Project, dimainkan langsung dari browser.</p>
+    </div>
+    <div class="services">
+      <div class="card reveal">
+        <div class="card-icon"><svg viewBox="0 0 24 24"><path d="M4 12.2C4 7.3 7.5 4 12 4s8 3.3 8 8.2H4Z"/><circle cx="8" cy="8.5" r="1.5"/><circle cx="12" cy="6.8" r="1.5"/><circle cx="16" cy="8.5" r="1.5"/><path d="M7.5 12.2v3.7c0 2.2 1.5 3.6 4.5 3.6s4.5-1.4 4.5-3.6v-3.7"/></svg></div>
+        <h3>Platformer Game</h3>
+        <p>Game platformer by Lanzz Project dengan gaya klasik, dimainkan langsung dari browser tanpa perlu instalasi tambahan.</p>
+        <a class="more" href="https://lanzz-project.github.io/lanzz-play-bros.html" target="_blank" rel="noopener noreferrer">Play Lanzz Bros <span>→</span></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="space">
+  <div class="container">
+    <div class="section-head reveal">
+      <div>
+        <div class="eyebrow">Galaxy Simulator</div>
+        <h2>Lanzz <span class="accent">Space</span></h2>
+        <span class="lnz-section-tag"><i></i> EXPLORE</span>
+      </div>
+      <p>Jelajahi galaksi dan nikmati pengalaman simulasi interaktif langsung dari browser.</p>
+    </div>
+    <div class="services">
+      <div class="card reveal">
+        <div class="card-icon"><svg viewBox="0 0 24 24"><ellipse cx="12" cy="12" rx="9.2" ry="4.1" transform="rotate(-18 12 12)"/><circle cx="12" cy="12" r="5.1"/><path d="M9.2 10.2c1.2-.7 2.7-.8 4-.3M10.1 13.3c1.1.6 2.4.8 3.7.4"/></svg></div>
+        <h3>Galaxy Simulator</h3>
+        <p>Eksplorasi simulasi galaksi interaktif, lihat berbagai objek luar angkasa, dan nikmati pengalaman menjelajah semesta langsung dari browser.</p>
+        <a class="more" href="https://lanzz-project.github.io/lanzz-space.html" target="_blank" rel="noopener noreferrer">Explore Space <span>→</span></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="ai">
+  <div class="container">
+    <div class="section-head reveal">
+      <div>
+        <div class="eyebrow">AI Assistant by Lanzz Project</div>
+        <h2>Lanzz<span class="accent">.Ai</span></h2>
+        <span class="lnz-section-tag"><i></i> READY</span>
+      </div>
+      <p>Asisten AI untuk membantu pekerjaan, belajar, mencari ide, dan berbagai kebutuhan digital kamu.</p>
+    </div>
+    <div class="services">
+      <div class="card reveal">
+        <div class="card-icon"><svg viewBox="0 0 24 24"><path d="M8 7h8a3 3 0 0 1 3 3v6a3 3 0 0 1-3 3H8a3 3 0 0 1-3-3v-6a3 3 0 0 1 3-3Z"/><path d="M12 7V4M10.5 4h3"/><circle cx="9.5" cy="11.5" r=".8" fill="currentColor" stroke="none"/><circle cx="14.5" cy="11.5" r=".8" fill="currentColor" stroke="none"/><path d="M9.5 15h5M3 11v4M21 11v4"/></svg></div>
+        <h3>AI Assistant</h3>
+        <p>Tanyakan apa saja ke Lanzz.Ai, asisten AI by Lanzz Project yang siap membantu berbagai kebutuhanmu.</p>
+        <a class="more" href="https://lanzz-ai-lanzz-project.vercel.app" target="_blank" rel="noopener noreferrer">Explore AI <span>→</span></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="tools">
+  <div class="container">
+    <div class="section-head reveal">
+      <div>
+        <div class="eyebrow">Tools All In One</div>
+        <h2>Lanzz <span class="accent">Tools</span></h2>
+        <span class="lnz-section-tag"><i></i> 100+ TOOLS</span>
+      </div>
+      <p>Kumpulan 100+ tools digital praktis untuk berbagai kebutuhan dalam satu tempat.</p>
+    </div>
+    <div class="services">
+      <div class="card reveal">
+        <div class="card-icon"><svg viewBox="0 0 24 24"><path d="m14.7 6.3 3-3a5 5 0 0 0-6.1 6.1l-7.2 7.2a2.1 2.1 0 0 0 3 3l7.2-7.2a5 5 0 0 0 6.1-6.1l-3 3-3-3Z"/></svg></div>
+        <h3>Digital Tools</h3>
+        <p>100+ tools gratis yang bisa digunakan tanpa login. Praktis untuk berbagai kebutuhan sehari-hari dan kebutuhan digital.</p>
+        <a class="more" href="https://lanzz-project.github.io/lanzz-tools.html" target="_blank" rel="noopener noreferrer">Try the Tools <span>→</span></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="informatika">
+  <div class="container">
+    <div class="section-head reveal">
+      <div>
+        <div class="eyebrow">Learn Web Development</div>
+        <h2>Lanzz <span class="accent">Informatika</span></h2>
+        <span class="lnz-section-tag"><i></i> LEARN CODE</span>
+      </div>
+      <p>Belajar dasar pengembangan website menggunakan HTML, CSS, dan JavaScript dari dasar hingga memahami cara membuat website interaktif.</p>
+    </div>
+    <div class="services">
+      <div class="card reveal">
+        <div class="card-icon" aria-label="Code">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="m8 7-5 5 5 5"/>
+            <path d="m16 7 5 5-5 5"/>
+            <path d="m14 4-4 16"/>
+          </svg>
+        </div>
+        <h3>HTML · CSS · JavaScript</h3>
+        <p>Pelajari struktur HTML, styling dengan CSS, dan logika interaktif menggunakan JavaScript untuk membangun website modern.</p>
+        <a class="more" href="ISI LINK DISINI" target="_blank" rel="noopener noreferrer">Learn Lab <span>→</span></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="persija">
+  <div class="container">
+    <div class="section-head reveal">
+      <div>
+        <div class="eyebrow">Supporter Hub</div>
+        <h2>Persija <span class="accent">Fan Portal</span></h2>
+        <span class="lnz-section-tag"><i></i> JAKMANIA</span>
+      </div>
+      <p>Portal khusus untuk Jakmania. Berita, jadwal, klasemen, dan komunitas Persija Jakarta dalam satu tempat.</p>
+    </div>
+    <div class="services">
+      <div class="card reveal">
+        <div class="card-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="m12 7 4 3-1.5 5h-5L8 10l4-3Z"/><path d="M12 3v4M3 10l5 0M21 10l-5 0M6.5 20l3.5-5M17.5 20l-3.5-5"/></svg></div>
+        <h3>Persija Fan Portal</h3>
+        <p>Portal komunitas Jakmania. Update berita terbaru, jadwal pertandingan, klasemen, dan ruang diskusi untuk seluruh pendukung Persija Jakarta.</p>
+        <a class="more" href="https://lanzz-project.github.io/persija-fan-portal/" target="_blank" rel="noopener noreferrer">Open Portal <span>→</span></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+
+<section id="skills">
+  <div class="container">
+    <div class="section-head reveal">
+      <div>
+        <div class="eyebrow">My Skills</div>
+        <h2>Keahlian <span class="accent">Utama</span></h2>
+      </div>
+      <p>Kombinasi skill teknis dan desain yang dipakai sehari-hari untuk membangun project digital.</p>
+    </div>
+    <div class="skills">
+      <div class="skill-row reveal"><div class="skill-meta"><span>Web Development</span><b>95%</b></div><div class="skill-level"><i data-w="95" style="width:0"></i></div></div>
+      <div class="skill-row reveal"><div class="skill-meta"><span>Landing Page</span><b>80%</b></div><div class="skill-level"><i data-w="80" style="width:0"></i></div></div>
+      <div class="skill-row reveal"><div class="skill-meta"><span>Document Design</span><b>90%</b></div><div class="skill-level"><i data-w="90" style="width:0"></i></div></div>
+      <div class="skill-row reveal"><div class="skill-meta"><span>Game Development</span><b>75%</b></div><div class="skill-level"><i data-w="75" style="width:0"></i></div></div>
+      <div class="skill-row reveal"><div class="skill-meta"><span>App Development</span><b>70%</b></div><div class="skill-level"><i data-w="70" style="width:0"></i></div></div>
+      <div class="skill-row reveal"><div class="skill-meta"><span>UI/UX Design</span><b>80%</b></div><div class="skill-level"><i data-w="80" style="width:0"></i></div></div>
+      <div class="skill-row reveal"><div class="skill-meta"><span>Frontend HTML, CSS, JS</span><b>90%</b></div><div class="skill-level"><i data-w="90" style="width:0"></i></div></div>
+    </div>
+  </div>
+</section>
+
+<section id="experience">
+  <div class="container">
+    <div class="section-head reveal">
+      <div>
+        <div class="eyebrow">My Experience</div>
+        <h2>Pengalaman <span class="accent">Kerja</span></h2>
+      </div>
+      <p>Perjalanan profesional dari freelance sampai jadi content creator &amp; digital solutions.</p>
+    </div>
+    <div class="lnz-timeline reveal">
+      <div class="lnz-tl-item"><div class="lnz-tl-dot"></div><div class="lnz-tl-card"><div class="date">2020 — SEKARANG</div><h3>Freelance Web Developer</h3><p>Menangani 500+ project Website, APK dan Landing Page untuk UMKM, personal brand dan berbagai kebutuhan digital.</p><div class="lnz-tl-tags"><span class="lnz-tl-tag">HTML</span><span class="lnz-tl-tag">CSS</span><span class="lnz-tl-tag">JavaScript</span><span class="lnz-tl-tag">Responsive</span></div></div></div>
+      <div class="lnz-tl-item"><div class="lnz-tl-dot"></div><div class="lnz-tl-card"><div class="date">2021 — SEKARANG</div><h3>Content Creator &amp; Digital Solutions</h3><p>Membantu pengguna melalui aplikasi dan konten digital di Instagram, TikTok dan Facebook.</p><div class="lnz-tl-tags"><span class="lnz-tl-tag">Content</span><span class="lnz-tl-tag">Social Media</span><span class="lnz-tl-tag">Digital Strategy</span></div></div></div>
+      <div class="lnz-tl-item"><div class="lnz-tl-dot"></div><div class="lnz-tl-card"><div class="date">2023 — SEKARANG</div><h3>Modder &amp; Creative Developer</h3><p>Bereksperimen dengan mod, tools custom, dan project eksperimental yang menggabungkan AI dan creative coding.</p><div class="lnz-tl-tags"><span class="lnz-tl-tag">Mods</span><span class="lnz-tl-tag">AI</span><span class="lnz-tl-tag">Creative Coding</span></div></div></div>
+    </div>
+  </div>
+</section>
+
+
+
+
+<section id="faq">
+  <div class="container">
+    <div class="section-head reveal">
+      <div>
+        <div class="eyebrow">Common Questions</div>
+        <h2>Frequently <span class="accent">Asked</span></h2>
+      </div>
+      <p>Beberapa pertanyaan yang paling sering ditanyakan sebelum memulai project.</p>
+    </div>
+    <div class="faq">
+      <div class="faq-item reveal"><button class="faq-q" type="button" aria-expanded="false"><span class="faq-icon"><svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg></span>Berapa lama proses pengerjaan satu website?</button><div class="faq-a"><div class="faq-a-inner">Proses pengerjaan 5 sampai 8jam+ dan 1 sampai 3hari+ Tergantung kepada tingkat kesulitan Project yang dibuat.</div></div></div>
+      <div class="faq-item reveal"><button class="faq-q" type="button" aria-expanded="false"><span class="faq-icon"><svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg></span>Apakah bisa custom fitur sesuai kebutuhan?</button><div class="faq-a"><div class="faq-a-inner">Bisa. Hampir semua fitur custom bisa dibuat, mulai dari sistem login, dashboard admin, keranjang belanja, hingga integrasi API pihak ketiga.</div></div></div>
+      <div class="faq-item reveal"><button class="faq-q" type="button" aria-expanded="false"><span class="faq-icon"><svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg></span>Apakah hasilnya responsive di HP, tablet, dan desktop?</button><div class="faq-a"><div class="faq-a-inner">Yes, semua project dibuat responsive dari awal. Tampilan akan otomatis menyesuaikan di berbagai ukuran layar, dari HP kecil sampai monitor desktop besar.</div></div></div>
+      <div class="faq-item reveal"><button class="faq-q" type="button" aria-expanded="false"><span class="faq-icon"><svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg></span>Apakah ada garansi dan support setelah serah terima?</button><div class="faq-a"><div class="faq-a-inner">Ada. Setiap project mendapat garansi revisi dan support untuk bug fixing selama periode yang disepakati.</div></div></div>
+      <div class="faq-item reveal"><button class="faq-q" type="button" aria-expanded="false"><span class="faq-icon"><svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg></span>Bagaimana cara mulai kerja sama?</button><div class="faq-a"><div class="faq-a-inner">Cukup hubungi via WhatsApp atau Email di section Contact. Kirim brief singkat atau ide project, nanti akan dibalas dengan estimasi dan langkah selanjutnya.</div></div></div>
+    </div>
+  </div>
+</section>
+
+<section id="newsletter">
+  <div class="container">
+    <div class="lnz-news reveal">
+      <div class="lnz-news-inner">
+        <div>
+          <h3>Subscribe buat Update <span>Terbaru</span></h3>
+          <p>Dapatkan notifikasi project baru, tips digital, dan insight seputar web development langsung di inbox kamu.</p>
+        </div>
+        <form class="lnz-news-form" id="lnzNewsForm">
+          <input type="email" placeholder="email@example.com" required aria-label="Email">
+          <button type="submit">SUBSCRIBE</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="container">
+    <div class="section-head reveal">
+      <div>
+        <div class="eyebrow">Get In Touch</div>
+        <h2>Contact <span class="accent">Me</span></h2>
+        <span class="lnz-section-tag"><i></i> OPEN FOR PROJECTS</span>
+      </div>
+      <p>Punya ide atau project? Kirim pesan lewat form, WhatsApp, atau email. Akan dibalas secepatnya.</p>
+    </div>
+    <div class="contact-grid">
+      <div class="contact-card reveal">
+        <form class="contact-form" id="contactForm" novalidate>
+          <div class="form-row">
+            <div class="form-field"><label for="cfName">Nama</label><input id="cfName" name="name" type="text" placeholder="Nama kamu" required maxlength="60"></div>
+            <div class="form-field"><label for="cfEmail">Email</label><input id="cfEmail" name="email" type="email" placeholder="email@example.com" required maxlength="80"></div>
+          </div>
+          <div class="form-field"><label for="cfSubject">Subjek</label><input id="cfSubject" name="subject" type="text" placeholder="Topik project" required maxlength="120"></div>
+          <div class="form-field"><label for="cfMsg">Pesan</label><textarea id="cfMsg" name="message" placeholder="Ceritakan kebutuhan atau ide project kamu…" required maxlength="1500"></textarea></div>
+          <button class="form-submit" type="submit"><svg viewBox="0 0 24 24"><path d="m3 3 18 9-18 9 4-9-4-9Z"/></svg> Kirim via WhatsApp</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="about">
+  <div class="container">
+    <div class="section-head reveal">
+      <div>
+        <div class="eyebrow">About</div>
+        <h2>About <span class="accent">Lanzz</span></h2>
+      </div>
+    </div>
+    <div class="about">
+      <div class="reveal">
+        <p>Hello, I'm <b style="color:#fff">LANZZ</b>, Web &amp; App Developer, Modder &amp; Creator with experience in the IT field. My specializations include website development, APK app creation, landing pages, UI/UX design, and various digital solutions for personal and business needs.</p>
+        <p style="margin-top:16px">Based in <b style="color:#fff">Lebak - Banten - Indonesia</b>, I am dedicated to creating modern, lightweight, responsive, and user-friendly digital products. My goal is to deliver digital solutions that are not only functional but also provide the best experience for every user, whether for personal projects or business needs.</p>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a class="logo" href="#home">R - <span>Lanzz</span></a>
+        <p>Developer, Modder &amp; Creator — membangun produk digital modern yang fungsional, cepat, dan enak dipakai.</p>
+        <div class="footer-status" style="margin-top:12px"><i></i><span style="color:#7dff9c;font-size:10px;font-weight:700;letter-spacing:.4px">Available for projects</span></div>
+      </div>
+      <div class="footer-col"><h5>Explore</h5><a href="#home">Home</a><a href="#services">Services</a><a href="#ai">AI Assistant</a><a href="#tools">Tools</a><a href="#space">Space</a></div>
+      <div class="footer-col"><h5>Content</h5><a href="#persija">Persija Portal</a><a href="#projects">Projects</a><a href="#articles">Articles</a><a href="#reviews">Reviews</a><a href="#weather">Weather</a></div>
+      <div class="footer-col"><h5>Connect</h5><a href="https://www.instagram.com/lanzz.offcl" target="_blank" rel="noopener noreferrer">Instagram</a><a href="https://wa.me/6283894480846" target="_blank" rel="noopener noreferrer">WhatsApp</a><a href="https://www.facebook.com/profile.php?id=61593681814129" target="_blank" rel="noopener noreferrer">Facebook</a><a href="https://www.tiktok.com/@lanzz.offcl" target="_blank" rel="noopener noreferrer">TikTok</a></div>
+    </div>
+    <div class="footer-bottom"><span>© 2026 Lanzz. All Rights Reserved.</span><span>Designed &amp; Developed by Lanzz — Made with HTML · CSS · JavaScript</span></div>
+  </div>
+</footer>
+
+<script>
+if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
+window.scrollTo(0, 0);
+window.addEventListener('load', () => window.scrollTo(0, 0));
+window.addEventListener('pageshow', () => window.scrollTo(0, 0));
+
+(() => {
+  const boot = document.getElementById('lnzBoot');
+  const fill = document.getElementById('lnzBootFill');
+  const pct = document.getElementById('lnzBootPct');
+  const msg = document.getElementById('lnzBootMsg');
+  if (!boot || !fill) return;
+  const steps = ['Loading','Preparing','Almost ready'];
+  let p = 0;
+  const tick = () => {
+    p += Math.random() * 14 + 6;
+    if (p >= 100) p = 100;
+    fill.style.width = p + '%';
+    if (pct) pct.textContent = Math.floor(p) + '%';
+    if (msg) msg.textContent = steps[Math.min(steps.length - 1, Math.floor(p / 100 * steps.length))];
+    if (p < 100) setTimeout(tick, 120 + Math.random() * 90);
+    else setTimeout(() => { boot.classList.add('hide'); window.scrollTo(0, 0); }, 420);
+  };
+  setTimeout(tick, 180);
+  window.addEventListener('load', () => setTimeout(() => { boot.classList.add('hide'); window.scrollTo(0, 0); }, 1200), {once:true});
+})();
+
+const lnzGetRedRgb = () => {
+  try {
+    const v = getComputedStyle(document.body).getPropertyValue('--red').trim();
+    if (v.startsWith('#')) {
+      const h = v.replace('#','');
+      const n = h.length === 3 ? h.split('').map(c => c+c).join('') : h;
+      return [parseInt(n.slice(0,2),16), parseInt(n.slice(2,4),16), parseInt(n.slice(4,6),16)];
+    }
+  } catch(_) {}
+  return [255,22,22];
+};
+let lnzRedRgb = lnzGetRedRgb();
+window.addEventListener('lnz-theme-change', () => { lnzRedRgb = lnzGetRedRgb(); });
+
+(() => {
+  const canvas = document.getElementById('lnzParticles');
+  if (!canvas) return;
+  const ctx = canvas.getContext('2d');
+  let w, h, particles = [], mouse = {x: -9999, y: -9999}, running = true;
+  const DPR = Math.min(window.devicePixelRatio || 1, 2);
+  const resize = () => {
+    w = canvas.width = innerWidth * DPR;
+    h = canvas.height = innerHeight * DPR;
+    canvas.style.width = innerWidth + 'px';
+    canvas.style.height = innerHeight + 'px';
+    const count = Math.min(22, Math.floor(innerWidth * innerHeight / 45000));
+    particles = [];
+    for (let i = 0; i < count; i++) {
+      particles.push({x: Math.random() * w, y: Math.random() * h, vx: (Math.random() - .5) * .32 * DPR, vy: (Math.random() - .5) * .32 * DPR, r: (Math.random() * 1.3 + .4) * DPR, a: Math.random() * .5 + .15});
+    }
+  };
+  resize();
+  window.addEventListener('resize', resize);
+  document.addEventListener('pointermove', e => { mouse.x = e.clientX * DPR; mouse.y = e.clientY * DPR; }, {passive:true});
+  document.addEventListener('pointerleave', () => { mouse.x = -9999; mouse.y = -9999; });
+  document.addEventListener('visibilitychange', () => running = !document.hidden);
+  const draw = () => {
+    if (!running) { requestAnimationFrame(draw); return; }
+    ctx.clearRect(0, 0, w, h);
+    const [r,g,b] = lnzRedRgb;
+    for (let i = 0; i < particles.length; i++) {
+      const p = particles[i];
+      p.x += p.vx; p.y += p.vy;
+      if (p.x < 0) p.x = w; if (p.x > w) p.x = 0;
+      if (p.y < 0) p.y = h; if (p.y > h) p.y = 0;
+      const dx = p.x - mouse.x, dy = p.y - mouse.y;
+      const d = Math.hypot(dx, dy);
+      const nearby = d < 150 * DPR;
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+      ctx.fillStyle = nearby ? `rgba(${r},${g},${b},.85)` : `rgba(${r},${g},${b},${p.a})`;
+      ctx.fill();
+      if (nearby) {
+        ctx.beginPath(); ctx.moveTo(p.x, p.y); ctx.lineTo(mouse.x, mouse.y);
+        ctx.strokeStyle = `rgba(${r},${g},${b},${(1 - d / (150 * DPR)) * .18})`;
+        ctx.lineWidth = .5 * DPR; ctx.stroke();
+      }
+    }
+    for (let i = 0; i < particles.length; i++) {
+      for (let j = i + 1; j < particles.length; j++) {
+        const a = particles[i], b = particles[j];
+        const dx = a.x - b.x, dy = a.y - b.y;
+        const d2 = dx * dx + dy * dy;
+        if (d2 < (85 * DPR) * (85 * DPR)) {
+          ctx.beginPath(); ctx.moveTo(a.x, a.y); ctx.lineTo(b.x, b.y);
+          ctx.strokeStyle = `rgba(${r},${g},${b},${(1 - Math.sqrt(d2) / (85 * DPR)) * .07})`;
+          ctx.lineWidth = .5 * DPR; ctx.stroke();
+        }
+      }
+    }
+    requestAnimationFrame(draw);
+  };
+  requestAnimationFrame(draw);
+})();
+
+(() => {
+  const canvas = document.getElementById('lnzMatrix');
+  if (!canvas) return;
+  const ctx = canvas.getContext('2d');
+  let w, h, cols, drops;
+  const resize = () => {
+    w = canvas.width = innerWidth;
+    h = canvas.height = innerHeight;
+    cols = Math.floor(w / 18);
+    drops = new Array(cols).fill(0).map(() => Math.random() * h);
+  };
+  resize();
+  window.addEventListener('resize', resize);
+  const chars = 'アカサタナハマヤラワ0123456789LANZZR-';
+  let last = 0;
+  const draw = (t) => {
+    if (document.body.classList.contains('matrix-on') && t - last > 45) {
+      last = t;
+      ctx.fillStyle = 'rgba(6,7,7,.09)';
+      ctx.fillRect(0, 0, w, h);
+      const [r,g,b] = lnzRedRgb;
+      ctx.fillStyle = `rgb(${r},${g},${b})`;
+      ctx.font = '14px ui-monospace,monospace';
+      for (let i = 0; i < cols; i++) {
+        const c = chars[Math.floor(Math.random() * chars.length)];
+        ctx.fillText(c, i * 18, drops[i]);
+        if (drops[i] > h && Math.random() > .975) drops[i] = 0;
+        drops[i] += 14;
+      }
+    } else {
+      ctx.clearRect(0, 0, w, h);
+    }
+    requestAnimationFrame(draw);
+  };
+  requestAnimationFrame(draw);
+})();
+
+(() => {
+  const glow = document.getElementById('lnzCursorGlow');
+  if (!glow) return;
+  if (!matchMedia('(hover: none)').matches) {
+    let x = innerWidth / 2, y = innerHeight / 2, cx = x, cy = y;
+    document.addEventListener('pointermove', e => { x = e.clientX; y = e.clientY; }, {passive:true});
+    const loop = () => {
+      cx += (x - cx) * 0.14; cy += (y - cy) * 0.14;
+      glow.style.transform = `translate(${cx}px, ${cy}px) translate(-50%, -50%)`;
+      requestAnimationFrame(loop);
+    };
+    requestAnimationFrame(loop);
+  } else glow.style.display = 'none';
+})();
+
+(() => {
+  const header = document.getElementById('lnzHeader');
+  const progress = document.getElementById('scrollProgress');
+  const ringBar = document.getElementById('lnzRingBar');
+  const ringNum = document.getElementById('lnzRingNum');
+  const ring = document.getElementById('lnzScrollRing');
+  const ringLen = 2 * Math.PI * 22;
+  let ticking = false;
+  const update = () => {
+    const max = document.documentElement.scrollHeight - innerHeight;
+    const pct = max > 0 ? scrollY / max : 0;
+    if (progress) progress.style.width = (pct * 100) + '%';
+    if (header) header.classList.toggle('scrolled', scrollY > 20);
+    if (ringBar) ringBar.style.strokeDashoffset = String(ringLen * (1 - pct));
+    if (ringNum) ringNum.textContent = Math.round(pct * 100) + '%';
+    ticking = false;
+  };
+  window.addEventListener('scroll', () => { if (ticking) return; ticking = true; requestAnimationFrame(update); }, {passive:true});
+  update();
+  if (ring) ring.addEventListener('click', () => window.scrollTo({top: 0, behavior: 'smooth'}));
+})();
+
+(() => {
+  const menu = document.getElementById('menu');
+  const nav = document.getElementById('nav');
+  if (!menu || !nav) return;
+  menu.addEventListener('click', () => {
+    const open = nav.classList.toggle('open');
+    menu.setAttribute('aria-expanded', open ? 'true' : 'false');
+  });
+  document.querySelectorAll('.navlinks a').forEach(a => {
+    a.addEventListener('click', e => {
+      nav.classList.remove('open');
+      menu.setAttribute('aria-expanded', 'false');
+      const t = a.getAttribute('href');
+      if (t && t.startsWith('#')) {
+        e.preventDefault();
+        document.querySelector(t)?.scrollIntoView({behavior:'smooth', block:'start'});
+      }
+    });
+  });
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape') { nav.classList.remove('open'); menu.setAttribute('aria-expanded', 'false'); }
+  });
+})();
+
+(() => {
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('show'); obs.unobserve(e.target); } });
+  }, {threshold: 0.12, rootMargin: '0px 0px -40px 0px'});
+  document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        const bar = e.target.querySelector('i[data-w]');
+        if (bar) setTimeout(() => { bar.style.width = bar.dataset.w + '%'; }, 120);
+        io.unobserve(e.target);
+      }
+    });
+  }, {threshold: 0.4});
+  document.querySelectorAll('.skill-row').forEach(el => io.observe(el));
+  const co = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (!e.isIntersecting) return;
+      const el = e.target;
+      const target = parseInt(el.dataset.count, 10);
+      const suffix = el.dataset.suffix || '';
+      const dur = 1400, start = performance.now();
+      const step = now => {
+        const t = Math.min(1, (now - start) / dur);
+        const eased = 1 - Math.pow(1 - t, 3);
+        el.textContent = Math.floor(eased * target) + suffix;
+        if (t < 1) requestAnimationFrame(step); else el.textContent = target + suffix;
+      };
+      requestAnimationFrame(step);
+      co.unobserve(el);
+    });
+  }, {threshold: 0.5});
+  document.querySelectorAll('[data-count]').forEach(el => co.observe(el));
+})();
+
+(() => {
+  const sections = [...document.querySelectorAll('section[id]')];
+  const links = [...document.querySelectorAll('.navlinks a')];
+  let ticking = false;
+  const update = () => {
+    let cur = 'home';
+    const sc = scrollY + 180;
+    sections.forEach(s => { if (sc >= s.offsetTop) cur = s.id; });
+    links.forEach(a => a.classList.toggle('active', a.getAttribute('href') === '#' + cur));
+    ticking = false;
+  };
+  window.addEventListener('scroll', () => { if (ticking) return; ticking = true; requestAnimationFrame(update); }, {passive:true});
+  update();
+})();
+
+const showToast = (() => {
+  const toast = document.getElementById('toast');
+  let t;
+  return (m) => {
+    if (!toast) return;
+    toast.textContent = m;
+    toast.classList.add('show');
+    clearTimeout(t);
+    t = setTimeout(() => toast.classList.remove('show'), 1900);
+  };
+})();
+document.querySelectorAll('[data-copy]').forEach(btn => {
+  btn.addEventListener('click', async () => {
+    const v = btn.dataset.copy;
+    try { await navigator.clipboard.writeText(v); showToast('Berhasil disalin: ' + v); }
+    catch (_) {
+      const ta = document.createElement('textarea');
+      ta.value = v; ta.style.position = 'fixed'; ta.style.opacity = '0';
+      document.body.appendChild(ta); ta.select();
+      try { document.execCommand('copy'); showToast('Berhasil disalin'); } catch (__) { showToast(v); }
+      ta.remove();
+    }
+  });
+});
+(() => {
+  const form = document.getElementById('contactForm');
+  if (!form) return;
+  form.addEventListener('submit', e => {
+    e.preventDefault();
+    const name = form.cfName.value.trim();
+    const email = form.cfEmail.value.trim();
+    const subject = form.cfSubject.value.trim();
+    const msg = form.cfMsg.value.trim();
+    if (!name || !email || !subject || !msg) { showToast('Mohon lengkapi semua field'); return; }
+    const text = `Halo Lanzz!%0A%0ANama: ${encodeURIComponent(name)}%0AEmail: ${encodeURIComponent(email)}%0ASubjek: ${encodeURIComponent(subject)}%0A%0APesan:%0A${encodeURIComponent(msg)}`;
+    window.open(`https://wa.me/6283894480846?text=${text}`, '_blank', 'noopener');
+    showToast('Membuka WhatsApp…');
+    form.reset();
+  });
+})();
+(() => {
+  const form = document.getElementById('lnzNewsForm');
+  if (!form) return;
+  form.addEventListener('submit', e => {
+    e.preventDefault();
+    const email = form.querySelector('input').value.trim();
+    if (!email) return;
+    showToast('Terima kasih! Update akan dikirim ke ' + email);
+    form.reset();
+  });
+})();
+
+(() => {
+  document.querySelectorAll('.faq-item').forEach(item => {
+    const btn = item.querySelector('.faq-q');
+    if (!btn) return;
+    btn.addEventListener('click', () => {
+      const isOpen = item.classList.contains('open');
+      document.querySelectorAll('.faq-item.open').forEach(o => {
+        o.classList.remove('open');
+        o.querySelector('.faq-q')?.setAttribute('aria-expanded', 'false');
+      });
+      if (!isOpen) { item.classList.add('open'); btn.setAttribute('aria-expanded', 'true'); }
+    });
+  });
+})();
+
+(() => {
+  const pre = document.querySelector('.typed-prefix');
+  const sp = document.querySelector('.typed-space');
+  const main = document.querySelector('.typed-main');
+  if (!pre || !main) return;
+  const seq = [
+    {text: 'R - Lanzz', branded: true},
+    {text: 'Developer', branded: false},
+    {text: 'Modder', branded: false},
+    {text: 'Creator', branded: false}
+  ];
+  let i = 0, pos = 0, deleting = false;
+  const render = (v, branded) => {
+    if (branded) {
+      const prefix = 'R -';
+      const a = v.slice(0, Math.min(v.length, prefix.length));
+      const b = v.length > prefix.length ? v.slice(prefix.length) : '';
+      pre.textContent = a; sp.textContent = b ? ' ' : ''; main.textContent = b;
+    } else {
+      pre.textContent = ''; sp.textContent = ''; main.textContent = v;
+    }
+  };
+  const tick = () => {
+    const item = seq[i];
+    if (!deleting) {
+      pos++; render(item.text.slice(0, pos), item.branded);
+      if (pos < item.text.length) setTimeout(tick, 115);
+      else { deleting = true; setTimeout(tick, 1300); }
+    } else {
+      pos--; render(item.text.slice(0, pos), item.branded);
+      if (pos > 0) setTimeout(tick, 65);
+      else { deleting = false; i = (i + 1) % seq.length; setTimeout(tick, 320); }
+    }
+  };
+  render('', true);
+  setTimeout(tick, 500);
+})();
+
+/* ================================================================
+   LANYARD — transplanted from bahan.html (full system)
+   ================================================================ */
+(() => {
+  const lanyardStage = document.getElementById('lanyardStage');
+  const profile3d = document.getElementById('profile3d');
+  if (!lanyardStage || !profile3d) return;
+
+  let angleZ = 0, angleX = 0, angleY = 0;
+  let targetZ = 0, targetX = 0, targetY = 0;
+  let velZ = 0, velX = 0, velY = 0;
+  let dragging = false;
+  let startX = 0, startY = 0;
+  let pointerInside = false;
+  let lastTime = performance.now();
+  const phase = Math.random() * Math.PI * 2;
+  const clamp = (v, min, max) => Math.max(min, Math.min(max, v));
+
+  const renderPhysics = (now) => {
+    const dt = Math.min(2, (now - lastTime) / 16.67);
+    lastTime = now;
+    if (dragging) {
+      angleZ += (targetZ - angleZ) * 0.25 * dt;
+      angleX += (targetX - angleX) * 0.25 * dt;
+      angleY += (targetY - angleY) * 0.25 * dt;
+    } else {
+      const idle = pointerInside ? 0 : Math.sin((now / 900) + phase) * 0.03;
+      velZ += (-angleZ * 0.045 + idle) * dt;
+      velZ *= Math.pow(0.92, dt);
+      angleZ += velZ * dt;
+      velX += (-angleX * 0.065) * dt;
+      velX *= Math.pow(0.88, dt);
+      angleX += velX * dt;
+      velY += (-angleY * 0.065) * dt;
+      velY *= Math.pow(0.88, dt);
+      angleY += velY * dt;
+    }
+    lanyardStage.style.transform = `translate3d(0,0,0) rotateZ(${angleZ.toFixed(2)}deg) rotateX(${angleX.toFixed(2)}deg) rotateY(${angleY.toFixed(2)}deg)`;
+    requestAnimationFrame(renderPhysics);
+  };
+  requestAnimationFrame(renderPhysics);
+
+  lanyardStage.addEventListener('pointerenter', () => pointerInside = true);
+  lanyardStage.addEventListener('pointerleave', () => { if (!dragging) pointerInside = false; });
+  lanyardStage.addEventListener('pointerdown', e => {
+    dragging = true;
+    pointerInside = true;
+    startX = e.clientX;
+    startY = e.clientY;
+    velZ = velX = velY = 0;
+    lanyardStage.classList.add('dragging');
+    lanyardStage.setPointerCapture?.(e.pointerId);
+    e.preventDefault();
+  });
+  window.addEventListener('pointermove', e => {
+    if (!dragging) {
+      if (pointerInside) {
+        const rect = profile3d.getBoundingClientRect();
+        const nx = (e.clientX - (rect.left + rect.width / 2)) / (rect.width / 2);
+        const ny = (e.clientY - (rect.top + rect.height / 2)) / (rect.height / 2);
+        angleX = clamp(-ny * 8, -10, 10);
+        angleY = clamp(nx * 8, -10, 10);
+      }
+      return;
+    }
+    const dx = e.clientX - startX;
+    const dy = e.clientY - startY;
+    targetZ = clamp(angleZ + dx * 0.35, -45, 45);
+    targetX = clamp(angleX - dy * 0.25, -25, 25);
+    targetY = clamp(angleY + dx * 0.2, -22, 22);
+    velZ = clamp(dx * 0.1, -6, 6);
+    velX = clamp(-dy * 0.1, -4, 4);
+    startX = e.clientX;
+    startY = e.clientY;
+  });
+  const release = e => {
+    if (!dragging) return;
+    dragging = false;
+    lanyardStage.classList.remove('dragging');
+    if (e?.pointerId && lanyardStage.hasPointerCapture?.(e.pointerId)) {
+      lanyardStage.releasePointerCapture(e.pointerId);
+    }
+  };
+  window.addEventListener('pointerup', release);
+  window.addEventListener('pointercancel', release);
+  lanyardStage.style.touchAction = 'none';
+})();
+
+(() => {
+  const timeEl = document.getElementById('liveTime');
+  const dateEl = document.getElementById('liveDate');
+  if (!timeEl || !dateEl) return;
+  const tick = () => {
+    const now = new Date();
+    const tf = new Intl.DateTimeFormat('id-ID', {timeZone:'Asia/Jakarta', hour12:false, hour:'2-digit', minute:'2-digit', second:'2-digit'});
+    const df = new Intl.DateTimeFormat('id-ID', {timeZone:'Asia/Jakarta', weekday:'long', day:'numeric', month:'long', year:'numeric'});
+    const parts = tf.formatToParts(now);
+    const hh = parts.find(p => p.type === 'hour')?.value || '00';
+    const mm = parts.find(p => p.type === 'minute')?.value || '00';
+    const ss = parts.find(p => p.type === 'second')?.value || '00';
+    timeEl.innerHTML = `<span class="clock-main">${hh}:${mm}</span><span class="clock-seconds"><i>:</i>${ss}</span>`;
+    dateEl.textContent = df.format(now);
+  };
+  tick();
+  setInterval(tick, 1000);
+})();
+
+(() => {
+  const openBtn = document.getElementById('lnzThemeOpenBtn');
+  const popup = document.getElementById('lnzThemePopup');
+  const grid = document.getElementById('lnzThemeGrid');
+  const perfBtn = document.getElementById('lnzPerfToggle');
+  if (!openBtn || !popup || !grid) return;
+  const themes = ['maroon','navy','gold','coffee','ocean','deepblue','purple','gray','cyber','mint','frost','rose','sunset','aurora'];
+  const saved = (() => { try { return localStorage.getItem('lnz_theme') || 'maroon'; } catch(_) { return 'maroon'; } })();
+  const apply = t => {
+    themes.forEach(x => document.body.classList.remove('theme-' + x));
+    document.body.classList.add('theme-' + t);
+    grid.querySelectorAll('[data-theme]').forEach(b => b.classList.toggle('active', b.dataset.theme === t));
+    try { localStorage.setItem('lnz_theme', t); } catch(_) {}
+    window.dispatchEvent(new CustomEvent('lnz-theme-change', {detail: t}));
+  };
+  apply(themes.includes(saved) ? saved : 'maroon');
+  const closeOthers = () => {
+    document.getElementById('lnzChatPanel')?.classList.remove('show');
+    document.getElementById('lnzNotifPanel')?.classList.remove('show');
+  };
+  const close = () => popup.classList.remove('show');
+  openBtn.addEventListener('click', e => {
+    e.stopPropagation();
+    if (popup.classList.contains('show')) close();
+    else { closeOthers(); popup.classList.add('show'); }
+  });
+  popup.querySelectorAll('[data-close]').forEach(b => b.addEventListener('click', close));
+  document.addEventListener('click', e => {
+    if (!popup.contains(e.target) && !openBtn.contains(e.target)) close();
+  });
+  grid.querySelectorAll('[data-theme]').forEach(b => b.addEventListener('click', () => {
+    apply(b.dataset.theme);
+    const name = b.querySelector('b').textContent;
+    showToast('Tema: ' + name);
+  }));
+  if (perfBtn) {
+    const perfSaved = (() => { try { return localStorage.getItem('lnz_perf') === '1'; } catch(_) { return false; } })();
+    const setPerf = on => {
+      document.body.classList.toggle('performance-mode', on);
+      perfBtn.classList.toggle('active', on);
+      try { localStorage.setItem('lnz_perf', on ? '1' : '0'); } catch(_) {}
+    };
+    setPerf(perfSaved);
+    perfBtn.addEventListener('click', e => {
+      e.stopPropagation();
+      const on = !document.body.classList.contains('performance-mode');
+      setPerf(on);
+      showToast('Performance: ' + (on ? 'ON' : 'OFF'));
+    });
+  }
+})();
+
+(() => {
+  const btn = document.getElementById('lnzChatOpenBtn');
+  const panel = document.getElementById('lnzChatPanel');
+  const close = document.getElementById('lnzChatClose');
+  const body = document.getElementById('lnzChatBody');
+  const input = document.getElementById('lnzChatInput');
+  const send = document.getElementById('lnzChatSend');
+  const quick = document.getElementById('lnzChatQuick');
+  if (!btn || !panel || !body) return;
+  const push = (t, who) => {
+    const m = document.createElement('div');
+    m.className = 'lnz-msg ' + who;
+    m.textContent = t;
+    body.appendChild(m);
+    body.scrollTop = body.scrollHeight;
+  };
+  const bot = (t, delay = 550) => setTimeout(() => push(t, 'bot'), delay);
+  const reply = (userText) => {
+    const t = userText.toLowerCase();
+    if (/halo|hai|hey|hello/.test(t)) return 'Halo! 👋 Ada yang bisa saya bantu?';
+    if (/layanan|service|jasa/.test(t)) return 'Kita menyediakan : Website Development, Portfolio, Landing Page, UI/UX Design, CV PDF, App & Game Creation, AI Assistant, Tools, Website Custom Dan Lain-lain.';
+    if (/harga|biaya|cost|rate|price/.test(t)) return 'Harga fleksibel tergantung kompleksitas project. Kirim brief ke WhatsApp ya.';
+    if (/mulai|start|order|pesan/.test(t)) return 'Gampang! Kirim brief project via WhatsApp +62 838-9448-0846 atau email lanzz.project.id@gmail.com.';
+    if (/kontak|whatsapp|email|hubungi/.test(t)) return 'WA: +62 838-9448-0846 | Email: lanzz.project.id@gmail.com';
+    if (/persija|jakmania|bola/.test(t)) return 'Cek Persija Fan Portal di section #persija ya! Portal komunitas Jakmania lengkap.';
+    if (/terima kasih|makasih|thanks/.test(t)) return 'Sama-sama! 😊';
+    return 'Terima kasih pesannya! Untuk respon cepat, hubungi WhatsApp +62 838-9448-0846 ya.';
+  };
+  let firstOpen = true;
+  const closeOthers = () => {
+    document.getElementById('lnzThemePopup')?.classList.remove('show');
+    document.getElementById('lnzNotifPanel')?.classList.remove('show');
+  };
+  btn.addEventListener('click', e => {
+    e.stopPropagation();
+    if (panel.classList.contains('show')) panel.classList.remove('show');
+    else {
+      closeOthers();
+      panel.classList.add('show');
+      if (firstOpen) { firstOpen = false; bot('Halo! Saya Lanzz Assistant 👋 Ada yang bisa dibantu?', 400); }
+    }
+  });
+  close.addEventListener('click', () => panel.classList.remove('show'));
+  const submit = () => {
+    const v = input.value.trim();
+    if (!v) return;
+    push(v, 'user');
+    input.value = '';
+    input.style.height = 'auto';
+    bot(reply(v), 700);
+  };
+  send.addEventListener('click', submit);
+  input.addEventListener('keydown', e => {
+    if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); submit(); }
+  });
+  input.addEventListener('input', () => {
+    input.style.height = 'auto';
+    input.style.height = Math.min(100, input.scrollHeight) + 'px';
+  });
+  quick.addEventListener('click', e => {
+    const b = e.target.closest('button');
+    if (!b) return;
+    input.value = b.dataset.q;
+    submit();
+  });
+})();
+
+(() => {
+  const panel = document.getElementById('lnzNotifPanel');
+  const list = document.getElementById('lnzNotifList');
+  const clear = document.getElementById('lnzNotifClear');
+  if (!panel || !list) return;
+  const notifs = [
+    {icon:'m', title:'Website baru saja rilis', desc:'Lanzz Tools Suite v2.0 sekarang tersedia.', time:'2 menit lalu', unread:true},
+    {icon:'p', title:'Persija Fan Portal launch', desc:'Portal komunitas Jakmania resmi dibuka!', time:'1 jam lalu', unread:true},
+    {icon:'a', title:'AI Assistant update', desc:'Model baru dengan respon lebih cepat.', time:'3 jam lalu', unread:true},
+    {icon:'g', title:'Game library ditambah', desc:'50 game baru masuk ke Lanzz Play.', time:'1 hari lalu', unread:false}
+  ];
+  const icons = {
+    m:'<path d="M4 4h16v16H4z"/><path d="M4 8h16M8 4v16"/>',
+    a:'<circle cx="12" cy="12" r="3"/><path d="M12 3v3M12 18v3M3 12h3M18 12h3"/>',
+    g:'<path d="M6 8h12a4 4 0 0 1 3.8 5.2l-1.1 4A2.3 2.3 0 0 1 16.2 19L13.8 16h-3.6l-2.4 3a2.3 2.3 0 0 1-4.5-1.8l-1.1-4A4 4 0 0 1 6 8Z"/>',
+    p:'<circle cx="12" cy="12" r="9"/><path d="m12 7 3 2-1 4H10L9 9l3-2Z"/>'
+  };
+  const render = () => {
+    if (!notifs.length) {
+      list.innerHTML = '<div class="lnz-notif-empty"><svg viewBox="0 0 24 24"><path d="M18 8a6 6 0 0 0-12 0c0 7-3 9-3 9h18s-3-2-3-9"/></svg><b>Tidak ada notifikasi</b><small>Semua sudah dibaca.</small></div>';
+    } else {
+      list.innerHTML = notifs.map(n => `
+        <div class="lnz-notif-item ${n.unread ? 'unread' : ''}">
+          <div class="lnz-notif-icon"><svg viewBox="0 0 24 24">${icons[n.icon] || icons.a}</svg></div>
+          <div><b>${n.title}</b><small>${n.desc}</small><time>${n.time}</time></div>
+        </div>`).join('');
+    }
+  };
+  render();
+  clear?.addEventListener('click', e => {
+    e.stopPropagation();
+    notifs.forEach(n => n.unread = false);
+    render();
+    panel.classList.remove('show');
+    showToast('Semua notifikasi ditandai sudah dibaca');
+  });
+  document.addEventListener('click', e => {
+    if (!panel.contains(e.target)) panel.classList.remove('show');
+  });
+})();
+
+(() => {
+  const box = document.getElementById('lnzCookie');
+  if (!box) return;
+  const key = 'lnz_cookie_ok';
+  const stored = (() => { try { return localStorage.getItem(key); } catch(_) { return null; } })();
+  if (!stored) setTimeout(() => box.classList.add('show'), 5000);
+  box.querySelectorAll('[data-cookie]').forEach(b => b.addEventListener('click', () => {
+    try { localStorage.setItem(key, b.dataset.cookie); } catch(_) {}
+    box.classList.remove('show');
+    showToast(b.dataset.cookie === 'accept' ? 'Cookie diterima' : 'Cookie ditolak');
+  }));
+})();
+
+
+
+(() => {
+  const track = document.getElementById('lnzCarouselTrack');
+  const dots = [...document.querySelectorAll('.lnz-carousel-dot')];
+  const prev = document.getElementById('lnzCarouselPrev');
+  const next = document.getElementById('lnzCarouselNext');
+  if (!track) return;
+  const total = track.children.length;
+  let i = 0, timer = null;
+  const go = (n) => {
+    i = (n + total) % total;
+    track.style.transform = `translateX(-${i * 100}%)`;
+    dots.forEach((d, k) => d.classList.toggle('active', k === i));
+  };
+  const start = () => { stop(); timer = setInterval(() => go(i + 1), 5500); };
+  const stop = () => { if (timer) clearInterval(timer); };
+  prev?.addEventListener('click', () => { go(i - 1); start(); });
+  next?.addEventListener('click', () => { go(i + 1); start(); });
+  dots.forEach((d, k) => d.addEventListener('click', () => { go(k); start(); }));
+  start();
+})();
+
+(() => {
+  const pop = document.getElementById('lnzAchPop');
+  const tEl = document.getElementById('lnzAchTitle');
+  const dEl = document.getElementById('lnzAchDesc');
+  if (!pop) return;
+  window.lnzUnlockAch = (title, desc) => {
+    tEl.textContent = title; dEl.textContent = desc;
+    pop.classList.add('show');
+    setTimeout(() => pop.classList.remove('show'), 4200);
+  };
+  const code = ['ArrowUp','ArrowUp','ArrowDown','ArrowDown','ArrowLeft','ArrowRight','ArrowLeft','ArrowRight','b','a'];
+  let kpos = 0;
+  document.addEventListener('keydown', e => {
+    if (e.target.matches('input, textarea')) return;
+    if (e.key === code[kpos]) {
+      kpos++;
+      if (kpos === code.length) {
+        kpos = 0;
+        window.lnzUnlockAch('Konami Master', 'Kamu menemukan easter egg rahasia!');
+        window.lnzConfetti?.();
+        showToast('🎮 KONAMI CODE ACTIVATED!');
+      }
+    } else kpos = 0;
+  });
+})();
+
+(() => {
+  const canvas = document.getElementById('lnzConfetti');
+  if (!canvas) return;
+  const ctx = canvas.getContext('2d');
+  let parts = [], active = false;
+  const resize = () => { canvas.width = innerWidth; canvas.height = innerHeight; };
+  resize();
+  window.addEventListener('resize', resize);
+  window.lnzConfetti = () => {
+    active = true;
+    canvas.classList.add('active');
+    parts = [];
+    const [r,g,b] = lnzRedRgb;
+    const colors = [`rgb(${r},${g},${b})`, `rgba(${r},${g},${b},.6)`, '#ffffff', '#ffd750'];
+    for (let i = 0; i < 160; i++) {
+      parts.push({
+        x: innerWidth / 2 + (Math.random() - .5) * 220,
+        y: innerHeight / 2,
+        vx: (Math.random() - .5) * 14,
+        vy: -Math.random() * 16 - 4,
+        g: .45 + Math.random() * .25,
+        s: 4 + Math.random() * 6,
+        rot: Math.random() * Math.PI,
+        rs: (Math.random() - .5) * .28,
+        c: colors[Math.floor(Math.random() * colors.length)],
+        life: 130 + Math.random() * 40
+      });
+    }
+    loop();
+  };
+  const loop = () => {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    parts.forEach(p => {
+      p.vy += p.g;
+      p.x += p.vx; p.y += p.vy;
+      p.rot += p.rs;
+      p.life--;
+      ctx.save();
+      ctx.translate(p.x, p.y);
+      ctx.rotate(p.rot);
+      ctx.fillStyle = p.c;
+      ctx.fillRect(-p.s / 2, -p.s / 2, p.s, p.s * .55);
+      ctx.restore();
+    });
+    parts = parts.filter(p => p.life > 0 && p.y < canvas.height + 60);
+    if (parts.length) requestAnimationFrame(loop);
+    else { active = false; canvas.classList.remove('active'); }
+  };
+})();
+
+(() => {
+  const cmdk = document.getElementById('lnzCmdk');
+  const input = document.getElementById('lnzCmdkInput');
+  const listEl = document.getElementById('lnzCmdkList');
+  if (!cmdk || !input || !listEl) return;
+  const commands = [
+    {g:'Navigasi', items:[
+      {l:'Beranda', h:'#home', icon:'<path d="m3 11 9-8 9 8v9a2 2 0 0 1-2 2h-4v-7h-6v7H5a2 2 0 0 1-2-2Z"/>'},
+      {l:'Services', h:'#services', icon:'<rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/>'},
+      {l:'AI Assistant', h:'#ai', icon:'<circle cx="12" cy="12" r="3"/><path d="M12 3v3M12 18v3M3 12h3M18 12h3"/>'},
+      {l:'Tools', h:'#tools', icon:'<path d="m14.7 6.3 3-3a5 5 0 0 0-6.1 6.1l-7.2 7.2a2.1 2.1 0 0 0 3 3l7.2-7.2a5 5 0 0 0 6.1-6.1l-3 3-3-3Z"/>'},
+      {l:'Space', h:'#space', icon:'<circle cx="12" cy="12" r="9"/><path d="M3 12h18"/>'},
+      {l:'Games', h:'#game', icon:'<path d="M6 8h12a4 4 0 0 1 3.8 5.2l-1.1 4A2.3 2.3 0 0 1 16.2 19L13.8 16h-3.6l-2.4 3a2.3 2.3 0 0 1-4.5-1.8l-1.1-4A4 4 0 0 1 6 8Z"/>'},
+      {l:'Lanzz Bros', h:'#bros', icon:'<circle cx="12" cy="12" r="3"/>'},
+      {l:'Persija Fan Portal', h:'#persija', icon:'<circle cx="12" cy="12" r="9"/><path d="m12 7 4 3-1.5 5h-5L8 10l4-3Z"/>'},
+      {l:'Projects', h:'#projects', icon:'<rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/>'},
+      {l:'Skills', h:'#skills', icon:'<path d="M5 19V9M12 19V5M19 19v-7"/><path d="M3 19h18"/>'},
+      {l:'Experience', h:'#experience', icon:'<rect x="3" y="5" width="18" height="14" rx="2"/><path d="M8 5v-2M16 5v-2M3 11h18"/>'},
+      {l:'Reviews', h:'#reviews', icon:'<path d="m12 2 3 7 7 .5-5.5 4.5 1.8 7L12 17l-6.3 4 1.8-7L2 9.5 9 9z"/>'},
+      {l:'Weather', h:'#weather', icon:'<circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2"/>'},
+      {l:'Contact', h:'#contact', icon:'<rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/>'}
+    ]},
+    {g:'Aksi', items:[
+      {l:'Toggle Matrix Rain', a:'matrix', icon:'<path d="M4 6h16v12H4zM4 10h16"/>'},
+      {l:'Toggle Particle BG', a:'particles', icon:'<circle cx="12" cy="12" r="3"/><circle cx="5" cy="5" r="1.5"/><circle cx="19" cy="19" r="1.5"/>'},
+      {l:'Buka Theme Picker', a:'theme', icon:'<circle cx="12" cy="12" r="9"/><circle cx="9" cy="9.5" r="1.2"/><circle cx="15" cy="9.5" r="1.2"/>'},
+      {l:'Toggle Performance', a:'perf', icon:'<path d="M13 2 3 14h9l-1 8 10-12h-9l1-8Z"/>'},
+      {l:'Secret Room', a:'secret', icon:'<path d="M12 3l1.9 5.1L19 10l-5.1 1.9L12 17l-1.9-5.1L5 10l5.1-1.9L12 3Z"/>'},
+      {l:'Print CV', a:'print', icon:'<path d="M6 9V2h12v7M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2M6 14h12v8H6z"/>'},
+      {l:'Scroll ke Atas', a:'top', icon:'<path d="M12 19V5M5 12l7-7 7 7"/>'}
+    ]}
+  ];
+  let selected = 0, flat = [];
+  const render = (q) => {
+    q = (q || '').toLowerCase().trim();
+    let html = ''; flat = [];
+    commands.forEach(g => {
+      const items = g.items.filter(it => !q || it.l.toLowerCase().includes(q));
+      if (!items.length) return;
+      html += '<div class="lnz-cmdk-group">' + g.g + '</div>';
+      items.forEach(it => {
+        const idx = flat.length; flat.push(it);
+        html += `<button class="lnz-cmdk-item ${idx === selected ? 'selected' : ''}" data-idx="${idx}" type="button">
+          <svg viewBox="0 0 24 24">${it.icon || '<circle cx="12" cy="12" r="3"/>'}</svg>
+          <span>${it.l}</span></button>`;
+      });
+    });
+    if (!flat.length) html = '<div class="lnz-notif-empty"><b>Tidak ada hasil</b><small>Coba kata kunci lain.</small></div>';
+    listEl.innerHTML = html;
+  };
+  const open = () => { cmdk.classList.add('open'); input.value = ''; selected = 0; render(''); setTimeout(() => input.focus(), 60); };
+  const close = () => cmdk.classList.remove('open');
+  const run = (idx) => {
+    const it = flat[idx];
+    if (!it) return;
+    close();
+    if (it.h) { document.querySelector(it.h)?.scrollIntoView({behavior:'smooth'}); return; }
+    switch (it.a) {
+      case 'matrix': document.body.classList.toggle('matrix-on'); showToast('Matrix ' + (document.body.classList.contains('matrix-on') ? 'ON' : 'OFF')); break;
+      case 'particles': {
+        const p = document.getElementById('lnzParticles');
+        if (p) p.style.display = p.style.display === 'none' ? 'block' : 'none';
+        showToast('Particles ' + (p && p.style.display === 'none' ? 'OFF' : 'ON')); break;
+      }
+      case 'theme': document.getElementById('lnzThemeOpenBtn').click(); break;
+      case 'perf': document.getElementById('lnzPerfToggle')?.click(); break;
+      case 'secret': window.dispatchEvent(new CustomEvent('lnz-open-secret')); break;
+      case 'print': window.print(); break;
+      case 'top': window.scrollTo({top:0, behavior:'smooth'}); break;
+    }
+  };
+  document.addEventListener('keydown', e => {
+    if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k') {
+      e.preventDefault();
+      cmdk.classList.contains('open') ? close() : open();
+    }
+    if (!cmdk.classList.contains('open')) return;
+    if (e.key === 'Escape') close();
+    if (e.key === 'ArrowDown') { e.preventDefault(); selected = Math.min(flat.length - 1, selected + 1); render(input.value); }
+    if (e.key === 'ArrowUp') { e.preventDefault(); selected = Math.max(0, selected - 1); render(input.value); }
+    if (e.key === 'Enter') { e.preventDefault(); run(selected); }
+  });
+  input.addEventListener('input', () => { selected = 0; render(input.value); });
+  listEl.addEventListener('click', e => {
+    const btn = e.target.closest('.lnz-cmdk-item');
+    if (!btn) return;
+    run(parseInt(btn.dataset.idx, 10));
+  });
+  cmdk.addEventListener('click', e => { if (e.target === cmdk) close(); });
+})();
+
+(() => {
+  const hud = document.getElementById('lnzKeys');
+  if (!hud) return;
+  let sound = false;
+  let audioCtx = null;
+  const beep = () => {
+    if (!sound) return;
+    try {
+      audioCtx = audioCtx || new (window.AudioContext || window.webkitAudioContext)();
+      const o = audioCtx.createOscillator();
+      const g = audioCtx.createGain();
+      o.connect(g); g.connect(audioCtx.destination);
+      o.type = 'sine'; o.frequency.value = 880;
+      g.gain.setValueAtTime(.04, audioCtx.currentTime);
+      g.gain.exponentialRampToValueAtTime(.0001, audioCtx.currentTime + .12);
+      o.start(); o.stop(audioCtx.currentTime + .12);
+    } catch(_) {}
+  };
+  document.addEventListener('keydown', e => {
+    if (e.target.matches('input, textarea')) return;
+    const k = e.key.toLowerCase();
+    if (k === 'm') { document.body.classList.toggle('matrix-on'); showToast('Matrix ' + (document.body.classList.contains('matrix-on') ? 'ON' : 'OFF')); }
+    else if (k === 's') { sound = !sound; showToast('Sound ' + (sound ? 'ON' : 'OFF')); beep(); }
+    else if (k === '?') { hud.classList.toggle('show'); }
+  });
+  setTimeout(() => hud.classList.add('show'), 2400);
+})();
+
+
+(() => {
+  const wrap = document.getElementById('lnzWeather');
+  if (!wrap) return;
+  const updEl = document.getElementById('lnzWeatherUpdated');
+  const days = wrap.querySelectorAll('.lnz-weather-day');
+  const DAY_NAMES = ['MIN','SEN','SEL','RAB','KAM','JUM','SAB'];
+
+  const weatherMap = {
+    clear:'<circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/>',
+    partly:'<circle cx="12" cy="9" r="3.5"/><path d="M12 2v1.5M4.9 4.9l1.1 1.1M2 9h1.5M19 9h1.5M17.7 6l1.1-1.1"/><path d="M18 14h-1.3A4 4 0 1 0 8 16.3 3 3 0 0 0 9 22h9a4 4 0 0 0 0-8z"/>',
+    cloud:'<path d="M18 10h-1.3A5 5 0 1 0 7 13.8 4 4 0 0 0 9 21h9a4 4 0 0 0 0-8z"/>',
+    fog:'<path d="M18 10h-1.3A5 5 0 1 0 7 13.8 4 4 0 0 0 9 21h9a4 4 0 0 0 0-8z"/><path d="M4 15h16M5 18h14M6 21h12"/>',
+    drizzle:'<path d="M18 10h-1.3A5 5 0 1 0 7 13.8 4 4 0 0 0 9 21h9a4 4 0 0 0 0-8z"/><path d="M10 21v1M14 21v1"/>',
+    rain:'<path d="M18 10h-1.3A5 5 0 1 0 7 13.8 4 4 0 0 0 9 21h9a4 4 0 0 0 0-8z"/><path d="M9 17l-1 3M13 17l-1 3M17 17l-1 3"/>',
+    snow:'<path d="M18 10h-1.3A5 5 0 1 0 7 13.8 4 4 0 0 0 9 21h9a4 4 0 0 0 0-8z"/><path d="M10 20h.01M14 20h.01M12 21h.01M12 17h.01"/>',
+    thunder:'<path d="M18 10h-1.3A5 5 0 1 0 7 13.8 4 4 0 0 0 9 21h9a4 4 0 0 0 0-8z"/><path d="m13 13-2 4h3l-1 4 3-5h-2l1-3z"/>'
+  };
+
+  const codeToType = c => {
+    if (c === 0) return 'clear';
+    if (c <= 2) return 'partly';
+    if (c === 3) return 'cloud';
+    if (c === 45 || c === 48) return 'fog';
+    if (c >= 51 && c <= 55) return 'drizzle';
+    if ((c >= 61 && c <= 65) || (c >= 80 && c <= 82)) return 'rain';
+    if ((c >= 71 && c <= 77) || c === 85 || c === 86) return 'snow';
+    if (c >= 95) return 'thunder';
+    return 'cloud';
+  };
+  const codeToLabel = c => {
+    if (c === 0) return 'Cerah';
+    if (c <= 2) return 'Cerah Berawan';
+    if (c === 3) return 'Berawan';
+    if (c === 45 || c === 48) return 'Berkabut';
+    if (c >= 51 && c <= 55) return 'Gerimis';
+    if (c >= 61 && c <= 65) return 'Hujan';
+    if (c === 80 || c === 81 || c === 82) return 'Hujan Lokal';
+    if ((c >= 71 && c <= 77) || c === 85 || c === 86) return 'Salju';
+    if (c >= 95) return 'Badai';
+    return 'Berawan';
+  };
+
+  const render = (data) => {
+    const daily = data.daily;
+    if (!daily || !daily.time) throw new Error('no data');
+    days.forEach((el, i) => {
+      const dt = new Date(daily.time[i] + 'T00:00:00');
+      const dayName = i === 0 ? 'HARI INI' : DAY_NAMES[dt.getDay()];
+      const code = daily.weather_code[i];
+      const tmax = Math.round(daily.temperature_2m_max[i]);
+      const type = codeToType(code);
+      el.querySelector('small').textContent = dayName;
+      el.querySelector('svg').innerHTML = weatherMap[type];
+      el.querySelector('b').textContent = tmax + '°';
+      el.querySelector('span').textContent = codeToLabel(code);
+    });
+    const now = new Date();
+    const tf = new Intl.DateTimeFormat('id-ID', {timeZone:'Asia/Jakarta', hour:'2-digit', minute:'2-digit'});
+    if (updEl) updEl.textContent = 'Diperbarui ' + tf.format(now) + ' WIB';
+  };
+
+  const load = async () => {
+    try {
+      const url = 'https://api.open-meteo.com/v1/forecast?latitude=-6.35&longitude=106.25&daily=weather_code,temperature_2m_max,temperature_2m_min&timezone=Asia%2FJakarta&forecast_days=4';
+      const res = await fetch(url);
+      if (!res.ok) throw new Error('HTTP ' + res.status);
+      const data = await res.json();
+      render(data);
+    } catch (err) {
+      const cur = wrap.querySelectorAll('.lnz-weather-day');
+      const today = new Date();
+      cur.forEach((el, i) => {
+        const dt = new Date(today); dt.setDate(dt.getDate() + i);
+        el.querySelector('small').textContent = i === 0 ? 'HARI INI' : DAY_NAMES[dt.getDay()];
+        el.querySelector('b').textContent = '--°';
+        el.querySelector('span').textContent = 'Tidak tersedia';
+      });
+      if (updEl) updEl.textContent = 'Gagal memuat data';
+    }
+  };
+  load();
+  setInterval(load, 30 * 60 * 1000);
+})();
+
+(() => {
+  let logoClicks = 0, logoTimer;
+  const logo = document.getElementById('lnzLogo');
+  const secretPanel = document.createElement('div');
+  secretPanel.className = 'secret-panel-backdrop';
+  secretPanel.innerHTML = `
+    <div class="secret-panel" role="dialog" aria-modal="true" aria-labelledby="secretTitle">
+      <div class="secret-head">
+        <button class="secret-close" type="button" aria-label="Close"><svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+        <div class="secret-topline">
+          <span class="secret-badge"><svg viewBox="0 0 24 24"><path d="M12 3l1.9 5.1L19 10l-5.1 1.9L12 17l-1.9-5.1L5 10l5.1-1.9L12 3Z"/></svg> SECRET MODE</span>
+          <span class="secret-status">UNLOCKED</span>
+        </div>
+        <h3 id="secretTitle">Lanzz Control Room</h3>
+        <p class="secret-desc">Hidden controls untuk membuat pengalaman portfolio lebih nyaman dan ringan.</p>
+      </div>
+      <div class="secret-body">
+        <div class="secret-kicker"><span>CONTROL DECK</span><span id="secretSession">SESSION 01</span></div>
+        <div class="secret-actions">
+          <button class="secret-action" data-secret="performance" type="button"><span class="secret-icon"><svg viewBox="0 0 24 24"><path d="M13 2 3 14h9l-1 8 10-12h-9l1-8Z"/></svg></span><span><b>Performance Mode</b><small>Ringankan efek saat device berat.</small></span><em class="secret-toggle">OFF</em></button>
+          <button class="secret-action" data-secret="focus" type="button"><span class="secret-icon"><svg viewBox="0 0 24 24"><path d="M8 4H5a1 1 0 0 0-1 1v3M16 4h3a1 1 0 0 1 1 1v3M8 20H5a1 1 0 0 1-1-1v-3M16 20h3a1 1 0 0 0 1-1v-3"/></svg></span><span><b>Focus Mode</b><small>Kurangi distraksi.</small></span><em class="secret-toggle">OFF</em></button>
+          <button class="secret-action" data-secret="system" type="button"><span class="secret-icon"><svg viewBox="0 0 24 24"><rect x="4" y="5" width="16" height="11" rx="1.5"/><path d="M9 20h6M12 16v4"/></svg></span><span><b>System Info</b><small>Browser, layar, platform.</small></span><em class="secret-toggle">VIEW</em></button>
+          <button class="secret-action" data-secret="jump" type="button"><span class="secret-icon"><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span><span><b>Quick Jump</b><small>Lompat cepat ke section.</small></span><em class="secret-toggle">GO</em></button>
+          <button class="secret-action" data-secret="terminal" type="button"><span class="secret-icon"><svg viewBox="0 0 24 24"><path d="m7 8 4 4-4 4M13 16h4"/></svg></span><span><b>Hidden Terminal</b><small>Command rahasia.</small></span><em class="secret-toggle">RUN</em></button>
+          <button class="secret-action" data-secret="achievements" type="button"><span class="secret-icon"><svg viewBox="0 0 24 24"><path d="M7 4h10v5a5 5 0 0 1-10 0V4Z"/><path d="M7 6H4v2a4 4 0 0 0 4 4M17 6h3v2a4 4 0 0 1-4 4M12 14v5M8 20h8"/></svg></span><span><b>Achievements</b><small>Badge tersembunyi.</small></span><em class="secret-toggle">VIEW</em></button>
+          <button class="secret-action" data-secret="puzzle" type="button"><span class="secret-icon"><svg viewBox="0 0 24 24"><path d="M9 4h6v3a2 2 0 1 0 0 4v3H9a2 2 0 1 0-4 0V9a2 2 0 1 0 4 0V4Z"/></svg></span><span><b>Secret Code</b><small>Temukan kode unlock.</small></span><em class="secret-toggle">LOCK</em></button>
+          <button class="secret-action" data-secret="lnz" type="button"><span class="secret-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"/><path d="M8 15V9l4 6 4-6v6"/></svg></span><span><b>LNZ Mode</b><small>Signature mode.</small></span><em class="secret-toggle">LOCK</em></button>
+          <button class="secret-action" data-secret="theme" type="button"><span class="secret-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg></span><span><b>Theme Info</b><small>Info tema saat ini.</small></span><em class="secret-toggle">VIEW</em></button>
+          <button class="secret-action" data-secret="stats" type="button"><span class="secret-icon"><svg viewBox="0 0 24 24"><path d="M5 19V9M12 19V5M19 19v-7"/><path d="M3 19h18"/></svg></span><span><b>Session Stats</b><small>Progress &amp; durasi.</small></span><em class="secret-toggle">LIVE</em></button>
+        </div>
+        <div class="secret-output" id="secretOutput" hidden></div>
+      </div>
+    </div>`;
+  document.body.appendChild(secretPanel);
+  const secretOutput = secretPanel.querySelector('#secretOutput');
+  const secretSession = secretPanel.querySelector('#secretSession');
+  const secretActions = [...secretPanel.querySelectorAll('.secret-action')];
+  const store = {
+    get(k) { try { return localStorage.getItem('lnz_' + k) === '1'; } catch(_) { return false; } },
+    set(k, v) { try { localStorage.setItem('lnz_' + k, v ? '1' : '0'); } catch(_) {} }
+  };
+  const unlocked = { control:true, system:store.get('system'), terminal:store.get('terminal'), mode:store.get('mode'), nav:store.get('nav'), theme:store.get('theme'), stats:store.get('stats') };
+  const setSecretState = (btn, on) => {
+    const t = btn.querySelector('.secret-toggle');
+    if (t) t.textContent = on ? 'ON' : 'OFF';
+    btn.classList.toggle('enabled', on);
+  };
+  const markUnlocked = k => { unlocked[k] = true; store.set(k, true); };
+  const openSecret = () => {
+    secretPanel.classList.add('open');
+    const n = Number(secretSession.dataset.n || '0') + 1;
+    secretSession.dataset.n = String(n);
+    secretSession.textContent = 'SESSION ' + String(n).padStart(2, '0');
+    if (window.lnzUnlockAch) window.lnzUnlockAch('Control Room', 'Kamu menemukan Secret Mode.');
+  };
+  const closeSecret = () => { secretPanel.classList.remove('open'); secretOutput.hidden = true; };
+  const showDetail = html => { secretOutput.innerHTML = html; secretOutput.hidden = false; };
+  const arrowIcon = '<svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>';
+  const systemDetail = () => {
+    const ua = navigator.userAgent;
+    const browser = /Edg\//.test(ua) ? 'Edge' : /Chrome\//.test(ua) ? 'Chrome' : /Firefox\//.test(ua) ? 'Firefox' : /Safari\//.test(ua) ? 'Safari' : 'Browser';
+    showDetail('<div class="secret-detail-title"><span>SYSTEM SNAPSHOT</span><span class="secret-chip">LIVE</span></div>' +
+      '<div class="sys-row"><b>Browser</b><span>' + browser + '</span></div>' +
+      '<div class="sys-row"><b>Viewport</b><span>' + innerWidth + ' × ' + innerHeight + '</span></div>' +
+      '<div class="sys-row"><b>Pixel Ratio</b><span>' + ((devicePixelRatio || 1).toFixed(2)) + '</span></div>' +
+      '<div class="sys-row"><b>Language</b><span>' + (navigator.language || 'id-ID') + '</span></div>');
+    markUnlocked('system');
+  };
+  const quickJump = () => {
+    const ids = ['home','services','game','bros','space','ai','tools','persija','projects','skills','experience','reviews','weather','about','faq','contact'];
+    showDetail('<div class="secret-detail-title"><span>QUICK NAVIGATION</span><span class="secret-chip">' + ids.length + ' TARGETS</span></div>' +
+      '<div class="secret-jumps">' + ids.map(id => '<button type="button" class="secret-jump" data-jump="' + id + '">' + id.toUpperCase() + '</button>').join('') + '</div>');
+    secretOutput.querySelectorAll('[data-jump]').forEach(b => {
+      b.onclick = () => { document.getElementById(b.dataset.jump)?.scrollIntoView({behavior:'smooth'}); closeSecret(); markUnlocked('nav'); };
+    });
+  };
+  const terminal = () => {
+    showDetail('<div class="secret-detail-title"><span>LANZZ TERMINAL</span><span class="secret-chip">READY</span></div>' +
+      '<div id="terminalLog" style="color:#8d9696;font-family:ui-monospace,monospace;font-size:10px;line-height:1.7">Type <b style="color:#fff">help</b></div>' +
+      '<div class="secret-terminal"><input id="terminalInput" autocomplete="off" spellcheck="false" placeholder="command..."><button type="button" id="terminalRun">RUN</button></div>');
+    const input = secretOutput.querySelector('#terminalInput');
+    const run = secretOutput.querySelector('#terminalRun');
+    const log = secretOutput.querySelector('#terminalLog');
+    const exec = () => {
+      const cmd = input.value.trim().toLowerCase();
+      if (!cmd) return;
+      let out = 'Not found. Try <b style="color:#fff">help</b>.';
+      if (cmd === 'help') out = 'Commands: <b style="color:#fff">about</b>, <b style="color:#fff">skills</b>, <b style="color:#fff">projects</b>, <b style="color:#fff">system</b>, <b style="color:#fff">clear</b>.';
+      else if (cmd === 'about') out = 'Lanzz — creative digital portfolio.';
+      else if (cmd === 'skills') out = 'HTML · CSS · JavaScript · AI · Web · Games';
+      else if (cmd === 'projects') out = 'Scroll to Selected Work.';
+      else if (cmd === 'system') { systemDetail(); return; }
+      else if (cmd === 'clear') out = 'Cleared.';
+      log.innerHTML = out; input.value = ''; markUnlocked('terminal');
+    };
+    run.onclick = exec;
+    input.onkeydown = e => { if (e.key === 'Enter') exec(); };
+    input.focus({preventScroll: true});
+    markUnlocked('terminal');
+  };
+  const achievements = () => {
+    const list = [
+      ['control','Explorer','Menemukan Lanzz Control Room.'],
+      ['system','System Check','Membuka System Info.'],
+      ['terminal','Terminal Access','Menjalankan Hidden Terminal.'],
+      ['nav','Navigator','Menggunakan Quick Jump.'],
+      ['mode','Performance Pilot','Aktifkan mode kontrol.'],
+      ['theme','Theme Stylist','Mencoba Theme Control.'],
+      ['stats','Analyst','Membuka Session Stats.']
+    ];
+    const count = list.filter(x => unlocked[x[0]]).length;
+    showDetail('<div class="secret-detail-title"><span>ACHIEVEMENTS</span><span class="secret-chip">' + count + '/' + list.length + '</span></div>' +
+      '<div class="secret-achievements">' + list.map(x =>
+        '<div class="achievement ' + (unlocked[x[0]] ? 'unlocked' : '') + '">' +
+        '<span class="achievement-icon">' + arrowIcon + '</span>' +
+        '<span><b>' + x[1] + '</b><small>' + x[2] + '</small></span></div>'
+      ).join('') + '</div>');
+  };
+  const puzzle = () => {
+    showDetail('<div class="secret-detail-title"><span>SECURE ACCESS</span><span class="secret-chip">2 CREDS</span></div>' +
+      '<div class="secret-access-copy">Password dan Access Code adalah kredensial berbeda.</div>' +
+      '<div class="secret-field"><label for="secretPassword">PASSWORD</label><input id="secretPassword" type="password" autocomplete="off" maxlength="40" placeholder="ENTER PASSWORD"></div>' +
+      '<div class="secret-field"><label for="secretCode">ACCESS CODE</label><input id="secretCode" type="text" inputmode="numeric" autocomplete="off" maxlength="6" placeholder="6-DIGIT CODE"></div>' +
+      '<div class="secret-code"><button type="button" id="secretUnlock">VERIFY</button></div>');
+    const pw = secretOutput.querySelector('#secretPassword');
+    const code = secretOutput.querySelector('#secretCode');
+    const btn = secretOutput.querySelector('#secretUnlock');
+    const verify = () => {
+      const pwOK = pw.value.trim().toUpperCase() === 'ERLAN MAULANA';
+      const codeOK = code.value.trim() === '310704';
+      if (pwOK && codeOK) {
+        markUnlocked('mode');
+        secretPanel.querySelector('[data-secret="lnz"] .secret-toggle').textContent = 'UNLOCKED';
+        showDetail('<div class="secret-detail-title"><span>ACCESS GRANTED</span><span class="secret-chip">VERIFIED</span></div><div class="secret-access-success">Password &amp; Access Code verified. LNZ Mode unlocked.</div>');
+        if (window.lnzUnlockAch) window.lnzUnlockAch('Secret Decoder', 'Kamu memecahkan kode rahasia!');
+        window.lnzConfetti?.();
+        return;
+      }
+      secretPanel.querySelector('[data-secret="lnz"] .secret-toggle').textContent = 'LOCK';
+      let reason = 'Password dan Access Code belum sesuai.';
+      if (!pwOK && codeOK) reason = 'Access Code benar, Password salah.';
+      else if (pwOK && !codeOK) reason = 'Password benar, Access Code salah.';
+      showDetail('<div class="secret-detail-title"><span>ACCESS DENIED</span><span class="secret-chip">LOCKED</span></div><div class="secret-access-error">' + reason + '</div>');
+    };
+    code.addEventListener('input', () => { code.value = code.value.replace(/\D/g, '').slice(0, 6); });
+    btn.onclick = verify;
+    code.onkeydown = e => { if (e.key === 'Enter') verify(); };
+    pw.onkeydown = e => { if (e.key === 'Enter') code.focus(); };
+    pw.focus({preventScroll: true});
+  };
+  const sessionStarted = Date.now();
+  const visited = new Set(['home']);
+  const themeInfo = () => {
+    const active = document.querySelector('.lnz-theme-opt.active');
+    const name = active?.querySelector('b').textContent || 'Red Maroon';
+    showDetail('<div class="secret-detail-title"><span>THEME INFO</span><span class="secret-chip">ACTIVE</span></div>' +
+      '<div class="sys-row"><b>Tema</b><span>' + name + '</span></div>' +
+      '<div class="sys-row"><b>Total</b><span>14 pilihan</span></div>' +
+      '<div class="sys-row"><b>Akses</b><span>Dock kanan bawah</span></div>');
+    markUnlocked('theme');
+  };
+  const sessionStats = () => {
+    const sections = [...document.querySelectorAll('section[id]')];
+    const total = sections.length;
+    const count = visited.size;
+    const pct = Math.round((count / Math.max(1, total)) * 100);
+    const mins = Math.floor((Date.now() - sessionStarted) / 60000);
+    const secs = Math.floor(((Date.now() - sessionStarted) % 60000) / 1000);
+    showDetail('<div class="secret-detail-title"><span>SESSION STATS</span><span class="secret-chip">LIVE</span></div>' +
+      '<div class="session-grid">' +
+      '<div class="session-stat"><b>' + count + '/' + total + '</b><small>SECTIONS</small></div>' +
+      '<div class="session-stat"><b>' + pct + '%</b><small>EXPLORATION</small></div>' +
+      '<div class="session-stat"><b>' + String(mins).padStart(2,'0') + ':' + String(secs).padStart(2,'0') + '</b><small>TIME</small></div>' +
+      '</div>' +
+      '<div class="session-progress"><i style="width:' + pct + '%"></i></div>' +
+      '<div class="session-time">Visited: ' + [...visited].map(x => x.toUpperCase()).join(' · ') + '</div>');
+    markUnlocked('stats');
+  };
+  const sectionObserver = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) visited.add(e.target.id); });
+  }, {threshold: 0.2});
+  document.querySelectorAll('section[id]').forEach(s => sectionObserver.observe(s));
+  secretPanel.querySelector('.secret-close').onclick = closeSecret;
+  secretPanel.addEventListener('click', e => { if (e.target === secretPanel) closeSecret(); });
+  secretActions.forEach(btn => btn.addEventListener('click', () => {
+    const type = btn.dataset.secret;
+    if (type === 'performance') {
+      const on = !document.body.classList.contains('performance-mode');
+      document.body.classList.toggle('performance-mode', on);
+      setSecretState(btn, on); markUnlocked('mode');
+      try { localStorage.setItem('lnz_perf', on ? '1' : '0'); } catch(_) {}
+      document.getElementById('lnzPerfToggle')?.classList.toggle('active', on);
+      showDetail('<div class="secret-detail-title"><span>PERFORMANCE MODE</span><span class="secret-chip">' + (on ? 'ACTIVE' : 'NORMAL') + '</span></div>' + (on ? 'Blur & animasi berat dikurangi.' : 'Normal presentation.'));
+    } else if (type === 'focus') {
+      const on = !document.body.classList.contains('focus-mode');
+      document.body.classList.toggle('focus-mode', on);
+      setSecretState(btn, on); markUnlocked('mode');
+      showDetail('<div class="secret-detail-title"><span>FOCUS MODE</span><span class="secret-chip">' + (on ? 'ACTIVE' : 'NORMAL') + '</span></div>' + (on ? 'Distraksi dikurangi.' : 'Normal presentation.'));
+    } else if (type === 'system') systemDetail();
+    else if (type === 'jump') quickJump();
+    else if (type === 'terminal') terminal();
+    else if (type === 'achievements') achievements();
+    else if (type === 'puzzle') puzzle();
+    else if (type === 'theme') themeInfo();
+    else if (type === 'stats') sessionStats();
+    else if (type === 'lnz') {
+      if (!unlocked.mode) { showDetail('<div class="secret-detail-title"><span>LNZ MODE</span><span class="secret-chip">LOCKED</span></div>Unlock the Secret Code first.'); return; }
+      const on = !document.body.classList.contains('lnz-mode');
+      document.body.classList.toggle('lnz-mode', on);
+      setSecretState(btn, on);
+      showDetail('<div class="secret-detail-title"><span>LNZ SIGNATURE</span><span class="secret-chip">' + (on ? 'ACTIVE' : 'NORMAL') + '</span></div>' + (on ? 'Signature accent enabled.' : 'Signature accent disabled.'));
+    }
+  }));
+  if (unlocked.mode) secretPanel.querySelector('[data-secret="lnz"] .secret-toggle').textContent = 'UNLOCKED';
+  if (logo) {
+    logo.addEventListener('click', e => {
+      e.preventDefault();
+      logoClicks++;
+      clearTimeout(logoTimer);
+      logoTimer = setTimeout(() => logoClicks = 0, 900);
+      if (logoClicks >= 3) { logoClicks = 0; openSecret(); }
+      else document.getElementById('home')?.scrollIntoView({behavior:'smooth'});
+    });
+  }
+  window.addEventListener('lnz-open-secret', openSecret);
+})();
+
+document.querySelectorAll('a[target="_blank"]').forEach(a => {
+  if (!a.hasAttribute('rel')) a.setAttribute('rel', 'noopener noreferrer');
+});
+(() => {
+  const y = new Date().getFullYear();
+  document.querySelectorAll('footer').forEach(f => {
+    f.innerHTML = f.innerHTML.replace(/©\s*\d{4}/, '© ' + y);
+  });
+})();
+
+
+</script></body>
+</html>
