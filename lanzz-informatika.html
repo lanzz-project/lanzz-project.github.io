@@ -1,0 +1,2437 @@
+<!DOCTYPE html>
+<html lang="id" data-theme="dark" data-accent="indigo">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="description" content="Lanzz Informatika — platform belajar teknologi offline-first: 32 topik, roadmap, playground, kuis, XP.">
+<meta name="theme-color" content="#0a0f1f">
+<title>Lanzz Informatika — Belajar Teknologi &amp; Pemrograman</title>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --acc1:#6366f1;--acc2:#8b5cf6;--acc3:#22d3ee;
+  --grad:linear-gradient(135deg,var(--acc1) 0%,var(--acc2) 55%,var(--acc3) 100%);
+  --bg:#0a0f1f;--bg-2:#101732;
+  --surface:rgba(255,255,255,.045);--surface-2:rgba(255,255,255,.075);--surface-3:rgba(255,255,255,.11);
+  --border:rgba(255,255,255,.09);--border-2:rgba(255,255,255,.17);
+  --text:#eef1ff;--text-2:#a8b0d3;--text-3:#6f7aa0;
+  --success:#22c55e;--warn:#f59e0b;--danger:#ef4444;
+  --shadow:0 18px 44px -14px rgba(0,0,0,.7);
+  --radius:16px;--t:.28s cubic-bezier(.4,0,.2,1);
+  --mono:ui-monospace,'Cascadia Code',Consolas,monospace;
+}
+html[data-accent="indigo"]{--acc1:#6366f1;--acc2:#8b5cf6;--acc3:#22d3ee}
+html[data-accent="emerald"]{--acc1:#10b981;--acc2:#14b8a6;--acc3:#84cc16}
+html[data-accent="rose"]{--acc1:#f43f5e;--acc2:#ec4899;--acc3:#f97316}
+html[data-accent="amber"]{--acc1:#f59e0b;--acc2:#f97316;--acc3:#ef4444}
+html[data-accent="cyan"]{--acc1:#06b6d4;--acc2:#0ea5e9;--acc3:#6366f1}
+html[data-accent="violet"]{--acc1:#8b5cf6;--acc2:#a855f7;--acc3:#ec4899}
+html[data-accent="blue"]{--acc1:#3b82f6;--acc2:#2563eb;--acc3:#06b6d4}
+html[data-accent="lime"]{--acc1:#84cc16;--acc2:#22c55e;--acc3:#14b8a6}
+html[data-theme="light"]{
+  --bg:#f4f6fc;--bg-2:#fff;
+  --surface:rgba(15,23,42,.035);--surface-2:rgba(15,23,42,.06);--surface-3:rgba(15,23,42,.09);
+  --border:rgba(15,23,42,.10);--border-2:rgba(15,23,42,.18);
+  --text:#0f172a;--text-2:#4a5578;--text-3:#7b86a8;
+  --shadow:0 18px 44px -20px rgba(30,41,90,.26);
+}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{font-family:'Segoe UI',system-ui,-apple-system,'Helvetica Neue',Arial,sans-serif;background:var(--bg);color:var(--text);line-height:1.6;overflow-x:hidden;min-height:100vh;transition:background var(--t),color var(--t);font-size:15px}
+body::before{content:"";position:fixed;inset:0;z-index:-2;pointer-events:none;background:radial-gradient(900px 520px at 10% -8%,color-mix(in srgb,var(--acc1) 30%,transparent),transparent 62%),radial-gradient(800px 480px at 92% 4%,color-mix(in srgb,var(--acc3) 20%,transparent),transparent 62%),radial-gradient(900px 620px at 50% 108%,color-mix(in srgb,var(--acc2) 16%,transparent),transparent 62%)}
+img,svg{display:block;max-width:100%}
+button,input,textarea,select{font-family:inherit;color:inherit}
+button{cursor:pointer;border:none;background:none}
+a{color:inherit;text-decoration:none}
+::selection{background:color-mix(in srgb,var(--acc1) 55%,transparent);color:#fff}
+::-webkit-scrollbar{width:9px;height:9px}
+::-webkit-scrollbar-track{background:transparent}
+::-webkit-scrollbar-thumb{background:rgba(120,130,180,.4);border-radius:20px;border:2px solid transparent;background-clip:content-box}
+::-webkit-scrollbar-thumb:hover{background:rgba(120,130,180,.72);background-clip:content-box}
+
+/* LOADER */
+#loader{position:fixed;inset:0;z-index:9999;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:22px;background:var(--bg);transition:opacity .6s,visibility .6s}
+#loader.hide{opacity:0;visibility:hidden;pointer-events:none}
+.loader-ring{position:relative;width:86px;height:86px;display:grid;place-items:center}
+.loader-ring svg{position:absolute;inset:0;width:100%;height:100%;transform:rotate(-90deg)}
+.loader-ring circle{fill:none;stroke-width:3.5;stroke-linecap:round}
+.loader-ring .track{stroke:var(--border-2)}
+.loader-ring .bar{stroke:url(#lg);stroke-dasharray:283;stroke-dashoffset:283;animation:spin 1.5s cubic-bezier(.55,.15,.35,.95) infinite}
+@keyframes spin{0%{stroke-dashoffset:283;transform:rotate(0)}50%{stroke-dashoffset:70;transform:rotate(180deg)}100%{stroke-dashoffset:283;transform:rotate(360deg)}}
+.loader-logo{font-size:26px;font-weight:900;letter-spacing:-1.2px;background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent;animation:pulse 1.8s ease-in-out infinite}
+@keyframes pulse{0%,100%{transform:scale(1);opacity:1}50%{transform:scale(1.07);opacity:.82}}
+.loader-bar{width:210px;height:4px;border-radius:99px;background:var(--surface-2);overflow:hidden}
+.loader-bar i{display:block;height:100%;width:0;border-radius:99px;background:var(--grad);transition:width .3s}
+.loader-text{font-size:11.5px;color:var(--text-3);letter-spacing:2.4px;text-transform:uppercase;font-weight:700}
+
+/* HEADER */
+header{position:sticky;top:0;z-index:900;backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);background:color-mix(in srgb,var(--bg) 76%,transparent);border-bottom:1px solid transparent;transition:border-color var(--t),background var(--t)}
+header.scrolled{border-bottom-color:var(--border);box-shadow:0 10px 34px -22px rgba(0,0,0,.7)}
+.nav{max-width:1280px;margin:0 auto;padding:9px 15px;display:flex;align-items:center;gap:12px}
+.brand{display:flex;align-items:center;gap:10px;flex-shrink:0}
+.brand-mark{width:34px;height:34px;border-radius:10px;display:grid;place-items:center;background:var(--grad);box-shadow:0 6px 18px -6px var(--acc1);transition:transform var(--t)}
+.brand:hover .brand-mark{transform:rotate(-8deg) scale(1.06)}
+.brand-mark svg{width:19px;height:19px;stroke:#fff;fill:none;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
+.brand-txt strong{display:block;font-size:14px;font-weight:800;letter-spacing:-.3px;line-height:1.15;background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+.brand-txt span{display:block;font-size:8.5px;color:var(--text-3);letter-spacing:1.9px;text-transform:uppercase;font-weight:700}
+.nav-tabs{display:flex;gap:2px;margin-left:auto;overflow-x:auto;scrollbar-width:none}
+.nav-tabs::-webkit-scrollbar{display:none}
+.nav-tabs button{padding:7px 12px;border-radius:9px;font-size:12.5px;font-weight:650;color:var(--text-2);transition:var(--t);white-space:nowrap;display:flex;align-items:center;gap:6px}
+.nav-tabs button svg{width:14px;height:14px;stroke:currentColor;fill:none;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round;opacity:.85}
+.nav-tabs button:hover{color:var(--text);background:var(--surface)}
+.nav-tabs button.active{color:var(--text);background:var(--surface-2);box-shadow:inset 0 0 0 1px var(--border)}
+.nav-actions{display:flex;gap:6px;align-items:center;flex-shrink:0}
+.icon-btn{width:34px;height:34px;border-radius:10px;display:grid;place-items:center;border:1px solid var(--border);background:var(--surface);color:var(--text-2);transition:var(--t);position:relative}
+.icon-btn:hover{color:var(--text);border-color:var(--border-2);background:var(--surface-2);transform:translateY(-2px)}
+.icon-btn svg{width:16px;height:16px;stroke:currentColor;fill:none;stroke-width:2.1;stroke-linecap:round;stroke-linejoin:round}
+.icon-btn .kbd-hint{position:absolute;bottom:1px;right:4px;font-size:8px;color:var(--text-3);font-weight:800}
+
+/* TOOLTIPS */
+.icon-btn[data-tooltip]::after{
+  content:attr(data-tooltip);
+  position:absolute;
+  top:calc(100% + 8px);
+  left:50%;
+  transform:translateX(-50%) translateY(-4px);
+  background:var(--bg-2);
+  color:var(--text);
+  padding:5px 10px;
+  border-radius:8px;
+  border:1px solid var(--border-2);
+  font-size:10.5px;
+  font-weight:700;
+  letter-spacing:.2px;
+  white-space:nowrap;
+  opacity:0;
+  visibility:hidden;
+  pointer-events:none;
+  transition:opacity .2s ease,transform .2s ease,visibility .2s;
+  z-index:1100;
+  box-shadow:var(--shadow);
+}
+.icon-btn[data-tooltip]:hover::after,
+.icon-btn[data-tooltip]:focus-visible::after{opacity:1;visibility:visible;transform:translateX(-50%) translateY(0)}
+
+.xpbar{max-width:1280px;margin:0 auto;padding:0 15px 9px;display:flex;align-items:center;gap:11px;flex-wrap:wrap}
+.lvl-chip{display:inline-flex;align-items:center;gap:7px;padding:4px 10px 4px 5px;border-radius:99px;border:1px solid var(--border-2);background:var(--surface-2);font-size:11px;font-weight:800;flex-shrink:0}
+.lvl-chip .num{width:20px;height:20px;border-radius:50%;display:grid;place-items:center;background:var(--grad);color:#fff;font-size:10px;font-weight:900}
+.xp-track{flex:1;min-width:110px;height:7px;border-radius:99px;background:var(--surface-2);overflow:hidden;position:relative}
+.xp-fill{height:100%;width:0;border-radius:99px;background:var(--grad);transition:width .55s cubic-bezier(.4,0,.2,1)}
+.xp-num{font-size:10.5px;color:var(--text-2);font-weight:700;flex-shrink:0;font-variant-numeric:tabular-nums}
+.mini-stat{display:inline-flex;align-items:center;gap:5px;font-size:11px;font-weight:700;color:var(--text-2);padding:4px 9px;border-radius:99px;background:var(--surface);border:1px solid var(--border);flex-shrink:0}
+.mini-stat svg{width:13px;height:13px;stroke:currentColor;fill:none;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
+.mini-stat.flame{color:#fb923c}
+.mini-stat.bookmark{color:var(--acc3)}
+
+/* PAGES */
+main{max-width:1280px;margin:0 auto;padding:0 15px}
+.page{display:none;padding:26px 0 50px;animation:pageIn .45s cubic-bezier(.4,0,.2,1)}
+.page.active{display:block}
+@keyframes pageIn{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+.sec-head{text-align:center;margin-bottom:26px}
+.sec-tag{display:inline-block;padding:5px 12px;border-radius:99px;font-size:10px;font-weight:800;letter-spacing:1.6px;text-transform:uppercase;color:var(--acc1);background:color-mix(in srgb,var(--acc1) 14%,transparent);border:1px solid color-mix(in srgb,var(--acc1) 32%,transparent);margin-bottom:11px}
+.sec-head h2{font-size:clamp(23px,3.3vw,33px);font-weight:900;letter-spacing:-.9px;margin-bottom:9px}
+.sec-head p{color:var(--text-2);max-width:560px;margin:0 auto;font-size:14.5px}
+
+/* HERO */
+.hero{display:grid;grid-template-columns:1.05fr .95fr;gap:40px;align-items:center;padding:20px 0 14px}
+.pill{display:inline-flex;align-items:center;gap:7px;padding:5px 12px 5px 7px;border-radius:99px;border:1px solid var(--border);background:var(--surface);font-size:11.5px;font-weight:650;color:var(--text-2);margin-bottom:16px}
+.pill b{display:inline-flex;align-items:center;gap:4px;padding:2px 8px;border-radius:99px;background:var(--grad);color:#fff;font-size:9.5px;letter-spacing:.6px;text-transform:uppercase}
+.pill svg{width:11px;height:11px;stroke:currentColor;fill:none;stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round}
+.hero h1{font-size:clamp(28px,4.4vw,46px);line-height:1.1;font-weight:900;letter-spacing:-1.3px;margin-bottom:14px}
+.hero h1 .grad{background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero p.lead{font-size:14.5px;color:var(--text-2);max-width:540px;margin-bottom:20px}
+.hero p.lead b{color:var(--text);font-weight:700}
+.hero-cta{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:18px}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:10px 19px;border-radius:11px;font-size:13px;font-weight:700;transition:var(--t);position:relative;overflow:hidden;white-space:nowrap}
+.btn svg{width:15px;height:15px;stroke:currentColor;fill:none;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
+.btn-primary{background:var(--grad);color:#fff;box-shadow:0 12px 30px -12px var(--acc1)}
+.btn-primary:hover{transform:translateY(-3px);box-shadow:0 18px 40px -12px var(--acc1)}
+.btn-ghost{background:var(--surface);border:1px solid var(--border);color:var(--text)}
+.btn-ghost:hover{background:var(--surface-2);border-color:var(--border-2);transform:translateY(-3px)}
+.btn-sm{padding:7px 13px;font-size:11.5px;border-radius:9px}
+.btn-lg{padding:13px 26px;font-size:14px;border-radius:13px}
+.feature-strip{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:22px}
+.fs-chip{display:inline-flex;align-items:center;gap:5px;padding:5px 10px;border-radius:99px;background:var(--surface);border:1px solid var(--border);font-size:10.5px;font-weight:700;color:var(--text-2)}
+.fs-chip svg{width:12px;height:12px;stroke:var(--acc1);fill:none;stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round}
+.stats{display:flex;gap:20px;flex-wrap:wrap}
+.stat b{display:block;font-size:20px;font-weight:900;letter-spacing:-.8px;background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+.stat span{font-size:10.5px;color:var(--text-3);letter-spacing:.8px;text-transform:uppercase;font-weight:700}
+.hero-visual{position:relative;display:grid;place-items:center;min-height:360px}
+.orb{position:absolute;border-radius:50%;filter:blur(60px);opacity:.5;pointer-events:none}
+.orb.o1{width:220px;height:220px;background:var(--acc1);top:5%;left:0;animation:float1 9s ease-in-out infinite}
+.orb.o2{width:190px;height:190px;background:var(--acc3);bottom:8%;right:2%;animation:float2 11s ease-in-out infinite}
+@keyframes float1{0%,100%{transform:translate(0,0)}50%{transform:translate(24px,-26px)}}
+@keyframes float2{0%,100%{transform:translate(0,0)}50%{transform:translate(-22px,22px)}}
+.code-card{position:relative;z-index:2;width:100%;max-width:400px;border-radius:16px;border:1px solid var(--border-2);background:color-mix(in srgb,var(--bg-2) 88%,transparent);backdrop-filter:blur(14px);box-shadow:var(--shadow);overflow:hidden;animation:cardFloat 6s ease-in-out infinite}
+@keyframes cardFloat{0%,100%{transform:translateY(0) rotate(-.6deg)}50%{transform:translateY(-12px) rotate(.6deg)}}
+.code-head{display:flex;align-items:center;gap:6px;padding:9px 12px;border-bottom:1px solid var(--border);background:var(--surface)}
+.dot{width:10px;height:10px;border-radius:50%}
+.dot.r{background:#ff5f57}.dot.y{background:#febc2e}.dot.g{background:#28c840}
+.code-head .url{flex:1;text-align:center;font-size:10px;color:var(--text-3);font-family:var(--mono);background:var(--surface-2);padding:3px 9px;border-radius:6px;margin:0 5px}
+.code-body{padding:12px;font-family:var(--mono);font-size:11px;line-height:1.8;overflow-x:auto}
+.code-body .ln{display:block;white-space:pre}
+.tk-key{color:#c084fc}.tk-str{color:#86efac}.tk-fn{color:#60a5fa}.tk-num{color:#fbbf24}.tk-com{color:#64748b;font-style:italic}.tk-tag{color:#f472b6}
+html[data-theme="light"] .tk-key{color:#7c3aed}
+html[data-theme="light"] .tk-str{color:#059669}
+html[data-theme="light"] .tk-fn{color:#2563eb}
+html[data-theme="light"] .tk-num{color:#d97706}
+html[data-theme="light"] .tk-tag{color:#db2777}
+html[data-theme="light"] .code-card{background:rgba(255,255,255,.9)}
+.float-chip{position:absolute;z-index:3;display:flex;align-items:center;gap:6px;padding:6px 11px;border-radius:11px;font-size:11px;font-weight:700;border:1px solid var(--border-2);background:color-mix(in srgb,var(--bg-2) 92%,transparent);backdrop-filter:blur(12px);box-shadow:var(--shadow);white-space:nowrap}
+.float-chip svg{width:13px;height:13px;stroke:currentColor;fill:none;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
+.fc1{top:4%;right:-2%;color:var(--acc2);animation:cardFloat 5.5s ease-in-out infinite .4s}
+.fc2{bottom:6%;left:-4%;color:var(--acc3);animation:cardFloat 7s ease-in-out infinite .9s}
+.fc3{top:35%;left:-6%;color:#fb923c;animation:cardFloat 6.5s ease-in-out infinite .2s}
+
+/* FEATURES */
+.features{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:14px}
+.feat{position:relative;border-radius:var(--radius);border:1px solid var(--border);background:var(--surface);padding:20px;overflow:hidden;transition:var(--t)}
+.feat:hover{transform:translateY(-5px);border-color:var(--border-2);background:var(--surface-2);box-shadow:var(--shadow)}
+.feat::after{content:"";position:absolute;top:0;left:0;right:0;height:2.5px;background:var(--grad);transform:scaleX(0);transform-origin:left;transition:transform .4s}
+.feat:hover::after{transform:scaleX(1)}
+.feat-head{display:flex;align-items:center;gap:11px;margin-bottom:11px}
+.feat-ico{width:45px;height:45px;border-radius:12px;display:grid;place-items:center;background:var(--grad);color:#fff;flex-shrink:0;box-shadow:0 6px 18px -6px var(--acc1)}
+.feat-ico svg{width:20px;height:20px;stroke:#fff;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.feat h3{font-size:15.5px;font-weight:800;letter-spacing:-.25px;line-height:1.2;margin-bottom:2px}
+.feat small{font-size:9.5px;color:var(--text-3);text-transform:uppercase;letter-spacing:1.1px;font-weight:700}
+.feat p{font-size:13px;color:var(--text-2);margin-bottom:11px;line-height:1.6}
+.feat-preview{border-radius:10px;border:1px solid var(--border);background:var(--surface-2);padding:9px;font-family:var(--mono);font-size:10px;color:var(--text-2);overflow:hidden;min-height:66px;position:relative}
+.fp-editor{display:flex;gap:5px;margin-bottom:5px}
+.fp-editor span{width:6px;height:6px;border-radius:50%;background:var(--border-2)}
+.fp-code{white-space:pre;overflow:hidden;text-overflow:ellipsis}
+.fp-bar{height:3.5px;border-radius:99px;background:var(--surface-3);margin-top:5px;overflow:hidden}
+.fp-bar i{display:block;height:100%;background:var(--grad);border-radius:99px}
+.fp-opt{padding:3.5px 7px;border-radius:6px;background:var(--surface);margin-bottom:3.5px;font-size:10px;color:var(--text-2);border:1px solid var(--border)}
+.fp-opt.ok{background:color-mix(in srgb,var(--success) 18%,transparent);border-color:color-mix(in srgb,var(--success) 40%,transparent);color:var(--success)}
+.fp-badges{display:flex;gap:4px;flex-wrap:wrap;justify-content:center}
+.fp-badge{width:25px;height:25px;border-radius:50%;background:var(--grad);display:grid;place-items:center;color:#fff;box-shadow:0 4px 12px -4px var(--acc1)}
+.fp-badge svg{width:12px;height:12px;stroke:#fff;fill:none;stroke-width:2.3;stroke-linecap:round;stroke-linejoin:round}
+.fp-cmd{padding:5px 9px;border-radius:8px;background:var(--surface);border:1px solid var(--border);display:flex;align-items:center;gap:6px;font-size:10px;color:var(--text-3)}
+.fp-cmd svg{width:12px;height:12px;stroke:var(--acc1);fill:none;stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round}
+.fp-cmd kbd{margin-left:auto;padding:1px 5px;border-radius:4px;background:var(--surface-3);border:1px solid var(--border-2);font-family:var(--mono);font-size:9px;color:var(--text-2)}
+
+/* SHOWCASE */
+.showcase{display:grid;grid-template-columns:1.1fr 1fr;gap:18px;align-items:stretch}
+.show-card{border-radius:var(--radius);border:1px solid var(--border);background:var(--surface);padding:18px;overflow:hidden;transition:var(--t);display:flex;flex-direction:column}
+.show-card:hover{border-color:var(--border-2);background:var(--surface-2)}
+.show-card .tag{display:inline-block;padding:3.5px 10px;border-radius:99px;font-size:9.5px;font-weight:800;letter-spacing:1.1px;text-transform:uppercase;color:var(--acc1);background:color-mix(in srgb,var(--acc1) 14%,transparent);margin-bottom:10px;width:fit-content}
+.show-card h3{font-size:16.5px;font-weight:800;letter-spacing:-.35px;margin-bottom:6px}
+.show-card>p{font-size:12px;color:var(--text-2);margin-bottom:13px}
+.mock-editor{border-radius:11px;border:1px solid var(--border-2);background:var(--bg-2);overflow:hidden;flex:1;display:flex;flex-direction:column;min-height:200px}
+.mock-tabs{display:flex;background:var(--surface);border-bottom:1px solid var(--border);padding:0 5px}
+.mock-tabs span{padding:7px 11px;font-size:10.5px;font-weight:700;color:var(--text-3);border-bottom:2px solid transparent;font-family:var(--mono)}
+.mock-tabs span.active{color:var(--text);border-bottom-color:var(--acc1)}
+.mock-code{padding:11px;font-family:var(--mono);font-size:10.5px;line-height:1.75;color:var(--text-2);white-space:pre;overflow:hidden;flex:1}
+.mock-run{margin:7px 11px 11px;padding:7px 12px;border-radius:8px;background:var(--grad);color:#fff;font-size:11px;font-weight:700;width:fit-content;display:inline-flex;align-items:center;gap:5px}
+.mock-run svg{width:11px;height:11px;stroke:#fff;fill:none;stroke-width:2.4}
+.mock-quiz{display:flex;flex-direction:column;gap:7px}
+.mock-q{font-size:12.5px;font-weight:700;margin-bottom:3px;color:var(--text)}
+.mock-opt{padding:9px 12px;border-radius:10px;border:1px solid var(--border);background:var(--surface);font-size:11.5px;font-weight:600;color:var(--text-2)}
+.mock-opt.ok{border-color:var(--success);background:color-mix(in srgb,var(--success) 12%,transparent);color:var(--success)}
+
+/* PATHS PREVIEW */
+.paths-preview{display:grid;grid-template-columns:repeat(auto-fit,minmax(225px,1fr));gap:12px}
+.pp{border-radius:14px;border:1px solid var(--border);background:var(--surface);padding:15px;transition:var(--t);cursor:pointer;text-align:left;width:100%;font-family:inherit;color:inherit}
+.pp:hover{transform:translateY(-4px);border-color:var(--border-2);background:var(--surface-2);box-shadow:var(--shadow)}
+.pp-head{display:flex;align-items:center;gap:10px;margin-bottom:10px}
+.pp-ico{width:36px;height:36px;border-radius:10px;display:grid;place-items:center;background:var(--grad);color:#fff;flex-shrink:0}
+.pp-ico svg{width:18px;height:18px;stroke:#fff;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.pp h4{font-size:13px;font-weight:800;letter-spacing:-.2px}
+.pp small{font-size:9.5px;color:var(--text-3);text-transform:uppercase;letter-spacing:1px;font-weight:700}
+.pp-bar{height:5px;border-radius:99px;background:var(--surface-2);overflow:hidden;margin-bottom:8px}
+.pp-bar i{display:block;height:100%;background:var(--grad);border-radius:99px;width:0}
+.pp-steps{font-size:10.5px;color:var(--text-3);font-weight:600}
+
+/* STEPS FLOW */
+.steps-flow{display:grid;grid-template-columns:repeat(auto-fit,minmax(225px,1fr));gap:14px}
+.step-card{border-radius:14px;border:1px solid var(--border);background:var(--surface);padding:20px;position:relative;transition:var(--t)}
+.step-card:hover{border-color:var(--border-2);background:var(--surface-2);transform:translateY(-4px)}
+.step-num{font-size:38px;font-weight:900;letter-spacing:-2.2px;line-height:1;background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent;margin-bottom:10px}
+.step-card h4{font-size:14.5px;font-weight:800;letter-spacing:-.25px;margin-bottom:6px}
+.step-card p{font-size:12px;color:var(--text-2)}
+
+/* CTA */
+.cta-final{border-radius:20px;border:1px solid var(--border-2);background:linear-gradient(135deg,color-mix(in srgb,var(--acc1) 14%,transparent),color-mix(in srgb,var(--acc3) 10%,transparent));padding:38px 24px;text-align:center;position:relative;overflow:hidden}
+.cta-final::before{content:"";position:absolute;top:-80px;right:-80px;width:220px;height:220px;border-radius:50%;background:var(--grad);opacity:.16;filter:blur(50px)}
+.cta-final::after{content:"";position:absolute;bottom:-80px;left:-80px;width:220px;height:220px;border-radius:50%;background:var(--grad);opacity:.12;filter:blur(50px)}
+.cta-final h2{font-size:clamp(21px,3.2vw,30px);font-weight:900;letter-spacing:-1px;margin-bottom:10px;position:relative}
+.cta-final p{color:var(--text-2);max-width:520px;margin:0 auto 22px;font-size:13.5px;position:relative}
+.cta-final .hero-cta{justify-content:center;position:relative;margin-bottom:0}
+
+/* TOOLBAR */
+.toolbar{display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:center;margin-bottom:16px}
+.search-box{position:relative;flex:1 1 280px;max-width:420px}
+.search-box>svg{position:absolute;left:13px;top:50%;transform:translateY(-50%);width:16px;height:16px;stroke:var(--text-3);fill:none;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round;pointer-events:none;transition:stroke var(--t)}
+.search-box input{width:100%;padding:11px 38px 11px 40px;border-radius:11px;border:1px solid var(--border);background:var(--surface);color:var(--text);font-size:13px;outline:none;transition:var(--t)}
+.search-box input::placeholder{color:var(--text-3)}
+.search-box input:focus{border-color:var(--acc1);background:var(--surface-2);box-shadow:0 0 0 4px color-mix(in srgb,var(--acc1) 16%,transparent)}
+.search-clear{position:absolute;right:7px;top:50%;transform:translateY(-50%);width:26px;height:26px;border-radius:8px;display:none;place-items:center;color:var(--text-3);transition:var(--t)}
+.search-clear:hover{background:var(--surface-2);color:var(--text)}
+.search-clear svg{width:13px;height:13px;stroke:currentColor;fill:none;stroke-width:2.3;stroke-linecap:round;stroke-linejoin:round}
+.search-box.has-value .search-clear{display:grid}
+.filters{display:flex;gap:6px;flex-wrap:wrap;justify-content:center;margin-bottom:22px}
+.chip{padding:6.5px 13px;border-radius:99px;font-size:11.5px;font-weight:650;border:1px solid var(--border);background:var(--surface);color:var(--text-2);transition:var(--t)}
+.chip:hover{border-color:var(--border-2);color:var(--text);transform:translateY(-2px)}
+.chip.active{background:var(--grad);color:#fff;border-color:transparent;box-shadow:0 8px 22px -10px var(--acc1)}
+
+/* GRID */
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(248px,1fr));gap:13px}
+.card{position:relative;border-radius:var(--radius);border:1px solid var(--border);background:var(--surface);padding:18px;overflow:hidden;transition:transform var(--t),border-color var(--t),background var(--t),box-shadow var(--t);display:flex;flex-direction:column;gap:10px;opacity:0;transform:translateY(18px)}
+.card.show{opacity:1;transform:translateY(0)}
+.card:hover{transform:translateY(-5px);border-color:var(--border-2);background:var(--surface-2);box-shadow:0 20px 40px -20px rgba(0,0,0,.7)}
+.card.done{border-color:color-mix(in srgb,var(--success) 45%,transparent)}
+.card.bookmarked .card-icon::after{content:"";position:absolute;top:-3px;right:-3px;width:10px;height:10px;border-radius:50%;background:var(--acc3);border:2px solid var(--bg)}
+.card-head{display:flex;align-items:center;gap:11px}
+.card-icon{width:43px;height:43px;border-radius:11px;display:grid;place-items:center;flex-shrink:0;border:1px solid var(--border-2);background:var(--surface-2);transition:transform var(--t),background var(--t);position:relative}
+.card:hover .card-icon{transform:scale(1.08) rotate(-6deg);background:var(--grad)}
+.card-icon svg{width:21px;height:21px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.card:hover .card-icon svg{stroke:#fff}
+.card-head h3{font-size:15px;font-weight:800;letter-spacing:-.3px;line-height:1.2}
+.card-head small{font-size:9.5px;color:var(--text-3);text-transform:uppercase;letter-spacing:1.2px;font-weight:700}
+.card p{font-size:12.5px;color:var(--text-2);flex:1;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;line-height:1.55}
+.card-foot{display:flex;align-items:center;justify-content:space-between;gap:7px;padding-top:2px}
+.badge{padding:3px 9px;border-radius:99px;font-size:9.5px;font-weight:800;letter-spacing:.7px;text-transform:uppercase;border:1px solid transparent}
+.badge.dasar{background:rgba(34,197,94,.14);color:#22c55e;border-color:rgba(34,197,94,.3)}
+.badge.menengah{background:rgba(245,158,11,.14);color:#f59e0b;border-color:rgba(245,158,11,.3)}
+.badge.lanjut{background:rgba(239,68,68,.14);color:#ef4444;border-color:rgba(239,68,68,.3)}
+.card-btn{display:inline-flex;align-items:center;gap:4px;padding:6px 11px;border-radius:8px;font-size:11px;font-weight:700;background:var(--surface-2);border:1px solid var(--border);color:var(--text);transition:var(--t)}
+.card-btn svg{width:11px;height:11px;stroke:currentColor;fill:none;stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round}
+.card-btn:hover{background:var(--grad);color:#fff;border-color:transparent}
+.empty{grid-column:1/-1;text-align:center;padding:50px 20px;color:var(--text-3)}
+.empty svg{width:44px;height:44px;margin:0 auto 12px;stroke:currentColor;fill:none;stroke-width:1.6;opacity:.5}
+.empty b{display:block;font-size:14.5px;color:var(--text-2);margin-bottom:5px}
+
+/* ROADMAP */
+.paths{display:grid;grid-template-columns:repeat(auto-fit,minmax(270px,1fr));gap:15px}
+.path{border-radius:18px;border:1px solid var(--border);background:var(--surface);padding:18px;transition:var(--t);position:relative}
+.path:hover{border-color:var(--border-2);background:var(--surface-2);transform:translateY(-4px);box-shadow:var(--shadow)}
+.path-head{display:flex;align-items:center;gap:11px;margin-bottom:12px}
+.path-icon{width:42px;height:42px;border-radius:12px;display:grid;place-items:center;background:var(--grad);color:#fff;flex-shrink:0}
+.path-icon svg{width:21px;height:21px;stroke:#fff;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.path-head h3{font-size:14.5px;font-weight:800;letter-spacing:-.25px}
+.path-head small{font-size:10px;color:var(--text-3);text-transform:uppercase;letter-spacing:1.1px;font-weight:700}
+.path>p{font-size:11.5px;color:var(--text-2);margin-bottom:13px}
+.path-progress{margin-bottom:12px}
+.path-progress .lbl{display:flex;justify-content:space-between;font-size:10.5px;color:var(--text-3);font-weight:700;margin-bottom:6px}
+.path-track{height:6px;border-radius:99px;background:var(--surface-2);overflow:hidden}
+.path-fill{height:100%;width:0;border-radius:99px;background:var(--grad);transition:width .55s cubic-bezier(.4,0,.2,1)}
+.steps{list-style:none;display:flex;flex-direction:column;gap:5px}
+.step{display:flex;align-items:center;gap:9px;padding:8px 11px;border-radius:10px;background:var(--surface);border:1px solid var(--border);font-size:11.5px;font-weight:650;cursor:pointer;transition:var(--t);color:var(--text-2)}
+.step:hover{background:var(--surface-2);color:var(--text);border-color:var(--border-2);transform:translateX(4px)}
+.step .num{width:20px;height:20px;border-radius:50%;display:grid;place-items:center;font-size:10px;font-weight:800;background:var(--surface-2);border:1px solid var(--border-2);flex-shrink:0;color:var(--text-3)}
+.step.done{color:var(--success);border-color:color-mix(in srgb,var(--success) 40%,transparent);background:color-mix(in srgb,var(--success) 8%,transparent)}
+.step.done .num{background:var(--success);color:#fff;border-color:var(--success)}
+.step.done .num svg{width:11px;height:11px;stroke:#fff;fill:none;stroke-width:3;stroke-linecap:round;stroke-linejoin:round}
+
+/* PLAYGROUND */
+.play-actions{display:flex;gap:7px;flex-wrap:wrap;justify-content:center;margin-bottom:16px}
+.tpl-btn{padding:6px 12px;border-radius:8px;font-size:11.5px;font-weight:700;border:1px solid var(--border);background:var(--surface);color:var(--text-2);transition:var(--t)}
+.tpl-btn:hover{color:var(--text);border-color:var(--border-2);transform:translateY(-2px)}
+.tpl-btn.primary{background:var(--grad);color:#fff;border-color:transparent}
+.play-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;height:500px}
+.editor-pane,.preview-pane{border-radius:14px;border:1px solid var(--border);background:var(--bg-2);overflow:hidden;display:flex;flex-direction:column}
+.editor-tabs{display:flex;border-bottom:1px solid var(--border);background:var(--surface);flex-shrink:0}
+.editor-tabs button{padding:9px 13px;font-size:11.5px;font-weight:700;color:var(--text-3);border-bottom:2px solid transparent;transition:var(--t);font-family:var(--mono)}
+.editor-tabs button.active{color:var(--text);border-bottom-color:var(--acc1);background:var(--surface-2)}
+#editor{flex:1;width:100%;resize:none;border:none;outline:none;background:transparent;color:var(--text);padding:12px;font-family:var(--mono);font-size:12px;line-height:1.7;tab-size:2}
+.preview-head{display:flex;align-items:center;justify-content:space-between;padding:8px 12px;border-bottom:1px solid var(--border);background:var(--surface);font-size:11.5px;font-weight:700;color:var(--text-2);flex-shrink:0}
+.preview-head .dot-live{display:inline-flex;align-items:center;gap:5px;font-size:10px;color:var(--success);font-weight:800;letter-spacing:1px}
+.preview-head .dot-live::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--success);box-shadow:0 0 8px var(--success);animation:blip 1.6s ease-in-out infinite}
+@keyframes blip{0%,100%{opacity:1}50%{opacity:.35}}
+#preview{flex:1;width:100%;border:none;background:#fff}
+.play-grid.fullscreen{position:fixed;inset:0;z-index:950;margin:0;padding:12px;background:var(--bg);grid-template-columns:1fr 1fr;height:100vh}
+
+/* REFERENCE */
+.ref-tabs{display:flex;gap:6px;justify-content:center;margin-bottom:18px;flex-wrap:wrap}
+.ref-tabs button{padding:8px 15px;border-radius:10px;font-size:12.5px;font-weight:700;color:var(--text-2);border:1px solid var(--border);background:var(--surface);transition:var(--t)}
+.ref-tabs button.active{background:var(--grad);color:#fff;border-color:transparent;box-shadow:0 10px 24px -12px var(--acc1)}
+.ref-panel{display:none}
+.ref-panel.active{display:block;animation:pageIn .35s ease}
+.glossary-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(275px,1fr));gap:11px}
+.gloss-item{padding:14px;border-radius:13px;border:1px solid var(--border);background:var(--surface);transition:var(--t)}
+.gloss-item:hover{border-color:var(--border-2);background:var(--surface-2);transform:translateY(-3px)}
+.gloss-item h4{font-size:13px;font-weight:800;letter-spacing:-.2px;margin-bottom:5px;color:var(--acc3)}
+.gloss-item p{font-size:11.5px;color:var(--text-2);line-height:1.55}
+.gloss-item .cat{display:inline-block;margin-top:8px;font-size:9px;font-weight:800;letter-spacing:1px;text-transform:uppercase;padding:2.5px 8px;border-radius:99px;background:var(--surface-2);color:var(--text-3);border:1px solid var(--border)}
+.cheat-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:12px}
+.cheat-card{border-radius:13px;border:1px solid var(--border);background:var(--surface);overflow:hidden}
+.cheat-head{display:flex;align-items:center;justify-content:space-between;padding:10px 13px;border-bottom:1px solid var(--border);background:var(--surface-2)}
+.cheat-head strong{font-size:12.5px;font-weight:800;display:flex;align-items:center;gap:7px}
+.cheat-head strong svg{width:14px;height:14px;stroke:var(--acc1);fill:none;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
+.copy-mini{display:inline-flex;align-items:center;gap:4px;padding:4px 9px;border-radius:7px;font-size:10px;font-weight:700;border:1px solid var(--border);background:var(--surface);color:var(--text-2);transition:var(--t)}
+.copy-mini:hover{color:var(--text);border-color:var(--border-2)}
+.copy-mini.ok{color:var(--success);border-color:color-mix(in srgb,var(--success) 50%,transparent);background:color-mix(in srgb,var(--success) 12%,transparent)}
+.copy-mini svg{width:10px;height:10px;stroke:currentColor;fill:none;stroke-width:2.3;stroke-linecap:round;stroke-linejoin:round}
+.cheat-card pre{padding:12px;font-family:var(--mono);font-size:11px;line-height:1.7;color:var(--text-2);overflow-x:auto;white-space:pre}
+
+/* QUIZ */
+.quiz-layout{display:grid;grid-template-columns:1.4fr 1fr;gap:15px;align-items:start}
+.quiz-wrap{border-radius:20px;border:1px solid var(--border);background:var(--surface);padding:26px;box-shadow:var(--shadow);position:relative;overflow:hidden}
+.quiz-top{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:17px}
+.quiz-top h3{font-size:16px;font-weight:800}
+.quiz-progress{font-size:11.5px;color:var(--text-3);font-weight:700}
+.progress-track{height:5px;border-radius:99px;background:var(--surface-2);overflow:hidden;margin-bottom:18px}
+.progress-fill{height:100%;width:0;border-radius:99px;background:var(--grad);transition:width .45s}
+.q-text{font-size:15.5px;font-weight:700;margin-bottom:17px;line-height:1.5}
+.options{display:flex;flex-direction:column;gap:8px}
+.opt{display:flex;align-items:center;gap:11px;padding:11px 14px;border-radius:12px;border:1px solid var(--border);background:var(--surface);text-align:left;font-size:13.5px;font-weight:650;color:var(--text);transition:var(--t);width:100%}
+.opt:hover:not(:disabled){border-color:var(--acc1);background:var(--surface-2);transform:translateX(4px)}
+.opt:disabled{cursor:default}
+.opt .mark{width:23px;height:23px;border-radius:7px;display:grid;place-items:center;flex-shrink:0;border:1.5px solid var(--border-2);font-size:11px;font-weight:800;color:var(--text-3)}
+.opt.correct{background:rgba(34,197,94,.14);border-color:#22c55e;color:#22c55e}
+.opt.correct .mark{background:#22c55e;border-color:#22c55e;color:#fff}
+.opt.wrong{background:rgba(239,68,68,.13);border-color:#ef4444;color:#ef4444}
+.opt.wrong .mark{background:#ef4444;border-color:#ef4444;color:#fff}
+.quiz-result{text-align:center;padding:12px 0;display:none}
+.quiz-result.show{display:block;animation:pop .45s cubic-bezier(.34,1.56,.64,1)}
+@keyframes pop{from{opacity:0;transform:scale(.9)}to{opacity:1;transform:scale(1)}}
+.result-score{font-size:46px;font-weight:900;letter-spacing:-2.5px;line-height:1;background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent;margin-bottom:9px}
+.result-title{font-size:18px;font-weight:800;margin-bottom:7px}
+.result-desc{color:var(--text-2);font-size:13px;margin-bottom:18px}
+.daily-card{border-radius:20px;border:1px solid var(--border);background:var(--surface);padding:20px;position:relative;overflow:hidden}
+.daily-card::before{content:"";position:absolute;top:-60px;left:-60px;width:170px;height:170px;border-radius:50%;background:var(--grad);opacity:.15;filter:blur(42px)}
+.daily-top{display:flex;align-items:center;gap:10px;margin-bottom:14px;position:relative}
+.daily-top .ico{width:38px;height:38px;border-radius:11px;background:var(--grad);display:grid;place-items:center;color:#fff;flex-shrink:0}
+.daily-top .ico svg{width:19px;height:19px;stroke:#fff;fill:none;stroke-width:2.1;stroke-linecap:round;stroke-linejoin:round}
+.daily-top h4{font-size:14px;font-weight:800}
+.daily-top small{display:block;font-size:10px;color:var(--text-3);font-weight:700;letter-spacing:.7px;text-transform:uppercase}
+.daily-q{font-size:13px;font-weight:700;margin-bottom:13px;position:relative}
+.daily-opts{display:flex;flex-direction:column;gap:7px;position:relative}
+.daily-opt{padding:10px 12px;border-radius:10px;border:1px solid var(--border);background:var(--surface);text-align:left;font-size:12px;font-weight:650;color:var(--text);transition:var(--t)}
+.daily-opt:hover:not(:disabled){border-color:var(--acc1);background:var(--surface-2);transform:translateX(4px)}
+.daily-opt:disabled{cursor:default}
+.daily-opt.correct{background:rgba(34,197,94,.14);border-color:#22c55e;color:#22c55e}
+.daily-opt.wrong{background:rgba(239,68,68,.13);border-color:#ef4444;color:#ef4444}
+.daily-done{text-align:center;padding:16px 10px;position:relative}
+.daily-done svg{width:40px;height:40px;margin:0 auto 10px;stroke:var(--success);fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.daily-done b{display:block;font-size:14px;margin-bottom:3px}
+.daily-done span{font-size:11.5px;color:var(--text-2)}
+
+/* PROFILE */
+.profile-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:12px;margin-bottom:22px}
+.pstat{padding:15px;border-radius:14px;border:1px solid var(--border);background:var(--surface);text-align:center;transition:var(--t)}
+.pstat:hover{border-color:var(--border-2);transform:translateY(-4px)}
+.pstat .ico{width:40px;height:40px;border-radius:11px;background:var(--surface-2);display:grid;place-items:center;margin:0 auto 10px;color:var(--acc1);border:1px solid var(--border-2)}
+.pstat .ico svg{width:20px;height:20px;stroke:currentColor;fill:none;stroke-width:2.1;stroke-linecap:round;stroke-linejoin:round}
+.pstat b{display:block;font-size:21px;font-weight:900;line-height:1;margin-bottom:4px;background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+.pstat span{font-size:10.5px;color:var(--text-3);text-transform:uppercase;letter-spacing:1.1px;font-weight:700}
+.section-sub{font-size:11px;font-weight:800;letter-spacing:1.7px;text-transform:uppercase;color:var(--text-3);margin-bottom:12px;padding-left:2px}
+.badges-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(145px,1fr));gap:11px}
+.badge-item{padding:14px 10px;border-radius:13px;border:1px solid var(--border);background:var(--surface);text-align:center;transition:var(--t);position:relative}
+.badge-item:hover{transform:translateY(-4px);border-color:var(--border-2)}
+.badge-item .b-ico{width:42px;height:42px;border-radius:50%;display:grid;place-items:center;margin:0 auto 9px;background:var(--surface-2);border:1px solid var(--border-2);color:var(--text-3)}
+.badge-item .b-ico svg{width:21px;height:21px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.badge-item.locked{opacity:.42;filter:grayscale(1)}
+.badge-item.unlocked{border-color:color-mix(in srgb,var(--acc1) 45%,transparent);background:linear-gradient(135deg,color-mix(in srgb,var(--acc1) 12%,transparent),transparent)}
+.badge-item.unlocked .b-ico{background:var(--grad);color:#fff;border-color:transparent;box-shadow:0 8px 22px -10px var(--acc1)}
+.badge-item b{display:block;font-size:11.5px;font-weight:800;margin-bottom:3px}
+.badge-item span{font-size:9.5px;color:var(--text-3);line-height:1.4;display:block}
+
+/* MODAL */
+.modal{position:fixed;inset:0;z-index:1000;display:grid;place-items:center;padding:18px;background:rgba(5,8,20,.72);backdrop-filter:blur(9px);opacity:0;visibility:hidden;transition:opacity .3s,visibility .3s}
+.modal.open{opacity:1;visibility:visible}
+.modal-box{width:100%;max-width:680px;max-height:88vh;overflow-y:auto;overscroll-behavior:contain;border-radius:20px;border:1px solid var(--border-2);background:var(--bg-2);box-shadow:0 30px 90px -20px rgba(0,0,0,.85);transform:translateY(24px) scale(.96);opacity:0;transition:transform .38s cubic-bezier(.34,1.3,.64,1),opacity .3s}
+.modal.open .modal-box{transform:translateY(0) scale(1);opacity:1}
+.modal-head{position:sticky;top:0;z-index:3;display:flex;align-items:center;gap:12px;padding:17px 19px;border-bottom:1px solid var(--border);background:color-mix(in srgb,var(--bg-2) 94%,transparent);backdrop-filter:blur(14px);border-radius:20px 20px 0 0}
+.modal-head .card-icon{width:44px;height:44px;background:var(--grad);border-color:transparent}
+.modal-head .card-icon svg{stroke:#fff;width:22px;height:22px}
+.modal-title{flex:1;min-width:0}
+.modal-title h3{font-size:18px;font-weight:900;letter-spacing:-.5px;line-height:1.2}
+.modal-title .meta{display:flex;gap:6px;align-items:center;margin-top:4px;flex-wrap:wrap}
+.meta-tag{font-size:9.5px;font-weight:800;letter-spacing:.8px;text-transform:uppercase;padding:2.5px 8px;border-radius:99px;background:var(--surface-2);color:var(--text-2);border:1px solid var(--border)}
+.modal-close{width:34px;height:34px;border-radius:10px;display:grid;place-items:center;border:1px solid var(--border);background:var(--surface);color:var(--text-2);transition:var(--t);flex-shrink:0}
+.modal-close:hover{background:rgba(239,68,68,.15);color:#ef4444;border-color:rgba(239,68,68,.4);transform:rotate(90deg)}
+.modal-close svg{width:16px;height:16px;stroke:currentColor;fill:none;stroke-width:2.3;stroke-linecap:round;stroke-linejoin:round}
+.modal-tools{display:flex;gap:6px;padding:10px 19px;border-bottom:1px solid var(--border);flex-wrap:wrap;background:var(--surface)}
+.tool-btn{display:inline-flex;align-items:center;gap:5px;padding:6px 11px;border-radius:8px;font-size:10.5px;font-weight:700;border:1px solid var(--border);background:var(--surface);color:var(--text-2);transition:var(--t)}
+.tool-btn:hover{color:var(--text);border-color:var(--border-2);background:var(--surface-2)}
+.tool-btn.active{background:var(--grad);color:#fff;border-color:transparent}
+.tool-btn svg{width:12px;height:12px;stroke:currentColor;fill:none;stroke-width:2.3;stroke-linecap:round;stroke-linejoin:round}
+.modal-body{padding:19px}
+.modal-body.reader h4,.modal-body.reader .points,.modal-body.reader .code-block-head{display:none}
+.modal-body.reader .code-block{margin-bottom:12px;background:transparent;border:none}
+.modal-body.reader .code-block pre{padding:0;font-size:12.5px;line-height:1.95;color:var(--text)}
+.modal-body h4{font-size:11.5px;font-weight:800;letter-spacing:1.4px;text-transform:uppercase;color:var(--acc1);margin-bottom:10px;display:flex;align-items:center;gap:7px}
+.modal-body h4 svg{width:14px;height:14px;stroke:currentColor;fill:none;stroke-width:2.3;stroke-linecap:round;stroke-linejoin:round}
+.modal-body>p{color:var(--text-2);font-size:14px;margin-bottom:17px;line-height:1.7}
+.code-block{border-radius:13px;border:1px solid var(--border);background:rgba(0,0,0,.32);overflow:hidden;margin-bottom:17px}
+.code-block-head{display:flex;align-items:center;justify-content:space-between;gap:9px;padding:8px 13px;border-bottom:1px solid var(--border);background:var(--surface)}
+.code-block-head span{font-size:10.5px;font-weight:800;color:var(--text-3);letter-spacing:1.1px;text-transform:uppercase}
+.copy-btn{display:inline-flex;align-items:center;gap:5px;padding:4px 10px;border-radius:7px;font-size:10.5px;font-weight:700;border:1px solid var(--border);background:var(--surface);color:var(--text-2);transition:var(--t)}
+.copy-btn:hover{color:var(--text);border-color:var(--border-2);background:var(--surface-2)}
+.copy-btn.ok{color:var(--success);border-color:color-mix(in srgb,var(--success) 50%,transparent);background:color-mix(in srgb,var(--success) 12%,transparent)}
+.copy-btn svg{width:11px;height:11px;stroke:currentColor;fill:none;stroke-width:2.3;stroke-linecap:round;stroke-linejoin:round}
+.code-block pre{padding:13px;overflow-x:auto;font-family:var(--mono);font-size:11.5px;line-height:1.8;color:#c9d4f5;white-space:pre}
+.points{list-style:none;display:flex;flex-direction:column;gap:7px}
+.points li{display:flex;gap:10px;align-items:flex-start;font-size:12px;color:var(--text-2);padding:9px 12px;border-radius:11px;background:var(--surface);border:1px solid var(--border);transition:var(--t)}
+.points li:hover{background:var(--surface-2);transform:translateX(4px);border-color:var(--border-2)}
+.points li svg{width:14px;height:14px;flex-shrink:0;margin-top:2px;stroke:var(--success);fill:none;stroke-width:2.6;stroke-linecap:round;stroke-linejoin:round}
+
+/* CMD */
+.cmd-box{width:100%;max-width:560px;border-radius:16px;border:1px solid var(--border-2);background:var(--bg-2);box-shadow:0 30px 90px -20px rgba(0,0,0,.85);transform:translateY(-18px) scale(.97);opacity:0;transition:transform .3s cubic-bezier(.34,1.3,.64,1),opacity .25s;overflow:hidden;max-height:70vh;display:flex;flex-direction:column}
+.modal.cmd.open .cmd-box{transform:translateY(0) scale(1);opacity:1}
+.cmd-input-wrap{display:flex;align-items:center;gap:10px;padding:14px 18px;border-bottom:1px solid var(--border);flex-shrink:0}
+.cmd-input-wrap svg{width:17px;height:17px;stroke:var(--acc1);fill:none;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round;flex-shrink:0}
+#cmdInput{flex:1;background:transparent;border:none;outline:none;font-size:14px;font-weight:600;color:var(--text)}
+#cmdInput::placeholder{color:var(--text-3);font-weight:500}
+.cmd-input-wrap kbd{padding:2.5px 7px;border-radius:5px;background:var(--surface-2);border:1px solid var(--border-2);font-size:10px;font-weight:800;color:var(--text-3);font-family:var(--mono)}
+.cmd-list{overflow-y:auto;padding:7px;flex:1}
+.cmd-item{display:flex;align-items:center;gap:11px;padding:10px 12px;border-radius:10px;cursor:pointer;transition:var(--t);border:1px solid transparent}
+.cmd-item:hover,.cmd-item.sel{background:var(--surface-2);border-color:var(--border-2)}
+.cmd-item .ci{width:30px;height:30px;border-radius:8px;display:grid;place-items:center;background:var(--surface-2);border:1px solid var(--border);color:var(--acc1);flex-shrink:0}
+.cmd-item .ci svg{width:15px;height:15px;stroke:currentColor;fill:none;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
+.cmd-item .ct{flex:1;min-width:0}
+.cmd-item .ct b{display:block;font-size:12.5px;font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.cmd-item .ct span{display:block;font-size:10.5px;color:var(--text-3);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.cmd-item .ck{font-size:9.5px;color:var(--text-3);font-weight:800;letter-spacing:.8px;text-transform:uppercase;flex-shrink:0}
+.cmd-empty{text-align:center;padding:34px 20px;color:var(--text-3);font-size:12.5px}
+.cmd-foot{display:flex;gap:12px;align-items:center;padding:9px 14px;border-top:1px solid var(--border);background:var(--surface);font-size:10px;color:var(--text-3);font-weight:700;flex-wrap:wrap}
+.cmd-foot span{display:inline-flex;align-items:center;gap:4px}
+.cmd-foot kbd{padding:1.5px 5px;border-radius:4px;background:var(--surface-2);border:1px solid var(--border-2);font-family:var(--mono);font-size:9.5px}
+
+/* ACCENT POP */
+.accent-pop{position:absolute;top:calc(100% + 8px);right:0;z-index:920;padding:11px;border-radius:13px;border:1px solid var(--border-2);background:var(--bg-2);box-shadow:var(--shadow);display:none;grid-template-columns:repeat(4,1fr);gap:7px;min-width:180px}
+.accent-pop.open{display:grid}
+.accent-swatch{width:32px;height:32px;border-radius:9px;border:2px solid transparent;transition:var(--t);cursor:pointer}
+.accent-swatch:hover{transform:scale(1.12)}
+.accent-swatch.active{border-color:var(--text);box-shadow:0 0 0 2px var(--bg),0 0 0 4px var(--text)}
+.accent-swatch[data-acc="indigo"]{background:linear-gradient(135deg,#6366f1,#22d3ee)}
+.accent-swatch[data-acc="emerald"]{background:linear-gradient(135deg,#10b981,#84cc16)}
+.accent-swatch[data-acc="rose"]{background:linear-gradient(135deg,#f43f5e,#f97316)}
+.accent-swatch[data-acc="amber"]{background:linear-gradient(135deg,#f59e0b,#ef4444)}
+.accent-swatch[data-acc="cyan"]{background:linear-gradient(135deg,#06b6d4,#6366f1)}
+.accent-swatch[data-acc="violet"]{background:linear-gradient(135deg,#8b5cf6,#ec4899)}
+.accent-swatch[data-acc="blue"]{background:linear-gradient(135deg,#3b82f6,#06b6d4)}
+.accent-swatch[data-acc="lime"]{background:linear-gradient(135deg,#84cc16,#14b8a6)}
+
+/* TOASTS */
+#toasts{position:fixed;bottom:20px;left:50%;transform:translateX(-50%);z-index:1100;display:flex;flex-direction:column;gap:9px;align-items:center;pointer-events:none;width:calc(100% - 30px);max-width:400px}
+.toast{display:flex;align-items:center;gap:11px;padding:11px 16px;border-radius:13px;background:color-mix(in srgb,var(--bg-2) 96%,transparent);border:1px solid var(--border-2);box-shadow:var(--shadow);backdrop-filter:blur(14px);pointer-events:auto;animation:toastIn .4s cubic-bezier(.34,1.56,.64,1);max-width:100%;font-size:12px;font-weight:600}
+.toast.out{animation:toastOut .3s ease forwards}
+@keyframes toastIn{from{opacity:0;transform:translateY(20px) scale(.92)}to{opacity:1;transform:translateY(0) scale(1)}}
+@keyframes toastOut{to{opacity:0;transform:translateY(14px) scale(.94)}}
+.toast .tico{width:30px;height:30px;border-radius:9px;display:grid;place-items:center;flex-shrink:0}
+.toast.success .tico{background:rgba(34,197,94,.16);color:var(--success)}
+.toast.info .tico{background:color-mix(in srgb,var(--acc1) 16%,transparent);color:var(--acc1)}
+.toast.warn .tico{background:rgba(245,158,11,.16);color:var(--warn)}
+.toast.xp .tico{background:var(--grad);color:#fff}
+.toast .tico svg{width:16px;height:16px;stroke:currentColor;fill:none;stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round}
+.toast .ttxt{flex:1;min-width:0}
+.toast .ttxt b{display:block;font-weight:800;font-size:12.5px}
+.toast .ttxt span{display:block;font-size:11px;color:var(--text-2);font-weight:500}
+
+/* CONFETTI */
+#confetti{position:fixed;inset:0;z-index:1090;pointer-events:none;display:none}
+#confetti.show{display:block}
+
+/* FOOTER */
+footer{border-top:1px solid var(--border);margin-top:34px;background:var(--surface)}
+.foot-inner{max-width:1280px;margin:0 auto;padding:32px 15px 22px;display:grid;grid-template-columns:1.6fr 1fr 1fr;gap:28px}
+.foot-brand p{font-size:12px;color:var(--text-2);margin-top:11px;max-width:320px}
+.foot-col h5{font-size:10.5px;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;color:var(--text-3);margin-bottom:12px}
+.foot-col button{display:block;font-size:12px;color:var(--text-2);padding:3.5px 0;transition:var(--t);width:fit-content;background:none;border:none;cursor:pointer;text-align:left}
+.foot-col button:hover{color:var(--acc1);transform:translateX(4px)}
+.foot-bottom{max-width:1280px;margin:0 auto;padding:15px;border-top:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;font-size:11px;color:var(--text-3)}
+.foot-bottom b{color:var(--text-2)}
+
+#toTop{position:fixed;right:18px;bottom:18px;z-index:800;width:42px;height:42px;border-radius:12px;display:grid;place-items:center;background:var(--grad);color:#fff;box-shadow:0 12px 30px -12px var(--acc1);opacity:0;visibility:hidden;transform:translateY(18px);transition:var(--t)}
+#toTop.show{opacity:1;visibility:visible;transform:translateY(0)}
+#toTop:hover{transform:translateY(-4px) scale(1.06)}
+#toTop svg{width:18px;height:18px;stroke:currentColor;fill:none;stroke-width:2.6;stroke-linecap:round;stroke-linejoin:round}
+
+.overlay{position:fixed;inset:0;z-index:940;background:rgba(5,8,20,.6);backdrop-filter:blur(4px);opacity:0;visibility:hidden;transition:var(--t)}
+.overlay.open{opacity:1;visibility:visible}
+.mobile-menu{position:fixed;top:0;right:0;bottom:0;width:min(290px,84vw);z-index:950;background:var(--bg-2);border-left:1px solid var(--border);transform:translateX(100%);transition:transform .35s cubic-bezier(.4,0,.2,1);padding:18px 14px;display:flex;flex-direction:column;gap:4px;box-shadow:-20px 0 60px -20px rgba(0,0,0,.7);overflow-y:auto}
+.mobile-menu.open{transform:translateX(0)}
+.mobile-menu button{display:flex;align-items:center;gap:10px;padding:11px 13px;border-radius:11px;font-size:13.5px;font-weight:650;color:var(--text-2);transition:var(--t);width:100%;text-align:left;background:none;border:none;cursor:pointer}
+.mobile-menu button svg{width:16px;height:16px;stroke:currentColor;fill:none;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
+.mobile-menu button:hover,.mobile-menu button.active{background:var(--surface);color:var(--text)}
+.mm-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:11px;padding:0 4px}
+.mm-head strong{font-size:14px;font-weight:800}
+
+#errbox{position:fixed;bottom:12px;left:12px;right:12px;z-index:1200;background:#7f1d1d;color:#fff;padding:11px 14px;border-radius:11px;font-size:11.5px;font-family:var(--mono);display:none;box-shadow:0 10px 30px rgba(0,0,0,.5);max-height:180px;overflow-y:auto}
+
+/* BOTTOM NAV */
+.bottom-nav{
+  display:none;
+  position:fixed;
+  bottom:0;left:0;right:0;
+  z-index:890;
+  background:color-mix(in srgb,var(--bg-2) 96%,transparent);
+  backdrop-filter:blur(20px);
+  -webkit-backdrop-filter:blur(20px);
+  border-top:1px solid var(--border);
+  padding:5px 4px calc(5px + env(safe-area-inset-bottom,0px));
+  justify-content:space-around;
+  align-items:stretch;
+  box-shadow:0 -8px 24px -14px rgba(0,0,0,.6);
+}
+.bottom-nav button{
+  flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;
+  padding:6px 2px;border-radius:9px;font-size:9.5px;font-weight:700;letter-spacing:.2px;
+  color:var(--text-3);transition:var(--t);position:relative;
+}
+.bottom-nav button svg{width:19px;height:19px;stroke:currentColor;fill:none;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round;transition:var(--t)}
+.bottom-nav button:active{background:var(--surface-2)}
+.bottom-nav button.active{color:var(--acc1)}
+.bottom-nav button.active svg{transform:translateY(-1px) scale(1.08)}
+.bottom-nav button.active::before{content:"";position:absolute;top:1px;width:20px;height:2.5px;border-radius:99px;background:var(--grad)}
+
+/* RESPONSIVE */
+@media (max-width:1100px){
+  .quiz-layout{grid-template-columns:1fr}
+  .foot-inner{grid-template-columns:1fr 1fr}
+  .foot-brand{grid-column:1/-1}
+  .showcase{grid-template-columns:1fr}
+}
+@media (max-width:900px){
+  #menuBtn{display:none !important}
+  .mobile-menu,.overlay{display:none !important}
+  .nav{flex-wrap:wrap;padding:9px 13px 6px;gap:8px}
+  .nav-actions{margin-left:auto;flex-shrink:0}
+  .nav-tabs{
+    display:flex !important;order:3;width:100%;margin:0;
+    overflow-x:auto;overflow-y:hidden;padding:7px 0 4px;
+    border-top:1px solid var(--border);scrollbar-width:none;
+    -webkit-overflow-scrolling:touch;gap:2px;
+  }
+  .nav-tabs::-webkit-scrollbar{display:none}
+  .nav-tabs button{flex-shrink:0;padding:7px 12px;font-size:12px}
+  .icon-btn[data-tooltip]::after{display:none}
+  .hero{grid-template-columns:1fr;padding-top:16px;gap:30px;text-align:center}
+  .hero p.lead{margin-left:auto;margin-right:auto}
+  .hero-cta,.stats,.feature-strip{justify-content:center}
+  .hero-visual{min-height:320px}
+  .play-grid{grid-template-columns:1fr;height:auto}
+  .editor-pane{height:320px}
+  .preview-pane{height:320px}
+}
+@media (max-width:680px){
+  body{padding-bottom:66px}
+  .nav{padding:9px 12px 5px;gap:7px}
+  .brand-txt span{display:none}
+  .brand-txt strong{font-size:13px}
+  .brand-mark{width:32px;height:32px}
+  .brand-mark svg{width:18px;height:18px}
+  .icon-btn{width:32px;height:32px}
+  .icon-btn svg{width:15px;height:15px}
+  .nav-actions{gap:4px}
+  .nav-tabs button{padding:6px 10px;font-size:11.5px}
+  /* HP: sembunyikan tab yang duplikat dengan bottom nav */
+  .nav-tabs button[data-tab="home"],
+  .nav-tabs button[data-tab="materi"],
+  .nav-tabs button[data-tab="playground"],
+  .nav-tabs button[data-tab="kuis"],
+  .nav-tabs button[data-tab="profil"]{
+    display:none;
+  }
+  .xpbar{padding:0 12px 8px;gap:9px}
+  .xp-num{display:none}
+  main{padding:0 12px}
+  .page{padding:20px 0 40px}
+  .grid{grid-template-columns:1fr;gap:11px}
+  .stats{gap:16px}
+  .stat b{font-size:18px}
+  .quiz-wrap{padding:18px 15px}
+  .modal{padding:0;align-items:flex-end}
+  .modal-box{max-height:92vh;border-radius:20px 20px 0 0}
+  .modal-head{padding:14px;border-radius:20px 20px 0 0}
+  .modal-head .card-icon{width:40px;height:40px}
+  .modal-title h3{font-size:16px}
+  .modal-body{padding:16px}
+  .cmd-box{border-radius:20px 20px 0 0;max-height:85vh}
+  .float-chip{display:none}
+  .foot-inner{grid-template-columns:1fr;gap:20px}
+  .result-score{font-size:38px}
+  #toTop{right:12px;bottom:74px;width:38px;height:38px}
+  .badges-grid{grid-template-columns:repeat(auto-fill,minmax(120px,1fr))}
+  .cta-final{padding:28px 18px}
+  .step-num{font-size:32px}
+  #toasts{bottom:76px}
+  .bottom-nav{display:flex}
+}
+@media (max-width:380px){
+  .hero h1{font-size:24px}
+  .btn{padding:9px 15px;font-size:12px}
+  .glossary-grid,.cheat-grid{grid-template-columns:1fr}
+  .bottom-nav button{font-size:9px}
+  .bottom-nav button svg{width:18px;height:18px}
+}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.01ms !important;animation-iteration-count:1 !important;transition-duration:.01ms !important;scroll-behavior:auto !important}
+}
+</style>
+</head>
+<body>
+
+<!-- SVG SPRITE -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <linearGradient id="lg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#6366f1"/>
+      <stop offset="50%" stop-color="#8b5cf6"/>
+      <stop offset="100%" stop-color="#22d3ee"/>
+    </linearGradient>
+  </defs>
+  <symbol id="i-code" viewBox="0 0 24 24"><path d="M8 6l-6 6 6 6M16 6l6 6-6 6"/></symbol>
+  <symbol id="i-terminal" viewBox="0 0 24 24"><path d="M4 17l6-6-6-6"/><path d="M12 19h8"/></symbol>
+  <symbol id="i-database" viewBox="0 0 24 24"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5v14c0 1.66 4.03 3 9 3s9-1.34 9-3V5"/><path d="M3 12c0 1.66 4.03 3 9 3s9-1.34 9-3"/></symbol>
+  <symbol id="i-braces" viewBox="0 0 24 24"><path d="M8 4c-2 0-3 1-3 3v3c0 1-1 2-2 2 1 0 2 1 2 2v3c0 2 1 3 3 3"/><path d="M16 4c2 0 3 1 3 3v3c0 1 1 2 2 2-1 0-2 1-2 2v3c0 2-1 3-3 3"/></symbol>
+  <symbol id="i-file" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><path d="M14 2v6h6"/><path d="M8 13h8M8 17h5"/></symbol>
+  <!-- PALET LUKIS: bentuk bean + lubang jempol + titik-titik cat -->
+  <symbol id="i-palette" viewBox="0 0 24 24">
+    <path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10c1.1 0 2-.9 2-2 0-.5-.2-1-.5-1.3-.3-.4-.5-.8-.5-1.3 0-1 .8-1.9 1.9-1.9h1.6c2.8 0 5-2.2 5-5C21.5 5.9 17.2 2 12 2z"/>
+    <circle cx="6.8" cy="13.8" r="1.4"/>
+    <circle cx="7.8" cy="8.5" r="0.9" fill="currentColor" stroke="none"/>
+    <circle cx="11" cy="6.6" r="0.9" fill="currentColor" stroke="none"/>
+    <circle cx="14.5" cy="7" r="0.9" fill="currentColor" stroke="none"/>
+    <circle cx="17.2" cy="10" r="0.9" fill="currentColor" stroke="none"/>
+  </symbol>
+  <symbol id="i-bolt" viewBox="0 0 24 24"><path d="M13 2L3 14h8l-1 8 10-12h-8z"/></symbol>
+  <symbol id="i-gear" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 11-2.83 2.83l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 11-4 0v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 11-2.83-2.83l.06-.06A1.65 1.65 0 004.6 15a1.65 1.65 0 00-1.51-1H3a2 2 0 110-4h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 112.83-2.83l.06.06A1.65 1.65 0 009 4.6a1.65 1.65 0 001-1.51V3a2 2 0 114 0v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 112.83 2.83l-.06.06A1.65 1.65 0 0019.4 9a1.65 1.65 0 001.51 1H21a2 2 0 110 4h-.09a1.65 1.65 0 00-1.51 1z"/></symbol>
+  <symbol id="i-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.35-4.35"/></symbol>
+  <symbol id="i-book" viewBox="0 0 24 24"><path d="M4 4h6a3 3 0 013 3v13a2 2 0 00-2-2H4z"/><path d="M20 4h-6a3 3 0 00-3 3v13a2 2 0 012-2h7z"/></symbol>
+  <symbol id="i-grad" viewBox="0 0 24 24"><path d="M22 10L12 5 2 10l10 5 10-5z"/><path d="M6 12v5c0 1.66 2.69 3 6 3s6-1.34 6-3v-5"/></symbol>
+  <symbol id="i-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></symbol>
+  <symbol id="i-moon" viewBox="0 0 24 24"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></symbol>
+  <symbol id="i-menu" viewBox="0 0 24 24"><path d="M3 6h18M3 12h18M3 18h18"/></symbol>
+  <symbol id="i-x" viewBox="0 0 24 24"><path d="M18 6L6 18M6 6l12 12"/></symbol>
+  <symbol id="i-check" viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></symbol>
+  <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></symbol>
+  <symbol id="i-up" viewBox="0 0 24 24"><path d="M12 19V5M5 12l7-7 7 7"/></symbol>
+  <symbol id="i-copy" viewBox="0 0 24 24"><rect x="9" y="9" width="12" height="12" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></symbol>
+  <symbol id="i-rocket" viewBox="0 0 24 24"><path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 00-2.91-.09z"/><path d="M12 15l-3-3a22 22 0 012-3.95A12.88 12.88 0 0122 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 01-4 2z"/><path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0"/><path d="M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5"/></symbol>
+  <symbol id="i-globe" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/></symbol>
+  <symbol id="i-layers" viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5z"/><path d="M2 17l10 5 10-5M2 12l10 5 10-5"/></symbol>
+  <symbol id="i-brackets" viewBox="0 0 24 24"><path d="M7 4H5a2 2 0 00-2 2v12a2 2 0 002 2h2M17 4h2a2 2 0 012 2v12a2 2 0 01-2 2h-2"/></symbol>
+  <symbol id="i-inbox" viewBox="0 0 24 24"><path d="M22 12h-6l-2 3h-4l-2-3H2"/><path d="M5.45 5.11L2 12v6a2 2 0 002 2h16a2 2 0 002-2v-6l-3.45-6.89A2 2 0 0016.76 4H7.24a2 2 0 00-1.79 1.11z"/></symbol>
+  <symbol id="i-trophy" viewBox="0 0 24 24"><path d="M6 9H4.5a2.5 2.5 0 010-5H6"/><path d="M18 9h1.5a2.5 2.5 0 000-5H18"/><path d="M4 22h16"/><path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22"/><path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22"/><path d="M18 2H6v7a6 6 0 0012 0V2z"/></symbol>
+  <symbol id="i-star" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></symbol>
+  <symbol id="i-flame" viewBox="0 0 24 24"><path d="M8.5 14.5A2.5 2.5 0 0011 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 11-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 002.5 2.5z"/></symbol>
+  <symbol id="i-bookmark" viewBox="0 0 24 24"><path d="M19 21l-7-5-7 5V5a2 2 0 012-2h10a2 2 0 012 2z"/></symbol>
+  <symbol id="i-refresh" viewBox="0 0 24 24"><path d="M23 4v6h-6M1 20v-6h6"/><path d="M3.51 9a9 9 0 0114.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0020.49 15"/></symbol>
+  <symbol id="i-volume" viewBox="0 0 24 24"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M15.54 8.46a5 5 0 010 7.07M19.07 4.93a10 10 0 010 14.14"/></symbol>
+  <symbol id="i-volume-off" viewBox="0 0 24 24"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M23 9l-6 6M17 9l6 6"/></symbol>
+  <symbol id="i-home" viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><path d="M9 22V12h6v10"/></symbol>
+  <symbol id="i-target" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></symbol>
+  <symbol id="i-award" viewBox="0 0 24 24"><circle cx="12" cy="8" r="7"/><path d="M8.21 13.89L7 23l5-3 5 3-1.21-9.12"/></symbol>
+  <symbol id="i-command" viewBox="0 0 24 24"><path d="M18 3a3 3 0 00-3 3v12a3 3 0 003 3 3 3 0 003-3 3 3 0 00-3-3H6a3 3 0 00-3 3 3 3 0 003 3 3 3 0 003-3V6a3 3 0 00-3-3 3 3 0 00-3 3 3 3 0 003 3h12a3 3 0 003-3 3 3 0 00-3-3z"/></symbol>
+  <symbol id="i-map" viewBox="0 0 24 24"><path d="M1 6l7-3 8 4 7-3v14l-7 3-8-4-7 3z"/><path d="M8 3v14M16 7v14"/></symbol>
+  <symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></symbol>
+  <symbol id="i-grid" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></symbol>
+  <symbol id="i-eye" viewBox="0 0 24 24"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></symbol>
+  <symbol id="i-play" viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"/></symbol>
+  <symbol id="i-wifi-off" viewBox="0 0 24 24"><path d="M1 1l22 22M16.72 11.06A10.94 10.94 0 0119 12.55M5 12.55a10.94 10.94 0 015.17-2.39M10.71 5.05A16 16 0 0122.58 9M1.42 9a15.91 15.91 0 014.7-2.88M8.53 16.11a6 6 0 016.95 0M12 20h.01"/></symbol>
+</svg>
+
+<!-- LOADER -->
+<div id="loader">
+  <div class="loader-ring">
+    <svg viewBox="0 0 100 100">
+      <circle class="track" cx="50" cy="50" r="45"/>
+      <circle class="bar" cx="50" cy="50" r="45"/>
+    </svg>
+    <div class="loader-logo">L N Z</div>
+  </div>
+  <div class="loader-bar"><i id="loadBar"></i></div>
+  <div class="loader-text" id="loadTxt">Menyiapkan materi…</div>
+</div>
+
+<!-- HEADER -->
+<header id="header">
+  <nav class="nav">
+    <a href="#" class="brand" data-tab="home">
+      <div class="brand-mark"><svg><use href="#i-code"/></svg></div>
+      <div class="brand-txt">
+        <strong>Lanzz Informatika</strong>
+        <span>Learn · Code · Build</span>
+      </div>
+    </a>
+    <div class="nav-tabs" id="navTabs">
+      <button data-tab="home" class="active"><svg><use href="#i-home"/></svg> Beranda</button>
+      <button data-tab="materi"><svg><use href="#i-book"/></svg> Materi</button>
+      <button data-tab="roadmap"><svg><use href="#i-map"/></svg> Roadmap</button>
+      <button data-tab="playground"><svg><use href="#i-terminal"/></svg> Playground</button>
+      <button data-tab="referensi"><svg><use href="#i-grid"/></svg> Referensi</button>
+      <button data-tab="kuis"><svg><use href="#i-grad"/></svg> Kuis</button>
+      <button data-tab="profil"><svg><use href="#i-award"/></svg> Profil</button>
+    </div>
+    <div class="nav-actions">
+      <button class="icon-btn" id="cmdBtn" data-tooltip="Command Palette (Ctrl+K)" aria-label="Command Palette">
+        <svg><use href="#i-search"/></svg>
+        <span class="kbd-hint">⌘K</span>
+      </button>
+      <button class="icon-btn" id="themeBtn" data-tooltip="Ganti Tema" aria-label="Ganti tema">
+        <svg id="themeIcon"><use href="#i-moon"/></svg>
+      </button>
+      <div style="position:relative">
+        <button class="icon-btn" id="accentBtn" data-tooltip="Warna Aksen" aria-label="Warna aksen">
+          <svg><use href="#i-palette"/></svg>
+        </button>
+        <div class="accent-pop" id="accentPop"></div>
+      </div>
+      <button class="icon-btn" id="soundBtn" data-tooltip="Suara On/Off" aria-label="Suara">
+        <svg id="soundIcon"><use href="#i-volume"/></svg>
+      </button>
+    </div>
+  </nav>
+  <div class="xpbar">
+    <div class="lvl-chip"><span class="num" id="lvlNum">1</span><span>Level</span></div>
+    <div class="xp-track"><div class="xp-fill" id="xpFill"></div></div>
+    <span class="xp-num" id="xpNum">0 / 150 XP</span>
+    <span class="mini-stat flame"><svg><use href="#i-flame"/></svg> <span id="streakNum">0</span></span>
+    <span class="mini-stat bookmark"><svg><use href="#i-bookmark"/></svg> <span id="bmNum">0</span></span>
+  </div>
+</header>
+
+<main>
+
+<!-- ==================== HOME ==================== -->
+<section class="page active" id="page-home">
+
+  <div class="hero">
+    <div class="hero-copy">
+      <div class="pill"><b><svg><use href="#i-bolt"/></svg> Baru</b><span id="heroTopikCount">32 topik + roadmap + playground</span></div>
+      <h1>Kuasai Dunia <span class="grad">Informatika</span> <br>Dari Nol sampai Mahir</h1>
+      <p class="lead"><b>32 topik materi</b>, <b>5 jalur belajar</b> terstruktur, <b>code playground live</b>, kuis interaktif, dan <b>sistem XP</b> — semuanya offline, tanpa login, tanpa biaya.</p>
+      <div class="hero-cta">
+        <button class="btn btn-primary" data-tab="materi"><svg><use href="#i-rocket"/></svg> Coba Sekarang</button>
+        <button class="btn btn-ghost" data-tab="roadmap"><svg><use href="#i-map"/></svg> Lihat Roadmap</button>
+      </div>
+      <div class="feature-strip">
+        <span class="fs-chip"><svg><use href="#i-wifi-off"/></svg> Offline</span>
+        <span class="fs-chip"><svg><use href="#i-terminal"/></svg> Playground</span>
+        <span class="fs-chip"><svg><use href="#i-grad"/></svg> Kuis</span>
+        <span class="fs-chip"><svg><use href="#i-trophy"/></svg> 12 Badge</span>
+        <span class="fs-chip"><svg><use href="#i-command"/></svg> Command Palette</span>
+      </div>
+      <div class="stats">
+        <div class="stat"><b id="statTopik">32</b><span>Topik Materi</span></div>
+        <div class="stat"><b>5</b><span>Jalur Belajar</span></div>
+        <div class="stat"><b>100%</b><span>Gratis &amp; Offline</span></div>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="orb o1"></div>
+      <div class="orb o2"></div>
+      <div class="float-chip fc1"><svg><use href="#i-braces"/></svg> JSON Ready</div>
+      <div class="float-chip fc2"><svg><use href="#i-database"/></svg> SQL Query</div>
+      <div class="float-chip fc3"><svg><use href="#i-flame"/></svg> +50 XP</div>
+      <div class="code-card">
+        <div class="code-head">
+          <span class="dot r"></span><span class="dot y"></span><span class="dot g"></span>
+          <span class="url">lanzz.dev/playground</span>
+        </div>
+        <div class="code-body">
+          <span class="ln"><span class="tk-com">// Live editor — coba langsung</span></span>
+          <span class="ln"><span class="tk-key">const</span> <span class="tk-fn">belajar</span> = <span class="tk-str">'seru'</span>;</span>
+          <span class="ln"></span>
+          <span class="ln"><span class="tk-key">function</span> <span class="tk-fn">mulai</span>(topik) {</span>
+          <span class="ln">  <span class="tk-key">return</span> <span class="tk-str">`Belajar ${topik}`</span>;</span>
+          <span class="ln">}</span>
+          <span class="ln"></span>
+          <span class="ln"><span class="tk-fn">console</span>.<span class="tk-fn">log</span>(<span class="tk-fn">mulai</span>(<span class="tk-str">'Informatika'</span>));</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div style="margin-top:56px">
+    <div class="sec-head">
+      <div class="sec-tag">Fitur Unggulan</div>
+      <h2>Bukan Cuma Artikel</h2>
+      <p>Semua yang lo butuh untuk belajar coding — dari baca materi sampai praktik langsung.</p>
+    </div>
+    <div class="features">
+
+      <div class="feat">
+        <div class="feat-head">
+          <div class="feat-ico"><svg><use href="#i-terminal"/></svg></div>
+          <div><h3>Code Playground</h3><small>Live Editor</small></div>
+        </div>
+        <p>Tulis HTML, CSS, dan JavaScript — langsung lihat hasilnya di preview real-time.</p>
+        <div class="feat-preview">
+          <div class="fp-editor"><span></span><span></span><span></span></div>
+          <div class="fp-code">&lt;h1&gt;Halo!&lt;/h1&gt;</div>
+          <div class="fp-code" style="color:var(--acc1)">body { color: ...</div>
+        </div>
+      </div>
+
+      <div class="feat">
+        <div class="feat-head">
+          <div class="feat-ico"><svg><use href="#i-map"/></svg></div>
+          <div><h3>Roadmap Terstruktur</h3><small>5 Jalur Belajar</small></div>
+        </div>
+        <p>Ikuti urutan belajar yang jelas dari dasar sampai siap kerja, dengan progres per langkah.</p>
+        <div class="feat-preview">
+          <div class="fp-bar"><i style="width:60%"></i></div>
+          <div style="margin-top:6px;font-size:10px;color:var(--text-3);font-family:var(--mono)">Frontend · 4/7 langkah</div>
+          <div class="fp-bar" style="margin-top:5px"><i style="width:30%"></i></div>
+          <div style="margin-top:5px;font-size:10px;color:var(--text-3);font-family:var(--mono)">Backend · 2/6 langkah</div>
+        </div>
+      </div>
+
+      <div class="feat">
+        <div class="feat-head">
+          <div class="feat-ico"><svg><use href="#i-grad"/></svg></div>
+          <div><h3>Kuis Interaktif</h3><small>Uji Pemahaman</small></div>
+        </div>
+        <p>Jawab soal acak, kumpulkan XP, dan lihat skor langsung dengan feedback visual.</p>
+        <div class="feat-preview">
+          <div class="fp-opt ok">✓ const</div>
+          <div class="fp-opt">var</div>
+          <div class="fp-opt">let</div>
+        </div>
+      </div>
+
+      <div class="feat">
+        <div class="feat-head">
+          <div class="feat-ico"><svg><use href="#i-trophy"/></svg></div>
+          <div><h3>XP &amp; Badge</h3><small>Gamifikasi</small></div>
+        </div>
+        <p>Setiap aktivitas kasih XP. Naik level, kumpulkan badge, jaga streak harian.</p>
+        <div class="feat-preview" style="display:grid;place-items:center">
+          <div class="fp-badges">
+            <div class="fp-badge"><svg><use href="#i-star"/></svg></div>
+            <div class="fp-badge"><svg><use href="#i-trophy"/></svg></div>
+            <div class="fp-badge"><svg><use href="#i-flame"/></svg></div>
+            <div class="fp-badge"><svg><use href="#i-award"/></svg></div>
+            <div class="fp-badge" style="opacity:.35;background:var(--surface-3)"><svg style="stroke:var(--text-3)"><use href="#i-star"/></svg></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="feat">
+        <div class="feat-head">
+          <div class="feat-ico"><svg><use href="#i-file"/></svg></div>
+          <div><h3>Cheat Sheet</h3><small>Contekan Sintaks</small></div>
+        </div>
+        <p>10 bahasa dalam satu halaman. Tinggal salin, gak perlu ngafalin dari nol.</p>
+        <div class="feat-preview">
+          <div class="fp-code" style="color:var(--acc1)">git commit -m "..."</div>
+          <div class="fp-code" style="color:var(--acc3)">npm run dev</div>
+          <div class="fp-code" style="color:var(--acc2)">docker build -t app .</div>
+        </div>
+      </div>
+
+      <div class="feat">
+        <div class="feat-head">
+          <div class="feat-ico"><svg><use href="#i-command"/></svg></div>
+          <div><h3>Command Palette</h3><small>Navigasi Kilat</small></div>
+        </div>
+        <p>Tekan <b style="color:var(--text)">Ctrl+K</b> — lompat ke topik atau fitur apa pun tanpa klik menu.</p>
+        <div class="feat-preview">
+          <div class="fp-cmd">
+            <svg><use href="#i-search"/></svg>
+            cari python…
+            <kbd>↵</kbd>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div style="margin-top:56px">
+    <div class="sec-head">
+      <div class="sec-tag">Pratinjau</div>
+      <h2>Lihat Langsung Bisa Apa</h2>
+      <p>Dua fitur paling sering dipakai user Lanzz — playground dan kuis.</p>
+    </div>
+    <div class="showcase">
+      <div class="show-card">
+        <span class="tag">Live Playground</span>
+        <h3>Tulis Kode, Lihat Hasilnya</h3>
+        <p>Editor dengan tiga tab (HTML, CSS, JS), preview langsung di sebelahnya. 4 template siap pakai.</p>
+        <div class="mock-editor">
+          <div class="mock-tabs">
+            <span class="active">index.html</span>
+            <span>style.css</span>
+            <span>script.js</span>
+          </div>
+          <div class="mock-code">&lt;<span style="color:var(--acc2)">h1</span>&gt;Halo Lanzz!&lt;/<span style="color:var(--acc2)">h1</span>&gt;
+&lt;<span style="color:var(--acc2)">p</span>&gt;Selamat belajar.&lt;/<span style="color:var(--acc2)">p</span>&gt;
+
+<span style="color:var(--acc3)">console</span>.log(<span style="color:#86efac">"Hello!"</span>);</div>
+          <button class="mock-run"><svg><use href="#i-play"/></svg> Jalankan</button>
+        </div>
+      </div>
+      <div class="show-card">
+        <span class="tag">Kuis Interaktif</span>
+        <h3>Uji Pemahaman dengan Cepat</h3>
+        <p>Soal acak, feedback instan, skor otomatis. Salah? Langsung tahu jawaban yang benar.</p>
+        <div class="mock-quiz">
+          <div class="mock-q">Kata kunci JS untuk nilai konstan adalah…</div>
+          <div class="mock-opt ok">✓ const</div>
+          <div class="mock-opt">var</div>
+          <div class="mock-opt">let</div>
+          <div class="mock-opt">static</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div style="margin-top:56px">
+    <div class="sec-head">
+      <div class="sec-tag">Jalur Belajar</div>
+      <h2>Belajar Terstruktur, Bukan Acak</h2>
+      <p>Pilih jalur sesuai tujuan karirmu. Setiap langkah tersambung ke materi yang relevan.</p>
+    </div>
+    <div class="paths-preview" id="pathsPreview"></div>
+  </div>
+
+  <div style="margin-top:56px">
+    <div class="sec-head">
+      <div class="sec-tag">Cara Kerja</div>
+      <h2>3 Langkah Simpel</h2>
+      <p>Gak ada setup, gak ada instalasi. Buka browser, langsung belajar.</p>
+    </div>
+    <div class="steps-flow">
+      <div class="step-card">
+        <div class="step-num">01</div>
+        <h4>Pilih Topik atau Jalur</h4>
+        <p>Cari topik spesifik lewat pencarian, atau ikuti jalur roadmap yang tersusun rapi.</p>
+      </div>
+      <div class="step-card">
+        <div class="step-num">02</div>
+        <h4>Baca &amp; Coba di Playground</h4>
+        <p>Setiap materi ada contoh kode. Klik "Coba di Playground" untuk eksperimen langsung.</p>
+      </div>
+      <div class="step-card">
+        <div class="step-num">03</div>
+        <h4>Kumpulkan XP &amp; Badge</h4>
+        <p>Tandai topik selesai, jawab kuis, jaga streak — naik level dan buka badge eksklusif.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="cta-final" style="margin-top:56px">
+    <h2>Gak Perlu Login. Gak Perlu Bayar.</h2>
+    <p>Semua progres tersimpan otomatis di browser lo. Buka kapan saja, di perangkat apa saja — bahkan tanpa internet.</p>
+    <div class="hero-cta">
+      <button class="btn btn-primary btn-lg" data-tab="materi"><svg><use href="#i-rocket"/></svg> Mulai Sekarang</button>
+      <button class="btn btn-ghost btn-lg" data-tab="roadmap"><svg><use href="#i-map"/></svg> Lihat Jalur</button>
+    </div>
+  </div>
+
+</section>
+
+<!-- ==================== MATERI ==================== -->
+<section class="page" id="page-materi">
+  <div class="sec-head">
+    <div class="sec-tag">Katalog Materi</div>
+    <h2>Jelajahi Semua Topik</h2>
+    <p>Cari, filter, tandai selesai, dan bookmark materi favoritmu.</p>
+  </div>
+  <div class="toolbar">
+    <div class="search-box" id="searchBox">
+      <input type="text" id="searchInput" placeholder="Cari materi… (mis. python, sql, docker)" autocomplete="off">
+      <svg><use href="#i-search"/></svg>
+      <button class="search-clear" id="searchClear"><svg><use href="#i-x"/></svg></button>
+    </div>
+  </div>
+  <div class="filters" id="filters"></div>
+  <div class="grid" id="grid"></div>
+</section>
+
+<!-- ==================== ROADMAP ==================== -->
+<section class="page" id="page-roadmap">
+  <div class="sec-head">
+    <div class="sec-tag">Jalur Belajar</div>
+    <h2>Roadmap Terstruktur</h2>
+    <p>Ikuti urutan yang disarankan untuk menguasai bidang tertentu dari dasar sampai siap kerja.</p>
+  </div>
+  <div class="paths" id="paths"></div>
+</section>
+
+<!-- ==================== PLAYGROUND ==================== -->
+<section class="page" id="page-playground">
+  <div class="sec-head">
+    <div class="sec-tag">Code Playground</div>
+    <h2>Eksperimen Langsung</h2>
+    <p>Tulis HTML, CSS, dan JavaScript — lihat hasilnya secara real-time.</p>
+  </div>
+  <div class="play-actions">
+    <button class="tpl-btn" data-tpl="blank">Blank</button>
+    <button class="tpl-btn" data-tpl="card">Kartu Profil</button>
+    <button class="tpl-btn" data-tpl="counter">Counter</button>
+    <button class="tpl-btn" data-tpl="todo">Todo List</button>
+    <button class="tpl-btn primary" id="playRun">Jalankan</button>
+    <button class="tpl-btn" id="playFull">Fullscreen</button>
+    <button class="tpl-btn" id="playReset">Reset</button>
+  </div>
+  <div class="play-grid" id="playGrid">
+    <div class="editor-pane">
+      <div class="editor-tabs" id="editorTabs">
+        <button data-file="html" class="active">index.html</button>
+        <button data-file="css">style.css</button>
+        <button data-file="js">script.js</button>
+      </div>
+      <textarea id="editor" spellcheck="false" wrap="off"></textarea>
+    </div>
+    <div class="preview-pane">
+      <div class="preview-head"><span>Preview</span><span class="dot-live">LIVE</span></div>
+      <iframe id="preview" sandbox="allow-scripts allow-modals" title="Preview"></iframe>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== REFERENSI ==================== -->
+<section class="page" id="page-referensi">
+  <div class="sec-head">
+    <div class="sec-tag">Referensi Cepat</div>
+    <h2>Glosarium &amp; Cheat Sheet</h2>
+    <p>Kamus istilah dan contekan sintaks yang bisa disalin langsung.</p>
+  </div>
+  <div class="ref-tabs">
+    <button class="active" data-ref="glosarium">Glosarium</button>
+    <button data-ref="cheatsheet">Cheat Sheet</button>
+  </div>
+  <div class="ref-panel active" id="ref-glosarium">
+    <div class="toolbar">
+      <div class="search-box">
+        <input type="text" id="glossInput" placeholder="Cari istilah…" autocomplete="off">
+        <svg><use href="#i-search"/></svg>
+      </div>
+    </div>
+    <div class="glossary-grid" id="glossaryGrid"></div>
+  </div>
+  <div class="ref-panel" id="ref-cheatsheet">
+    <div class="cheat-grid" id="cheatGrid"></div>
+  </div>
+</section>
+
+<!-- ==================== KUIS ==================== -->
+<section class="page" id="page-kuis">
+  <div class="sec-head">
+    <div class="sec-tag">Uji Pemahaman</div>
+    <h2>Kuis &amp; Tantangan Harian</h2>
+    <p>Jawab dengan benar, kumpulkan XP, dan raih badge eksklusif.</p>
+  </div>
+  <div class="quiz-layout">
+    <div class="quiz-wrap">
+      <div id="quizMain">
+        <div class="quiz-top">
+          <h3>Pertanyaan <span id="qNum">1 / 8</span></h3>
+          <div class="quiz-progress"><span id="qScore">0</span> benar</div>
+        </div>
+        <div class="progress-track"><div class="progress-fill" id="qFill"></div></div>
+        <div class="q-text" id="qText">Memuat…</div>
+        <div class="options" id="qOptions"></div>
+      </div>
+      <div class="quiz-result" id="quizResult">
+        <div class="result-score" id="rScore">0/8</div>
+        <div class="result-title" id="rTitle">Selesai!</div>
+        <div class="result-desc" id="rDesc"></div>
+        <button class="btn btn-primary" id="restartQuiz"><svg><use href="#i-refresh"/></svg> Ulangi Kuis</button>
+      </div>
+    </div>
+    <div class="daily-card">
+      <div class="daily-top">
+        <div class="ico"><svg><use href="#i-target"/></svg></div>
+        <div><h4>Tantangan Harian</h4><small id="dailyDate">—</small></div>
+      </div>
+      <div id="dailyContent"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== PROFIL ==================== -->
+<section class="page" id="page-profil">
+  <div class="sec-head">
+    <div class="sec-tag">Profil Kamu</div>
+    <h2>Statistik &amp; Pencapaian</h2>
+    <p>Semua progres tersimpan otomatis di browser ini.</p>
+  </div>
+  <div class="profile-grid">
+    <div class="pstat"><div class="ico"><svg><use href="#i-star"/></svg></div><b id="pXP">0</b><span>Total XP</span></div>
+    <div class="pstat"><div class="ico"><svg><use href="#i-trophy"/></svg></div><b id="pLevel">1</b><span>Level</span></div>
+    <div class="pstat"><div class="ico"><svg><use href="#i-flame"/></svg></div><b id="pStreak">0</b><span>Streak</span></div>
+    <div class="pstat"><div class="ico"><svg><use href="#i-book"/></svg></div><b id="pRead">0</b><span>Topik Selesai</span></div>
+    <div class="pstat"><div class="ico"><svg><use href="#i-grad"/></svg></div><b id="pQuiz">0</b><span>Kuis Selesai</span></div>
+    <div class="pstat"><div class="ico"><svg><use href="#i-bookmark"/></svg></div><b id="pBm">0</b><span>Bookmark</span></div>
+  </div>
+  <div class="section-sub">Koleksi Badge</div>
+  <div class="badges-grid" id="badgesGrid"></div>
+  <div style="margin-top:26px;text-align:center">
+    <button class="btn btn-ghost btn-sm" id="resetBtn"><svg><use href="#i-refresh"/></svg> Reset Semua Progres</button>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="foot-inner">
+    <div class="foot-brand">
+      <a href="#" class="brand" data-tab="home">
+        <div class="brand-mark"><svg><use href="#i-code"/></svg></div>
+        <div class="brand-txt"><strong>Lanzz Informatika</strong><span>Learn · Code · Build</span></div>
+      </a>
+      <p>Platform belajar teknologi informasi offline-first. Semua progres tersimpan di browser kamu, tanpa login, tanpa biaya.</p>
+    </div>
+    <div class="foot-col">
+      <h5>Navigasi</h5>
+      <button data-tab="home">Beranda</button>
+      <button data-tab="materi">Materi</button>
+      <button data-tab="roadmap">Roadmap</button>
+      <button data-tab="playground">Playground</button>
+      <button data-tab="kuis">Kuis</button>
+    </div>
+    <div class="foot-col">
+      <h5>Topik Populer</h5>
+      <button data-jump="html">HTML</button>
+      <button data-jump="javascript">JavaScript</button>
+      <button data-jump="python">Python</button>
+      <button data-jump="sql">SQL</button>
+      <button data-jump="docker">Docker</button>
+    </div>
+  </div>
+  <div class="foot-bottom">
+    <span>&copy; <span id="year"></span> <b>Lanzz Informatika</b>. Dibuat untuk pembelajaran.</span>
+    <span>Dibangun dengan HTML, CSS &amp; JavaScript murni.</span>
+  </div>
+</footer>
+
+<button id="toTop" aria-label="Kembali ke atas"><svg><use href="#i-up"/></svg></button>
+
+<!-- BOTTOM NAV -->
+<nav class="bottom-nav" id="bottomNav">
+  <button data-tab="home" class="active">
+    <svg><use href="#i-home"/></svg>
+    <span>Beranda</span>
+  </button>
+  <button data-tab="materi">
+    <svg><use href="#i-book"/></svg>
+    <span>Materi</span>
+  </button>
+  <button data-tab="playground">
+    <svg><use href="#i-terminal"/></svg>
+    <span>Playground</span>
+  </button>
+  <button data-tab="kuis">
+    <svg><use href="#i-grad"/></svg>
+    <span>Kuis</span>
+  </button>
+  <button data-tab="profil">
+    <svg><use href="#i-award"/></svg>
+    <span>Profil</span>
+  </button>
+</nav>
+
+<div class="modal" id="modal" role="dialog" aria-modal="true">
+  <div class="modal-box" id="modalBox">
+    <div class="modal-head">
+      <div class="card-icon" id="mIcon"><svg><use href="#i-code"/></svg></div>
+      <div class="modal-title">
+        <h3 id="modalTitle">Judul</h3>
+        <div class="meta"><span class="meta-tag" id="mCat">Kategori</span><span class="badge dasar" id="mLevel">Dasar</span></div>
+      </div>
+      <button class="modal-close" id="modalClose" aria-label="Tutup"><svg><use href="#i-x"/></svg></button>
+    </div>
+    <div class="modal-tools">
+      <button class="tool-btn" id="mBookmark"><svg><use href="#i-bookmark"/></svg> Bookmark</button>
+      <button class="tool-btn" id="mComplete"><svg><use href="#i-check"/></svg> Tandai Selesai</button>
+      <button class="tool-btn" id="mReader"><svg><use href="#i-eye"/></svg> Mode Baca</button>
+      <button class="tool-btn" id="mPlayground"><svg><use href="#i-terminal"/></svg> Coba di Playground</button>
+    </div>
+    <div class="modal-body" id="modalBody"></div>
+  </div>
+</div>
+
+<div class="modal cmd" id="cmdModal" role="dialog" aria-modal="true">
+  <div class="cmd-box">
+    <div class="cmd-input-wrap">
+      <svg><use href="#i-command"/></svg>
+      <input type="text" id="cmdInput" placeholder="Ketik perintah atau cari topik…" autocomplete="off" spellcheck="false">
+      <kbd>ESC</kbd>
+    </div>
+    <div class="cmd-list" id="cmdList"></div>
+    <div class="cmd-foot">
+      <span><kbd>↑</kbd><kbd>↓</kbd> navigasi</span>
+      <span><kbd>Enter</kbd> pilih</span>
+      <span><kbd>Esc</kbd> tutup</span>
+    </div>
+  </div>
+</div>
+
+<div id="toasts"></div>
+<canvas id="confetti"></canvas>
+<div id="errbox"></div>
+
+<script>
+/* LOADER */
+(function(){
+  var safety = setTimeout(function(){
+    var l = document.getElementById('loader');
+    if (l && !l.classList.contains('hide')) { l.classList.add('hide'); }
+    document.body.style.overflow = '';
+  }, 4500);
+  try {
+    var bar = document.getElementById('loadBar');
+    var txt = document.getElementById('loadTxt');
+    var msgs = ['Menyiapkan materi…','Memuat ikon…','Menyusun katalog…','Menghubungkan modul…','Hampir siap…'];
+    var p = 0, mi = 0;
+    document.body.style.overflow = 'hidden';
+    var iv = setInterval(function(){
+      p += Math.random() * 14 + 6;
+      if (p > 100) p = 100;
+      if (bar) bar.style.width = p + '%';
+      var ni = Math.min(msgs.length - 1, Math.floor(p / 22));
+      if (ni !== mi) { mi = ni; if (txt) txt.textContent = msgs[mi]; }
+      if (p >= 100) {
+        clearInterval(iv);
+        clearTimeout(safety);
+        setTimeout(function(){
+          var l = document.getElementById('loader');
+          if (l) l.classList.add('hide');
+          document.body.style.overflow = '';
+          setTimeout(function(){ if (l && l.parentNode) l.parentNode.removeChild(l); }, 700);
+        }, 320);
+      }
+    }, 120);
+  } catch(e) {}
+})();
+</script>
+
+<script>
+(function(){
+  "use strict";
+
+  window.addEventListener('error', function(e){
+    var box = document.getElementById('errbox');
+    if (box) {
+      box.style.display = 'block';
+      box.textContent = 'Error: ' + (e.message || 'unknown') + ' @ ' + (e.filename || '') + ':' + (e.lineno || '');
+    }
+  });
+
+  var CATS = [
+    {id:'all',name:'Semua'},{id:'markup',name:'Markup'},{id:'styling',name:'Styling'},
+    {id:'prog',name:'Programming'},{id:'data',name:'Data'},{id:'db',name:'Database'},
+    {id:'api',name:'API'},{id:'tools',name:'Tools'},{id:'net',name:'Network'},
+    {id:'fw',name:'Framework'},{id:'devops',name:'DevOps'}
+  ];
+
+  var TOPICS = [
+    {id:'html',name:'HTML',icon:'i-code',cat:'markup',catName:'Markup',level:'Dasar',short:'Bahasa markup standar untuk struktur halaman web.',desc:'HTML (HyperText Markup Language) adalah fondasi setiap halaman web. Ia mendefinisikan struktur konten menggunakan elemen seperti heading, paragraf, tautan, gambar, dan formulir.',example:'&lt;!DOCTYPE html&gt;\n&lt;html lang="id"&gt;\n  &lt;head&gt;\n    &lt;meta charset="UTF-8"&gt;\n    &lt;title&gt;Halo Dunia&lt;/title&gt;\n  &lt;/head&gt;\n  &lt;body&gt;\n    &lt;h1&gt;Selamat Datang&lt;/h1&gt;\n    &lt;p&gt;Ini paragraf pertama saya.&lt;/p&gt;\n    &lt;a href="https://example.com"&gt;Kunjungi&lt;/a&gt;\n  &lt;/body&gt;\n&lt;/html&gt;',points:['Gunakan tag semantik: header, nav, main, section, article, footer.','Selalu sertakan atribut alt pada gambar untuk aksesibilitas.','Gunakan label yang terhubung ke input pada setiap formulir.','Validasi struktur dengan validator HTML W3C.']},
+    {id:'css',name:'CSS',icon:'i-palette',cat:'styling',catName:'Styling',level:'Dasar',short:'Mengatur tampilan, warna, tata letak, dan animasi halaman web.',desc:'CSS (Cascading Style Sheets) mengontrol presentasi dokumen HTML. Dengan CSS kamu bisa mengatur warna, tipografi, jarak, tata letak responsif, hingga animasi kompleks.',example:':root {\n  --primary: #6366f1;\n}\n\n.card {\n  display: flex;\n  gap: 16px;\n  padding: 20px;\n  border-radius: 16px;\n  background: var(--primary);\n}\n\n.card:hover {\n  transform: translateY(-6px);\n}',points:['Kuasai Flexbox dan Grid untuk tata letak modern.','Gunakan CSS Variables agar tema mudah diubah.','Terapkan pendekatan mobile-first pada media query.','Manfaatkan transition dan animation untuk interaksi halus.']},
+    {id:'javascript',name:'JavaScript',icon:'i-bolt',cat:'prog',catName:'Programming',level:'Menengah',short:'Bahasa pemrograman resmi web yang berjalan di browser dan server.',desc:'JavaScript membuat halaman web menjadi interaktif. Ia menangani event, memanipulasi DOM, berkomunikasi dengan API, dan kini juga berjalan di sisi server melalui Node.js.',example:'const angka = [1, 2, 3, 4, 5];\n\nconst genap = angka.filter(n =&gt; n % 2 === 0);\nconst total = genap.reduce((a, b) =&gt; a + b, 0);\n\nasync function ambilData(url) {\n  const res = await fetch(url);\n  return res.json();\n}\n\nconsole.log(genap, total);',points:['Pahami perbedaan var, let, dan const.','Kuasai Promise dan async/await untuk operasi asinkron.','Gunakan array method: map, filter, reduce, find.','Hindari manipulasi DOM berlebihan; manfaatkan event delegation.']},
+    {id:'typescript',name:'TypeScript',icon:'i-brackets',cat:'prog',catName:'Programming',level:'Menengah',short:'Superset JavaScript dengan sistem tipe statis opsional.',desc:'TypeScript menambahkan tipe statis ke JavaScript sehingga kesalahan dapat terdeteksi saat kompilasi, bukan saat runtime.',example:'interface User {\n  id: number;\n  nama: string;\n  email?: string;\n}\n\nfunction sapa(user: User): string {\n  return `Halo, ${user.nama}!`;\n}\n\nconst u: User = { id: 1, nama: "Budi" };\nconsole.log(sapa(u));',points:['Aktifkan strict mode untuk keamanan tipe maksimal.','Gunakan interface untuk bentuk objek, type untuk union.','Manfaatkan generics agar kode tetap fleksibel dan aman.','Hindari penggunaan any sebisa mungkin.']},
+    {id:'python',name:'Python',icon:'i-terminal',cat:'prog',catName:'Programming',level:'Dasar',short:'Bahasa serbaguna dengan sintaks bersih, populer untuk data & AI.',desc:'Python dikenal karena sintaksnya yang mudah dibaca. Ia digunakan luas untuk pengembangan web, analisis data, machine learning, otomatisasi, dan scripting.',example:'def hitung_rata(data):\n    return sum(data) / len(data)\n\nnilai = [80, 90, 75, 88]\nprint(f"Rata-rata: {hitung_rata(nilai):.2f}")\n\nkuadrat = [x ** 2 for x in range(1, 6)]\nprint(kuadrat)',points:['Manfaatkan virtualenv untuk isolasi dependensi.','Pahami list, dict, set, dan tuple beserta kapan memakainya.','Gunakan f-string untuk format teks yang rapi.','Ikuti PEP 8 untuk gaya penulisan kode.']},
+    {id:'php',name:'PHP',icon:'i-globe',cat:'prog',catName:'Programming',level:'Menengah',short:'Bahasa server-side yang menggerakkan sebagian besar web dunia.',desc:'PHP adalah bahasa skrip sisi server yang dirancang khusus untuk web. Ia mudah dipelajari, terintegrasi baik dengan database, dan menjadi fondasi banyak CMS populer.',example:'&lt;?php\n$nama = "Lanzz Informatika";\n$topik = ["HTML", "CSS", "PHP"];\n\nfunction sapa($nama) {\n    return "Halo, $nama!";\n}\n\necho sapa($nama);\n?&gt;',points:['Selalu validasi dan sanitasi input pengguna.','Gunakan prepared statement untuk mencegah SQL injection.','Pelajari Composer untuk manajemen dependensi.','Terapkan pola MVC pada proyek yang lebih besar.']},
+    {id:'java',name:'Java',icon:'i-layers',cat:'prog',catName:'Programming',level:'Menengah',short:'Bahasa berorientasi objek yang kuat untuk aplikasi enterprise.',desc:'Java adalah bahasa berorientasi objek yang berjalan di JVM, membuatnya portabel lintas platform.',example:'public class Mahasiswa {\n    private String nama;\n    \n    public Mahasiswa(String nama) {\n        this.nama = nama;\n    }\n    \n    public String getNama() {\n        return nama;\n    }\n}',points:['Pahami konsep OOP: enkapsulasi, pewarisan, polimorfisme.','Kuasai Collections Framework: List, Set, Map.','Gunakan generics untuk kode yang type-safe.','Manfaatkan Maven atau Gradle untuk build management.']},
+    {id:'cpp',name:'C / C++',icon:'i-gear',cat:'prog',catName:'Programming',level:'Lanjut',short:'Bahasa tingkat rendah berperforma tinggi untuk sistem dan game.',desc:'C dan C++ memberikan kontrol langsung terhadap memori dan perangkat keras. Keduanya menjadi pilihan utama untuk sistem operasi, game engine, embedded system.',example:'#include &lt;iostream&gt;\n#include &lt;vector&gt;\n\nint main() {\n    std::vector&lt;int&gt; angka = {1, 2, 3, 4};\n    int total = 0;\n    \n    for (int n : angka) {\n        total += n;\n    }\n    \n    std::cout &lt;&lt; "Total: " &lt;&lt; total &lt;&lt; std::endl;\n    return 0;\n}',points:['Kelola memori dengan hati-hati; gunakan smart pointer di C++.','Pahami pointer, reference, dan stack vs heap.','Manfaatkan STL untuk struktur data siap pakai.','Selalu compile dengan peringatan aktif untuk menangkap bug.']},
+    {id:'go',name:'Go',icon:'i-rocket',cat:'prog',catName:'Programming',level:'Menengah',short:'Bahasa buatan Google yang sederhana dan sangat cepat.',desc:'Go (Golang) dirancang untuk pengembangan backend modern: kompilasi cepat, konkurensi bawaan lewat goroutine, dan binary tunggal tanpa dependensi.',example:'package main\n\nimport "fmt"\n\nfunc main() {\n    for i := 1; i &lt;= 3; i++ {\n        fmt.Println("Worker", i)\n    }\n}',points:['Gunakan goroutine dan channel untuk konkurensi.','Tangani error secara eksplisit, bukan dengan exception.','Format kode otomatis dengan gofmt.','Manfaatkan interface kecil untuk komposisi yang fleksibel.']},
+    {id:'rust',name:'Rust',icon:'i-shield',cat:'prog',catName:'Programming',level:'Lanjut',short:'Bahasa sistem yang aman dari segi memori tanpa garbage collector.',desc:'Rust menawarkan performa setara C++ dengan jaminan keamanan memori lewat sistem ownership.',example:'fn main() {\n    let angka = vec![1, 2, 3, 4, 5];\n    let total: i32 = angka.iter().sum();\n    println!("Total {}", total);\n}',points:['Pahami ownership, borrowing, dan lifetime.','Gunakan Result dan Option untuk penanganan error yang aman.','Manfaatkan cargo untuk build, test, dan dependensi.','Hindari clone berlebihan; pinjam data bila memungkinkan.']},
+    {id:'kotlin',name:'Kotlin',icon:'i-code',cat:'prog',catName:'Programming',level:'Menengah',short:'Bahasa modern untuk Android dan backend JVM.',desc:'Kotlin adalah bahasa statis yang berjalan di JVM, sepenuhnya interoperable dengan Java, namun jauh lebih ringkas.',example:'data class User(val id: Int, val nama: String)\n\nfun main() {\n    val users = listOf(\n        User(1, "Budi"),\n        User(2, "Sari")\n    )\n    users.forEach { println(it.nama) }\n}',points:['Manfaatkan null safety untuk mencegah NullPointerException.','Gunakan data class untuk model yang ringkas.','Kuasai coroutine untuk operasi asinkron.','Pelajari extension function untuk kode yang ekspresif.']},
+    {id:'json',name:'JSON',icon:'i-braces',cat:'data',catName:'Data',level:'Dasar',short:'Format pertukaran data ringan yang mudah dibaca manusia dan mesin.',desc:'JSON (JavaScript Object Notation) adalah format teks untuk merepresentasikan data terstruktur. Ia menjadi standar de facto untuk komunikasi API modern.',example:'{\n  "nama": "Lanzz Informatika",\n  "versi": 2,\n  "aktif": true,\n  "topik": ["HTML", "CSS", "JS"],\n  "author": {\n    "nama": "Lanzz",\n    "kontak": null\n  }\n}',points:['Gunakan tanda kutip ganda untuk key dan string.','Tidak boleh ada trailing comma pada JSON valid.','Gunakan JSON.parse() dan JSON.stringify() di JavaScript.','Validasi struktur JSON sebelum diproses lebih lanjut.']},
+    {id:'xml',name:'XML',icon:'i-file',cat:'data',catName:'Data',level:'Menengah',short:'Bahasa markup untuk menyimpan dan bertukar data terstruktur.',desc:'XML menyimpan data dalam struktur hierarki tag yang dapat didefinisikan sendiri. Banyak digunakan pada konfigurasi, SOAP, SVG, dan sistem enterprise.',example:'&lt;?xml version="1.0" encoding="UTF-8"?&gt;\n&lt;katalog&gt;\n  &lt;buku id="1"&gt;\n    &lt;judul&gt;Belajar HTML&lt;/judul&gt;\n    &lt;penulis&gt;Lanzz&lt;/penulis&gt;\n  &lt;/buku&gt;\n&lt;/katalog&gt;',points:['Setiap tag harus ditutup dengan benar dan bersarang rapi.','Gunakan atribut untuk metadata, elemen untuk konten.','Manfaatkan XSD atau DTD untuk validasi skema.','Untuk data ringan, JSON biasanya lebih efisien.']},
+    {id:'yaml',name:'YAML',icon:'i-file',cat:'data',catName:'Data',level:'Dasar',short:'Format konfigurasi ramah manusia berbasis indentasi.',desc:'YAML adalah format serialisasi data yang mengutamakan keterbacaan. Pilihan utama untuk file konfigurasi CI/CD, Docker Compose, Kubernetes, dan Ansible.',example:'versi: "3.8"\n\nlayanan:\n  web:\n    image: nginx:alpine\n    port:\n      - "80:80"\n    environment:\n      - NODE_ENV=production\n\naktif: true\nlimit: 100',points:['Gunakan spasi, bukan tab, untuk indentasi.','Tanda titik dua diikuti satu spasi sebelum nilai.','Tanda hubung untuk item list, kurawal untuk objek inline.','Hati-hati: nilai seperti yes/no bisa dibaca sebagai boolean.']},
+    {id:'markdown',name:'Markdown',icon:'i-book',cat:'markup',catName:'Markup',level:'Dasar',short:'Bahasa markup ringan untuk menulis dokumen dan README.',desc:'Markdown memungkinkan penulisan dokumen terformat hanya dengan sintaks sederhana berbasis karakter. Standar untuk README repositori, dokumentasi, dan blog statis.',example:'# Judul Utama\n\n## Sub Judul\n\nParagraf dengan **teks tebal** dan *miring*.\n\n- Item pertama\n- Item kedua\n\n[Link](https://example.com)',points:['Gunakan # untuk heading, ## untuk sub-heading.','Tiga backtick untuk blok kode dengan highlight bahasa.','Tabel dibuat dengan pipa dan tanda hubung.','Banyak platform mendukung Markdown + HTML sekaligus.']},
+    {id:'sql',name:'SQL',icon:'i-database',cat:'db',catName:'Database',level:'Dasar',short:'Bahasa standar untuk mengelola database relasional.',desc:'SQL (Structured Query Language) digunakan untuk membuat, membaca, memperbarui, dan menghapus data pada database relasional seperti MySQL, PostgreSQL, dan SQLite.',example:'SELECT u.nama, COUNT(o.id) AS total_order\nFROM users u\nJOIN orders o ON o.user_id = u.id\nWHERE o.status = \'selesai\'\nGROUP BY u.nama\nHAVING COUNT(o.id) &gt; 1\nORDER BY total_order DESC\nLIMIT 10;',points:['Gunakan JOIN untuk menggabungkan data dari beberapa tabel.','Manfaatkan index pada kolom yang sering difilter.','Selalu gunakan WHERE pada UPDATE dan DELETE.','Pelajari EXPLAIN untuk menganalisis performa query.']},
+    {id:'nosql',name:'NoSQL',icon:'i-database',cat:'db',catName:'Database',level:'Menengah',short:'Database non-relasional untuk data fleksibel dan berskala besar.',desc:'NoSQL mencakup beberapa jenis database: dokumen (MongoDB), key-value (Redis), kolom (Cassandra), dan graf (Neo4j).',example:'db.users.insertOne({\n  nama: "Budi",\n  umur: 25,\n  hobi: ["coding", "musik"]\n})\n\ndb.users.find({\n  umur: { $gte: 18 },\n  hobi: "coding"\n})',points:['Dokumen berbentuk JSON/BSON memudahkan pemetaan ke objek.','Denormalisasi umum dilakukan demi kecepatan baca.','Perhatikan konsistensi data (eventual consistency).','Pilih jenis NoSQL sesuai pola akses data, bukan tren.']},
+    {id:'graphql',name:'GraphQL',icon:'i-globe',cat:'api',catName:'API',level:'Lanjut',short:'Bahasa query API yang memungkinkan klien meminta data spesifik.',desc:'GraphQL memungkinkan klien menentukan tepat data apa yang dibutuhkan, menghindari over-fetching dan under-fetching.',example:'type User {\n  id: ID!\n  nama: String!\n  postingan: [Post!]!\n}\n\ntype Query {\n  user(id: ID!): User\n}',points:['Skema bersifat strongly-typed dan menjadi kontrak API.','Gunakan resolver efisien untuk menghindari N+1 query.','Manfaatkan batching dan caching (mis. DataLoader).','Pertimbangkan batas kedalaman query untuk keamanan.']},
+    {id:'rest',name:'REST API',icon:'i-globe',cat:'api',catName:'API',level:'Menengah',short:'Gaya arsitektur API berbasis HTTP yang sederhana dan luas dipakai.',desc:'REST menggunakan metode HTTP (GET, POST, PUT, DELETE) dan URL sebagai identitas resource. Sederhana, stateless, dan mudah di-cache.',example:'GET    /api/users\nGET    /api/users/1\nPOST   /api/users\nPUT    /api/users/1\nDELETE /api/users/1\n\nAuthorization: Bearer TOKEN\nContent-Type: application/json',points:['Gunakan kata benda pada URL, bukan kata kerja.','Manfaatkan kode status HTTP dengan tepat (200, 201, 404, 500).','API harus stateless; autentikasi lewat token tiap request.','Sediakan pagination, filtering, dan versioning.']},
+    {id:'git',name:'Git',icon:'i-layers',cat:'tools',catName:'Tools',level:'Dasar',short:'Sistem kontrol versi terdistribusi untuk melacak perubahan kode.',desc:'Git memungkinkan banyak developer bekerja pada proyek yang sama tanpa saling menimpa. Setiap perubahan tercatat, dapat dibandingkan, dikembalikan, dan digabungkan.',example:'git init\ngit add .\ngit commit -m "feat: tambah halaman materi"\ngit branch fitur-kuis\ngit checkout fitur-kuis\ngit push origin fitur-kuis\n\ngit log --oneline --graph',points:['Commit kecil dan sering dengan pesan yang jelas.','Gunakan branch untuk setiap fitur atau perbaikan.','Pelajari rebase vs merge untuk riwayat yang rapi.','Jangan pernah commit file rahasia atau kredensial.']},
+    {id:'bash',name:'Bash / Shell',icon:'i-terminal',cat:'tools',catName:'Tools',level:'Menengah',short:'Antarmuka baris perintah untuk mengotomatisasi tugas sistem.',desc:'Bash adalah shell populer di Linux dan macOS. Menguasainya mempercepat navigasi file, pemrosesan teks, deployment, dan penulisan skrip otomatisasi.',example:'#!/bin/bash\nset -euo pipefail\n\nfor file in *.txt; do\n  echo "Memproses: $file"\n  wc -l "$file"\ndone\n\ncat log.txt | grep "ERROR" | sort | uniq -c',points:['Selalu kutip variabel: "$var" untuk mencegah word splitting.','Gunakan set -euo pipefail untuk skrip yang lebih aman.','Manfaatkan pipe dan utilitas seperti grep, awk, sed.','Beri izin eksekusi dengan chmod +x script.sh.']},
+    {id:'regex',name:'Regex',icon:'i-search',cat:'tools',catName:'Tools',level:'Menengah',short:'Pola pencarian teks yang sangat kuat untuk validasi dan parsing.',desc:'Regular Expression (Regex) adalah bahasa pola untuk mencocokkan, mencari, dan memanipulasi teks. Digunakan untuk validasi input, parsing log, dan transformasi string.',example:'const email = /^[\\w.+-]+@[\\w-]+\\.[\\w.]+$/;\nconsole.log(email.test("user@mail.com"));\n\nconst teks = "Harga: 25000 rupiah";\nconst angka = teks.match(/\\d+/g);\nconsole.log(angka);',points:['Gunakan flag g untuk global, i untuk case-insensitive.','Karakter khusus harus di-escape dengan backslash.','Gunakan grup tangkap () untuk mengekstrak bagian.','Uji regex di tool seperti regex101 sebelum dipakai.']},
+    {id:'http',name:'HTTP & HTTPS',icon:'i-globe',cat:'net',catName:'Network',level:'Dasar',short:'Protokol komunikasi antara klien dan server di web.',desc:'HTTP adalah protokol request-response yang menjadi dasar komunikasi web. HTTPS adalah versinya yang terenkripsi dengan TLS, melindungi data dari penyadapan.',example:'GET /materi/html HTTP/1.1\nHost: lanzz.dev\nAccept: text/html\nUser-Agent: Mozilla/5.0\n\nHTTP/1.1 200 OK\nContent-Type: text/html; charset=utf-8\nCache-Control: max-age=3600',points:['Pahami metode: GET, POST, PUT, PATCH, DELETE.','Kode status 2xx sukses, 3xx redirect, 4xx klien, 5xx server.','Gunakan HTTPS di mana pun, terutama untuk data sensitif.','Manfaatkan header caching untuk performa.']},
+    {id:'react',name:'React',icon:'i-layers',cat:'fw',catName:'Framework',level:'Menengah',short:'Library JavaScript untuk membangun antarmuka berbasis komponen.',desc:'React memungkinkan pembuatan UI dari komponen yang dapat digunakan ulang. Dengan virtual DOM dan model reaktif, pembaruan tampilan menjadi efisien dan terstruktur.',example:'import { useState } from "react";\n\nfunction Counter() {\n  const [count, setCount] = useState(0);\n  return (\n    &lt;button onClick={() =&gt; setCount(count + 1)}&gt;\n      Klik: {count}\n    &lt;/button&gt;\n  );\n}',points:['Komponen adalah fungsi yang mengembalikan JSX.','Gunakan useState dan useEffect dengan bijak.','Angkat state ke komponen induk bila perlu dibagi.','Optimalkan dengan memo dan useMemo saat relevan.']},
+    {id:'vue',name:'Vue.js',icon:'i-layers',cat:'fw',catName:'Framework',level:'Dasar',short:'Framework JavaScript progresif yang ramah pemula.',desc:'Vue menawarkan pendekatan progresif: bisa dipakai sebagai library kecil maupun framework lengkap. Dokumentasinya sangat baik dan reaktivitasnya terasa alami.',example:'&lt;script setup&gt;\nimport { ref } from "vue";\nconst count = ref(0);\n&lt;/script&gt;\n\n&lt;template&gt;\n  &lt;button @click="count++"&gt;Klik: {{ count }}&lt;/button&gt;\n&lt;/template&gt;',points:['Composition API membuat logika lebih mudah dipakai ulang.','Direktif v-if, v-for, v-bind, v-on adalah inti template.','Gunakan computed untuk nilai turunan yang efisien.','Pinia cocok untuk manajemen state pada proyek besar.']},
+    {id:'node',name:'Node.js',icon:'i-terminal',cat:'fw',catName:'Framework',level:'Menengah',short:'Runtime JavaScript di sisi server berbasis mesin V8.',desc:'Node.js memungkinkan JavaScript berjalan di luar browser. Model non-blocking I/O-nya sangat efisien untuk aplikasi real-time dan API.',example:'const http = require("http");\n\nconst server = http.createServer((req, res) =&gt; {\n  res.writeHead(200, { "Content-Type": "application/json" });\n  res.end(JSON.stringify({ pesan: "Halo" }));\n});\n\nserver.listen(3000);',points:['Gunakan npm atau pnpm untuk mengelola paket.','Pahami event loop dan operasi non-blocking.','Express atau Fastify mempercepat pembuatan API.','Tangani error asinkron agar server tidak crash.']},
+    {id:'tailwind',name:'Tailwind CSS',icon:'i-palette',cat:'fw',catName:'Framework',level:'Dasar',short:'Framework CSS utility-first untuk membangun UI dengan cepat.',desc:'Tailwind menyediakan kelas utilitas kecil yang bisa dikombinasikan langsung di HTML. Mempercepat prototyping dan menjaga konsistensi desain.',example:'&lt;div class="max-w-md mx-auto p-6 rounded-2xl bg-white/10 backdrop-blur border border-white/10"&gt;\n  &lt;h2 class="text-xl font-bold text-white"&gt;Judul&lt;/h2&gt;\n  &lt;p class="mt-2 text-sm text-slate-300"&gt;Deskripsi.&lt;/p&gt;\n&lt;/div&gt;',points:['Gunakan utility class langsung, hindari CSS kustom berlebihan.','Manfaatkan @apply untuk komponen yang sering diulang.','Konfigurasikan tema di tailwind.config.js.','Purge konten agar ukuran CSS tetap kecil di produksi.']},
+    {id:'bootstrap',name:'Bootstrap',icon:'i-layers',cat:'fw',catName:'Framework',level:'Dasar',short:'Framework CSS populer dengan komponen siap pakai.',desc:'Bootstrap menyediakan grid responsif dan banyak komponen siap pakai seperti navbar, modal, tombol, dan form.',example:'&lt;div class="container"&gt;\n  &lt;div class="row g-3"&gt;\n    &lt;div class="col-12 col-md-6"&gt;\n      &lt;div class="card shadow-sm"&gt;\n        &lt;div class="card-body"&gt;\n          &lt;h5 class="card-title"&gt;Judul&lt;/h5&gt;\n          &lt;button class="btn btn-primary"&gt;Aksi&lt;/button&gt;\n        &lt;/div&gt;\n      &lt;/div&gt;\n    &lt;/div&gt;\n  &lt;/div&gt;\n&lt;/div&gt;',points:['Sistem grid 12 kolom memudahkan tata letak responsif.','Gunakan komponen bawaan untuk konsistensi.','Override variabel SCSS untuk kustomisasi tema.','Import hanya bagian yang dipakai agar bundle ringan.']},
+    {id:'docker',name:'Docker',icon:'i-layers',cat:'devops',catName:'DevOps',level:'Menengah',short:'Platform kontainerisasi untuk konsistensi lingkungan aplikasi.',desc:'Docker mengemas aplikasi beserta dependensinya ke dalam kontainer ringan. Hasilnya, aplikasi berjalan identik di laptop developer maupun server produksi.',example:'FROM node:20-alpine\nWORKDIR /app\nCOPY package*.json ./\nRUN npm ci --only=production\nCOPY . .\nEXPOSE 3000\nCMD ["node", "server.js"]\n\ndocker build -t app-ku .\ndocker run -p 3000:3000 app-ku',points:['Gunakan multi-stage build untuk image yang lebih kecil.','Manfaatkan .dockerignore agar konteks build ringan.','Jangan simpan rahasia di image; pakai environment variable.','Docker Compose memudahkan orkestrasi multi-kontainer.']},
+    {id:'kubernetes',name:'Kubernetes',icon:'i-layers',cat:'devops',catName:'DevOps',level:'Lanjut',short:'Orkestrasi kontainer untuk skala produksi.',desc:'Kubernetes mengelola kontainer di banyak server: deployment, scaling, self-healing, dan service discovery.',example:'apiVersion: apps/v1\nkind: Deployment\nmetadata:\n  name: web\nspec:\n  replicas: 3\n  selector:\n    matchLabels: { app: web }\n  template:\n    spec:\n      containers:\n      - name: web\n        image: nginx:alpine',points:['Pahami Pod, Deployment, Service, dan Ingress.','Gunakan ConfigMap dan Secret untuk konfigurasi.','Terapkan resource limits untuk stabilitas.','Manfaatkan Helm untuk manajemen manifest.']},
+    {id:'linux',name:'Linux',icon:'i-terminal',cat:'tools',catName:'Tools',level:'Dasar',short:'Sistem operasi open-source yang mendominasi server.',desc:'Linux adalah keluarga sistem operasi berbasis Unix yang menjadi tulang punggung sebagian besar server, cloud, dan perangkat Android.',example:'ls -la\ncd /var/log\ntail -f syslog\nps aux | grep nginx\nkill -9 1234\nchmod 755 script.sh\nchown user:group file.txt',points:['Kuasai perintah dasar: ls, cd, grep, find, chmod.','Pahami struktur direktori FHS (/etc, /var, /home).','Gunakan man untuk melihat manual setiap perintah.','Pelajari systemd untuk mengelola service.']},
+    {id:'security',name:'Web Security',icon:'i-shield',cat:'net',catName:'Network',level:'Lanjut',short:'Melindungi aplikasi web dari serangan umum.',desc:'Keamanan web mencakup praktik untuk melindungi aplikasi dari ancaman seperti XSS, SQL injection, CSRF. OWASP Top 10 adalah referensi wajib.',example:'element.textContent = userInput;\n\nawait db.query(\n  "SELECT * FROM users WHERE email = $1",\n  [email]\n);\n\nconst hash = await bcrypt.hash(pwd, 12);',points:['Selalu validasi dan sanitasi input pengguna.','Gunakan HTTPS dan header keamanan (CSP, HSTS).','Simpan password dengan hashing bcrypt/argon2.','Pelajari OWASP Top 10 secara berkala.']}
+  ];
+
+  var PATHS = [
+    {id:'frontend',name:'Frontend Developer',icon:'i-palette',desc:'Bangun antarmuka web modern yang responsif dan interaktif.',steps:['html','css','javascript','git','typescript','tailwind','react']},
+    {id:'backend',name:'Backend Developer',icon:'i-terminal',desc:'Rancang API, layanan, dan logika server yang andal.',steps:['python','node','sql','rest','docker','security']},
+    {id:'data',name:'Data & Database',icon:'i-database',desc:'Kelola data dari penyimpanan sampai analisis.',steps:['json','sql','nosql','python']},
+    {id:'devops',name:'DevOps Engineer',icon:'i-layers',desc:'Otomatisasi infrastruktur, deployment, dan monitoring.',steps:['linux','bash','git','docker','yaml','kubernetes']},
+    {id:'mobile',name:'Mobile Developer',icon:'i-rocket',desc:'Kembangkan aplikasi Android dan iOS modern.',steps:['javascript','kotlin','java','rest','git']}
+  ];
+
+  var BADGES = [
+    {id:'first',name:'Langkah Pertama',desc:'Selesaikan topik pertamamu',icon:'i-star',check:function(s){return s.topicsRead.length>=1;}},
+    {id:'explorer',name:'Penjelajah',desc:'Selesaikan 5 topik',icon:'i-map',check:function(s){return s.topicsRead.length>=5;}},
+    {id:'scholar',name:'Cendekia',desc:'Selesaikan 15 topik',icon:'i-book',check:function(s){return s.topicsRead.length>=15;}},
+    {id:'master',name:'Master',desc:'Selesaikan 25 topik',icon:'i-trophy',check:function(s){return s.topicsRead.length>=25;}},
+    {id:'quizzer',name:'Quizzer',desc:'Selesaikan kuis pertama',icon:'i-grad',check:function(s){return s.quizStats.played>=1;}},
+    {id:'perfect',name:'Perfect',desc:'Skor 100% di kuis',icon:'i-award',check:function(s){return s.quizStats.perfect>=1;}},
+    {id:'streak3',name:'Konsisten',desc:'Streak 3 hari',icon:'i-flame',check:function(s){return s.streak>=3;}},
+    {id:'streak7',name:'Disiplin',desc:'Streak 7 hari',icon:'i-flame',check:function(s){return s.streak>=7;}},
+    {id:'bm5',name:'Kolektor',desc:'Bookmark 5 topik',icon:'i-bookmark',check:function(s){return s.bookmarks.length>=5;}},
+    {id:'daily1',name:'Harian',desc:'Selesaikan tantangan harian',icon:'i-target',check:function(s){return !!s.dailyDone;}},
+    {id:'coder',name:'Coder',desc:'Coba Playground',icon:'i-terminal',check:function(s){return s.usedPlayground;}},
+    {id:'lvl5',name:'Naik Kelas',desc:'Capai Level 5',icon:'i-star',check:function(s){return levelFromXP(s.xp).level>=5;}}
+  ];
+
+  var GLOSSARY = [
+    {t:'API',d:'Application Programming Interface — antarmuka yang memungkinkan dua program berkomunikasi.',c:'Konsep'},
+    {t:'DOM',d:'Document Object Model — representasi pohon dari halaman HTML yang bisa dimanipulasi JavaScript.',c:'Web'},
+    {t:'Closure',d:'Fungsi yang mengingat variabel dari scope tempat ia dibuat.',c:'JavaScript'},
+    {t:'Hoisting',d:'Perilaku JavaScript mengangkat deklarasi ke atas scope-nya.',c:'JavaScript'},
+    {t:'REST',d:'Gaya arsitektur API berbasis HTTP dengan URL sebagai identitas resource.',c:'API'},
+    {t:'GraphQL',d:'Bahasa query API yang memungkinkan klien meminta data spesifik.',c:'API'},
+    {t:'ORM',d:'Object-Relational Mapping — memetakan tabel database ke objek di kode.',c:'Database'},
+    {t:'Index',d:'Struktur data yang mempercepat pencarian di database.',c:'Database'},
+    {t:'Transaksi',d:'Sekumpulan operasi database yang harus berhasil semua atau gagal semua.',c:'Database'},
+    {t:'Container',d:'Paket ringan berisi aplikasi dan dependensinya, berjalan terisolasi.',c:'DevOps'},
+    {t:'Microservices',d:'Arsitektur aplikasi yang dipecah menjadi layanan kecil independen.',c:'Arsitektur'},
+    {t:'CI/CD',d:'Continuous Integration / Continuous Delivery — otomatisasi build, test, rilis.',c:'DevOps'},
+    {t:'Pull Request',d:'Permintaan menggabungkan perubahan dari satu branch ke branch lain.',c:'Tools'},
+    {t:'Async/Await',d:'Sintaks JavaScript untuk menulis kode asinkron seperti kode sinkron.',c:'JavaScript'},
+    {t:'Promise',d:'Objek yang merepresentasikan hasil operasi asinkron di masa depan.',c:'JavaScript'},
+    {t:'Regex',d:'Regular Expression — pola untuk mencocokkan dan memanipulasi teks.',c:'Tools'},
+    {t:'HTTP Status',d:'Kode angka hasil request: 200 OK, 404 Not Found, 500 Server Error.',c:'Network'},
+    {t:'Cache',d:'Penyimpanan sementara data agar akses berikutnya lebih cepat.',c:'Konsep'},
+    {t:'Recursion',d:'Fungsi yang memanggil dirinya sendiri untuk menyelesaikan sub-masalah.',c:'Programming'},
+    {t:'Big-O',d:'Notasi untuk menggambarkan kompleksitas waktu atau ruang algoritma.',c:'Programming'},
+    {t:'Hash Map',d:'Struktur data key-value dengan waktu akses rata-rata O(1).',c:'Programming'},
+    {t:'Stack',d:'Struktur data LIFO (Last In First Out).',c:'Programming'},
+    {t:'Queue',d:'Struktur data FIFO (First In First Out).',c:'Programming'},
+    {t:'Virtual DOM',d:'Representasi in-memory dari DOM asli untuk optimasi rendering.',c:'Framework'},
+    {t:'SSR',d:'Server-Side Rendering — HTML dirender di server sebelum dikirim ke browser.',c:'Web'},
+    {t:'CDN',d:'Content Delivery Network — jaringan server global untuk konten lebih cepat.',c:'Network'},
+    {t:'JWT',d:'JSON Web Token — standar token untuk autentikasi stateless.',c:'Security'},
+    {t:'XSS',d:'Cross-Site Scripting — serangan menyuntikkan skrip berbahaya ke halaman web.',c:'Security'},
+    {t:'SQL Injection',d:'Serangan menyuntikkan SQL berbahaya lewat input yang tidak divalidasi.',c:'Security'}
+  ];
+
+  var CHEATSHEET = [
+    {id:'html',name:'HTML',icon:'i-code',code:'&lt;!DOCTYPE html&gt;\n&lt;html&gt;\n  &lt;head&gt;&lt;title&gt;Judul&lt;/title&gt;&lt;/head&gt;\n  &lt;body&gt;\n    &lt;h1&gt;Heading&lt;/h1&gt;\n    &lt;p&gt;Paragraf&lt;/p&gt;\n    &lt;a href="#"&gt;Link&lt;/a&gt;\n    &lt;img src="x.png" alt="alt"&gt;\n    &lt;ul&gt;&lt;li&gt;Item&lt;/li&gt;&lt;/ul&gt;\n  &lt;/body&gt;\n&lt;/html&gt;'},
+    {id:'css',name:'CSS',icon:'i-palette',code:'.box {\n  color: #fff;\n  background: #333;\n  padding: 16px;\n  margin: 10px auto;\n  border: 1px solid #ccc;\n  border-radius: 12px;\n  display: flex;\n  gap: 12px;\n}\n\n.box:hover { transform: scale(1.02); }'},
+    {id:'js',name:'JavaScript',icon:'i-bolt',code:'const nama = "Lanzz";\nlet umur = 20;\n\nconst sapa = (n) =&gt; `Halo ${n}`;\n\n[1,2,3].map(x =&gt; x * 2);\n[1,2,3].filter(x =&gt; x &gt; 1);\n[1,2,3].reduce((a,b) =&gt; a+b, 0);\n\nasync function get() {\n  const r = await fetch(url);\n  return r.json();\n}'},
+    {id:'python',name:'Python',icon:'i-terminal',code:'nama = "Lanzz"\numur = 20\n\ndef sapa(n):\n    return f"Halo {n}"\n\n[x**2 for x in range(5)]\n\nuser = {"nama": "Budi", "umur": 20}'},
+    {id:'sql',name:'SQL',icon:'i-database',code:'SELECT nama, umur FROM users\nWHERE umur &gt;= 18\nORDER BY nama ASC\nLIMIT 10;\n\nSELECT u.nama, o.total\nFROM users u\nJOIN orders o ON o.user_id = u.id;\n\nINSERT INTO users (nama) VALUES (\'Budi\');\nUPDATE users SET umur = 21 WHERE id = 1;\nDELETE FROM users WHERE id = 99;'},
+    {id:'git',name:'Git',icon:'i-layers',code:'git init\ngit clone URL\ngit status\ngit add .\ngit commit -m "pesan"\ngit push origin main\ngit pull\ngit branch fitur\ngit checkout fitur\ngit merge fitur\ngit log --oneline'},
+    {id:'bash',name:'Bash',icon:'i-terminal',code:'ls -la\ncd /path\ntail -f app.log\ngrep "ERROR" log.txt\nfind . -name "*.js"\nchmod +x script.sh\nps aux | grep node\nkill -9 1234\ncat file.txt | sort | uniq'},
+    {id:'json',name:'JSON',icon:'i-braces',code:'{\n  "nama": "Lanzz",\n  "umur": 20,\n  "aktif": true,\n  "hobi": ["coding", "musik"],\n  "alamat": {\n    "kota": "Jakarta",\n    "kode": null\n  }\n}'},
+    {id:'yaml',name:'YAML',icon:'i-file',code:'versi: "3.8"\n\nlayanan:\n  web:\n    image: nginx:alpine\n    port:\n      - "80:80"\n    env:\n      - NODE_ENV=production\n\naktif: true\nlimit: 100'},
+    {id:'regex',name:'Regex',icon:'i-search',code:'\\d    digit\n\\w    word char\n\\s    whitespace\n.     apa saja\n^ $   awal/akhir\n* + ? kuantifier\n\n/\\d+/g              angka\n/^[\\w.]+@\\w+\\.\\w+$/  email'}
+  ];
+
+  var QUIZ = [
+    {q:'Apa kepanjangan dari HTML?',o:['HyperText Markup Language','High Tech Modern Language','Home Tool Markup Language','Hyperlink Text Mode Language'],a:0},
+    {q:'Format data mana yang paling umum digunakan pada API modern?',o:['XML','CSV','JSON','YAML'],a:2},
+    {q:'Perintah SQL untuk mengambil data dari tabel adalah…',o:['GET','SELECT','FETCH','SHOW'],a:1},
+    {q:'Di JavaScript, kata kunci untuk nilai yang tidak bisa diubah adalah…',o:['var','let','const','static'],a:2},
+    {q:'Sistem kontrol versi yang paling banyak digunakan saat ini adalah…',o:['SVN','Mercurial','Git','CVS'],a:2},
+    {q:'Pada YAML, indentasi yang benar menggunakan…',o:['Tab','Spasi','Titik koma','Koma'],a:1},
+    {q:'Metode HTTP untuk membuat resource baru adalah…',o:['GET','POST','PUT','DELETE'],a:1},
+    {q:'Sintaks Python untuk mencetak teks ke layar adalah…',o:['echo "hi"','console.log("hi")','print("hi")','printf("hi")'],a:2},
+    {q:'File Docker image didefinisikan dalam file bernama…',o:['docker.yml','Dockerfile','container.json','image.cfg'],a:1},
+    {q:'CSS Grid dan Flexbox digunakan untuk…',o:['Mengatur tata letak','Menyimpan data','Mengelola server','Menulis query'],a:0},
+    {q:'Komentar satu baris pada JavaScript ditulis dengan…',o:['# komentar','// komentar','-- komentar','&lt;!-- komentar --&gt;'],a:1},
+    {q:'Node.js dibangun di atas mesin JavaScript bernama…',o:['SpiderMonkey','V8','Chakra','Nashorn'],a:1},
+    {q:'Struktur data LIFO (Last In First Out) disebut…',o:['Queue','Stack','Tree','Graph'],a:1},
+    {q:'Big-O dari binary search adalah…',o:['O(n)','O(n²)','O(log n)','O(1)'],a:2},
+    {q:'Format file konfigurasi Docker Compose biasanya berekstensi…',o:['.json','.yaml/.yml','.ini','.conf'],a:1}
+  ];
+
+  var DAILY_POOL = [
+    {q:'Apa kepanjangan CSS?',o:['Cascading Style Sheets','Computer Style System','Creative Style Sheet','Coded Style Syntax'],a:0},
+    {q:'Perintah Git untuk melihat status perubahan adalah…',o:['git log','git status','git diff','git show'],a:1},
+    {q:'Tipe data JSON yang TIDAK valid adalah…',o:['String','Number','Function','Boolean'],a:2},
+    {q:'HTTP status 404 berarti…',o:['OK','Not Found','Server Error','Redirect'],a:1},
+    {q:'Bahasa yang berjalan di browser secara native adalah…',o:['Python','Java','JavaScript','PHP'],a:2},
+    {q:'Redis menyimpan data di…',o:['Disk','Memori','Cloud','Tape'],a:1},
+    {q:'Keyword Python untuk mendefinisikan fungsi adalah…',o:['func','function','def','fn'],a:2}
+  ];
+
+  function $(sel, ctx) { return (ctx || document).querySelector(sel); }
+  function $$(sel, ctx) { return Array.prototype.slice.call((ctx || document).querySelectorAll(sel)); }
+  function esc(s) {
+    return String(s).replace(/[&<>"']/g, function(m){
+      if (m === '&') return '&amp;';
+      if (m === '<') return '&lt;';
+      if (m === '>') return '&gt;';
+      if (m === '"') return '&quot;';
+      return '&#39;';
+    });
+  }
+  function icon(id, cls) {
+    return '<svg' + (cls ? ' class="' + cls + '"' : '') + '><use href="#' + id + '"/></svg>';
+  }
+  function todayKey() {
+    var d = new Date();
+    return d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-' + String(d.getDate()).padStart(2, '0');
+  }
+  function yesterdayKey() {
+    var d = new Date();
+    d.setDate(d.getDate() - 1);
+    return d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-' + String(d.getDate()).padStart(2, '0');
+  }
+  function shuffle(arr) {
+    var a = arr.slice();
+    for (var i = a.length - 1; i > 0; i--) {
+      var j = Math.floor(Math.random() * (i + 1));
+      var t = a[i]; a[i] = a[j]; a[j] = t;
+    }
+    return a;
+  }
+  function levelFromXP(xp) {
+    var level = Math.floor(xp / 150) + 1;
+    var cur = xp % 150;
+    return { level: level, cur: cur, need: 150, pct: (cur / 150) * 100 };
+  }
+  function fuzzyScore(text, q) {
+    text = String(text).toLowerCase(); q = String(q).toLowerCase();
+    if (!q) return 0;
+    if (text.indexOf(q) !== -1) {
+      return text.startsWith(q) ? 1000 - q.length : 700 - q.length;
+    }
+    var ti = 0, score = 0, streak = 0;
+    for (var i = 0; i < q.length; i++) {
+      var idx = text.indexOf(q[i], ti);
+      if (idx === -1) return -1;
+      if (idx === ti) streak++; else streak = 0;
+      score += 10 + streak * 3 - (idx - ti);
+      ti = idx + 1;
+    }
+    return score;
+  }
+  function findTopic(id) {
+    for (var i = 0; i < TOPICS.length; i++) if (TOPICS[i].id === id) return TOPICS[i];
+    return null;
+  }
+
+  var STORAGE_KEY = 'lanzz-informatika-v1';
+  var defaultState = {
+    xp: 0, topicsRead: [], bookmarks: [], badges: [],
+    streak: 0, lastVisit: null, dailyDone: null,
+    quizStats: { played: 0, perfect: 0, bestScore: 0 },
+    usedPlayground: false,
+    settings: { theme: null, accent: 'indigo', sound: true },
+    playground: { html: '', css: '', js: '', current: 'html' }
+  };
+  function loadState() {
+    try {
+      var raw = localStorage.getItem(STORAGE_KEY);
+      if (!raw) return JSON.parse(JSON.stringify(defaultState));
+      var parsed = JSON.parse(raw);
+      var result = JSON.parse(JSON.stringify(defaultState));
+      for (var k in parsed) {
+        if (k === 'settings') { for (var sk in parsed.settings) result.settings[sk] = parsed.settings[sk]; }
+        else if (k === 'quizStats') { for (var qk in parsed.quizStats) result.quizStats[qk] = parsed.quizStats[qk]; }
+        else if (k === 'playground') { for (var pk in parsed.playground) result.playground[pk] = parsed.playground[pk]; }
+        else result[k] = parsed[k];
+      }
+      return result;
+    } catch (e) { return JSON.parse(JSON.stringify(defaultState)); }
+  }
+  var S = loadState();
+  function saveState() { try { localStorage.setItem(STORAGE_KEY, JSON.stringify(S)); } catch (e) {} }
+
+  var audioCtx = null;
+  function beep(freq, dur, vol) {
+    if (!S.settings.sound) return;
+    try {
+      if (!audioCtx) {
+        var Ctx = window.AudioContext || window.webkitAudioContext;
+        if (!Ctx) return;
+        audioCtx = new Ctx();
+      }
+      var o = audioCtx.createOscillator();
+      var g = audioCtx.createGain();
+      o.type = 'sine';
+      o.frequency.value = freq;
+      g.gain.setValueAtTime(vol || 0.05, audioCtx.currentTime);
+      g.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + (dur || 0.1));
+      o.connect(g); g.connect(audioCtx.destination);
+      o.start(); o.stop(audioCtx.currentTime + (dur || 0.1));
+    } catch (e) {}
+  }
+  var sfx = {
+    click: function() { beep(660, 0.05, 0.03); },
+    success: function() { beep(720, 0.08, 0.05); setTimeout(function(){ beep(960, 0.12, 0.05); }, 80); },
+    error: function() { beep(220, 0.14, 0.06); },
+    xp: function() { beep(880, 0.07, 0.04); setTimeout(function(){ beep(1180, 0.1, 0.04); }, 70); },
+    badge: function() { [523,659,784,1047].forEach(function(f, i){ setTimeout(function(){ beep(f, 0.13, 0.05); }, i*90); }); }
+  };
+
+  var toasts = $('#toasts');
+  function toast(title, desc, type) {
+    if (!toasts) return;
+    type = type || 'info';
+    var el = document.createElement('div');
+    el.className = 'toast ' + type;
+    var icons = { success: 'i-check', info: 'i-bolt', warn: 'i-bolt', xp: 'i-star' };
+    el.innerHTML = '<div class="tico">' + icon(icons[type] || 'i-bolt') + '</div>' +
+      '<div class="ttxt"><b>' + esc(title) + '</b>' + (desc ? '<span>' + esc(desc) + '</span>' : '') + '</div>';
+    toasts.appendChild(el);
+    setTimeout(function() {
+      el.classList.add('out');
+      setTimeout(function() { if (el.parentNode) el.parentNode.removeChild(el); }, 300);
+    }, 3200);
+  }
+
+  var confettiCanvas = $('#confetti');
+  var confettiRAF = null;
+  function fireConfetti() {
+    if (!confettiCanvas) return;
+    var c = confettiCanvas;
+    c.width = window.innerWidth; c.height = window.innerHeight;
+    c.classList.add('show');
+    var ctx = c.getContext('2d');
+    var parts = [];
+    var colors = ['#6366f1','#8b5cf6','#22d3ee','#f59e0b','#22c55e','#ec4899','#f43f5e'];
+    for (var i = 0; i < 120; i++) {
+      parts.push({ x: Math.random()*c.width, y: -20 - Math.random()*c.height*0.4, w: 6+Math.random()*8, h: 4+Math.random()*6,
+        vx: (Math.random()-0.5)*2.5, vy: 2+Math.random()*3.5, rot: Math.random()*Math.PI*2, vr: (Math.random()-0.5)*0.22,
+        color: colors[Math.floor(Math.random()*colors.length)], life: 1 });
+    }
+    if (confettiRAF) cancelAnimationFrame(confettiRAF);
+    function draw() {
+      ctx.clearRect(0, 0, c.width, c.height);
+      var alive = false;
+      parts.forEach(function(p) {
+        p.x += p.vx; p.y += p.vy; p.vy += 0.06; p.rot += p.vr;
+        if (p.y > c.height + 20) p.life = 0;
+        if (p.life) {
+          alive = true;
+          ctx.save(); ctx.translate(p.x, p.y); ctx.rotate(p.rot);
+          ctx.fillStyle = p.color; ctx.fillRect(-p.w/2, -p.h/2, p.w, p.h);
+          ctx.restore();
+        }
+      });
+      if (alive) confettiRAF = requestAnimationFrame(draw);
+      else { c.classList.remove('show'); confettiRAF = null; }
+    }
+    draw();
+  }
+
+  function updateXPBar() {
+    var l = levelFromXP(S.xp);
+    var lvl = $('#lvlNum'); if (lvl) lvl.textContent = l.level;
+    var fill = $('#xpFill'); if (fill) fill.style.width = l.pct + '%';
+    var num = $('#xpNum'); if (num) num.textContent = l.cur + ' / ' + l.need + ' XP';
+    var st = $('#streakNum'); if (st) st.textContent = S.streak;
+    var bm = $('#bmNum'); if (bm) bm.textContent = S.bookmarks.length;
+  }
+  function addXP(amount, reason) {
+    var before = levelFromXP(S.xp);
+    S.xp += amount;
+    var after = levelFromXP(S.xp);
+    updateXPBar();
+    sfx.xp();
+    toast('+' + amount + ' XP', reason || '', 'xp');
+    if (after.level > before.level) {
+      setTimeout(function() {
+        toast('Naik Level!', 'Kamu sekarang Level ' + after.level, 'success');
+        sfx.badge(); fireConfetti();
+      }, 450);
+    }
+    saveState(); checkBadges(); renderProfile();
+  }
+  function checkBadges() {
+    var newOnes = [];
+    BADGES.forEach(function(b) {
+      if (S.badges.indexOf(b.id) === -1 && b.check(S)) { S.badges.push(b.id); newOnes.push(b); }
+    });
+    if (newOnes.length) {
+      saveState();
+      newOnes.forEach(function(b, i) {
+        setTimeout(function() { toast('Badge Baru: ' + b.name, b.desc, 'success'); sfx.badge(); }, i * 600);
+      });
+      renderBadges();
+    }
+  }
+
+  function updateStreak() {
+    var t = todayKey();
+    if (S.lastVisit === t) return;
+    if (S.lastVisit === yesterdayKey()) S.streak++;
+    else S.streak = 1;
+    S.lastVisit = t;
+    saveState(); updateXPBar();
+  }
+
+  (function settingsInit() {
+    var html = document.documentElement;
+    var themeBtn = $('#themeBtn'), themeIcon = $('#themeIcon');
+    var accentBtn = $('#accentBtn'), accentPop = $('#accentPop');
+    var soundBtn = $('#soundBtn'), soundIcon = $('#soundIcon');
+
+    function applyTheme(t) {
+      html.setAttribute('data-theme', t);
+      if (themeIcon) themeIcon.innerHTML = '<use href="#' + (t === 'dark' ? 'i-moon' : 'i-sun') + '"/>';
+      S.settings.theme = t; saveState();
+      var meta = document.querySelector('meta[name="theme-color"]');
+      if (meta) meta.setAttribute('content', t === 'dark' ? '#0a0f1f' : '#f4f6fc');
+    }
+    function applyAccent(a) {
+      html.setAttribute('data-accent', a);
+      S.settings.accent = a; saveState();
+      if (accentPop) $$('.accent-swatch', accentPop).forEach(function(s) { s.classList.toggle('active', s.dataset.acc === a); });
+    }
+    function applySound(on) {
+      if (soundIcon) soundIcon.innerHTML = '<use href="#' + (on ? 'i-volume' : 'i-volume-off') + '"/>';
+      S.settings.sound = on; saveState();
+    }
+    if (accentPop) {
+      accentPop.innerHTML = ['indigo','emerald','rose','amber','cyan','violet','blue','lime'].map(function(a) {
+        return '<button class="accent-swatch" data-acc="' + a + '" aria-label="' + a + '"></button>';
+      }).join('');
+    }
+    var prefersLight = window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches;
+    var initialTheme = S.settings.theme || (prefersLight ? 'light' : 'dark');
+    applyTheme(initialTheme);
+    applyAccent(S.settings.accent || 'indigo');
+    applySound(S.settings.sound !== false);
+
+    if (themeBtn) themeBtn.addEventListener('click', function() { sfx.click(); applyTheme(html.getAttribute('data-theme') === 'dark' ? 'light' : 'dark'); });
+    if (soundBtn) soundBtn.addEventListener('click', function() { applySound(!S.settings.sound); if (S.settings.sound) sfx.click(); });
+    if (accentBtn) accentBtn.addEventListener('click', function(e) { e.stopPropagation(); sfx.click(); if (accentPop) accentPop.classList.toggle('open'); });
+    if (accentPop) accentPop.addEventListener('click', function(e) {
+      var b = e.target.closest('.accent-swatch'); if (!b) return;
+      sfx.click(); applyAccent(b.dataset.acc);
+      setTimeout(function() { accentPop.classList.remove('open'); }, 200);
+    });
+    document.addEventListener('click', function(e) {
+      if (accentPop && accentBtn && !accentPop.contains(e.target) && !accentBtn.contains(e.target)) accentPop.classList.remove('open');
+    });
+  })();
+
+  function goTab(name) {
+    $$('.page').forEach(function(p) { p.classList.toggle('active', p.id === 'page-' + name); });
+    $$('#navTabs button').forEach(function(b) { b.classList.toggle('active', b.dataset.tab === name); });
+    $$('#bottomNav button').forEach(function(b) { b.classList.toggle('active', b.dataset.tab === name); });
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+    if (name === 'profil') renderProfile();
+    if (name === 'roadmap') renderPaths();
+    if (name === 'referensi') { renderGlossary(''); renderCheatsheet(); }
+    if (name === 'playground') initPlayground();
+    if (name === 'home') renderPathsPreview();
+  }
+  function bindTabButtons() {
+    $$('[data-tab]').forEach(function(b) {
+      b.addEventListener('click', function(e) {
+        var t = b.dataset.tab;
+        if (!t) return;
+        e.preventDefault();
+        sfx.click();
+        goTab(t);
+      });
+    });
+  }
+
+  (function scrollInit() {
+    var header = $('#header'), toTop = $('#toTop');
+    var ticking = false;
+    function onScroll() {
+      var y = window.pageYOffset || document.documentElement.scrollTop;
+      if (header) header.classList.toggle('scrolled', y > 12);
+      if (toTop) toTop.classList.toggle('show', y > 500);
+      ticking = false;
+    }
+    window.addEventListener('scroll', function() {
+      if (!ticking) { ticking = true; requestAnimationFrame(onScroll); }
+    }, { passive: true });
+    onScroll();
+    if (toTop) toTop.addEventListener('click', function() { window.scrollTo({ top: 0, behavior: 'smooth' }); });
+  })();
+
+  function renderPathsPreview() {
+    var wrap = $('#pathsPreview');
+    if (!wrap) return;
+    wrap.innerHTML = PATHS.map(function(p) {
+      var done = p.steps.filter(function(id) { return S.topicsRead.indexOf(id) !== -1; }).length;
+      var pct = Math.round(done / p.steps.length * 100);
+      return '<button class="pp" data-path-preview="' + p.id + '">' +
+        '<div class="pp-head">' +
+          '<div class="pp-ico">' + icon(p.icon) + '</div>' +
+          '<div><h4>' + esc(p.name) + '</h4><small>' + p.steps.length + ' langkah</small></div>' +
+        '</div>' +
+        '<div class="pp-bar"><i style="width:' + pct + '%"></i></div>' +
+        '<div class="pp-steps">' + done + ' / ' + p.steps.length + ' selesai</div>' +
+      '</button>';
+    }).join('');
+    wrap.onclick = function(e) {
+      var b = e.target.closest('[data-path-preview]');
+      if (!b) return;
+      sfx.click();
+      goTab('roadmap');
+    };
+  }
+
+  (function renderFilters() {
+    var wrap = $('#filters');
+    if (!wrap) return;
+    wrap.innerHTML = CATS.map(function(c) {
+      return '<button class="chip' + (c.id === 'all' ? ' active' : '') + '" data-cat="' + c.id + '">' + esc(c.name) + '</button>';
+    }).join('');
+  })();
+
+  var activeCat = 'all';
+  var query = '';
+  var grid = $('#grid');
+
+  function buildCard(t) {
+    var done = S.topicsRead.indexOf(t.id) !== -1;
+    var bm = S.bookmarks.indexOf(t.id) !== -1;
+    return '<article class="card' + (done ? ' done' : '') + (bm ? ' bookmarked' : '') + '" data-id="' + t.id + '" data-cat="' + t.cat + '" tabindex="0" role="button">' +
+      '<div class="card-head">' +
+        '<div class="card-icon">' + icon(t.icon) + '</div>' +
+        '<div><h3>' + esc(t.name) + '</h3><small>' + esc(t.catName) + '</small></div>' +
+      '</div>' +
+      '<p>' + esc(t.short) + '</p>' +
+      '<div class="card-foot">' +
+        '<span class="badge ' + t.level.toLowerCase() + '">' + esc(t.level) + '</span>' +
+        '<span class="card-btn">' + (done ? 'Selesai' : 'Pelajari') + ' ' + icon('i-arrow') + '</span>' +
+      '</div>' +
+    '</article>';
+  }
+  function renderGrid() {
+    if (!grid) return;
+    grid.innerHTML = TOPICS.map(buildCard).join('');
+    applyFilter();
+  }
+  function applyFilter() {
+    if (!grid) return;
+    var cards = $$('.card', grid);
+    var visible = 0;
+    var q = query.trim().toLowerCase();
+    cards.forEach(function(card) {
+      var t = findTopic(card.dataset.id);
+      if (!t) return;
+      var matchCat = activeCat === 'all' || t.cat === activeCat;
+      var matchQ = true;
+      if (q) {
+        var s1 = fuzzyScore(t.name, q);
+        var s2 = fuzzyScore(t.short, q) * 0.7;
+        var s3 = fuzzyScore(t.catName, q) * 0.5;
+        matchQ = Math.max(s1, s2, s3) > 0;
+      }
+      var ok = matchCat && matchQ;
+      card.style.display = ok ? '' : 'none';
+      if (ok) {
+        visible++;
+        (function(c) { setTimeout(function() { c.classList.add('show'); }, 12 * Math.min(visible, 12)); })(card);
+      } else {
+        card.classList.remove('show');
+      }
+    });
+    var emptyEl = $('.empty', grid);
+    if (visible === 0) {
+      if (!emptyEl) {
+        emptyEl = document.createElement('div');
+        emptyEl.className = 'empty';
+        emptyEl.innerHTML = icon('i-inbox') + '<b>Materi tidak ditemukan</b><span>Coba kata kunci atau kategori lain.</span>';
+        grid.appendChild(emptyEl);
+      }
+      emptyEl.style.display = '';
+    } else if (emptyEl) {
+      emptyEl.style.display = 'none';
+    }
+  }
+  (function bindFilters() {
+    var wrap = $('#filters');
+    if (wrap) wrap.addEventListener('click', function(e) {
+      var btn = e.target.closest('.chip'); if (!btn) return;
+      sfx.click();
+      $$('.chip').forEach(function(c) { c.classList.remove('active'); });
+      btn.classList.add('active');
+      activeCat = btn.dataset.cat;
+      applyFilter();
+    });
+    var searchInput = $('#searchInput'), searchBox = $('#searchBox'), searchClear = $('#searchClear');
+    if (searchInput) searchInput.addEventListener('input', function() {
+      query = searchInput.value;
+      if (searchBox) searchBox.classList.toggle('has-value', query.length > 0);
+      applyFilter();
+    });
+    if (searchClear) searchClear.addEventListener('click', function() {
+      if (searchInput) searchInput.value = '';
+      query = '';
+      if (searchBox) searchBox.classList.remove('has-value');
+      if (searchInput) searchInput.focus();
+      applyFilter();
+    });
+  })();
+
+  var modal = $('#modal'), modalBox = $('#modalBox');
+  var mIcon = $('#mIcon'), mTitle = $('#modalTitle'), mCat = $('#mCat'), mLevel = $('#mLevel'), mBody = $('#modalBody');
+  var currentTopic = null, lastFocus = null, readerMode = false;
+
+  function openTopic(t) {
+    if (!modal) return;
+    currentTopic = t; lastFocus = document.activeElement; readerMode = false;
+    if (mIcon) mIcon.innerHTML = icon(t.icon);
+    if (mTitle) mTitle.textContent = t.name;
+    if (mCat) mCat.textContent = t.catName;
+    if (mLevel) { mLevel.textContent = t.level; mLevel.className = 'badge ' + t.level.toLowerCase(); }
+    if (mBody) mBody.classList.remove('reader');
+    var readerBtn = $('#mReader'); if (readerBtn) readerBtn.classList.remove('active');
+    var done = S.topicsRead.indexOf(t.id) !== -1;
+    var bm = S.bookmarks.indexOf(t.id) !== -1;
+    var bmBtn = $('#mBookmark'), cBtn = $('#mComplete');
+    if (bmBtn) { bmBtn.classList.toggle('active', bm); bmBtn.innerHTML = icon('i-bookmark') + ' ' + (bm ? 'Tersimpan' : 'Bookmark'); }
+    if (cBtn) { cBtn.classList.toggle('active', done); cBtn.innerHTML = icon('i-check') + ' ' + (done ? 'Sudah Selesai' : 'Tandai Selesai'); }
+    if (mBody) {
+      mBody.innerHTML = '<p>' + esc(t.desc) + '</p>' +
+        '<h4>' + icon('i-code') + ' Contoh Kode</h4>' +
+        '<div class="code-block">' +
+          '<div class="code-block-head"><span>' + esc(t.name) + '</span>' +
+            '<button class="copy-btn" data-copy>' + icon('i-copy') + ' Salin</button>' +
+          '</div>' +
+          '<pre><code>' + t.example + '</code></pre>' +
+        '</div>' +
+        '<h4>' + icon('i-check') + ' Poin Penting</h4>' +
+        '<ul class="points">' + t.points.map(function(p) { return '<li>' + icon('i-check') + '<span>' + esc(p) + '</span></li>'; }).join('') + '</ul>';
+      var cp = $('[data-copy]', mBody);
+      if (cp) cp.addEventListener('click', function() {
+        var codeEl = $('code', mBody);
+        copyText(codeEl ? codeEl.textContent : '').then(function(ok) {
+          cp.classList.add('ok');
+          cp.innerHTML = icon('i-check') + (ok ? ' Tersalin' : ' Gagal');
+          setTimeout(function() { cp.classList.remove('ok'); cp.innerHTML = icon('i-copy') + ' Salin'; }, 1700);
+        });
+      });
+    }
+    modal.classList.add('open');
+    document.body.style.overflow = 'hidden';
+    if (modalBox) setTimeout(function() { modalBox.scrollTop = 0; }, 30);
+  }
+  function closeModal() {
+    if (!modal) return;
+    modal.classList.remove('open');
+    document.body.style.overflow = '';
+    if (lastFocus && lastFocus.focus) { try { lastFocus.focus(); } catch (e) {} }
+  }
+  function copyText(text) {
+    return new Promise(function(resolve) {
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(text).then(function() { resolve(true); }).catch(function() { resolve(fallbackCopy(text)); });
+      } else resolve(fallbackCopy(text));
+    });
+  }
+  function fallbackCopy(text) {
+    try {
+      var ta = document.createElement('textarea');
+      ta.value = text; ta.style.position = 'fixed'; ta.style.opacity = '0';
+      document.body.appendChild(ta); ta.select();
+      var ok = document.execCommand('copy');
+      document.body.removeChild(ta);
+      return ok;
+    } catch (e) { return false; }
+  }
+  (function bindModal() {
+    if (!grid) return;
+    grid.addEventListener('click', function(e) {
+      var card = e.target.closest('.card'); if (!card) return;
+      var t = findTopic(card.dataset.id); if (t) { sfx.click(); openTopic(t); }
+    });
+    grid.addEventListener('keydown', function(e) {
+      if (e.key !== 'Enter' && e.key !== ' ') return;
+      var card = e.target.closest('.card'); if (!card) return;
+      e.preventDefault();
+      var t = findTopic(card.dataset.id); if (t) openTopic(t);
+    });
+    var closeBtn = $('#modalClose'); if (closeBtn) closeBtn.addEventListener('click', closeModal);
+    if (modal) modal.addEventListener('click', function(e) { if (e.target === modal) closeModal(); });
+    document.addEventListener('keydown', function(e) { if (e.key === 'Escape' && modal && modal.classList.contains('open')) closeModal(); });
+    var bmBtn = $('#mBookmark');
+    if (bmBtn) bmBtn.addEventListener('click', function() {
+      if (!currentTopic) return;
+      var idx = S.bookmarks.indexOf(currentTopic.id);
+      if (idx === -1) { S.bookmarks.push(currentTopic.id); toast('Ditambahkan ke Bookmark', currentTopic.name, 'success'); }
+      else { S.bookmarks.splice(idx, 1); toast('Dihapus dari Bookmark', currentTopic.name, 'info'); }
+      saveState(); updateXPBar(); checkBadges();
+      var bm = S.bookmarks.indexOf(currentTopic.id) !== -1;
+      bmBtn.classList.toggle('active', bm);
+      bmBtn.innerHTML = icon('i-bookmark') + ' ' + (bm ? 'Tersimpan' : 'Bookmark');
+      renderGrid();
+      if ($('#page-profil').classList.contains('active')) renderProfile();
+    });
+    var cBtn = $('#mComplete');
+    if (cBtn) cBtn.addEventListener('click', function() {
+      if (!currentTopic) return;
+      var idx = S.topicsRead.indexOf(currentTopic.id);
+      if (idx === -1) {
+        S.topicsRead.push(currentTopic.id);
+        saveState(); addXP(15, 'Selesai: ' + currentTopic.name);
+        toast('Topik Selesai!', currentTopic.name, 'success'); sfx.success();
+      } else {
+        S.topicsRead.splice(idx, 1);
+        saveState(); updateXPBar();
+        toast('Ditandai belum selesai', currentTopic.name, 'info');
+      }
+      var done = S.topicsRead.indexOf(currentTopic.id) !== -1;
+      cBtn.classList.toggle('active', done);
+      cBtn.innerHTML = icon('i-check') + ' ' + (done ? 'Sudah Selesai' : 'Tandai Selesai');
+      renderGrid();
+      renderPathsPreview();
+      if ($('#page-profil').classList.contains('active')) renderProfile();
+    });
+    var rBtn = $('#mReader');
+    if (rBtn) rBtn.addEventListener('click', function() {
+      readerMode = !readerMode;
+      if (mBody) mBody.classList.toggle('reader', readerMode);
+      rBtn.classList.toggle('active', readerMode);
+    });
+    var pBtn = $('#mPlayground');
+    if (pBtn) pBtn.addEventListener('click', function() {
+      if (!currentTopic) return;
+      var t = currentTopic;
+      S.playground.html = '<h1>' + t.name + '</h1>\n<p>' + esc(t.short) + '</p>';
+      S.playground.css = 'body{font-family:sans-serif;padding:24px;background:#0f172a;color:#eef1ff}\nh1{color:#6366f1}';
+      S.playground.js = 'console.log("Belajar ' + t.name + '");';
+      S.usedPlayground = true;
+      saveState(); checkBadges(); closeModal(); goTab('playground');
+      setTimeout(function() {
+        var editor = $('#editor');
+        if (editor) editor.value = S.playground[S.playground.current || 'html'];
+        runPreview();
+      }, 150);
+      toast('Materi dimuat ke Playground', t.name, 'success');
+    });
+  })();
+
+  function renderPaths() {
+    var wrap = $('#paths'); if (!wrap) return;
+    wrap.innerHTML = PATHS.map(function(p) {
+      var done = p.steps.filter(function(id) { return S.topicsRead.indexOf(id) !== -1; }).length;
+      var pct = Math.round(done / p.steps.length * 100);
+      return '<div class="path">' +
+        '<div class="path-head">' +
+          '<div class="path-icon">' + icon(p.icon) + '</div>' +
+          '<div><h3>' + esc(p.name) + '</h3><small>' + done + ' / ' + p.steps.length + ' langkah</small></div>' +
+        '</div>' +
+        '<p>' + esc(p.desc) + '</p>' +
+        '<div class="path-progress"><div class="lbl"><span>Progres</span><span>' + pct + '%</span></div>' +
+        '<div class="path-track"><div class="path-fill" style="width:' + pct + '%"></div></div></div>' +
+        '<ul class="steps">' + p.steps.map(function(id, i) {
+          var t = findTopic(id);
+          var isDone = S.topicsRead.indexOf(id) !== -1;
+          return '<li class="step' + (isDone ? ' done' : '') + '" data-step="' + id + '">' +
+            '<span class="num">' + (isDone ? icon('i-check') : (i + 1)) + '</span>' +
+            '<span>' + esc(t ? t.name : id) + '</span></li>';
+        }).join('') + '</ul></div>';
+    }).join('');
+    wrap.onclick = function(e) {
+      var step = e.target.closest('.step'); if (!step) return;
+      var t = findTopic(step.dataset.step); if (t) { sfx.click(); openTopic(t); }
+    };
+  }
+
+  var editor = $('#editor'), preview = $('#preview'), playGrid = $('#playGrid');
+  var previewTimer = null;
+  var TEMPLATES = {
+    blank: {
+      html: '<h1>Halo Lanzz!</h1>\n<p>Coba edit kode di sebelah kiri.</p>',
+      css: 'body{font-family:sans-serif;padding:24px;background:#0f172a;color:#eef1ff}h1{color:#6366f1}',
+      js: 'console.log("Halo dari console!");'
+    },
+    card: {
+      html: '<div class="card">\n  <div class="avatar">L</div>\n  <h2>Lanzz Informatika</h2>\n  <p>Belajar coding dari nol.</p>\n  <button id="btn">Ikuti</button>\n</div>',
+      css: '*{box-sizing:border-box}\nbody{margin:0;min-height:100vh;display:grid;place-items:center;background:#0f172a;font-family:sans-serif}\n.card{background:#1e293b;padding:32px;border-radius:20px;text-align:center;color:#eef1ff;width:280px}\n.avatar{width:64px;height:64px;border-radius:50%;background:linear-gradient(135deg,#6366f1,#22d3ee);display:grid;place-items:center;margin:0 auto 16px;font-size:28px;font-weight:900}\nh2{margin:0 0 8px;font-size:20px}p{margin:0 0 20px;color:#94a3b8;font-size:14px}\nbutton{width:100%;padding:12px;border:none;border-radius:12px;background:linear-gradient(135deg,#6366f1,#8b5cf6);color:#fff;font-weight:700;cursor:pointer}',
+      js: 'document.getElementById("btn").addEventListener("click",function(){\n  alert("Terima kasih!");\n});'
+    },
+    counter: {
+      html: '<div class="wrap">\n  <h1 id="num">0</h1>\n  <div class="btns">\n    <button id="minus">-</button>\n    <button id="plus">+</button>\n  </div>\n</div>',
+      css: '*{box-sizing:border-box}\nbody{margin:0;min-height:100vh;display:grid;place-items:center;background:#0f172a;font-family:sans-serif;color:#eef1ff}\n.wrap{text-align:center}\nh1{font-size:80px;margin:0 0 20px;background:linear-gradient(135deg,#6366f1,#22d3ee);-webkit-background-clip:text;background-clip:text;color:transparent;font-weight:900}\n.btns{display:flex;gap:14px;justify-content:center}\nbutton{width:64px;height:64px;border-radius:50%;border:none;font-size:28px;font-weight:700;cursor:pointer;background:#1e293b;color:#eef1ff}',
+      js: 'var n=0;\nvar num=document.getElementById("num");\ndocument.getElementById("plus").onclick=function(){n++;num.textContent=n;};\ndocument.getElementById("minus").onclick=function(){n--;num.textContent=n;};'
+    },
+    todo: {
+      html: '<div class="app">\n  <h2>Todo List</h2>\n  <div class="input-row">\n    <input id="inp" placeholder="Tulis tugas...">\n    <button id="add">Tambah</button>\n  </div>\n  <ul id="list"></ul>\n</div>',
+      css: '*{box-sizing:border-box}\nbody{margin:0;min-height:100vh;display:grid;place-items:center;background:#0f172a;font-family:sans-serif;color:#eef1ff;padding:20px}\n.app{background:#1e293b;padding:24px;border-radius:18px;width:100%;max-width:420px}\nh2{margin:0 0 18px;font-size:20px}\n.input-row{display:flex;gap:8px;margin-bottom:14px}\ninput{flex:1;padding:11px 14px;border-radius:10px;border:1px solid #334155;background:#0f172a;color:#eef1ff;outline:none;font-size:14px}\n#add{padding:11px 18px;border:none;border-radius:10px;background:linear-gradient(135deg,#6366f1,#8b5cf6);color:#fff;font-weight:700;cursor:pointer}\n#list{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:8px}\n#list li{padding:11px 14px;background:#0f172a;border-radius:10px;display:flex;justify-content:space-between;align-items:center;font-size:14px;border:1px solid #334155}\n.del{background:none;border:none;color:#ef4444;cursor:pointer;font-size:16px;padding:4px 8px}',
+      js: 'var inp=document.getElementById("inp");\nvar list=document.getElementById("list");\ndocument.getElementById("add").onclick=addTodo;\ninp.addEventListener("keydown",function(e){if(e.key==="Enter")addTodo();});\nfunction addTodo(){\n  if(!inp.value.trim())return;\n  var li=document.createElement("li");\n  var sp=document.createElement("span");\n  sp.textContent=inp.value;\n  var bt=document.createElement("button");\n  bt.className="del";\n  bt.textContent="x";\n  bt.onclick=function(){li.remove();};\n  li.appendChild(sp); li.appendChild(bt);\n  list.appendChild(li);\n  inp.value="";\n}'
+    }
+  };
+  function runPreview() {
+    if (!preview) return;
+    var css = S.playground.css || '';
+    var html = S.playground.html || '';
+    var js = S.playground.js || '';
+    var OPEN = '<' + 'script>';
+    var CLOSE = '<' + '/script>';
+    var doc = '<!DOCTYPE html><html><head><meta charset="UTF-8"><style>' + css + '</style></head><body>' +
+      html + OPEN + 'try{' + js + '}catch(e){document.body.insertAdjacentHTML("beforeend","<pre style=\'color:#ef4444;padding:10px\'>"+e.message+"</pre>")}' + CLOSE + '</body></html>';
+    preview.srcdoc = doc;
+  }
+  function debouncePreview() { clearTimeout(previewTimer); previewTimer = setTimeout(runPreview, 300); }
+  function initPlayground() {
+    if (!S.playground.html && !S.playground.css && !S.playground.js) {
+      S.playground.html = TEMPLATES.blank.html;
+      S.playground.css = TEMPLATES.blank.css;
+      S.playground.js = TEMPLATES.blank.js;
+      S.playground.current = 'html';
+      saveState();
+    }
+    if (editor) {
+      var f = S.playground.current || 'html';
+      editor.value = S.playground[f] || '';
+      $$('#editorTabs button').forEach(function(b) { b.classList.toggle('active', b.dataset.file === f); });
+    }
+    runPreview();
+  }
+  (function bindPlayground() {
+    if (editor) {
+      editor.addEventListener('input', function() {
+        var f = S.playground.current || 'html';
+        S.playground[f] = editor.value;
+        saveState(); debouncePreview();
+        if (!S.usedPlayground) { S.usedPlayground = true; checkBadges(); }
+      });
+      editor.addEventListener('keydown', function(e) {
+        if (e.key === 'Tab') {
+          e.preventDefault();
+          var s = editor.selectionStart, en = editor.selectionEnd;
+          editor.value = editor.value.substring(0, s) + '  ' + editor.value.substring(en);
+          editor.selectionStart = editor.selectionEnd = s + 2;
+          var f = S.playground.current || 'html';
+          S.playground[f] = editor.value;
+          saveState(); debouncePreview();
+        }
+      });
+    }
+    var tabs = $('#editorTabs');
+    if (tabs) tabs.addEventListener('click', function(e) {
+      var b = e.target.closest('button'); if (!b) return;
+      var f = b.dataset.file;
+      var old = S.playground.current || 'html';
+      if (editor) S.playground[old] = editor.value;
+      S.playground.current = f;
+      saveState();
+      if (editor) editor.value = S.playground[f] || '';
+      $$('#editorTabs button').forEach(function(x) { x.classList.toggle('active', x === b); });
+      sfx.click();
+    });
+    $$('.tpl-btn[data-tpl]').forEach(function(b) {
+      b.addEventListener('click', function() {
+        var t = TEMPLATES[b.dataset.tpl]; if (!t) return;
+        S.playground.html = t.html; S.playground.css = t.css; S.playground.js = t.js;
+        S.playground.current = 'html'; saveState();
+        if (editor) editor.value = t.html;
+        $$('#editorTabs button').forEach(function(x) { x.classList.toggle('active', x.dataset.file === 'html'); });
+        runPreview(); sfx.click();
+      });
+    });
+    var runBtn = $('#playRun');
+    if (runBtn) runBtn.addEventListener('click', function() { runPreview(); sfx.success(); toast('Preview dijalankan', 'Kode dieksekusi ulang', 'success'); });
+    var fullBtn = $('#playFull');
+    if (fullBtn) fullBtn.addEventListener('click', function() {
+      if (!playGrid) return;
+      playGrid.classList.toggle('fullscreen');
+      document.body.style.overflow = playGrid.classList.contains('fullscreen') ? 'hidden' : '';
+      sfx.click();
+    });
+    var resetBtn = $('#playReset');
+    if (resetBtn) resetBtn.addEventListener('click', function() {
+      if (!confirm('Reset playground ke template kosong?')) return;
+      var t = TEMPLATES.blank;
+      S.playground.html = t.html; S.playground.css = t.css; S.playground.js = t.js;
+      S.playground.current = 'html'; saveState();
+      if (editor) editor.value = t.html;
+      $$('#editorTabs button').forEach(function(x) { x.classList.toggle('active', x.dataset.file === 'html'); });
+      runPreview(); sfx.click();
+    });
+  })();
+
+  function renderGlossary(filter) {
+    var wrap = $('#glossaryGrid'); if (!wrap) return;
+    filter = (filter || '').toLowerCase().trim();
+    var items = GLOSSARY.filter(function(g) {
+      return !filter || g.t.toLowerCase().indexOf(filter) !== -1 || g.d.toLowerCase().indexOf(filter) !== -1 || g.c.toLowerCase().indexOf(filter) !== -1;
+    });
+    if (items.length === 0) {
+      wrap.innerHTML = '<div class="empty" style="grid-column:1/-1">' + icon('i-inbox') + '<b>Tidak ditemukan</b><span>Coba istilah lain.</span></div>';
+      return;
+    }
+    wrap.innerHTML = items.map(function(g) {
+      return '<div class="gloss-item"><h4>' + esc(g.t) + '</h4><p>' + esc(g.d) + '</p><span class="cat">' + esc(g.c) + '</span></div>';
+    }).join('');
+  }
+  (function bindGlossarySearch() {
+    var inp = $('#glossInput');
+    if (inp) inp.addEventListener('input', function(e) { renderGlossary(e.target.value); });
+  })();
+
+  function renderCheatsheet() {
+    var wrap = $('#cheatGrid'); if (!wrap) return;
+    wrap.innerHTML = CHEATSHEET.map(function(c) {
+      return '<div class="cheat-card">' +
+        '<div class="cheat-head"><strong>' + icon(c.icon) + ' ' + esc(c.name) + '</strong>' +
+          '<button class="copy-mini" data-cheat="' + c.id + '">' + icon('i-copy') + ' Salin</button>' +
+        '</div><pre>' + c.code + '</pre></div>';
+    }).join('');
+    $$('.copy-mini').forEach(function(b) {
+      b.addEventListener('click', function() {
+        var c = null;
+        for (var i = 0; i < CHEATSHEET.length; i++) if (CHEATSHEET[i].id === b.dataset.cheat) { c = CHEATSHEET[i]; break; }
+        if (!c) return;
+        var txt = c.code.replace(/&lt;/g, '<').replace(/&gt;/g, '>').replace(/&amp;/g, '&');
+        copyText(txt).then(function(ok) {
+          b.classList.add('ok');
+          b.innerHTML = icon('i-check') + (ok ? ' Tersalin' : ' Gagal');
+          setTimeout(function() { b.classList.remove('ok'); b.innerHTML = icon('i-copy') + ' Salin'; }, 1600);
+        });
+      });
+    });
+  }
+
+  (function bindRefTabs() {
+    $$('.ref-tabs button').forEach(function(b) {
+      b.addEventListener('click', function() {
+        var t = b.dataset.ref;
+        $$('.ref-tabs button').forEach(function(x) { x.classList.toggle('active', x === b); });
+        $$('.ref-panel').forEach(function(p) { p.classList.toggle('active', p.id === 'ref-' + t); });
+        sfx.click();
+      });
+    });
+  })();
+
+  (function quizInit() {
+    var qText = $('#qText'), qOptions = $('#qOptions'), qNum = $('#qNum');
+    var qFill = $('#qFill'), qScoreEl = $('#qScore');
+    var mainEl = $('#quizMain'), resultEl = $('#quizResult');
+    var rScore = $('#rScore'), rTitle = $('#rTitle'), rDesc = $('#rDesc');
+    if (!qText || !qOptions) return;
+    var pool = [], idx = 0, score = 0, locked = false;
+    var TOTAL = 8;
+    function start() {
+      pool = shuffle(QUIZ).slice(0, TOTAL).map(function(item) {
+        var opts = item.o.map(function(text, i) { return { text: text, correct: i === item.a }; });
+        return { q: item.q, opts: shuffle(opts) };
+      });
+      idx = 0; score = 0; locked = false;
+      if (mainEl) mainEl.style.display = '';
+      if (resultEl) resultEl.classList.remove('show');
+      render();
+    }
+    function render() {
+      if (idx >= pool.length) { finish(); return; }
+      locked = false;
+      var item = pool[idx];
+      if (qNum) qNum.textContent = (idx + 1) + ' / ' + pool.length;
+      if (qScoreEl) qScoreEl.textContent = score;
+      if (qFill) qFill.style.width = (idx / pool.length * 100) + '%';
+      if (qText) qText.textContent = item.q;
+      var letters = ['A', 'B', 'C', 'D'];
+      qOptions.innerHTML = item.opts.map(function(o, i) {
+        return '<button class="opt" data-i="' + i + '"><span class="mark">' + letters[i] + '</span><span>' + esc(o.text) + '</span></button>';
+      }).join('');
+    }
+    qOptions.addEventListener('click', function(e) {
+      var btn = e.target.closest('.opt');
+      if (!btn || locked) return;
+      locked = true;
+      var item = pool[idx];
+      var chosen = parseInt(btn.dataset.i, 10);
+      $$('.opt', qOptions).forEach(function(b) {
+        b.disabled = true;
+        var i = parseInt(b.dataset.i, 10);
+        if (item.opts[i].correct) b.classList.add('correct');
+      });
+      if (item.opts[chosen].correct) { score++; if (qScoreEl) qScoreEl.textContent = score; addXP(8, 'Jawaban benar'); sfx.success(); }
+      else { btn.classList.add('wrong'); sfx.error(); }
+      if (qFill) qFill.style.width = ((idx + 1) / pool.length * 100) + '%';
+      setTimeout(function() { idx++; if (idx >= pool.length) finish(); else render(); }, 780);
+    });
+    function finish() {
+      if (mainEl) mainEl.style.display = 'none';
+      if (resultEl) resultEl.classList.add('show');
+      if (rScore) rScore.textContent = score + '/' + pool.length;
+      var pct = Math.round(score / pool.length * 100);
+      var title, desc;
+      if (pct === 100) { title = 'Sempurna!'; desc = 'Luar biasa! Kamu menguasai dasar-dasar informatika dengan sangat baik.'; fireConfetti(); }
+      else if (pct >= 75) { title = 'Hebat!'; desc = 'Pemahamanmu sudah kuat. Tinjau sedikit lagi bagian yang salah.'; }
+      else if (pct >= 50) { title = 'Cukup Baik'; desc = 'Sudah lumayan! Baca ulang beberapa materi lalu coba lagi.'; }
+      else { title = 'Terus Semangat!'; desc = 'Jangan menyerah. Buka katalog materi dan mulai dari level Dasar.'; }
+      if (rTitle) rTitle.textContent = title;
+      if (rDesc) rDesc.textContent = desc;
+      S.quizStats.played++;
+      if (pct === 100) { S.quizStats.perfect++; addXP(40, 'Kuis sempurna!'); }
+      if (pct > S.quizStats.bestScore) S.quizStats.bestScore = pct;
+      saveState(); checkBadges();
+      if ($('#page-profil').classList.contains('active')) renderProfile();
+    }
+    var restart = $('#restartQuiz');
+    if (restart) restart.addEventListener('click', function() { sfx.click(); start(); });
+    start();
+  })();
+
+  function renderDaily() {
+    var dateEl = $('#dailyDate'); var wrap = $('#dailyContent'); if (!wrap) return;
+    var d = new Date();
+    var days = ['Minggu','Senin','Selasa','Rabu','Kamis','Jumat','Sabtu'];
+    var months = ['Jan','Feb','Mar','Apr','Mei','Jun','Jul','Agu','Sep','Okt','Nov','Des'];
+    if (dateEl) dateEl.textContent = days[d.getDay()] + ', ' + d.getDate() + ' ' + months[d.getMonth()] + ' ' + d.getFullYear();
+    var t = todayKey();
+    if (S.dailyDone === t) {
+      wrap.innerHTML = '<div class="daily-done">' + icon('i-check') + '<b>Selesai hari ini!</b><span>Kembali besok untuk tantangan baru.</span></div>';
+      return;
+    }
+    var seed = parseInt(t.replace(/-/g, ''), 10);
+    var q = DAILY_POOL[seed % DAILY_POOL.length];
+    var opts = shuffle(q.o.map(function(text, i) { return { text: text, correct: i === q.a }; }));
+    wrap.innerHTML = '<div class="daily-q">' + esc(q.q) + '</div>' +
+      '<div class="daily-opts">' + opts.map(function(o, i) { return '<button class="daily-opt" data-i="' + i + '">' + esc(o.text) + '</button>'; }).join('') + '</div>';
+    var answered = false;
+    wrap.querySelectorAll('.daily-opt').forEach(function(btn) {
+      btn.addEventListener('click', function() {
+        if (answered) return;
+        answered = true;
+        var i = parseInt(btn.dataset.i, 10);
+        wrap.querySelectorAll('.daily-opt').forEach(function(b, j) { b.disabled = true; if (opts[j].correct) b.classList.add('correct'); });
+        if (opts[i].correct) { addXP(50, 'Tantangan harian'); toast('Tantangan Selesai!', '+50 XP', 'success'); sfx.badge(); }
+        else { btn.classList.add('wrong'); toast('Belum tepat', 'Coba lagi besok', 'warn'); sfx.error(); }
+        S.dailyDone = t; saveState(); checkBadges();
+        setTimeout(renderDaily, 1500);
+      });
+    });
+  }
+
+  function renderProfile() {
+    var l = levelFromXP(S.xp); var el;
+    el = $('#pXP'); if (el) el.textContent = S.xp;
+    el = $('#pLevel'); if (el) el.textContent = l.level;
+    el = $('#pStreak'); if (el) el.textContent = S.streak;
+    el = $('#pRead'); if (el) el.textContent = S.topicsRead.length;
+    el = $('#pQuiz'); if (el) el.textContent = S.quizStats.played;
+    el = $('#pBm'); if (el) el.textContent = S.bookmarks.length;
+    renderBadges();
+  }
+  function renderBadges() {
+    var wrap = $('#badgesGrid'); if (!wrap) return;
+    wrap.innerHTML = BADGES.map(function(b) {
+      var unlocked = S.badges.indexOf(b.id) !== -1;
+      return '<div class="badge-item ' + (unlocked ? 'unlocked' : 'locked') + '">' +
+        '<div class="b-ico">' + icon(b.icon) + '</div>' +
+        '<b>' + esc(b.name) + '</b><span>' + esc(b.desc) + '</span></div>';
+    }).join('');
+  }
+  (function bindReset() {
+    var btn = $('#resetBtn');
+    if (btn) btn.addEventListener('click', function() {
+      if (!confirm('Yakin ingin menghapus semua progres?')) return;
+      try { localStorage.removeItem(STORAGE_KEY); } catch (e) {}
+      S = JSON.parse(JSON.stringify(defaultState));
+      saveState();
+      updateXPBar(); renderGrid(); renderPaths(); renderPathsPreview(); renderDaily(); renderProfile();
+      toast('Progres direset', 'Semua data telah dihapus', 'warn');
+    });
+  })();
+
+  (function cmdInit() {
+    var cmdModal = $('#cmdModal'), cmdInput = $('#cmdInput'), cmdList = $('#cmdList');
+    var cmdBtn = $('#cmdBtn');
+    if (!cmdModal || !cmdInput || !cmdList) return;
+    var selIdx = 0, items = [];
+    var ACTIONS = [
+      { id: 'home', name: 'Beranda', desc: 'Halaman utama', icon: 'i-home', tab: 'home' },
+      { id: 'materi', name: 'Materi', desc: 'Katalog semua topik', icon: 'i-book', tab: 'materi' },
+      { id: 'roadmap', name: 'Roadmap', desc: 'Jalur belajar terstruktur', icon: 'i-map', tab: 'roadmap' },
+      { id: 'playground', name: 'Code Playground', desc: 'Tulis HTML, CSS, JS', icon: 'i-terminal', tab: 'playground' },
+      { id: 'referensi', name: 'Referensi', desc: 'Glosarium & Cheat Sheet', icon: 'i-grid', tab: 'referensi' },
+      { id: 'kuis', name: 'Kuis', desc: 'Uji pemahamanmu', icon: 'i-grad', tab: 'kuis' },
+      { id: 'profil', name: 'Profil', desc: 'Statistik & badge', icon: 'i-award', tab: 'profil' }
+    ];
+    function openCmd() { cmdModal.classList.add('open'); cmdInput.value = ''; renderCmd(''); setTimeout(function() { cmdInput.focus(); }, 80); }
+    function closeCmd() { cmdModal.classList.remove('open'); cmdInput.blur(); }
+    function renderCmd(q) {
+      q = q.trim();
+      var results = [];
+      TOPICS.forEach(function(t) {
+        var sc = fuzzyScore(t.name, q) || fuzzyScore(t.short, q) * 0.5;
+        if (!q || sc > 0) results.push({ t: t, score: sc });
+      });
+      results.sort(function(a, b) { return b.score - a.score; });
+      results = results.slice(0, q ? 6 : 4).map(function(x) {
+        return { id: 't-' + x.t.id, name: x.t.name, desc: x.t.catName + ' · ' + x.t.level, icon: x.t.icon, topic: x.t };
+      });
+      var ares = ACTIONS.filter(function(a) { return !q || fuzzyScore(a.name, q) > 0 || fuzzyScore(a.desc, q) * 0.4 > 0; })
+        .map(function(a) { return { id: 'a-' + a.id, name: a.name, desc: a.desc, icon: a.icon, tab: a.tab }; });
+      results = results.concat(ares);
+      items = results; selIdx = 0;
+      if (results.length === 0) { cmdList.innerHTML = '<div class="cmd-empty">Tidak ada hasil untuk "' + esc(q) + '"</div>'; return; }
+      cmdList.innerHTML = results.map(function(r, i) {
+        return '<div class="cmd-item' + (i === 0 ? ' sel' : '') + '" data-i="' + i + '">' +
+          '<div class="ci">' + icon(r.icon) + '</div>' +
+          '<div class="ct"><b>' + esc(r.name) + '</b><span>' + esc(r.desc) + '</span></div>' +
+          '<div class="ck">' + (r.topic ? 'Materi' : 'Aksi') + '</div></div>';
+      }).join('');
+    }
+    function selectItem(i) {
+      var r = items[i]; if (!r) return;
+      closeCmd();
+      if (r.topic) { goTab('materi'); setTimeout(function() { openTopic(r.topic); }, 180); }
+      else if (r.tab) goTab(r.tab);
+      sfx.click();
+    }
+    function updateSel(newIdx) {
+      var list = cmdList.querySelectorAll('.cmd-item'); if (!list.length) return;
+      if (newIdx < 0) newIdx = list.length - 1;
+      if (newIdx >= list.length) newIdx = 0;
+      selIdx = newIdx;
+      list.forEach(function(el, i) { el.classList.toggle('sel', i === selIdx); });
+      if (list[selIdx]) list[selIdx].scrollIntoView({ block: 'nearest' });
+    }
+    cmdInput.addEventListener('input', function() { renderCmd(cmdInput.value); });
+    cmdInput.addEventListener('keydown', function(e) {
+      if (e.key === 'ArrowDown') { e.preventDefault(); updateSel(selIdx + 1); }
+      else if (e.key === 'ArrowUp') { e.preventDefault(); updateSel(selIdx - 1); }
+      else if (e.key === 'Enter') { e.preventDefault(); selectItem(selIdx); }
+      else if (e.key === 'Escape') { closeCmd(); }
+    });
+    cmdList.addEventListener('click', function(e) {
+      var item = e.target.closest('.cmd-item'); if (!item) return;
+      selectItem(parseInt(item.dataset.i, 10));
+    });
+    cmdModal.addEventListener('click', function(e) { if (e.target === cmdModal) closeCmd(); });
+    if (cmdBtn) cmdBtn.addEventListener('click', function() { sfx.click(); openCmd(); });
+    document.addEventListener('keydown', function(e) {
+      if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'k') {
+        e.preventDefault();
+        if (cmdModal.classList.contains('open')) closeCmd(); else openCmd();
+      }
+      if (e.key === '/' && document.activeElement && ['INPUT','TEXTAREA'].indexOf(document.activeElement.tagName) === -1) {
+        e.preventDefault(); openCmd();
+      }
+    });
+  })();
+
+  (function bindJump() {
+    $$('[data-jump]').forEach(function(a) {
+      a.addEventListener('click', function(e) {
+        e.preventDefault();
+        var id = a.dataset.jump;
+        var t = findTopic(id); if (!t) return;
+        goTab('materi');
+        activeCat = 'all'; query = '';
+        var si = $('#searchInput'); if (si) si.value = '';
+        var sb = $('#searchBox'); if (sb) sb.classList.remove('has-value');
+        $$('.chip').forEach(function(c) { c.classList.toggle('active', c.dataset.cat === 'all'); });
+        applyFilter();
+        setTimeout(function() { openTopic(t); }, 380);
+      });
+    });
+  })();
+
+  function boot() {
+    updateStreak();
+    updateXPBar();
+    bindTabButtons();
+    renderGrid();
+    renderPathsPreview();
+    renderPaths();
+    renderGlossary('');
+    renderCheatsheet();
+    renderDaily();
+    renderProfile();
+    checkBadges();
+    var st = $('#statTopik'); if (st) st.textContent = TOPICS.length;
+    var hc = $('#heroTopikCount'); if (hc) hc.textContent = TOPICS.length + ' topik + roadmap + playground';
+    var yr = $('#year'); if (yr) yr.textContent = new Date().getFullYear();
+  }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', boot);
+  else boot();
+})();
+</script>
+</body>
+</html>
