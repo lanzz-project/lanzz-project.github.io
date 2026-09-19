@@ -400,57 +400,6 @@ body.performance-mode #lnzParticles,body.performance-mode #lnzMatrix{display:non
 .lnz-keys-row:last-child{border:0}
 .lnz-keys-row kbd{margin-left:auto;padding:2px 6px;border:1px solid rgba(255,255,255,.11);border-radius:5px;background:rgba(255,255,255,.03);font:700 9px ui-monospace,monospace;color:#ccc}
 
-.lnz-proj-filters{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:18px}
-.lnz-proj-filter{padding:7px 13px;border:1px solid rgba(255,255,255,.1);border-radius:99px;background:transparent;color:#999;font:inherit;font-size:10px;font-weight:700;letter-spacing:.4px;cursor:pointer;transition:.25s}
-.lnz-proj-filter:hover{color:#fff;border-color:var(--red);background:var(--soft)}
-.lnz-proj-filter.active{color:#fff;background:var(--red);border-color:var(--red);box-shadow:0 6px 18px var(--glow)}
-.lnz-proj-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
-.lnz-proj-card{position:relative;min-height:220px;padding:18px;border:1px solid var(--line);border-radius:12px;background:linear-gradient(150deg,rgba(18,21,21,.88),rgba(8,10,10,.94));overflow:hidden;transition:.35s}
-.lnz-proj-card:before{content:"";position:absolute;top:-70px;right:-70px;width:150px;height:150px;border-radius:50%;background:var(--soft);pointer-events:none;transition:.35s}
-.lnz-proj-card:hover{transform:translateY(-6px);border-color:var(--red);box-shadow:0 20px 50px rgba(0,0,0,.4),0 0 28px var(--soft)}
-.lnz-proj-card:hover:before{transform:scale(1.3)}
-.lnz-proj-card.is-hidden{display:none}
-.lnz-proj-tag{display:inline-block;padding:3px 9px;border:1px solid var(--red);border-radius:99px;font-size:8.5px;font-weight:800;letter-spacing:1.2px;color:var(--red);margin-bottom:14px;background:var(--soft)}
-.lnz-proj-card h3{font-size:16px;margin-bottom:8px;letter-spacing:-.3px}
-.lnz-proj-card p{color:#888;font-size:11px;line-height:1.7;min-height:55px}
-.lnz-proj-actions{display:flex;gap:8px;margin-top:14px;align-items:center}
-.lnz-proj-link{display:inline-flex;align-items:center;gap:6px;padding:7px 11px;border:1px solid rgba(255,255,255,.1);border-radius:7px;background:transparent;color:#ccc;font-size:9.5px;font-weight:700;letter-spacing:.4px;cursor:pointer;transition:.2s}
-.lnz-proj-link:hover{border-color:var(--red);color:#fff;background:var(--soft)}
-.lnz-proj-link.primary{background:var(--red);border-color:var(--red);color:#fff}
-.lnz-proj-link.primary:hover{box-shadow:0 6px 18px var(--glow)}
-.lnz-proj-link svg{width:11px;height:11px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
-
-.lnz-articles{display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:12px}
-.lnz-article{border:1px solid var(--line);border-radius:12px;background:linear-gradient(150deg,rgba(18,21,21,.85),rgba(8,10,10,.92));overflow:hidden;transition:.3s;cursor:pointer;display:flex;flex-direction:column}
-.lnz-article:hover{transform:translateY(-5px);border-color:var(--red);box-shadow:0 18px 45px rgba(0,0,0,.4)}
-.lnz-article-cover{height:130px;background:linear-gradient(135deg,#1a0505,#2a0808,#0a0303);position:relative;overflow:hidden;display:grid;place-items:center}
-.lnz-article-cover:before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 30% 40%,var(--glow),transparent 60%),radial-gradient(circle at 70% 70%,var(--soft),transparent 60%)}
-.lnz-article-cover svg{width:44px;height:44px;color:var(--red);position:relative;z-index:1;fill:none;stroke:currentColor;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round;filter:drop-shadow(0 0 12px var(--glow))}
-.lnz-article-cat{position:absolute;top:10px;left:10px;padding:3px 9px;border-radius:99px;background:rgba(0,0,0,.55);backdrop-filter:blur(10px);border:1px solid var(--red);color:var(--red);font-size:8.5px;font-weight:800;letter-spacing:1.2px;z-index:2}
-.lnz-article-body{padding:15px;display:flex;flex-direction:column;gap:7px;flex:1}
-.lnz-article-meta{display:flex;align-items:center;gap:8px;font-size:8.5px;color:#666;letter-spacing:.4px;font-weight:700}
-.lnz-article-meta i{width:3px;height:3px;border-radius:50%;background:#444}
-.lnz-article h3{font-size:13px;line-height:1.4}
-.lnz-article p{font-size:10.5px;color:#888;line-height:1.65;flex:1}
-.lnz-article-more{display:inline-flex;align-items:center;gap:6px;font-size:9.5px;font-weight:800;letter-spacing:.4px;color:#fff;margin-top:4px}
-.lnz-article-more span{color:var(--red);transition:transform .25s}
-.lnz-article:hover .lnz-article-more span{transform:translateX(4px)}
-
-
-
-
-.lnz-weather{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;padding:16px;border:1px solid var(--line);border-radius:14px;background:linear-gradient(150deg,rgba(18,21,21,.85),rgba(8,10,10,.9));max-width:900px;margin:auto;position:relative}
-.lnz-weather-head{grid-column:1/-1;display:flex;justify-content:space-between;align-items:center;padding-bottom:12px;border-bottom:1px solid rgba(255,255,255,.06);margin-bottom:6px}
-.lnz-weather-head b{font-size:12px;color:#fff;font-weight:700}
-.lnz-weather-head small{font-size:9px;color:#666;letter-spacing:.5px;display:inline-flex;align-items:center;gap:5px}
-.lnz-weather-head small:before{content:"";width:5px;height:5px;border-radius:50%;background:#7dff9c;box-shadow:0 0 8px #7dff9c;animation:clockPulse 1.6s infinite}
-.lnz-weather-day{padding:12px 10px;border-radius:10px;background:rgba(255,255,255,.015);border:1px solid rgba(255,255,255,.04);text-align:center;transition:.25s}
-.lnz-weather-day:hover{border-color:var(--red);background:var(--soft)}
-.lnz-weather-day small{display:block;font-size:9px;color:#777;letter-spacing:1px;font-weight:800;text-transform:uppercase;margin-bottom:9px}
-.lnz-weather-day svg{width:30px;height:30px;margin:0 auto 7px;color:var(--red);fill:none;stroke:currentColor;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
-.lnz-weather-day b{display:block;font-size:17px;font-weight:800;letter-spacing:-.4px}
-.lnz-weather-day span{display:block;font-size:9px;color:#888;margin-top:3px;font-weight:600}
-
 .lnz-carousel{position:relative;overflow:hidden;border:1px solid var(--line);border-radius:16px;background:linear-gradient(150deg,rgba(18,21,21,.85),rgba(8,10,10,.9));padding:30px 28px}
 .lnz-carousel-track{display:flex;transition:transform .55s cubic-bezier(.2,.8,.2,1)}
 .lnz-slide{flex:0 0 100%;padding:0 4px;text-align:center}
@@ -479,10 +428,6 @@ body.performance-mode #lnzParticles,body.performance-mode #lnzMatrix{display:non
 .lnz-news-form button{padding:9px 16px;border-radius:8px;border:0;background:var(--red);color:#fff;font:inherit;font-size:10px;font-weight:800;letter-spacing:.5px;cursor:pointer;transition:.25s;white-space:nowrap}
 .lnz-news-form button:hover{transform:translateY(-1px);box-shadow:0 8px 22px var(--glow)}
 
-.lnz-livestats{display:flex;flex-wrap:wrap;gap:18px;justify-content:center;padding:14px 20px;border:1px solid rgba(255,255,255,.06);border-radius:12px;background:rgba(255,255,255,.012);max-width:900px;margin:auto;font-family:'JetBrains Mono',ui-monospace,monospace}
-.lnz-livestats>div{display:flex;align-items:center;gap:8px;font-size:9.5px;color:#888;font-weight:700;letter-spacing:.7px;text-transform:uppercase}
-.lnz-livestats b{color:#fff;font-size:11px}
-.lnz-livestats i{width:6px;height:6px;border-radius:50%;background:#7dff9c;box-shadow:0 0 8px #7dff9c;animation:clockPulse 1.6s infinite}
 
 .tech-marquee{padding:22px 0 50px;border-top:1px solid rgba(255,255,255,.05);border-bottom:1px solid rgba(255,255,255,.05);overflow:hidden;background:linear-gradient(180deg,var(--soft),transparent)}
 .tech-marquee-track{display:inline-flex;gap:44px;align-items:center;padding:12px 0;animation:techMar 32s linear infinite;white-space:nowrap}
@@ -606,8 +551,6 @@ body.theme-aurora{--red:#00ffaa;--red2:#c084fc;--glow:rgba(0,255,170,.32);--soft
   .contact-grid{grid-template-columns:1fr}
   
   .lnz-news-inner{grid-template-columns:1fr;gap:14px}
-  .lnz-weather{grid-template-columns:repeat(2,1fr)}
-  .lnz-proj-grid{grid-template-columns:repeat(2,1fr)}
   .lnz-keys{display:none}
   .lnz-theme-grid{grid-template-columns:repeat(2,1fr)}
 }
@@ -645,9 +588,6 @@ body.theme-aurora{--red:#00ffaa;--red2:#c084fc;--glow:rgba(0,255,170,.32);--soft
   .lnz-cookie.show{transform:translate(0,0)}
   .lnz-cookie-actions{width:100%}
   .lnz-cookie-actions button{flex:1}
-  .lnz-proj-grid{grid-template-columns:1fr}
-  
-  .lnz-weather{grid-template-columns:1fr 1fr}
   .lnz-theme-grid{grid-template-columns:repeat(2,1fr)}
 }
 @media(max-width:560px){
@@ -660,8 +600,6 @@ body.theme-aurora{--red:#00ffaa;--red2:#c084fc;--glow:rgba(0,255,170,.32);--soft
   .secret-actions{grid-template-columns:1fr}
   .secret-jumps{grid-template-columns:repeat(2,1fr)}
   .session-grid{grid-template-columns:1fr 1fr}
-  .lnz-weather{grid-template-columns:1fr}
-  .lnz-livestats{gap:12px;font-size:9px;padding:12px}
   .lnz-popup,.lnz-chat-panel,.lnz-notif-panel{width:calc(100vw - 24px);right:12px}
 }
 @media(prefers-reduced-motion:reduce){
@@ -676,27 +614,6 @@ body.theme-aurora{--red:#00ffaa;--red2:#c084fc;--glow:rgba(0,255,170,.32);--soft
   .reveal{opacity:1!important;transform:none!important}
 }
 
-/* force articles grid — always 3 columns */
-.lnz-articles{display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:10px!important}
-.lnz-article{min-width:0}
-.lnz-article h3{font-size:clamp(10px,2.8vw,13px)!important}
-.lnz-article p{font-size:clamp(8px,2.2vw,10.5px)!important}
-.lnz-article-cover{height:clamp(72px,22vw,130px)!important}
-.lnz-article-more{font-size:clamp(8px,2vw,9.5px)!important}
-/* ARTICLES 3COL LOCK */
-.lnz-articles{display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:8px!important}
-.lnz-article{min-width:0!important}
-@media (max-width:800px){
-  .lnz-articles{grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:6px!important}
-  .lnz-article-cover{height:70px!important}
-  .lnz-article h3{font-size:10px!important;line-height:1.3!important}
-  .lnz-article p{font-size:8px!important;line-height:1.4!important;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
-  .lnz-article-body{padding:8px!important;gap:4px!important}
-  .lnz-article-cat{font-size:7px!important;padding:2px 6px!important}
-  .lnz-article-meta{font-size:7px!important}
-  .lnz-article-more{font-size:8px!important}
-  .lnz-article-cover svg{width:28px!important;height:28px!important}
-}
 </style>
 </head>
 <body class="theme-maroon">
@@ -743,7 +660,6 @@ body.theme-aurora{--red:#00ffaa;--red2:#c084fc;--glow:rgba(0,255,170,.32);--soft
       <a href="#ai">Assistant</a>
       <a href="#tools">Tools</a>
       <a href="#informatika">Informatika</a>
-      <a href="#persija">Portal</a>
       <a href="#skills">Skills</a>
       <a href="#experience">Experience</a>
       <a href="#faq">FAQ</a>
@@ -1085,26 +1001,6 @@ body.theme-aurora{--red:#00ffaa;--red2:#c084fc;--glow:rgba(0,255,170,.32);--soft
   </div>
 </section>
 
-<section id="persija">
-  <div class="container">
-    <div class="section-head reveal">
-      <div>
-        <div class="eyebrow">Supporter Hub</div>
-        <h2>Persija <span class="accent">Fan Portal</span></h2>
-        <span class="lnz-section-tag"><i></i> JAKMANIA</span>
-      </div>
-      <p>Portal khusus untuk Jakmania. Berita, jadwal, klasemen, dan komunitas Persija Jakarta dalam satu tempat.</p>
-    </div>
-    <div class="services">
-      <div class="card reveal">
-        <div class="card-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="m12 7 4 3-1.5 5h-5L8 10l4-3Z"/><path d="M12 3v4M3 10l5 0M21 10l-5 0M6.5 20l3.5-5M17.5 20l-3.5-5"/></svg></div>
-        <h3>Persija Fan Portal</h3>
-        <p>Portal komunitas Jakmania. Update berita terbaru, jadwal pertandingan, klasemen, dan ruang diskusi untuk seluruh pendukung Persija Jakarta.</p>
-        <a class="more" href="https://lanzz-project.github.io/persija-fan-portal/" target="_blank" rel="noopener noreferrer">Open Portal <span>→</span></a>
-      </div>
-    </div>
-  </div>
-</section>
 
 
 
@@ -1239,7 +1135,7 @@ body.theme-aurora{--red:#00ffaa;--red2:#c084fc;--glow:rgba(0,255,170,.32);--soft
         <div class="footer-status" style="margin-top:12px"><i></i><span style="color:#7dff9c;font-size:10px;font-weight:700;letter-spacing:.4px">Available for projects</span></div>
       </div>
       <div class="footer-col"><h5>Explore</h5><a href="#home">Home</a><a href="#services">Services</a><a href="#ai">AI Assistant</a><a href="#tools">Tools</a><a href="#space">Space</a></div>
-      <div class="footer-col"><h5>Content</h5><a href="#persija">Persija Portal</a><a href="#projects">Projects</a><a href="#articles">Articles</a><a href="#reviews">Reviews</a><a href="#weather">Weather</a></div>
+      <div class="footer-col"><h5>Content</h5><a href="#game">Games</a><a href="#bros">Lanzz Bros</a><a href="#space">Space</a><a href="#informatika">Informatika</a><a href="#newsletter">Newsletter</a></div>
       <div class="footer-col"><h5>Connect</h5><a href="https://www.instagram.com/lanzz.offcl" target="_blank" rel="noopener noreferrer">Instagram</a><a href="https://wa.me/6283894480846" target="_blank" rel="noopener noreferrer">WhatsApp</a><a href="https://www.facebook.com/profile.php?id=61593681814129" target="_blank" rel="noopener noreferrer">Facebook</a><a href="https://www.tiktok.com/@lanzz.offcl" target="_blank" rel="noopener noreferrer">TikTok</a></div>
     </div>
     <div class="footer-bottom"><span>© 2026 Lanzz. All Rights Reserved.</span><span>Designed &amp; Developed by Lanzz — Made with HTML · CSS · JavaScript</span></div>
@@ -1784,7 +1680,6 @@ document.querySelectorAll('[data-copy]').forEach(btn => {
     if (/harga|biaya|cost|rate|price/.test(t)) return 'Harga fleksibel tergantung kompleksitas project. Kirim brief ke WhatsApp ya.';
     if (/mulai|start|order|pesan/.test(t)) return 'Gampang! Kirim brief project via WhatsApp +62 838-9448-0846 atau email lanzz.project.id@gmail.com.';
     if (/kontak|whatsapp|email|hubungi/.test(t)) return 'WA: +62 838-9448-0846 | Email: lanzz.project.id@gmail.com';
-    if (/persija|jakmania|bola/.test(t)) return 'Cek Persija Fan Portal di section #persija ya! Portal komunitas Jakmania lengkap.';
     if (/terima kasih|makasih|thanks/.test(t)) return 'Sama-sama! 😊';
     return 'Terima kasih pesannya! Untuk respon cepat, hubungi WhatsApp +62 838-9448-0846 ya.';
   };
@@ -1834,7 +1729,6 @@ document.querySelectorAll('[data-copy]').forEach(btn => {
   if (!panel || !list) return;
   const notifs = [
     {icon:'m', title:'Website baru saja rilis', desc:'Lanzz Tools Suite v2.0 sekarang tersedia.', time:'2 menit lalu', unread:true},
-    {icon:'p', title:'Persija Fan Portal launch', desc:'Portal komunitas Jakmania resmi dibuka!', time:'1 jam lalu', unread:true},
     {icon:'a', title:'AI Assistant update', desc:'Model baru dengan respon lebih cepat.', time:'3 jam lalu', unread:true},
     {icon:'g', title:'Game library ditambah', desc:'50 game baru masuk ke Lanzz Play.', time:'1 hari lalu', unread:false}
   ];
@@ -1994,13 +1888,13 @@ document.querySelectorAll('[data-copy]').forEach(btn => {
       {l:'Space', h:'#space', icon:'<circle cx="12" cy="12" r="9"/><path d="M3 12h18"/>'},
       {l:'Games', h:'#game', icon:'<path d="M6 8h12a4 4 0 0 1 3.8 5.2l-1.1 4A2.3 2.3 0 0 1 16.2 19L13.8 16h-3.6l-2.4 3a2.3 2.3 0 0 1-4.5-1.8l-1.1-4A4 4 0 0 1 6 8Z"/>'},
       {l:'Lanzz Bros', h:'#bros', icon:'<circle cx="12" cy="12" r="3"/>'},
-      {l:'Persija Fan Portal', h:'#persija', icon:'<circle cx="12" cy="12" r="9"/><path d="m12 7 4 3-1.5 5h-5L8 10l4-3Z"/>'},
-      {l:'Projects', h:'#projects', icon:'<rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/>'},
+      {l:'Informatika', h:'#informatika', icon:'<path d="M4 5h16v14H4z"/><path d="M8 9h8M8 13h5"/>'},
       {l:'Skills', h:'#skills', icon:'<path d="M5 19V9M12 19V5M19 19v-7"/><path d="M3 19h18"/>'},
       {l:'Experience', h:'#experience', icon:'<rect x="3" y="5" width="18" height="14" rx="2"/><path d="M8 5v-2M16 5v-2M3 11h18"/>'},
-      {l:'Reviews', h:'#reviews', icon:'<path d="m12 2 3 7 7 .5-5.5 4.5 1.8 7L12 17l-6.3 4 1.8-7L2 9.5 9 9z"/>'},
-      {l:'Weather', h:'#weather', icon:'<circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2"/>'},
-      {l:'Contact', h:'#contact', icon:'<rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/>'}
+      {l:'FAQ', h:'#faq', icon:'<circle cx="12" cy="12" r="9"/><path d="M9.5 9a2.6 2.6 0 1 1 4.7 1.5c-.8 1-2.2 1.2-2.2 2.5M12 16h.01"/>'},
+      {l:'Newsletter', h:'#newsletter', icon:'<rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/>'},
+      {l:'Contact', h:'#contact', icon:'<rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/>'},
+      {l:'About', h:'#about', icon:'<circle cx="12" cy="8" r="3"/><path d="M5 21a7 7 0 0 1 14 0"/>'}
     ]},
     {g:'Aksi', items:[
       {l:'Toggle Matrix Rain', a:'matrix', icon:'<path d="M4 6h16v12H4zM4 10h16"/>'},
@@ -2100,89 +1994,6 @@ document.querySelectorAll('[data-copy]').forEach(btn => {
 })();
 
 
-(() => {
-  const wrap = document.getElementById('lnzWeather');
-  if (!wrap) return;
-  const updEl = document.getElementById('lnzWeatherUpdated');
-  const days = wrap.querySelectorAll('.lnz-weather-day');
-  const DAY_NAMES = ['MIN','SEN','SEL','RAB','KAM','JUM','SAB'];
-
-  const weatherMap = {
-    clear:'<circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/>',
-    partly:'<circle cx="12" cy="9" r="3.5"/><path d="M12 2v1.5M4.9 4.9l1.1 1.1M2 9h1.5M19 9h1.5M17.7 6l1.1-1.1"/><path d="M18 14h-1.3A4 4 0 1 0 8 16.3 3 3 0 0 0 9 22h9a4 4 0 0 0 0-8z"/>',
-    cloud:'<path d="M18 10h-1.3A5 5 0 1 0 7 13.8 4 4 0 0 0 9 21h9a4 4 0 0 0 0-8z"/>',
-    fog:'<path d="M18 10h-1.3A5 5 0 1 0 7 13.8 4 4 0 0 0 9 21h9a4 4 0 0 0 0-8z"/><path d="M4 15h16M5 18h14M6 21h12"/>',
-    drizzle:'<path d="M18 10h-1.3A5 5 0 1 0 7 13.8 4 4 0 0 0 9 21h9a4 4 0 0 0 0-8z"/><path d="M10 21v1M14 21v1"/>',
-    rain:'<path d="M18 10h-1.3A5 5 0 1 0 7 13.8 4 4 0 0 0 9 21h9a4 4 0 0 0 0-8z"/><path d="M9 17l-1 3M13 17l-1 3M17 17l-1 3"/>',
-    snow:'<path d="M18 10h-1.3A5 5 0 1 0 7 13.8 4 4 0 0 0 9 21h9a4 4 0 0 0 0-8z"/><path d="M10 20h.01M14 20h.01M12 21h.01M12 17h.01"/>',
-    thunder:'<path d="M18 10h-1.3A5 5 0 1 0 7 13.8 4 4 0 0 0 9 21h9a4 4 0 0 0 0-8z"/><path d="m13 13-2 4h3l-1 4 3-5h-2l1-3z"/>'
-  };
-
-  const codeToType = c => {
-    if (c === 0) return 'clear';
-    if (c <= 2) return 'partly';
-    if (c === 3) return 'cloud';
-    if (c === 45 || c === 48) return 'fog';
-    if (c >= 51 && c <= 55) return 'drizzle';
-    if ((c >= 61 && c <= 65) || (c >= 80 && c <= 82)) return 'rain';
-    if ((c >= 71 && c <= 77) || c === 85 || c === 86) return 'snow';
-    if (c >= 95) return 'thunder';
-    return 'cloud';
-  };
-  const codeToLabel = c => {
-    if (c === 0) return 'Cerah';
-    if (c <= 2) return 'Cerah Berawan';
-    if (c === 3) return 'Berawan';
-    if (c === 45 || c === 48) return 'Berkabut';
-    if (c >= 51 && c <= 55) return 'Gerimis';
-    if (c >= 61 && c <= 65) return 'Hujan';
-    if (c === 80 || c === 81 || c === 82) return 'Hujan Lokal';
-    if ((c >= 71 && c <= 77) || c === 85 || c === 86) return 'Salju';
-    if (c >= 95) return 'Badai';
-    return 'Berawan';
-  };
-
-  const render = (data) => {
-    const daily = data.daily;
-    if (!daily || !daily.time) throw new Error('no data');
-    days.forEach((el, i) => {
-      const dt = new Date(daily.time[i] + 'T00:00:00');
-      const dayName = i === 0 ? 'HARI INI' : DAY_NAMES[dt.getDay()];
-      const code = daily.weather_code[i];
-      const tmax = Math.round(daily.temperature_2m_max[i]);
-      const type = codeToType(code);
-      el.querySelector('small').textContent = dayName;
-      el.querySelector('svg').innerHTML = weatherMap[type];
-      el.querySelector('b').textContent = tmax + '°';
-      el.querySelector('span').textContent = codeToLabel(code);
-    });
-    const now = new Date();
-    const tf = new Intl.DateTimeFormat('id-ID', {timeZone:'Asia/Jakarta', hour:'2-digit', minute:'2-digit'});
-    if (updEl) updEl.textContent = 'Diperbarui ' + tf.format(now) + ' WIB';
-  };
-
-  const load = async () => {
-    try {
-      const url = 'https://api.open-meteo.com/v1/forecast?latitude=-6.35&longitude=106.25&daily=weather_code,temperature_2m_max,temperature_2m_min&timezone=Asia%2FJakarta&forecast_days=4';
-      const res = await fetch(url);
-      if (!res.ok) throw new Error('HTTP ' + res.status);
-      const data = await res.json();
-      render(data);
-    } catch (err) {
-      const cur = wrap.querySelectorAll('.lnz-weather-day');
-      const today = new Date();
-      cur.forEach((el, i) => {
-        const dt = new Date(today); dt.setDate(dt.getDate() + i);
-        el.querySelector('small').textContent = i === 0 ? 'HARI INI' : DAY_NAMES[dt.getDay()];
-        el.querySelector('b').textContent = '--°';
-        el.querySelector('span').textContent = 'Tidak tersedia';
-      });
-      if (updEl) updEl.textContent = 'Gagal memuat data';
-    }
-  };
-  load();
-  setInterval(load, 30 * 60 * 1000);
-})();
 
 (() => {
   let logoClicks = 0, logoTimer;
@@ -2253,7 +2064,7 @@ document.querySelectorAll('[data-copy]').forEach(btn => {
     markUnlocked('system');
   };
   const quickJump = () => {
-    const ids = ['home','services','game','bros','space','ai','tools','persija','projects','skills','experience','reviews','weather','about','faq','contact'];
+    const ids = ['home','services','game','bros','space','ai','tools','informatika','skills','experience','faq','newsletter','contact','about'];
     showDetail('<div class="secret-detail-title"><span>QUICK NAVIGATION</span><span class="secret-chip">' + ids.length + ' TARGETS</span></div>' +
       '<div class="secret-jumps">' + ids.map(id => '<button type="button" class="secret-jump" data-jump="' + id + '">' + id.toUpperCase() + '</button>').join('') + '</div>');
     secretOutput.querySelectorAll('[data-jump]').forEach(b => {
