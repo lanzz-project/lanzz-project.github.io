@@ -19,10 +19,10 @@
    1. ROOT VARIABLES
 ============================================================ */
 :root{
-    --bg:#050002;
-    --bg-2:#0a0004;
-    --card:#170208;
-    --card-2:#120608;
+    --bg:#100106;
+    --bg-2:#1a0208;
+    --card:#22030b;
+    --card-2:#18040a;
     --primary:#ff1744;
     --primary-light:#ff6b81;
     --secondary:#8b0000;
@@ -86,10 +86,11 @@ body{
     position:relative;
 
     background-image:
-        radial-gradient(circle at 15% 15%, rgba(255,10,26,.18), transparent 45%),
-        radial-gradient(circle at 85% 85%, rgba(139,0,0,.18), transparent 50%),
-        radial-gradient(circle at 50% 50%, rgba(255,10,26,.05), transparent 70%);
+        radial-gradient(circle at 18% 12%, rgba(220,20,60,.20), transparent 42%),
+        radial-gradient(circle at 82% 82%, rgba(139,0,0,.22), transparent 48%),
+        radial-gradient(circle at 50% 48%, rgba(255,30,55,.055), transparent 68%);
     background-attachment:fixed;
+    box-shadow:inset 0 0 120px rgba(180,0,35,.08);
 }
 
 body.no-scroll{
@@ -116,7 +117,7 @@ a{color:inherit;text-decoration:none;}
 
 /* Scrollbar */
 ::-webkit-scrollbar{width:9px;height:9px;}
-::-webkit-scrollbar-track{background:#0a0004;}
+::-webkit-scrollbar-track{background:#160208;}
 ::-webkit-scrollbar-thumb{
     background:linear-gradient(180deg,var(--primary),var(--secondary));
     border-radius:20px;
@@ -703,7 +704,7 @@ a{color:inherit;text-decoration:none;}
     padding:8px;
     border:1px solid rgba(255,23,68,.22);
     border-radius:var(--radius);
-    background:#14050a;
+    background:#24040c;
     box-shadow:var(--shadow-lg), 0 0 30px rgba(255,23,68,.12);
     z-index:9999;
     max-height:min(70vh,420px);
@@ -794,7 +795,7 @@ a{color:inherit;text-decoration:none;}
     letter-spacing:.3px;
 }
 .sort-box select option{
-    background:#14050a;
+    background:#24040c;
     color:#fff;
 }
 .sort-box::after{
@@ -1584,7 +1585,7 @@ footer{
     transform:translateY(-50%) translateX(8px);
     padding:6px 12px;
     border-radius:8px;
-    background:#14050a;
+    background:#24040c;
     border:1px solid var(--line-red);
     color:var(--text-soft);
     font-size:10.5px;
@@ -1773,7 +1774,7 @@ footer{
     background:rgba(255,23,68,.05);
     box-shadow:0 0 18px rgba(255,23,68,.12);
 }
-.form-group select option{background:#14050a;}
+.form-group select option{background:#24040c;}
 .form-group input::placeholder,
 .form-group textarea::placeholder{color:#6b6666;}
 
@@ -1980,7 +1981,164 @@ textarea:focus-visible{
     outline:2px solid var(--primary);
     outline-offset:2px;
 }
+
+/* ============================================================
+   LANZZ PERFORMANCE PATCH
+   Optimized for Android / low-end phones
+============================================================ */
+html{
+    scroll-behavior:auto;
+}
+body{
+    background-attachment:scroll;
+}
+.card,
+.stat,
+.tools-box{
+    content-visibility:auto;
+    contain:layout paint style;
+}
+.card{
+    contain-intrinsic-size: 0 330px;
+}
+@media (max-width: 768px), (pointer: coarse){
+    #bgCanvas,
+    .bg-grid{
+        display:none !important;
+    }
+
+    body{
+        background-image:none !important;
+        background-attachment:scroll !important;
+    }
+
+    .navbar.scrolled,
+    .hero-pill,
+    .stat,
+    .tools-box,
+    .card,
+    .badge,
+    .favorite,
+    .fab,
+    .modal-backdrop,
+    .modal{
+        -webkit-backdrop-filter:none !important;
+        backdrop-filter:none !important;
+    }
+
+    .navbar.scrolled{
+        background:rgba(8,1,4,.97) !important;
+        box-shadow:0 5px 16px rgba(0,0,0,.35) !important;
+    }
+
+    .stat,
+    .tools-box,
+    .card{
+        box-shadow:0 0 12px rgba(255,23,68,.035) !important;
+    }
+
+    .card::before,
+    .card::after,
+    .stat::after{
+        display:none !important;
+    }
+
+    .card:hover,
+    .stat:hover{
+        transform:none !important;
+        box-shadow:0 0 12px rgba(255,23,68,.035) !important;
+    }
+
+    .card-icon-wrap{
+        transition:none !important;
+    }
+
+    .card:hover .card-icon-wrap{
+        transform:none !important;
+        box-shadow:none !important;
+    }
+
+    .card:hover i.card-main-icon{
+        transform:none !important;
+    }
+
+    .fab{
+        box-shadow:0 5px 16px rgba(0,0,0,.35) !important;
+    }
+
+    .modal-backdrop{
+        background:rgba(3,0,1,.94) !important;
+    }
+
+    .cta-box::before{
+        display:none !important;
+    }
+}
+
+/* Automatically activated by JS on older / weaker devices. */
+.performance-lite #bgCanvas,
+.performance-lite .bg-grid{
+    display:none !important;
+}
+.performance-lite body{
+    background-image:none !important;
+    background-attachment:scroll !important;
+}
+.performance-lite .card,
+.performance-lite .stat,
+.performance-lite .tools-box,
+.performance-lite .navbar.scrolled,
+.performance-lite .hero-pill,
+.performance-lite .badge,
+.performance-lite .favorite,
+.performance-lite .fab,
+.performance-lite .modal-backdrop,
+.performance-lite .modal{
+    -webkit-backdrop-filter:none !important;
+    backdrop-filter:none !important;
+}
+.performance-lite .card::before,
+.performance-lite .card::after,
+.performance-lite .stat::after{
+    display:none !important;
+}
+.performance-lite .card:hover,
+.performance-lite .stat:hover{
+    transform:none !important;
+}
+.performance-lite *{
+    animation-duration:0.001ms !important;
+    animation-iteration-count:1 !important;
+}
+
 </style>
+
+<!-- LANZZ DARK RED / CRIMSON BACKGROUND PATCH -->
+<style id="lanzz-dark-red-bg">
+/* Force the final background to dark red + crimson with a subtle red glow. */
+html{
+  background:#090003 !important;
+}
+body{
+  background-color:#120106 !important;
+  background-image:
+    radial-gradient(circle at 15% 10%, rgba(220,20,60,.24), transparent 34%),
+    radial-gradient(circle at 85% 22%, rgba(139,0,0,.22), transparent 36%),
+    radial-gradient(circle at 50% 85%, rgba(255,23,68,.10), transparent 42%),
+    linear-gradient(135deg,#0a0003 0%,#24020b 48%,#100106 100%) !important;
+  background-attachment:scroll !important;
+  box-shadow:inset 0 0 160px rgba(180,0,35,.12) !important;
+}
+body.performance-lite{
+  background-color:#120106 !important;
+  background-image:
+    radial-gradient(circle at 15% 10%, rgba(220,20,60,.22), transparent 36%),
+    radial-gradient(circle at 85% 22%, rgba(139,0,0,.20), transparent 38%),
+    radial-gradient(circle at 50% 85%, rgba(255,23,68,.08), transparent 44%),
+    linear-gradient(135deg,#0a0003 0%,#24020b 52%,#100106 100%) !important;
+}
+</style>
+
 </head>
 
 <body>
@@ -3338,6 +3496,24 @@ function showToast(message, iconId){
 }
 
 /* ============================================================
+   PERFORMANCE MODE
+   Older Android phones get a lighter rendering path automatically.
+============================================================ */
+(function initPerformanceMode(){
+    const reduceMotion = window.matchMedia &&
+        window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    const cores = navigator.hardwareConcurrency || 8;
+    const memory = navigator.deviceMemory || 8;
+    const coarse = window.matchMedia &&
+        window.matchMedia('(pointer: coarse)').matches;
+
+    if(reduceMotion || cores <= 4 || memory <= 4 || coarse){
+        document.documentElement.classList.add('performance-lite');
+    }
+})();
+
+/* ============================================================
    5. SCROLL PROGRESS + NAVBAR + BACK TO TOP
 ============================================================ */
 const scrollBar  = $('#scrollBar');
@@ -3351,6 +3527,9 @@ function onScroll(){
     const docHeight = document.documentElement.scrollHeight - window.innerHeight;
     const progress  = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
 
+    if(scrollBar){
+        scrollBar.style.width = progress + '%';
+    }
 
     if(navbar){
         if(scrollTop > 30) navbar.classList.add('scrolled');
@@ -3480,6 +3659,16 @@ if(backToTop){
    10. CARD RENDER
 ============================================================ */
 const cards = $$('.card');
+
+/* Cache search text once: much cheaper on older Android devices. */
+cards.forEach(function(card){
+    card._searchHaystack = (
+        card.textContent + ' ' +
+        (card.dataset.search || '') + ' ' +
+        (card.dataset.title || '') + ' ' +
+        (card.dataset.tags || '')
+    ).toLowerCase();
+});
 
 /* ============================================================
    11. CARD HOVER GLOW + TILT
@@ -3806,11 +3995,11 @@ function filterCards(){
         const favoriteButton = $('.favorite', card);
         const id = favoriteButton ? favoriteButton.dataset.id : '';
 
-        const haystack = (
-            card.innerText + ' ' +
+        const haystack = card._searchHaystack || (
+            card.textContent + ' ' +
             (card.dataset.search || '') + ' ' +
-            (card.dataset.title  || '') + ' ' +
-            (card.dataset.tags   || '')
+            (card.dataset.title || '') + ' ' +
+            (card.dataset.tags || '')
         ).toLowerCase();
 
         const category = card.dataset.category;
