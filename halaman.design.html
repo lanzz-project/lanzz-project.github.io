@@ -4,18 +4,22 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>LANZZ PROJECT — Developer | Modder | Creator</title>
-
-<meta name="description" content="LANZZ PROJECT - Developer, Modder & Creator. Layanan website, HTML, CSS, JS, APK Android, Bot & Desain Grafis.">
+<title>Lanzz Services - Jasa Membuat Website Murah & Profesional</title>
+<meta name="description" content="Lanzz Services adalah solusi jasa membuat website murah dan profesional. Lanzz Project juga melayani pembuatan APK Android, HTML/CSS/JS, dan Desain Grafis.">
+<meta name="keywords" content="Lanzz Services, Jasa membuat website, Website murah, Jasa website, Lanzz Project, Jasa APK Android, Desain Grafis">
 <meta name="theme-color" content="#080405">
 <meta name="color-scheme" content="dark">
 <meta name="robots" content="index, follow">
 
-<!-- Open Graph -->
 <meta property="og:type" content="website">
-<meta property="og:title" content="LANZZ PROJECT — Developer | Modder | Creator">
-<meta property="og:description" content="Layanan website, HTML, CSS, JS, APK Android, Bot & Desain Grafis.">
+<meta property="og:title" content="Lanzz Services - Jasa Membuat Website Murah & Profesional">
+<meta property="og:description" content="Lanzz Services menyediakan jasa pembuatan website murah, APK Android, dan Desain Grafis. Solusi digital terbaik untuk bisnis Anda.">
 <meta property="og:image" content="https://i.imgur.com/FEf8DRG.png">
+
+<link rel="apple-touch-icon" sizes="180x180" href="/logo/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/logo/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/logo/favicon-16x16.png">
+<link rel="shortcut icon" href="/logo/favicon.ico">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -24,10 +28,6 @@
 <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;700;800;900&family=Rajdhani:wght@500;600;700&display=swap" rel="stylesheet">
 
 <style>
-
-/* =========================================================
-   1. ROOT VARIABLES
-========================================================= */
 
 :root{
     --bg:#080405;
@@ -63,10 +63,6 @@
 
     --maxw:1120px;
 }
-
-/* =========================================================
-   2. RESET & BASE
-========================================================= */
 
 *,
 *::before,
@@ -162,7 +158,6 @@ ul{list-style:none}
     color:#fff;
 }
 
-/* Scrollbar */
 ::-webkit-scrollbar{width:9px;height:9px}
 ::-webkit-scrollbar-track{background:#0a0405}
 ::-webkit-scrollbar-thumb{
@@ -173,10 +168,6 @@ ul{list-style:none}
 ::-webkit-scrollbar-thumb:hover{
     background:linear-gradient(180deg,#ff3344,var(--cyan));
 }
-
-/* =========================================================
-   3. BACKGROUND LAYERS
-========================================================= */
 
 #bgCanvas{
     position:fixed;
@@ -224,10 +215,6 @@ ul{list-style:none}
     33%{transform:translate(40px,-30px) scale(1.12)}
     66%{transform:translate(-30px,35px) scale(.92)}
 }
-
-/* =========================================================
-   4. PRELOADER
-========================================================= */
 
 .preloader{
     position:fixed;
@@ -347,10 +334,6 @@ ul{list-style:none}
     font-weight:700;
 }
 
-/* =========================================================
-   5. SCROLL PROGRESS
-========================================================= */
-
 .scroll-progress{
     position:fixed;
     top:0;left:0;
@@ -369,19 +352,11 @@ ul{list-style:none}
     transition:width .12s linear;
 }
 
-/* =========================================================
-   6. LAYOUT WRAPPER
-========================================================= */
-
 .wrap{
     max-width:var(--maxw);
     margin:0 auto;
     padding:0 14px;
 }
-
-/* =========================================================
-   7. HEADER / HERO
-========================================================= */
 
 header{
     position:relative;
@@ -524,10 +499,6 @@ header .tag{
     opacity:.9;
 }
 
-/* =========================================================
-   8. BUTTONS
-========================================================= */
-
 .btn-desain,
 .btn-bawah,
 .btn-ghost{
@@ -610,10 +581,6 @@ header .tag{
     transform:scale(.95);
 }
 
-/* =========================================================
-   9. TICKER
-========================================================= */
-
 .ticker{
     margin:24px 0 6px;
     border-top:1px solid var(--line);
@@ -657,10 +624,6 @@ header .tag{
     from{transform:translateX(0)}
     to{transform:translateX(-50%)}
 }
-
-/* =========================================================
-   10. STATS
-========================================================= */
 
 .stats-grid{
     max-width:var(--maxw);
@@ -738,10 +701,6 @@ header .tag{
     display:block;
     text-transform:uppercase;
 }
-
-/* =========================================================
-   11. TOOLBAR
-========================================================= */
 
 .toolbar{
     max-width:var(--maxw);
@@ -916,10 +875,6 @@ header .tag{
     transform:scale(1);
 }
 
-/* =========================================================
-   12. FILTER PANEL
-========================================================= */
-
 .filter-panel{
     max-width:var(--maxw);
     margin:0 auto;
@@ -1027,10 +982,6 @@ header .tag{
 
 .filter-btn:active{transform:scale(.94)}
 
-/* =========================================================
-   13. SECTION TITLE
-========================================================= */
-
 .section-title{
     font-family:Orbitron,sans-serif;
     text-align:center;
@@ -1060,10 +1011,6 @@ header .tag{
     margin-bottom:20px;
     text-transform:uppercase;
 }
-
-/* =========================================================
-   14. GRID & SERVICE CARD
-========================================================= */
 
 .grid-wrap{
     max-width:var(--maxw);
@@ -1402,10 +1349,6 @@ header .tag{
     margin-top:14px;
 }
 
-/* =========================================================
-   15. EMPTY STATE
-========================================================= */
-
 .empty-state{
     display:none;
     text-align:center;
@@ -1463,10 +1406,6 @@ header .tag{
 .empty-reset{
     margin-top:16px;
 }
-
-/* =========================================================
-   16. FAQ
-========================================================= */
 
 .faq-wrap{
     max-width:var(--maxw);
@@ -1575,10 +1514,6 @@ header .tag{
     color:var(--sub);
 }
 
-/* =========================================================
-   17. SOCIAL
-========================================================= */
-
 .sosmed-wrap{
     text-align:center;
     margin:34px 12px 20px;
@@ -1666,10 +1601,6 @@ header .tag{
 }
 .sosmed.tt:hover{box-shadow:0 0 26px rgba(37,244,238,.55)}
 
-/* =========================================================
-   18. FOOTER
-========================================================= */
-
 footer{
     text-align:center;
     color:var(--sub);
@@ -1717,10 +1648,6 @@ footer{
     0%,100%{transform:scale(1)}
     50%{transform:scale(1.25)}
 }
-
-/* =========================================================
-   19. BOTTOM DOCK (MOBILE)
-========================================================= */
 
 .dock{
     position:fixed;
@@ -1815,10 +1742,6 @@ footer{
     opacity:1;
     transform:scale(1);
 }
-
-/* =========================================================
-   20. MODAL
-========================================================= */
 
 .modal{
     position:fixed;
@@ -2103,10 +2026,6 @@ footer{
     font-size:10.5px;
 }
 
-/* =========================================================
-   21. TOAST
-========================================================= */
-
 .toast{
     position:fixed;
     left:50%;
@@ -2158,10 +2077,6 @@ footer{
 .toast.error i{color:var(--cyan)}
 .toast.info i{color:var(--amber)}
 
-/* =========================================================
-   22. SCROLL ANIMATION
-========================================================= */
-
 .scroll-animate{
     opacity:0;
     transform:translateY(34px);
@@ -2174,10 +2089,6 @@ footer{
     opacity:1;
     transform:translateY(0);
 }
-
-/* =========================================================
-   23. RIPPLE
-========================================================= */
 
 .ripple{
     position:absolute;
@@ -2194,10 +2105,6 @@ footer{
         opacity:0;
     }
 }
-
-/* =========================================================
-   24. RESPONSIVE
-========================================================= */
 
 @media(max-width:900px){
 
@@ -2374,7 +2281,7 @@ footer{
             <i class="fa-solid fa-bolt"></i>
         </div>
     </div>
-    <div class="pl-name">LANZZ PROJECT</div>
+    <div class="pl-name">LANZZ SERVICES</div>
     <div class="pl-bar"><span id="plBar"></span></div>
     <div class="pl-txt" id="plTxt">MEMUAT SISTEM...</div>
 </div>
@@ -2411,7 +2318,7 @@ footer{
     </div>
 
     <h1>
-        LANZZ PROJECT
+        LANZZ SERVICES
         <i class="fa-solid fa-circle-check"></i>
     </h1>
 
@@ -2464,7 +2371,6 @@ footer{
         <span>HTML CSS JS</span><i class="fa-solid fa-circle"></i>
         <span>PORTFOLIO</span><i class="fa-solid fa-circle"></i>
         <span>MOD & BOOSTER</span><i class="fa-solid fa-circle"></i>
-        <span>BOT WHATSAPP</span><i class="fa-solid fa-circle"></i>
         <span>DESAIN GRAFIS</span><i class="fa-solid fa-circle"></i>
     </div>
 </div>
@@ -2577,11 +2483,6 @@ footer{
                     <button class="filter-btn" data-filter="web">
                         <i class="fa-solid fa-code"></i>
                         HTML/CSS/JS
-                    </button>
-
-                    <button class="filter-btn" data-filter="bot">
-                        <i class="fa-solid fa-comment-dots"></i>
-                        BOT
                     </button>
 
                     <button class="filter-btn" data-filter="desain">
@@ -2880,60 +2781,11 @@ footer{
     </article>
 
 
-    <!-- SERVICE 5 -->
-    <article
-        class="layanan-card scroll-animate"
-        data-id="bot"
-        data-index="5"
-        data-category="bot"
-        data-title="Bot WhatsApp & Automation"
-        data-search="bot whatsapp automation auto reply chatbot api otomatis telegram script bot"
-        tabindex="0"
-    >
-        <span class="card-badge new">BARU</span>
-
-        <button
-            class="favorite-btn"
-            data-id="bot"
-            aria-label="Tambah ke favorit"
-        >
-            <i class="fa-regular fa-heart"></i>
-        </button>
-
-        <div class="card-head">
-            <div class="card-icon">
-                <i class="fa-solid fa-comment-dots"></i>
-            </div>
-            <div>
-                <h3>5. Bot WhatsApp</h3>
-                <p class="card-desc">
-                    Bot auto reply & automation yang bikin kerjaan jauh lebih cepat.
-                </p>
-            </div>
-        </div>
-
-        <ul class="card-list">
-            <li>Auto Reply</li>
-            <li>Chatbot</li>
-            <li>Broadcast</li>
-            <li>Auto Order</li>
-        </ul>
-
-        <div class="card-foot">
-            <span class="card-price">HUBUNGI UNTUK HARGA</span>
-            <button class="card-detail-btn" data-detail="bot">
-                Detail
-                <i class="fa-solid fa-arrow-right"></i>
-            </button>
-        </div>
-    </article>
-
-
-    <!-- SERVICE 6 -->
+    <!-- SERVICE 5 (SEBELUMNYA 6) -->
     <article
         class="layanan-card scroll-animate"
         data-id="desain"
-        data-index="6"
+        data-index="5"
         data-category="desain"
         data-title="Desain Grafis"
         data-search="desain grafis logo banner poster thumbnail youtube feed instagram spanduk vector"
@@ -2954,7 +2806,7 @@ footer{
                 <i class="fa-solid fa-pen-nib"></i>
             </div>
             <div>
-                <h3>6. Desain Grafis</h3>
+                <h3>5. Desain Grafis</h3>
                 <p class="card-desc">
                     Visual kece buat brand, konten, dan jualan kamu.
                 </p>
@@ -3045,7 +2897,7 @@ footer{
             <div class="faq-a-inner">
                 <p>
                     Estimasi mulai dari 1x24 jam untuk proyek ringan seperti
-                    halaman HTML, hingga 3–7 hari untuk website atau bot yang
+                    halaman HTML, hingga 3–7 hari untuk website atau aplikasi android yang
                     lebih kompleks. Estimasi pasti akan diinfokan saat order.
                 </p>
             </div>
@@ -3165,13 +3017,13 @@ footer{
 
     <div class="foot-line">
         <i class="fa-solid fa-code"></i>
-        <span>LANZZ PROJECT</span>
+        <span>LANZZ SERVICES</span>
         <i class="fa-solid fa-bolt"></i>
         <span>DEVELOPER • MODDER • CREATOR</span>
     </div>
 
     <div class="foot-copy" id="footYear">
-        © 2026 LANZZ PROJECT. All Rights Reserved
+        © 2026 LANZZ SERVICES. All Rights Reserved
     </div>
 </footer>
 
@@ -3373,21 +3225,6 @@ var SERVICE_DATA = {
             "Loading super cepat",
             "Bisa dibuka offline",
             "Source code bisa kamu dapatkan"
-        ],
-        price:"Mulai Rp 25.000+ (tergantung tingkat kesulitan)"
-    },
-
-    bot:{
-        title:"Bot WhatsApp & Automation",
-        category:"Bot",
-        icon:"fa-solid fa-comment-dots",
-        desc:"Bot WhatsApp yang bekerja otomatis 24 jam untuk membalas chat, memproses order, dan mengirim broadcast ke banyak kontak sekaligus.",
-        items:["Auto Reply","Chatbot","Broadcast","Auto Order"],
-        feats:[
-            "Balas chat otomatis 24 jam",
-            "Menu interaktif & cepat",
-            "Broadcast massal aman",
-            "Bisa dihubungkan ke sistem lain"
         ],
         price:"Mulai Rp 25.000+ (tergantung tingkat kesulitan)"
     },
@@ -3979,7 +3816,7 @@ function openModal(id){
     if(priceEl){ priceEl.textContent = data.price; }
 
     if(orderEl){
-        var msg = "Halo LANZZ PROJECT, saya tertarik dengan layanan *" +
+        var msg = "Halo LANZZ SERVICES, saya tertarik dengan layanan *" +
                   data.title + "* (" + data.price + "). Bisa dibantu?";
         orderEl.href =
             "https://wa.me/" + WA_NUMBER +
@@ -4087,7 +3924,7 @@ if(modalCopy){
         if(!titleEl){ return; }
 
         var text =
-            "LANZZ PROJECT\n" +
+            "LANZZ SERVICES\n" +
             "Layanan : " + titleEl.textContent + "\n" +
             "Harga   : " + (priceEl ? priceEl.textContent : "-") + "\n" +
             "Info    : " + window.location.href;
@@ -4134,8 +3971,8 @@ if(shareBtn){
     shareBtn.addEventListener("click", function(){
 
         var shareData = {
-            title:"LANZZ PROJECT",
-            text:"Lihat LANZZ PROJECT - Developer | Modder | Creator",
+            title:"LANZZ SERVICES",
+            text:"Lihat LANZZ SERVICES - Jasa Membuat Website Murah",
             url: window.location.href
         };
 
@@ -4474,7 +4311,6 @@ if(typerEl){
         "Website Keren & Cepat",
         "APK Android Mod",
         "HTML CSS JS Custom",
-        "Bot WhatsApp Otomatis",
         "Desain Grafis Kece"
     ];
 
@@ -4827,7 +4663,7 @@ if(sosmedWa){
     sosmedWa.href =
         "https://wa.me/" + WA_NUMBER +
         "?text=" +
-        encodeURIComponent("Halo LANZZ PROJECT, saya ingin bertanya tentang layanan kamu.");
+        encodeURIComponent("Halo LANZZ SERVICES, saya ingin bertanya tentang layanan kamu.");
 }
 
 
@@ -4875,7 +4711,7 @@ var footYear = $("footYear");
 if(footYear){
     var year = new Date().getFullYear();
     footYear.textContent =
-        "© " + year + " LANZZ PROJECT. All Rights Reserved";
+        "© " + year + " LANZZ SERVICES. All Rights Reserved";
 }
 
 
