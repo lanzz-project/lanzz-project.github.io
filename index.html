@@ -4,9 +4,8 @@
 <meta name="google-site-verification" content="j5JDNbcCJm0KHMQt2G6lReMwffMrg4M35eaBnAlSF7M" />
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="Lanzz Project adalah portfolio interaktif by Erlan Maulana yang berisi profile, project website, games library, game arcade, simulator luar angkasa, AI Assistant, tools, dan berbagai project teknologi yang dapat digunakan dan dimainkan.">
+<meta name="description" content="Portfolio interaktif by Erlan Maulana. Berisi profile, project website, games library, simulator luar angkasa, AI Assistant, dan berbagai project teknologi.">
 <meta name="theme-color" content="#060707">
-<meta name="keywords" content="Lanzz Project, Lanzz Portfolio, Lanzz, Erlan Maulana, portfolio, portfolio interaktif, portfolio keren, web platform, games library, game arcade, simulator luar angkasa, AI Assistant, tools, project teknologi">
 <meta name="author" content="Erlan Maulana">
 <link rel="canonical" href="https://lanzz-project.github.io/">
 <link rel="icon" type="image/x-icon" href="/logo/favicon.ico">
@@ -30,9 +29,24 @@
 <meta name="twitter:image" content="https://lanzz-project.github.io/logo/android-chrome-512x512.png">
 
 <meta name="color-scheme" content="dark">
-<title>Lanzz Project, Portfolio Interaktif by Erlan Maulana</title>
+<title>Lanzz Project - Portfolio Interaktif Erlan Maulana</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Erlan Maulana",
+  "alternateName": "Lanzz",
+  "url": "https://lanzz-project.github.io/",
+  "jobTitle": "Web Developer & Creator",
+  "sameAs": [
+    "https://www.instagram.com/lanzz.offcl",
+    "https://www.facebook.com/profile.php?id=61593681814129",
+    "https://www.tiktok.com/@lanzz.offcl"
+  ]
+}
+</script>
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;700&display=swap');
 
@@ -1263,7 +1277,6 @@ body.lnz-preview-open{overflow:hidden}
   </div>
 </footer>
 
-<!-- ============ PREVIEW MODAL ============ -->
 <div class="lnz-preview" id="lnzPreview" role="dialog" aria-modal="true" aria-label="Preview">
   <div class="lnz-preview-backdrop" data-preview-close></div>
   <div class="lnz-preview-shell">
@@ -2409,7 +2422,7 @@ document.querySelectorAll('a[target="_blank"]').forEach(a => {
 
   const open = (url, title) => {
     lastFocus = document.activeElement;
-    // Keep the preview tip visible; the title area is intentionally used for the tip.
+
     externalBtn.href = url;
     loader.classList.remove('hide');
 
