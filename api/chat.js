@@ -21,7 +21,7 @@ const SYSTEM_PROMPT = `Kamu adalah "Lanzz Assistant" — asisten AI resmi di web
 - Email personal: id.erlan.maulana@gmail.com
 - Instagram: @lanzz.offcl
 - TikTok: @lanzz.offcl
-- Facebook: Lanzz Project
+- Facebook: Lanzz Offcl
 
 ## SKILL
 - Web Development (95%)
