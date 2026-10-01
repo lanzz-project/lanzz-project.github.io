@@ -22,7 +22,6 @@
 <link rel="icon" type="image/png" sizes="192x192" href="/logo/android-chrome-192x192.png">
 <link rel="shortcut icon" type="image/x-icon" href="/logo/favicon.ico">
 <link rel="apple-touch-icon" sizes="180x180" href="/logo/apple-touch-icon.png">
-<link rel="mask-icon" href="/logo/favicon.ico" color="#ff1616">
 <link id="lnzManifest" rel="manifest">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://lanzz-project.github.io/">
@@ -107,6 +106,7 @@ button{font-family:inherit;color:inherit}
 ::-webkit-scrollbar-thumb:hover{background:linear-gradient(180deg,var(--red),var(--red2))}
 .container{width:min(var(--max),92%);margin:auto}
 :focus-visible{outline:2px solid var(--red);outline-offset:3px;border-radius:6px}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
 
 /* ---------- APP BAR ---------- */
 .appbar{position:fixed;top:0;left:0;right:0;z-index:1000;height:calc(var(--bar-h) + var(--sat));padding-top:var(--sat);background:rgba(6,7,7,.82);backdrop-filter:blur(20px) saturate(140%);-webkit-backdrop-filter:blur(20px) saturate(140%);border-bottom:1px solid rgba(255,255,255,.06);transition:background .3s ease,border-color .3s ease}
@@ -126,6 +126,8 @@ button{font-family:inherit;color:inherit}
 .icon-btn:hover{color:#fff;border-color:var(--red);background:var(--soft);transform:translateY(-1px)}
 .icon-btn:active{transform:scale(.94)}
 .icon-btn svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.icon-btn.lang-btn{font-size:11px;font-weight:800;letter-spacing:.5px;width:auto;padding:0 11px;gap:4px;flex:0 0 auto;min-width:38px}
+.icon-btn.lang-btn span{line-height:1}
 
 /* ---------- LIVE CLOCK PILL ---------- */
 .live-clock{display:flex;align-items:center;gap:8px;padding:5px 11px 5px 8px;border:1px solid rgba(255,255,255,.1);border-radius:14px;background:linear-gradient(135deg,rgba(255,255,255,.06),var(--soft));white-space:nowrap;position:relative;overflow:hidden;height:38px}
@@ -373,14 +375,19 @@ h2{font-size:clamp(22px,2.6vw,30px);letter-spacing:-.8px;line-height:1.15;font-w
 .perf-toggle svg{width:11px;height:11px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
 
 /* chat */
-.chat-sheet{width:min(380px,calc(100vw - 32px));max-height:min(600px,80vh);display:flex;flex-direction:column}
-.chat-body{flex:1;overflow-y:auto;padding:15px;display:flex;flex-direction:column;gap:10px;min-height:240px;max-height:360px}
+.chat-sheet{width:min(380px,calc(100vw - 32px));max-height:min(620px,82vh);display:flex;flex-direction:column}
+.chat-body{flex:1;overflow-y:auto;padding:15px;display:flex;flex-direction:column;gap:10px;min-height:240px;max-height:380px}
 .chat-body::-webkit-scrollbar{width:4px}
 .chat-body::-webkit-scrollbar-thumb{background:#2a2d2d;border-radius:10px}
-.msg{max-width:82%;padding:10px 13px;border-radius:16px;font-size:12px;line-height:1.55;animation:msgIn .3s cubic-bezier(.2,.8,.2,1);word-wrap:break-word}
+.msg{max-width:82%;padding:10px 13px;border-radius:16px;font-size:12px;line-height:1.55;animation:msgIn .3s cubic-bezier(.2,.8,.2,1);word-wrap:break-word;white-space:pre-wrap}
 @keyframes msgIn{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
 .msg.bot{background:rgba(255,255,255,.055);color:#d8dcdc;border-bottom-left-radius:5px;align-self:flex-start;border:1px solid rgba(255,255,255,.045)}
 .msg.user{background:linear-gradient(135deg,var(--red),var(--red2));color:#fff;border-bottom-right-radius:5px;align-self:flex-end;box-shadow:0 4px 14px var(--soft)}
+.msg.typing{display:inline-flex;gap:3px;align-items:center}
+.msg.typing i{width:5px;height:5px;border-radius:50%;background:currentColor;opacity:.5;animation:typingDot 1.2s infinite}
+.msg.typing i:nth-child(2){animation-delay:.15s}
+.msg.typing i:nth-child(3){animation-delay:.3s}
+@keyframes typingDot{50%{opacity:1;transform:translateY(-2px)}}
 .chat-quick{padding:9px 13px;display:flex;gap:6px;flex-wrap:wrap;border-top:1px solid rgba(255,255,255,.06)}
 .chat-quick button{padding:6px 11px;border:1px solid rgba(255,255,255,.1);border-radius:99px;background:transparent;color:#aaa;font-size:9.5px;cursor:pointer;transition:.2s;font-weight:600}
 .chat-quick button:hover{border-color:var(--red);color:#fff;background:var(--soft)}
@@ -391,6 +398,19 @@ h2{font-size:clamp(22px,2.6vw,30px);letter-spacing:-.8px;line-height:1.15;font-w
 .chat-foot button:hover{transform:scale(1.05);box-shadow:0 4px 14px var(--glow)}
 .chat-foot button:active{transform:scale(.95)}
 .chat-foot button svg{width:15px;height:15px;fill:currentColor}
+.chat-cfg-btn{margin-left:auto;width:28px;height:28px;border:0;background:rgba(255,255,255,.05);color:#999;border-radius:50%;cursor:pointer;display:grid;place-items:center;transition:.2s;flex:0 0 28px}
+.chat-cfg-btn:hover{background:var(--soft);color:#fff}
+.chat-cfg-btn svg{width:13px;height:13px;fill:none;stroke:currentColor;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round}
+.chat-cfg{display:grid;gap:8px;padding:13px;border-top:1px solid rgba(255,255,255,.06);background:rgba(0,0,0,.25)}
+.chat-cfg[hidden]{display:none}
+.chat-cfg small{font-size:8.5px;color:#666;line-height:1.5}
+.chat-cfg label{display:grid;gap:4px;font-size:8.5px;font-weight:800;letter-spacing:1px;color:#777;text-transform:uppercase}
+.chat-cfg input{width:100%;border:1px solid rgba(255,255,255,.09);border-radius:10px;background:#0a0c0c;color:#ddd;padding:9px 11px;font:inherit;font-size:11px;outline:none;font-family:ui-monospace,monospace}
+.chat-cfg input:focus{border-color:var(--red)}
+.chat-cfg-row{display:flex;gap:6px}
+.chat-cfg-row button{flex:1;padding:9px;border:1px solid var(--red);border-radius:10px;background:var(--soft);color:var(--red);font:inherit;font-size:9.5px;font-weight:800;cursor:pointer;letter-spacing:.4px}
+.chat-cfg-row button.primary{background:var(--red);color:#fff}
+.chat-cfg-row button:hover{transform:translateY(-1px)}
 
 /* ---------- TOAST ---------- */
 .toast{position:fixed;left:50%;bottom:calc(var(--tab-h) + 26px + var(--sab));transform:translate(-50%,20px);padding:12px 18px;border:1px solid var(--red);border-radius:14px;background:rgba(11,13,13,.97);color:#eee;font-size:11.5px;z-index:2100;opacity:0;pointer-events:none;transition:.3s;box-shadow:0 18px 44px rgba(0,0,0,.5);backdrop-filter:blur(14px);max-width:calc(100vw - 40px);text-align:center}
@@ -452,6 +472,14 @@ h2{font-size:clamp(22px,2.6vw,30px);letter-spacing:-.8px;line-height:1.15;font-w
 .lnz-detail-tech span{padding:6px 12px;border:1px solid rgba(255,255,255,.1);border-radius:99px;font-size:10.5px;color:#ccc;font-weight:600;background:rgba(255,255,255,.02)}
 .lnz-detail-tech span:before{content:"#";color:var(--red);margin-right:3px;font-weight:800}
 body.lnz-detail-open{overflow:hidden}
+
+/* skeleton */
+.skeleton{position:relative;overflow:hidden;background:linear-gradient(90deg,#141818 0,#1c2020 50%,#141818 100%);background-size:200% 100%;animation:skelShine 1.4s linear infinite;border-radius:8px}
+@keyframes skelShine{0%{background-position:200% 0}100%{background-position:-200% 0}}
+.skel-hero{height:200px;border-radius:22px;margin-bottom:16px}
+.skel-section{height:140px;border-radius:18px;margin-bottom:14px}
+.skel-line{height:12px;border-radius:6px;margin:10px 0;width:70%}
+.skel-line.short{width:40%}
 
 /* ---------- SPLASH ---------- */
 .lnz-boot{position:fixed;inset:0;z-index:100000;background:#040505;display:grid;place-items:center;transition:opacity .55s ease,visibility .55s ease;overflow:hidden}
@@ -575,7 +603,7 @@ body.lnz-drawer-open .scroll-progress{opacity:0;pointer-events:none}
 .session-progress i{display:block;height:100%;width:0;background:var(--red);transition:width .25s ease;box-shadow:0 0 10px var(--glow)}
 .session-time{margin-top:8px;color:#666;font-size:9px;font-family:ui-monospace,monospace}
 
-/* ---------- SECRET PANEL v2 UPGRADE ---------- */
+/* secret level bar */
 .secret-level-bar{margin-top:14px;padding:10px 12px;border:1px solid rgba(255,255,255,.07);border-radius:14px;background:rgba(255,255,255,.02)}
 .secret-level-info{display:flex;justify-content:space-between;align-items:center;margin-bottom:7px;font-size:10px}
 .secret-lvl-badge{padding:3px 9px;border:1px solid var(--red);border-radius:99px;color:var(--red);font-weight:800;letter-spacing:1px;background:var(--soft)}
@@ -693,6 +721,11 @@ body.focus-zen .appbar,body.focus-zen .tabbar,body.focus-zen footer{opacity:0;vi
 .lnz-preview-progress{width:170px;height:2px;background:#141616;border-radius:99px;overflow:hidden;position:relative}
 .lnz-preview-progress i{display:block;height:100%;width:40%;background:linear-gradient(90deg,transparent,var(--red),transparent);border-radius:99px;animation:previewSlide 1.3s ease-in-out infinite}
 @keyframes previewSlide{0%{transform:translateX(-100%)}100%{transform:translateX(350%)}}
+.lnz-preview-error{position:absolute;inset:0;display:none;flex-direction:column;align-items:center;justify-content:center;gap:14px;background:#060707;z-index:3;padding:24px;text-align:center}
+.lnz-preview-error.show{display:flex}
+.lnz-preview-error h4{font-size:14px;font-weight:900;color:#fff;margin:0}
+.lnz-preview-error p{font-size:11px;color:#888;max-width:340px;line-height:1.6;margin:0}
+.lnz-preview-error a{padding:11px 18px;border-radius:12px;background:var(--red);color:#fff;font-size:11px;font-weight:800;text-decoration:none;letter-spacing:.4px}
 body.lnz-preview-open{overflow:hidden}
 
 /* ---------- THEMES ---------- */
@@ -710,6 +743,9 @@ body.theme-frost{--red:#22c55e;--red2:#4ade80;--glow:rgba(34,197,94,.32);--soft:
 body.theme-rose{--red:#ec4899;--red2:#f472b6;--glow:rgba(236,72,153,.32);--soft:rgba(236,72,153,.1);background:radial-gradient(circle at 80% 10%,rgba(236,72,153,.1),transparent 30%),radial-gradient(circle at 10% 55%,rgba(236,72,153,.05),transparent 28%),#12050c}
 body.theme-sunset{--red:#f97316;--red2:#fb923c;--glow:rgba(249,115,22,.32);--soft:rgba(249,115,22,.1);background:radial-gradient(circle at 80% 10%,rgba(249,115,22,.1),transparent 30%),radial-gradient(circle at 10% 55%,rgba(249,115,22,.05),transparent 28%),#0f0603}
 body.theme-aurora{--red:#00ffaa;--red2:#c084fc;--glow:rgba(0,255,170,.32);--soft:rgba(0,255,170,.1);background:radial-gradient(circle at 20% 10%,rgba(0,255,170,.12),transparent 35%),radial-gradient(circle at 80% 60%,rgba(168,85,247,.12),transparent 35%),#030a0a}
+
+/* view transition */
+::view-transition-old(root),::view-transition-new(root){animation-duration:.32s;animation-timing-function:cubic-bezier(.22,1,.36,1)}
 
 /* ---------- RESPONSIVE ---------- */
 @media(max-width:900px){
@@ -755,6 +791,7 @@ body.theme-aurora{--red:#00ffaa;--red2:#c084fc;--glow:rgba(0,255,170,.32);--soft
   .reveal{opacity:1!important;transform:none!important}
   #lnzParticles,#lnzMatrix{display:none!important}
   .lnz-detail{transition-duration:.01ms!important}
+  .cursor-blink,.live-clock:before{animation:none!important}
 }
 @media print{
   .appbar,.tabbar,.drawer,.drawer-backdrop,.sheet,.toast,.lnz-orb,.lnz-cursor-glow,#lnzParticles,#lnzMatrix,.scroll-progress,.secret-panel-backdrop,.lnz-preview,.lnz-modal,.lnz-detail,.pomo-pill,.fps-pill{display:none!important}
@@ -767,7 +804,7 @@ body.theme-aurora{--red:#00ffaa;--red2:#c084fc;--glow:rgba(0,255,170,.32);--soft
 <body class="theme-maroon">
 
 <!-- SPLASH -->
-<div class="lnz-boot" id="lnzBoot" aria-hidden="true">
+<div class="lnz-boot" id="lnzBoot" role="status" aria-label="Loading Lanzz Project">
   <div class="boot-stage">
     <div class="boot-brand">R - <span>Lanzz</span></div>
     <div class="boot-tag">Developer • Modder • Creator</div>
@@ -786,10 +823,10 @@ body.theme-aurora{--red:#00ffaa;--red2:#c084fc;--glow:rgba(0,255,170,.32);--soft
 <header class="appbar" id="lnzHeader">
   <div class="appbar-inner">
     <div class="brand" id="lnzLogo" role="button" tabindex="0" aria-label="R-Lanzz Home">
-      <div class="brand-mark"><img src="https://i.imgur.com/FEf8DRG.png" alt="Lanzz"></div>
+      <div class="brand-mark"><img src="https://i.imgur.com/FEf8DRG.png" alt="Lanzz" width="34" height="34"></div>
       <div class="brand-txt">
         <b>R - <span>Lanzz</span></b>
-        <small>Portfolio App</small>
+        <small data-i18n="brand.sub">Portfolio App</small>
       </div>
     </div>
     <div class="appbar-spacer"></div>
@@ -801,14 +838,17 @@ body.theme-aurora{--red:#00ffaa;--red2:#c084fc;--glow:rgba(0,255,170,.32);--soft
       </div>
     </div>
     <div class="appbar-actions">
-      <button class="icon-btn" id="lnzSearchBtn" aria-label="Cari" title="Cari">
-        <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+      <button class="icon-btn lang-btn" id="lnzLangBtn" aria-label="Ganti bahasa / Change language" title="ID / EN">
+        <span id="lnzLangLabel">ID</span>
+      </button>
+      <button class="icon-btn" id="lnzSearchBtn" aria-label="Cari" title="Cari (Ctrl+K)">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
       </button>
       <button class="icon-btn" id="lnzThemeOpenBtn" aria-label="Ganti tema" title="Ganti Tema">
-        <svg viewBox="0 0 24 24"><path d="M12 22a10 10 0 1 1 0-20c5 0 8 3 8 6 0 2-1 3-3 3h-2a2 2 0 0 0-1 3c0 1 1 2 1 3 0 2-2 5-3 5Z"/><circle cx="8" cy="9.5" r="1.2" fill="currentColor"/><circle cx="12" cy="7" r="1.2" fill="currentColor"/><circle cx="16" cy="9" r="1.2" fill="currentColor"/></svg>
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 22a10 10 0 1 1 0-20c5 0 8 3 8 6 0 2-1 3-3 3h-2a2 2 0 0 0-1 3c0 1 1 2 1 3 0 2-2 5-3 5Z"/><circle cx="8" cy="9.5" r="1.2" fill="currentColor"/><circle cx="12" cy="7" r="1.2" fill="currentColor"/><circle cx="16" cy="9" r="1.2" fill="currentColor"/></svg>
       </button>
       <button class="icon-btn" id="lnzDrawerBtn" aria-label="Buka menu" title="Menu">
-        <svg viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
       </button>
     </div>
   </div>
@@ -816,99 +856,100 @@ body.theme-aurora{--red:#00ffaa;--red2:#c084fc;--glow:rgba(0,255,170,.32);--soft
 
 <div class="scroll-progress" id="scrollProgress" aria-hidden="true"></div>
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
+<div class="sr-only" aria-live="polite" id="lnzLiveRegion"></div>
 
 <!-- DRAWER -->
 <div class="drawer-backdrop" id="lnzDrawerBackdrop"></div>
-<aside class="drawer" id="lnzDrawer" role="navigation" aria-label="Menu navigasi">
+<aside class="drawer" id="lnzDrawer" role="navigation" aria-label="Menu navigasi" aria-hidden="true">
   <div class="drawer-head">
-    <div class="brand-mark"><img src="https://i.imgur.com/FEf8DRG.png" alt="Lanzz"></div>
+    <div class="brand-mark"><img src="https://i.imgur.com/FEf8DRG.png" alt="Lanzz" width="42" height="42"></div>
     <div class="drawer-head-txt">
       <b>R - <span>Lanzz</span></b>
-      <small>Portfolio App</small>
+      <small data-i18n="brand.sub">Portfolio App</small>
     </div>
     <button class="drawer-close" id="lnzDrawerClose" type="button" aria-label="Tutup menu">
-      <svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg>
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
     </button>
   </div>
   <div class="drawer-body">
     <button class="drawer-install" id="lnzInstallBtn" type="button" style="display:none">
-      <svg viewBox="0 0 24 24"><path d="M12 3v12M7 10l5 5 5-5M5 21h14"/></svg>
-      <span style="flex:1">Install Aplikasi<small>Pasang Lanzz di layar utama</small></span>
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v12M7 10l5 5 5-5M5 21h14"/></svg>
+      <span style="flex:1" data-i18n="drawer.install">Install Aplikasi<small>Pasang Lanzz di layar utama</small></span>
     </button>
 
     <div class="drawer-group">
-      <div class="drawer-group-title">Jelajahi</div>
-      <button class="drawer-item" data-goto="home" type="button"><svg viewBox="0 0 24 24"><path d="m3 11 9-8 9 8v9a2 2 0 0 1-2 2h-4v-7h-6v7H5a2 2 0 0 1-2-2Z"/></svg>Home</button>
-      <button class="drawer-item" data-goto="services" type="button"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1.6"/><rect x="14" y="3" width="7" height="7" rx="1.6"/><rect x="3" y="14" width="7" height="7" rx="1.6"/><rect x="14" y="14" width="7" height="7" rx="1.6"/></svg>Services</button>
-      <button class="drawer-item" data-goto="skills" type="button"><svg viewBox="0 0 24 24"><path d="M5 19V9M12 19V5M19 19v-7"/><path d="M3 19h18"/></svg>Skills</button>
-      <button class="drawer-item" data-goto="experience" type="button"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M8 5V3M16 5V3M3 11h18"/></svg>Experience</button>
-      <button class="drawer-item" data-goto="about" type="button"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="3.4"/><path d="M5 21a7 7 0 0 1 14 0"/></svg>About</button>
+      <div class="drawer-group-title" data-i18n="drawer.group.explore">Jelajahi</div>
+      <button class="drawer-item" data-goto="home" type="button"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m3 11 9-8 9 8v9a2 2 0 0 1-2 2h-4v-7h-6v7H5a2 2 0 0 1-2-2Z"/></svg><span data-i18n="nav.home">Home</span></button>
+      <button class="drawer-item" data-goto="services" type="button"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="7" height="7" rx="1.6"/><rect x="14" y="3" width="7" height="7" rx="1.6"/><rect x="3" y="14" width="7" height="7" rx="1.6"/><rect x="14" y="14" width="7" height="7" rx="1.6"/></svg><span data-i18n="nav.services">Services</span></button>
+      <button class="drawer-item" data-goto="skills" type="button"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 19V9M12 19V5M19 19v-7"/><path d="M3 19h18"/></svg><span data-i18n="nav.skills">Skills</span></button>
+      <button class="drawer-item" data-goto="experience" type="button"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M8 5V3M16 5V3M3 11h18"/></svg><span data-i18n="nav.experience">Experience</span></button>
+      <button class="drawer-item" data-goto="about" type="button"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="3.4"/><path d="M5 21a7 7 0 0 1 14 0"/></svg><span data-i18n="nav.about">About</span></button>
     </div>
 
     <div class="drawer-group">
-      <div class="drawer-group-title">Play & Explore</div>
-      <button class="drawer-item" data-goto="game" type="button"><svg viewBox="0 0 24 24"><path d="M6 8h12a4 4 0 0 1 3.8 5.2l-1.1 4A2.3 2.3 0 0 1 16.2 19L13.8 16h-3.6l-2.4 3a2.3 2.3 0 0 1-4.5-1.8l-1.1-4A4 4 0 0 1 6 8Z"/><path d="M8 11v4M6 13h4M16 12h.01M18 14h.01"/></svg>Games Library<small>1000+</small></button>
-      <button class="drawer-item" data-goto="io" type="button"><svg viewBox="0 0 24 24"><path d="M18.7 5.3c-2.5-1.4-6.3-.9-8.8.6-2.6 1.6-3.9 4.1-2.8 6.1 1 1.9 3.7 2.3 6.2 2.9 2.5.6 3.8 1.7 3.1 3.3-.8 1.8-4.2 2.5-7 1.2"/><circle cx="18.8" cy="5.1" r="1.8" fill="currentColor" stroke="none"/></svg>Snake.io</button>
-      <button class="drawer-item" data-goto="blase" type="button"><svg viewBox="0 0 24 24"><g fill="currentColor" stroke="none"><rect x="4" y="4" width="5" height="5" rx="1"/><rect x="10" y="4" width="5" height="5" rx="1"/><rect x="4" y="10" width="5" height="5" rx="1"/><rect x="4" y="16" width="5" height="5" rx="1"/><rect x="10" y="16" width="5" height="5" rx="1"/><rect x="16" y="16" width="4" height="5" rx="1"/></g></svg>Puzzle</button>
-      <button class="drawer-item" data-goto="bros" type="button"><svg viewBox="0 0 24 24"><path d="M4 12.2C4 7.3 7.5 4 12 4s8 3.3 8 8.2H4Z"/><circle cx="8" cy="8.5" r="1.5"/><circle cx="12" cy="6.8" r="1.5"/><circle cx="16" cy="8.5" r="1.5"/></svg>Retro</button>
-      <button class="drawer-item" data-goto="space" type="button"><svg viewBox="0 0 24 24"><ellipse cx="12" cy="12" rx="9.2" ry="4.1" transform="rotate(-18 12 12)"/><circle cx="12" cy="12" r="5.1"/></svg>Space</button>
+      <div class="drawer-group-title" data-i18n="drawer.group.play">Play & Explore</div>
+      <button class="drawer-item" data-goto="game" type="button"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 8h12a4 4 0 0 1 3.8 5.2l-1.1 4A2.3 2.3 0 0 1 16.2 19L13.8 16h-3.6l-2.4 3a2.3 2.3 0 0 1-4.5-1.8l-1.1-4A4 4 0 0 1 6 8Z"/><path d="M8 11v4M6 13h4M16 12h.01M18 14h.01"/></svg><span data-i18n="nav.games">Games Library</span><small>1000+</small></button>
+      <button class="drawer-item" data-goto="io" type="button"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18.7 5.3c-2.5-1.4-6.3-.9-8.8.6-2.6 1.6-3.9 4.1-2.8 6.1 1 1.9 3.7 2.3 6.2 2.9 2.5.6 3.8 1.7 3.1 3.3-.8 1.8-4.2 2.5-7 1.2"/><circle cx="18.8" cy="5.1" r="1.8" fill="currentColor"/></svg><span>Snake.io</span></button>
+      <button class="drawer-item" data-goto="blase" type="button"><svg viewBox="0 0 24 24" aria-hidden="true"><g fill="currentColor"><rect x="4" y="4" width="5" height="5" rx="1"/><rect x="10" y="4" width="5" height="5" rx="1"/><rect x="4" y="10" width="5" height="5" rx="1"/><rect x="4" y="16" width="5" height="5" rx="1"/><rect x="10" y="16" width="5" height="5" rx="1"/><rect x="16" y="16" width="4" height="5" rx="1"/></g></svg><span data-i18n="nav.puzzle">Puzzle</span></button>
+      <button class="drawer-item" data-goto="bros" type="button"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12.2C4 7.3 7.5 4 12 4s8 3.3 8 8.2H4Z"/><circle cx="8" cy="8.5" r="1.5"/><circle cx="12" cy="6.8" r="1.5"/><circle cx="16" cy="8.5" r="1.5"/></svg><span data-i18n="nav.retro">Retro</span></button>
+      <button class="drawer-item" data-goto="space" type="button"><svg viewBox="0 0 24 24" aria-hidden="true"><ellipse cx="12" cy="12" rx="9.2" ry="4.1" transform="rotate(-18 12 12)"/><circle cx="12" cy="12" r="5.1"/></svg><span>Space</span></button>
     </div>
 
     <div class="drawer-group">
-      <div class="drawer-group-title">Digital</div>
-      <button class="drawer-item" data-goto="ai" type="button"><svg viewBox="0 0 24 24"><rect x="4" y="7" width="16" height="12" rx="3"/><path d="M12 3v4M9 4h6"/><circle cx="9" cy="12" r="1.1" fill="currentColor" stroke="none"/><circle cx="15" cy="12" r="1.1" fill="currentColor" stroke="none"/><path d="M9 15.5h6"/></svg>AI Assistant</button>
-      <button class="drawer-item" data-goto="tools" type="button"><svg viewBox="0 0 24 24"><path d="m14.7 6.3 3-3a5 5 0 0 0-6.1 6.1l-7.2 7.2a2.1 2.1 0 0 0 3 3l7.2-7.2a5 5 0 0 0 6.1-6.1l-3 3-3-3Z"/></svg>Tools<small>100+</small></button>
-      <button class="drawer-item" data-goto="informatika" type="button"><svg viewBox="0 0 24 24"><path d="m8 7-5 5 5 5"/><path d="m16 7 5 5-5 5"/><path d="m14 4-4 16"/></svg>Informatika</button>
+      <div class="drawer-group-title" data-i18n="drawer.group.digital">Digital</div>
+      <button class="drawer-item" data-goto="ai" type="button"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="7" width="16" height="12" rx="3"/><path d="M12 3v4M9 4h6"/><circle cx="9" cy="12" r="1.1" fill="currentColor"/><circle cx="15" cy="12" r="1.1" fill="currentColor"/><path d="M9 15.5h6"/></svg><span data-i18n="nav.ai">AI Assistant</span></button>
+      <button class="drawer-item" data-goto="tools" type="button"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m14.7 6.3 3-3a5 5 0 0 0-6.1 6.1l-7.2 7.2a2.1 2.1 0 0 0 3 3l7.2-7.2a5 5 0 0 0 6.1-6.1l-3 3-3-3Z"/></svg><span data-i18n="nav.tools">Tools</span><small>100+</small></button>
+      <button class="drawer-item" data-goto="informatika" type="button"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m8 7-5 5 5 5"/><path d="m16 7 5 5-5 5"/><path d="m14 4-4 16"/></svg><span>Informatika</span></button>
     </div>
 
     <div class="drawer-group">
-      <div class="drawer-group-title">Info</div>
-      <button class="drawer-item" data-goto="faq" type="button"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M9.5 9a2.6 2.6 0 1 1 4.7 1.5c-.8 1-2.2 1.2-2.2 2.5M12 16h.01"/></svg>FAQ</button>
-      <button class="drawer-item" data-goto="newsletter" type="button"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>Newsletter</button>
-      <button class="drawer-item" data-goto="contact" type="button"><svg viewBox="0 0 24 24"><path d="M21 12a8 8 0 0 1-11.5 7.2L3 21l1.8-6.5A8 8 0 1 1 21 12Z"/></svg>Contact</button>
-      <a class="drawer-item" href="mailto:id.erlan.maulana@gmail.com"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>Email Personal</a>
-      <a class="drawer-item" href="mailto:lanzz.project.id@gmail.com"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>Email Project</a>
+      <div class="drawer-group-title" data-i18n="drawer.group.info">Info</div>
+      <button class="drawer-item" data-goto="faq" type="button"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M9.5 9a2.6 2.6 0 1 1 4.7 1.5c-.8 1-2.2 1.2-2.2 2.5M12 16h.01"/></svg><span>FAQ</span></button>
+      <button class="drawer-item" data-goto="newsletter" type="button"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg><span data-i18n="nav.newsletter">Newsletter</span></button>
+      <button class="drawer-item" data-goto="contact" type="button"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12a8 8 0 0 1-11.5 7.2L3 21l1.8-6.5A8 8 0 1 1 21 12Z"/></svg><span data-i18n="nav.contact">Contact</span></button>
+      <a class="drawer-item" href="mailto:id.erlan.maulana@gmail.com"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg><span data-i18n="nav.emailPersonal">Email Personal</span></a>
+      <a class="drawer-item" href="mailto:lanzz.project.id@gmail.com"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg><span data-i18n="nav.emailProject">Email Project</span></a>
     </div>
   </div>
   <div class="drawer-foot">
-    <button class="btn ghost" id="lnzShareBtn" type="button"><svg viewBox="0 0 24 24"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="m8.6 13.5 6.8 4M15.4 6.5l-6.8 4"/></svg>Share</button>
-    <button class="btn ghost" id="lnzSecretBtn" type="button"><svg viewBox="0 0 24 24"><path d="M12 3l1.9 5.1L19 10l-5.1 1.9L12 17l-1.9-5.1L5 10l5.1-1.9L12 3Z"/></svg>Secret</button>
+    <button class="btn ghost" id="lnzShareBtn" type="button"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="m8.6 13.5 6.8 4M15.4 6.5l-6.8 4"/></svg><span data-i18n="btn.share">Share</span></button>
+    <button class="btn ghost" id="lnzSecretBtn" type="button"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l1.9 5.1L19 10l-5.1 1.9L12 17l-1.9-5.1L5 10l5.1-1.9L12 3Z"/></svg><span data-i18n="btn.secret">Secret</span></button>
   </div>
 </aside>
 
 <!-- BOTTOM TAB BAR -->
 <nav class="tabbar" id="appTabbar" aria-label="Navigasi utama">
   <button class="tab active" data-goto="home" type="button">
-    <svg viewBox="0 0 24 24"><path d="m3 11 9-8 9 8v9a2 2 0 0 1-2 2h-4v-7h-6v7H5a2 2 0 0 1-2-2Z"/></svg>
-    <span>Home</span>
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m3 11 9-8 9 8v9a2 2 0 0 1-2 2h-4v-7h-6v7H5a2 2 0 0 1-2-2Z"/></svg>
+    <span data-i18n="tab.home">Home</span>
   </button>
   <button class="tab" data-goto="game" type="button">
-    <svg viewBox="0 0 24 24"><path d="M6 8h12a4 4 0 0 1 3.8 5.2l-1.1 4A2.3 2.3 0 0 1 16.2 19L13.8 16h-3.6l-2.4 3a2.3 2.3 0 0 1-4.5-1.8l-1.1-4A4 4 0 0 1 6 8Z"/><path d="M8 11v4M6 13h4M16 12h.01M18 14h.01"/></svg>
-    <span>Play</span>
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 8h12a4 4 0 0 1 3.8 5.2l-1.1 4A2.3 2.3 0 0 1 16.2 19L13.8 16h-3.6l-2.4 3a2.3 2.3 0 0 1-4.5-1.8l-1.1-4A4 4 0 0 1 6 8Z"/><path d="M8 11v4M6 13h4M16 12h.01M18 14h.01"/></svg>
+    <span data-i18n="tab.play">Play</span>
   </button>
   <button class="tab" data-goto="ai" type="button">
-    <svg viewBox="0 0 24 24"><rect x="4" y="7" width="16" height="12" rx="3"/><path d="M12 3v4M9 4h6"/><circle cx="9" cy="12" r="1.1" fill="currentColor" stroke="none"/><circle cx="15" cy="12" r="1.1" fill="currentColor" stroke="none"/><path d="M9 15.5h6"/></svg>
+    <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="7" width="16" height="12" rx="3"/><path d="M12 3v4M9 4h6"/><circle cx="9" cy="12" r="1.1" fill="currentColor"/><circle cx="15" cy="12" r="1.1" fill="currentColor"/><path d="M9 15.5h6"/></svg>
     <span>AI</span>
   </button>
   <button class="tab" data-goto="tools" type="button">
-    <svg viewBox="0 0 24 24"><path d="m14.7 6.3 3-3a5 5 0 0 0-6.1 6.1l-7.2 7.2a2.1 2.1 0 0 0 3 3l7.2-7.2a5 5 0 0 0 6.1-6.1l-3 3-3-3Z"/></svg>
-    <span>Tools</span>
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m14.7 6.3 3-3a5 5 0 0 0-6.1 6.1l-7.2 7.2a2.1 2.1 0 0 0 3 3l7.2-7.2a5 5 0 0 0 6.1-6.1l-3 3-3-3Z"/></svg>
+    <span data-i18n="tab.tools">Tools</span>
   </button>
   <button class="tab" id="lnzTabMore" type="button">
-    <svg viewBox="0 0 24 24"><circle cx="5" cy="12" r="1.6" fill="currentColor" stroke="none"/><circle cx="12" cy="12" r="1.6" fill="currentColor" stroke="none"/><circle cx="19" cy="12" r="1.6" fill="currentColor" stroke="none"/></svg>
-    <span>More</span>
+    <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="5" cy="12" r="1.6" fill="currentColor"/><circle cx="12" cy="12" r="1.6" fill="currentColor"/><circle cx="19" cy="12" r="1.6" fill="currentColor"/></svg>
+    <span data-i18n="tab.more">More</span>
   </button>
 </nav>
 
 <!-- SEARCH / COMMAND -->
-<div class="lnz-cmdk" id="lnzCmdk" role="dialog" aria-label="Pencarian dan perintah" style="position:fixed;inset:0;z-index:4000;background:rgba(0,0,0,.75);display:none;align-items:flex-start;justify-content:center;padding:12vh 16px 20px;backdrop-filter:blur(8px)">
+<div class="lnz-cmdk" id="lnzCmdk" role="dialog" aria-modal="true" aria-label="Pencarian dan perintah" style="position:fixed;inset:0;z-index:4000;background:rgba(0,0,0,.75);display:none;align-items:flex-start;justify-content:center;padding:12vh 16px 20px;backdrop-filter:blur(8px)">
   <div class="lnz-cmdk-box" style="width:min(600px,100%);border:1px solid var(--red);border-radius:20px;background:#0b0d0d;box-shadow:0 30px 80px rgba(0,0,0,.7);overflow:hidden">
     <div style="display:flex;align-items:center;gap:10px;padding:14px 16px;border-bottom:1px solid #252929">
-      <svg viewBox="0 0 24 24" style="width:17px;height:17px;fill:none;stroke:#666;stroke-width:2;stroke-linecap:round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
-      <input id="lnzCmdkInput" type="text" placeholder="Cari section atau perintah" autocomplete="off" spellcheck="false" style="flex:1;border:0;outline:0;background:transparent;color:#fff;font:inherit;font-size:13px">
+      <svg viewBox="0 0 24 24" style="width:17px;height:17px;fill:none;stroke:#666;stroke-width:2;stroke-linecap:round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+      <input id="lnzCmdkInput" type="text" placeholder="Cari section atau perintah" autocomplete="off" spellcheck="false" aria-label="Cari" style="flex:1;border:0;outline:0;background:transparent;color:#fff;font:inherit;font-size:13px">
       <span style="display:inline-flex;padding:4px 8px;border:1px solid rgba(255,255,255,.1);border-radius:7px;font:700 9px ui-monospace,monospace;color:#888;background:#111414">ESC</span>
     </div>
-    <div id="lnzCmdkList" style="max-height:56vh;overflow-y:auto;padding:8px"></div>
+    <div id="lnzCmdkList" role="listbox" style="max-height:56vh;overflow-y:auto;padding:8px"></div>
   </div>
 </div>
 
@@ -916,10 +957,10 @@ body.theme-aurora{--red:#00ffaa;--red2:#c084fc;--glow:rgba(0,255,170,.32);--soft
 <div class="sheet theme-sheet" id="lnzThemePopup" role="dialog" aria-label="Pilih tema">
   <div class="pop-head">
     <span class="pop-title">
-      <svg viewBox="0 0 24 24"><path d="M12 22a10 10 0 1 1 0-20c5 0 8 3 8 6 0 2-1 3-3 3h-2a2 2 0 0 0-1 3c0 1 1 2 1 3 0 2-2 5-3 5Z"/></svg>
-      Tema <b>Warna</b>
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 22a10 10 0 1 1 0-20c5 0 8 3 8 6 0 2-1 3-3 3h-2a2 2 0 0 0-1 3c0 1 1 2 1 3 0 2-2 5-3 5Z"/></svg>
+      <span data-i18n="theme.title">Tema</span> <b data-i18n="theme.sub">Warna</b>
     </span>
-    <button class="pop-close" type="button" aria-label="Tutup" data-close="lnzThemePopup"><svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+    <button class="pop-close" type="button" aria-label="Tutup" data-close="lnzThemePopup"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
   </div>
   <div class="pop-body">
     <div class="theme-grid" id="lnzThemeGrid">
@@ -939,9 +980,9 @@ body.theme-aurora{--red:#00ffaa;--red2:#c084fc;--glow:rgba(0,255,170,.32);--soft
       <button type="button" class="theme-opt" data-theme="aurora"><span class="sw" style="--c:#00ffaa;--c2:#c084fc"></span><span><b>Aurora</b><small>Gradient</small></span></button>
     </div>
     <div class="theme-foot">
-      <span>14 tema tersedia</span>
+      <span data-i18n="theme.count">14 tema tersedia</span>
       <button class="perf-toggle" id="lnzPerfToggle" type="button" aria-label="Toggle performance mode">
-        <svg viewBox="0 0 24 24"><path d="M13 2 3 14h9l-1 8 10-12h-9l1-8Z"/></svg>
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M13 2 3 14h9l-1 8 10-12h-9l1-8Z"/></svg>
         Performance
       </button>
     </div>
@@ -952,12 +993,25 @@ body.theme-aurora{--red:#00ffaa;--red2:#c084fc;--glow:rgba(0,255,170,.32);--soft
 <div class="sheet chat-sheet" id="lnzChatPanel" role="dialog" aria-label="Lanzz Assistant">
   <div class="pop-head">
     <span class="pop-title">
-      <svg viewBox="0 0 24 24"><rect x="4" y="7" width="16" height="12" rx="3"/><path d="M12 3v4M9 4h6"/><circle cx="9" cy="12" r="1.1" fill="currentColor" stroke="none"/><circle cx="15" cy="12" r="1.1" fill="currentColor" stroke="none"/><path d="M9 15.5h6"/></svg>
+      <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="7" width="16" height="12" rx="3"/><path d="M12 3v4M9 4h6"/><circle cx="9" cy="12" r="1.1" fill="currentColor"/><circle cx="15" cy="12" r="1.1" fill="currentColor"/><path d="M9 15.5h6"/></svg>
       Lanzz <b>Assistant</b>
     </span>
-    <button class="pop-close" type="button" aria-label="Tutup" id="lnzChatClose"><svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+    <button class="chat-cfg-btn" id="lnzChatCfgBtn" type="button" aria-label="Pengaturan AI" title="AI Config">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.9l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.9-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1A1.7 1.7 0 0 0 9 19.4a1.7 1.7 0 0 0-1.9.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.9 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1A1.7 1.7 0 0 0 4.6 9a1.7 1.7 0 0 0-.3-1.9l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.9.3H9a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.9-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.9V9a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1Z"/></svg>
+    </button>
+    <button class="pop-close" type="button" aria-label="Tutup" id="lnzChatClose"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
   </div>
-  <div class="chat-body" id="lnzChatBody"></div>
+  <div class="chat-cfg" id="lnzChatCfg" hidden>
+    <small><b style="color:#aaa">Opsional:</b> isi endpoint OpenAI-compatible (mis. Groq, OpenRouter, Ollama) untuk streaming chat real. Kosongkan untuk pakai rule-based fallback.</small>
+    <label>Endpoint<input type="url" id="cfgEndpoint" placeholder="https://api.groq.com/openai/v1/chat/completions" autocomplete="off"></label>
+    <label>API Key<input type="password" id="cfgKey" placeholder="gsk_..." autocomplete="off"></label>
+    <label>Model<input type="text" id="cfgModel" placeholder="llama-3.1-8b-instant" autocomplete="off"></label>
+    <div class="chat-cfg-row">
+      <button type="button" id="cfgSave" class="primary">Save</button>
+      <button type="button" id="cfgClear">Clear</button>
+    </div>
+  </div>
+  <div class="chat-body" id="lnzChatBody" role="log" aria-live="polite"></div>
   <div class="chat-quick" id="lnzChatQuick">
     <button type="button" data-q="Layanan apa saja yang tersedia?">Layanan</button>
     <button type="button" data-q="Berapa harga pembuatan website?">Harga</button>
@@ -966,7 +1020,7 @@ body.theme-aurora{--red:#00ffaa;--red2:#c084fc;--glow:rgba(0,255,170,.32);--soft
   </div>
   <div class="chat-foot">
     <textarea id="lnzChatInput" rows="1" placeholder="Tulis pesan..." aria-label="Pesan"></textarea>
-    <button type="button" id="lnzChatSend" aria-label="Kirim"><svg viewBox="0 0 24 24"><path d="m3 3 18 9-18 9 4-9-4-9Z"/></svg></button>
+    <button type="button" id="lnzChatSend" aria-label="Kirim"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m3 3 18 9-18 9 4-9-4-9Z"/></svg></button>
   </div>
 </div>
 
@@ -975,7 +1029,7 @@ body.theme-aurora{--red:#00ffaa;--red2:#c084fc;--glow:rgba(0,255,170,.32);--soft
   <div class="lnz-modal-backdrop" data-modal-close></div>
   <div class="lnz-modal-card">
     <div class="lnz-modal-icon">
-      <svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg>
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
     </div>
     <h3 id="lnzModalTitle">Pesan Berhasil Terkirim!</h3>
     <p>Terima kasih <b id="modalName">Sobat</b>. Pesan kamu sudah masuk ke inbox <span class="email">lanzz.project.id@gmail.com</span>. Akan dibalas secepatnya ya.</p>
@@ -987,7 +1041,7 @@ body.theme-aurora{--red:#00ffaa;--red2:#c084fc;--glow:rgba(0,255,170,.32);--soft
 <div class="lnz-detail" id="lnzDetail" role="dialog" aria-modal="true" aria-label="Detail Project">
   <div class="lnz-detail-bar">
     <button class="lnz-detail-back" id="lnzDetailBack" aria-label="Kembali">
-      <svg viewBox="0 0 24 24"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
     </button>
     <div class="lnz-detail-titles">
       <b id="lnzDetailTitle">Project</b>
@@ -1005,41 +1059,41 @@ body.theme-aurora{--red:#00ffaa;--red2:#c084fc;--glow:rgba(0,255,170,.32);--soft
     <div class="hero-grid">
       <div class="reveal">
         <div class="hero-badge">
-          <i><svg viewBox="0 0 24 24"><path d="M12 2v4M12 18v4M4.9 4.9l2.8 2.8M16.3 16.3l2.8 2.8M2 12h4M18 12h4M4.9 19.1l2.8-2.8M16.3 7.7l2.8-2.8"/></svg></i>
+          <i><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2v4M12 18v4M4.9 4.9l2.8 2.8M16.3 16.3l2.8 2.8M2 12h4M18 12h4M4.9 19.1l2.8-2.8M16.3 7.7l2.8-2.8"/></svg></i>
           <b>AVAILABLE</b> FOR PROJECTS <em>ONLINE</em>
         </div>
-        <div class="kicker">Hello, <span>I am</span></div>
-        <h1><span class="typed-prefix">R -</span><span class="typed-space"> </span><span class="typed-main">Lanzz</span><i class="cursor-blink"></i></h1>
+        <div class="kicker" data-i18n="hero.kicker">Hello, <span>I am</span></div>
+        <h1><span class="typed-prefix">R -</span><span class="typed-space"> </span><span class="typed-main">Lanzz</span><i class="cursor-blink" aria-hidden="true"></i></h1>
         <div class="role">From<span class="dot">Lebak</span>-<span class="dot">Banten</span>-<span class="dot">Indonesia</span></div>
-        <p class="desc">I create modern websites, digital applications, smart tools, and innovative solutions to bring ideas into powerful digital experiences. With focus on modern design, high performance, and seamless user experience, I build products that are simple, functional, and impactful.</p>
+        <p class="desc" data-i18n="hero.desc">I create modern websites, digital applications, smart tools, and innovative solutions to bring ideas into powerful digital experiences. With focus on modern design, high performance, and seamless user experience, I build products that are simple, functional, and impactful.</p>
         <div class="hero-actions">
-          <a class="btn" href="#contact"><svg viewBox="0 0 24 24"><path d="M21 12a8 8 0 0 1-11.5 7.2L3 21l1.8-6.5A8 8 0 1 1 21 12Z"/></svg>Contact</a>
-          <a class="btn ghost" href="#about"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="3.4"/><path d="M5 21a7 7 0 0 1 14 0"/></svg>About</a>
+          <a class="btn" href="#contact"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12a8 8 0 0 1-11.5 7.2L3 21l1.8-6.5A8 8 0 1 1 21 12Z"/></svg><span data-i18n="btn.contact">Contact</span></a>
+          <a class="btn ghost" href="#about"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="3.4"/><path d="M5 21a7 7 0 0 1 14 0"/></svg><span data-i18n="btn.about">About</span></a>
         </div>
         <div class="socials" id="social">
-          <a class="social" href="https://www.instagram.com/lanzz.offcl" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><svg viewBox="0 0 24 24"><path d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5Zm5 5.5A4.5 4.5 0 1 0 16.5 12 4.5 4.5 0 0 0 12 7.5Zm0 7.2A2.7 2.7 0 1 1 14.7 12 2.7 2.7 0 0 1 12 14.7ZM17.7 6.1a1.2 1.2 0 1 0 1.2 1.2 1.2 1.2 0 0 0-1.2-1.2Z"/></svg></a>
-          <a class="social" href="https://www.facebook.com/profile.php?id=61593681814129" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><svg viewBox="0 0 24 24"><path d="M13.5 22v-8h2.7l.4-3h-3.1V9.1c0-.9.3-1.6 1.7-1.6h1.8V4.8c-.3 0-1.3-.1-2.5-.1-2.5 0-4.2 1.5-4.2 4.3V11H7.5v3h2.8v8h3.2Z"/></svg></a>
-          <a class="social" href="https://www.tiktok.com/@lanzz.offcl" target="_blank" rel="noopener noreferrer" aria-label="TikTok"><svg viewBox="0 0 24 24"><path d="M15 2h3c.2 1.6 1.2 3.1 3 3.7v3.1c-1.1-.1-2.1-.4-3-1v6.4a6.8 6.8 0 1 1-5.9-6.7v3.2a3.6 3.6 0 1 0 2.9 3.5V2Z"/></svg></a>
-          <a class="social" href="mailto:id.erlan.maulana@gmail.com" aria-label="Email Personal"><svg viewBox="0 0 24 24"><path d="M20 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2Zm0 4.2-8 5-8-5V6l8 5 8-5v2.2Z"/></svg></a>
+          <a class="social" href="https://www.instagram.com/lanzz.offcl" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5Zm5 5.5A4.5 4.5 0 1 0 16.5 12 4.5 4.5 0 0 0 12 7.5Zm0 7.2A2.7 2.7 0 1 1 14.7 12 2.7 2.7 0 0 1 12 14.7ZM17.7 6.1a1.2 1.2 0 1 0 1.2 1.2 1.2 1.2 0 0 0-1.2-1.2Z"/></svg></a>
+          <a class="social" href="https://www.facebook.com/profile.php?id=61593681814129" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M13.5 22v-8h2.7l.4-3h-3.1V9.1c0-.9.3-1.6 1.7-1.6h1.8V4.8c-.3 0-1.3-.1-2.5-.1-2.5 0-4.2 1.5-4.2 4.3V11H7.5v3h2.8v8h3.2Z"/></svg></a>
+          <a class="social" href="https://www.tiktok.com/@lanzz.offcl" target="_blank" rel="noopener noreferrer" aria-label="TikTok"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 2h3c.2 1.6 1.2 3.1 3 3.7v3.1c-1.1-.1-2.1-.4-3-1v6.4a6.8 6.8 0 1 1-5.9-6.7v3.2a3.6 3.6 0 1 0 2.9 3.5V2Z"/></svg></a>
+          <a class="social" href="mailto:id.erlan.maulana@gmail.com" aria-label="Email Personal"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2Zm0 4.2-8 5-8-5V6l8 5 8-5v2.2Z"/></svg></a>
         </div>
       </div>
       <div class="profile-wrap reveal" id="profile3d">
-        <div class="lanyard-stage" id="lanyardStage" aria-label="Foto profil 3D interaktif, seret untuk memutar">
+        <div class="lanyard-stage" id="lanyardStage" aria-label="Foto profil 3D interaktif, seret untuk memutar" role="img">
           <div class="lanyard-scene">
             <div class="lanyard-strap"></div>
             <div class="lanyard-clip"></div>
             <div class="lanyard-cord"></div>
             <div class="profile-card" id="profileCard">
-              <img class="profile" src="https://i.imgur.com/EMove2l.jpeg" alt="Foto profil R-Lanzz" width="186" height="236" loading="eager">
+              <img class="profile" src="https://i.imgur.com/EMove2l.jpeg" alt="Foto profil R-Lanzz" width="186" height="236" loading="eager" decoding="async">
             </div>
           </div>
         </div>
       </div>
     </div>
     <div class="stats reveal">
-      <div class="stat"><b data-count="500" data-suffix="+">0</b><small>Website dibuat</small></div>
-      <div class="stat"><b data-count="5" data-suffix="+">0</b><small>Pengalaman</small></div>
-      <div class="stat"><b data-count="700" data-suffix="+">0</b><small>Project selesai</small></div>
+      <div class="stat"><b data-count="500" data-suffix="+">0</b><small data-i18n="stat.websites">Website dibuat</small></div>
+      <div class="stat"><b data-count="5" data-suffix="+">0</b><small data-i18n="stat.years">Pengalaman</small></div>
+      <div class="stat"><b data-count="700" data-suffix="+">0</b><small data-i18n="stat.projects">Project selesai</small></div>
     </div>
   </div>
 </section>
@@ -1052,14 +1106,14 @@ body.theme-aurora{--red:#00ffaa;--red2:#c084fc;--glow:rgba(0,255,170,.32);--soft
         <h2>Lanzz <span class="accent">Services</span></h2>
         <span class="lnz-section-tag"><i></i> AVAILABLE</span>
       </div>
-      <p>Beberapa layanan utama untuk kebutuhan personal, bisnis maupun project digital.</p>
+      <p data-i18n="services.desc">Beberapa layanan utama untuk kebutuhan personal, bisnis maupun project digital.</p>
     </div>
     <div class="app-grid">
       <div class="app-card reveal" data-project="services" role="button" tabindex="0">
-        <div class="app-card-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.5 3.8 5.5 3.8 9S14.5 17.5 12 21M12 3c-2.5 2.5-3.8 5.5-3.8 9S9.5 18.5 12 21"/></svg></div>
+        <div class="app-card-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.5 3.8 5.5 3.8 9S14.5 17.5 12 21M12 3c-2.5 2.5-3.8 5.5-3.8 9S9.5 18.5 12 21"/></svg></div>
         <h3>Website Development</h3>
-        <p>Buat website sesuai kebutuhan dengan fitur dan database yang dapat disesuaikan. Cocok untuk personal brand, bisnis, landing page, dashboard dan custom project.</p>
-        <span class="more">Lihat Detail <span>→</span></span>
+        <p data-i18n="services.card">Buat website sesuai kebutuhan dengan fitur dan database yang dapat disesuaikan. Cocok untuk personal brand, bisnis, landing page, dashboard dan custom project.</p>
+        <span class="more" data-i18n-html="card.more">Lihat Detail <span>→</span></span>
       </div>
     </div>
   </div>
@@ -1073,14 +1127,14 @@ body.theme-aurora{--red:#00ffaa;--red2:#c084fc;--glow:rgba(0,255,170,.32);--soft
         <h2>Lanzz <span class="accent">Play</span></h2>
         <span class="lnz-section-tag"><i></i> PLAYABLE</span>
       </div>
-      <p>Games Library dengan 1000+ pilihan game gratis yang dapat dimainkan langsung dari browser. Gratis dan tanpa instalasi tambahan.</p>
+      <p data-i18n="games.desc">Games Library dengan 1000+ pilihan game gratis yang dapat dimainkan langsung dari browser. Gratis dan tanpa instalasi tambahan.</p>
     </div>
     <div class="app-grid">
       <div class="app-card reveal" data-project="game" role="button" tabindex="0">
-        <div class="app-card-icon"><svg viewBox="0 0 24 24"><path d="M6 8h12a4 4 0 0 1 3.8 5.2l-1.1 4A2.3 2.3 0 0 1 16.2 19L13.8 16h-3.6l-2.4 3a2.3 2.3 0 0 1-4.5-1.8l-1.1-4A4 4 0 0 1 6 8Z"/><path d="M8 11v4M6 13h4M16 12h.01M18 14h.01"/></svg></div>
+        <div class="app-card-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 8h12a4 4 0 0 1 3.8 5.2l-1.1 4A2.3 2.3 0 0 1 16.2 19L13.8 16h-3.6l-2.4 3a2.3 2.3 0 0 1-4.5-1.8l-1.1-4A4 4 0 0 1 6 8Z"/><path d="M8 11v4M6 13h4M16 12h.01M18 14h.01"/></svg></div>
         <h3>1000+ Games</h3>
-        <p>Jelajahi ribuan game dari berbagai genre, pilih favoritmu dan mainkan kapan saja langsung dari browser.</p>
-        <span class="more">Lihat Detail <span>→</span></span>
+        <p data-i18n="games.card">Jelajahi ribuan game dari berbagai genre, pilih favoritmu dan mainkan kapan saja langsung dari browser.</p>
+        <span class="more" data-i18n-html="card.more">Lihat Detail <span>→</span></span>
       </div>
     </div>
   </div>
@@ -1094,14 +1148,14 @@ body.theme-aurora{--red:#00ffaa;--red2:#c084fc;--glow:rgba(0,255,170,.32);--soft
         <h2>Lanzz.<span class="accent">io</span></h2>
         <span class="lnz-section-tag"><i></i> MINI GAME</span>
       </div>
-      <p>Game .io yang dapat dimainkan langsung dari browser. Gratis dan tanpa instalasi tambahan.</p>
+      <p data-i18n="io.desc">Game .io yang dapat dimainkan langsung dari browser. Gratis dan tanpa instalasi tambahan.</p>
     </div>
     <div class="app-grid">
       <div class="app-card reveal" data-project="io" role="button" tabindex="0">
-        <div class="app-card-icon"><svg viewBox="0 0 24 24"><path d="M18.7 5.3c-2.5-1.4-6.3-.9-8.8.6-2.6 1.6-3.9 4.1-2.8 6.1 1 1.9 3.7 2.3 6.2 2.9 2.5.6 3.8 1.7 3.1 3.3-.8 1.8-4.2 2.5-7 1.2"/><circle cx="18.8" cy="5.1" r="1.8" fill="currentColor" stroke="none"/></svg></div>
+        <div class="app-card-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18.7 5.3c-2.5-1.4-6.3-.9-8.8.6-2.6 1.6-3.9 4.1-2.8 6.1 1 1.9 3.7 2.3 6.2 2.9 2.5.6 3.8 1.7 3.1 3.3-.8 1.8-4.2 2.5-7 1.2"/><circle cx="18.8" cy="5.1" r="1.8" fill="currentColor"/></svg></div>
         <h3>Snake Arena</h3>
-        <p>Makan, tempur dan raih Top 1 leaderboard. Mainkan Lanzz.io - Snake Arena.</p>
-        <span class="more">Lihat Detail <span>→</span></span>
+        <p data-i18n="io.card">Makan, tempur dan raih Top 1 leaderboard. Mainkan Lanzz.io - Snake Arena.</p>
+        <span class="more" data-i18n-html="card.more">Lihat Detail <span>→</span></span>
       </div>
     </div>
   </div>
@@ -1115,14 +1169,14 @@ body.theme-aurora{--red:#00ffaa;--red2:#c084fc;--glow:rgba(0,255,170,.32);--soft
         <h2>Lanzz <span class="accent">Blase</span></h2>
         <span class="lnz-section-tag"><i></i> MINI GAME</span>
       </div>
-      <p>Game Puzzle Block Blast yang dapat dimainkan langsung dari browser. Gratis dan tanpa instalasi tambahan.</p>
+      <p data-i18n="blase.desc">Game Puzzle Block Blast yang dapat dimainkan langsung dari browser. Gratis dan tanpa instalasi tambahan.</p>
     </div>
     <div class="app-grid">
       <div class="app-card reveal" data-project="blase" role="button" tabindex="0">
-        <div class="app-card-icon"><svg viewBox="0 0 24 24"><g fill="currentColor" stroke="none"><rect x="4" y="4" width="5" height="5" rx="1"/><rect x="10" y="4" width="5" height="5" rx="1"/><rect x="4" y="10" width="5" height="5" rx="1"/><rect x="4" y="16" width="5" height="5" rx="1"/><rect x="10" y="16" width="5" height="5" rx="1"/><rect x="16" y="16" width="4" height="5" rx="1"/></g></svg></div>
+        <div class="app-card-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><g fill="currentColor"><rect x="4" y="4" width="5" height="5" rx="1"/><rect x="10" y="4" width="5" height="5" rx="1"/><rect x="4" y="10" width="5" height="5" rx="1"/><rect x="4" y="16" width="5" height="5" rx="1"/><rect x="10" y="16" width="5" height="5" rx="1"/><rect x="16" y="16" width="4" height="5" rx="1"/></g></svg></div>
         <h3>Block Puzzle</h3>
-        <p>Selesaikan teka-teki seru Block Blase dengan berbagai mode pilihan. Block Puzzle, Bubble Shooter dan Link Puzzle. Mainkan Lanzz Blase - Block Puzzle.</p>
-        <span class="more">Lihat Detail <span>→</span></span>
+        <p data-i18n="blase.card">Selesaikan teka-teki seru Block Blase dengan berbagai mode pilihan. Block Puzzle, Bubble Shooter dan Link Puzzle. Mainkan Lanzz Blase - Block Puzzle.</p>
+        <span class="more" data-i18n-html="card.more">Lihat Detail <span>→</span></span>
       </div>
     </div>
   </div>
@@ -1136,14 +1190,14 @@ body.theme-aurora{--red:#00ffaa;--red2:#c084fc;--glow:rgba(0,255,170,.32);--soft
         <h2>Lanzz <span class="accent">Bros</span></h2>
         <span class="lnz-section-tag"><i></i> MINI GAME</span>
       </div>
-      <p>Game retro yang dapat dimainkan langsung dari browser. Gratis dan tanpa instalasi tambahan.</p>
+      <p data-i18n="bros.desc">Game retro yang dapat dimainkan langsung dari browser. Gratis dan tanpa instalasi tambahan.</p>
     </div>
     <div class="app-grid">
       <div class="app-card reveal" data-project="bros" role="button" tabindex="0">
-        <div class="app-card-icon"><svg viewBox="0 0 24 24"><path d="M4 12.2C4 7.3 7.5 4 12 4s8 3.3 8 8.2H4Z"/><circle cx="8" cy="8.5" r="1.5"/><circle cx="12" cy="6.8" r="1.5"/><circle cx="16" cy="8.5" r="1.5"/><path d="M7.5 12.2v3.7c0 2.2 1.5 3.6 4.5 3.6s4.5-1.4 4.5-3.6v-3.7"/></svg></div>
+        <div class="app-card-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12.2C4 7.3 7.5 4 12 4s8 3.3 8 8.2H4Z"/><circle cx="8" cy="8.5" r="1.5"/><circle cx="12" cy="6.8" r="1.5"/><circle cx="16" cy="8.5" r="1.5"/><path d="M7.5 12.2v3.7c0 2.2 1.5 3.6 4.5 3.6s4.5-1.4 4.5-3.6v-3.7"/></svg></div>
         <h3>Pixel Game</h3>
-        <p>Lari, lompat dan hadapi berbagai tantangan di setiap world. Dengan tampilan karakter yang lucu. Mainkan Lanzz Bros - Pixel Game.</p>
-        <span class="more">Lihat Detail <span>→</span></span>
+        <p data-i18n="bros.card">Lari, lompat dan hadapi berbagai tantangan di setiap world. Dengan tampilan karakter yang lucu. Mainkan Lanzz Bros - Pixel Game.</p>
+        <span class="more" data-i18n-html="card.more">Lihat Detail <span>→</span></span>
       </div>
     </div>
   </div>
@@ -1157,14 +1211,14 @@ body.theme-aurora{--red:#00ffaa;--red2:#c084fc;--glow:rgba(0,255,170,.32);--soft
         <h2>Lanzz <span class="accent">Space</span></h2>
         <span class="lnz-section-tag"><i></i> EXPLORE</span>
       </div>
-      <p>Jelajahi galaksi dan nikmati pengalaman simulasi interaktif langsung dari browser.</p>
+      <p data-i18n="space.desc">Jelajahi galaksi dan nikmati pengalaman simulasi interaktif langsung dari browser.</p>
     </div>
     <div class="app-grid">
       <div class="app-card reveal" data-project="space" role="button" tabindex="0">
-        <div class="app-card-icon"><svg viewBox="0 0 24 24"><ellipse cx="12" cy="12" rx="9.2" ry="4.1" transform="rotate(-18 12 12)"/><circle cx="12" cy="12" r="5.1"/><path d="M9.2 10.2c1.2-.7 2.7-.8 4-.3M10.1 13.3c1.1.6 2.4.8 3.7.4"/></svg></div>
+        <div class="app-card-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><ellipse cx="12" cy="12" rx="9.2" ry="4.1" transform="rotate(-18 12 12)"/><circle cx="12" cy="12" r="5.1"/><path d="M9.2 10.2c1.2-.7 2.7-.8 4-.3M10.1 13.3c1.1.6 2.4.8 3.7.4"/></svg></div>
         <h3>Galaxy Simulator</h3>
-        <p>Terbang bebas melintasi tata surya, amati planet, bintang dan berbagai objek luar angkasa sambil menjelajahi luasnya semesta tanpa batas di Lanzz Space.</p>
-        <span class="more">Lihat Detail <span>→</span></span>
+        <p data-i18n="space.card">Terbang bebas melintasi tata surya, amati planet, bintang dan berbagai objek luar angkasa sambil menjelajahi luasnya semesta tanpa batas di Lanzz Space.</p>
+        <span class="more" data-i18n-html="card.more">Lihat Detail <span>→</span></span>
       </div>
     </div>
   </div>
@@ -1178,14 +1232,14 @@ body.theme-aurora{--red:#00ffaa;--red2:#c084fc;--glow:rgba(0,255,170,.32);--soft
         <h2>Lanzz.<span class="accent">Ai</span></h2>
         <span class="lnz-section-tag"><i></i> READY</span>
       </div>
-      <p>Asisten Ai untuk membantu pekerjaan, belajar, mencari ide dan berbagai kebutuhan digital kamu.</p>
+      <p data-i18n="ai.desc">Asisten Ai untuk membantu pekerjaan, belajar, mencari ide dan berbagai kebutuhan digital kamu.</p>
     </div>
     <div class="app-grid">
       <div class="app-card reveal" data-project="ai" role="button" tabindex="0">
-        <div class="app-card-icon"><svg viewBox="0 0 24 24"><path d="M8 7h8a3 3 0 0 1 3 3v6a3 3 0 0 1-3 3H8a3 3 0 0 1-3-3v-6a3 3 0 0 1 3-3Z"/><path d="M12 7V4M10.5 4h3"/><circle cx="9.5" cy="11.5" r=".9" fill="currentColor" stroke="none"/><circle cx="14.5" cy="11.5" r=".9" fill="currentColor" stroke="none"/><path d="M9.5 15h5M3 11v4M21 11v4"/></svg></div>
+        <div class="app-card-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 7h8a3 3 0 0 1 3 3v6a3 3 0 0 1-3 3H8a3 3 0 0 1-3-3v-6a3 3 0 0 1 3-3Z"/><path d="M12 7V4M10.5 4h3"/><circle cx="9.5" cy="11.5" r=".9" fill="currentColor"/><circle cx="14.5" cy="11.5" r=".9" fill="currentColor"/><path d="M9.5 15h5M3 11v4M21 11v4"/></svg></div>
         <h3>AI Assistant</h3>
-        <p>Tanyakan apa saja ke Lanzz.Ai, asisten Ai by Lanzz Project yang siap membantu berbagai kebutuhanmu di Lanzz Assistant.</p>
-        <span class="more">Lihat Detail <span>→</span></span>
+        <p data-i18n="ai.card">Tanyakan apa saja ke Lanzz.Ai, asisten Ai by Lanzz Project yang siap membantu berbagai kebutuhanmu di Lanzz Assistant.</p>
+        <span class="more" data-i18n-html="card.more">Lihat Detail <span>→</span></span>
       </div>
     </div>
   </div>
@@ -1199,14 +1253,14 @@ body.theme-aurora{--red:#00ffaa;--red2:#c084fc;--glow:rgba(0,255,170,.32);--soft
         <h2>Lanzz <span class="accent">Tools</span></h2>
         <span class="lnz-section-tag"><i></i> 100+ TOOLS</span>
       </div>
-      <p>Kumpulan 100+ tools digital praktis dalam satu tempat.</p>
+      <p data-i18n="tools.desc">Kumpulan 100+ tools digital praktis dalam satu tempat.</p>
     </div>
     <div class="app-grid">
       <div class="app-card reveal" data-project="tools" role="button" tabindex="0">
-        <div class="app-card-icon"><svg viewBox="0 0 24 24"><path d="m14.7 6.3 3-3a5 5 0 0 0-6.1 6.1l-7.2 7.2a2.1 2.1 0 0 0 3 3l7.2-7.2a5 5 0 0 0 6.1-6.1l-3 3-3-3Z"/></svg></div>
+        <div class="app-card-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m14.7 6.3 3-3a5 5 0 0 0-6.1 6.1l-7.2 7.2a2.1 2.1 0 0 0 3 3l7.2-7.2a5 5 0 0 0 6.1-6.1l-3 3-3-3Z"/></svg></div>
         <h3>Digital Tools</h3>
-        <p>Gratis dan bisa digunakan tanpa login untuk berbagai kebutuhan sehari-hari di Lanzz Tools.</p>
-        <span class="more">Lihat Detail <span>→</span></span>
+        <p data-i18n="tools.card">Gratis dan bisa digunakan tanpa login untuk berbagai kebutuhan sehari-hari di Lanzz Tools.</p>
+        <span class="more" data-i18n-html="card.more">Lihat Detail <span>→</span></span>
       </div>
     </div>
   </div>
@@ -1220,16 +1274,16 @@ body.theme-aurora{--red:#00ffaa;--red2:#c084fc;--glow:rgba(0,255,170,.32);--soft
         <h2>Lanzz <span class="accent">Informatika</span></h2>
         <span class="lnz-section-tag"><i></i> LEARN CODE</span>
       </div>
-      <p>Belajar dasar pengembangan website menggunakan HTML, CSS dan JavaScript dari dasar hingga membuat website interaktif.</p>
+      <p data-i18n="informatika.desc">Belajar dasar pengembangan website menggunakan HTML, CSS dan JavaScript dari dasar hingga membuat website interaktif.</p>
     </div>
     <div class="app-grid">
       <div class="app-card reveal" data-project="informatika" role="button" tabindex="0">
         <div class="app-card-icon">
-          <svg viewBox="0 0 24 24"><path d="m8 7-5 5 5 5"/><path d="m16 7 5 5-5 5"/><path d="m14 4-4 16"/></svg>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m8 7-5 5 5 5"/><path d="m16 7 5 5-5 5"/><path d="m14 4-4 16"/></svg>
         </div>
         <h3>Study Coding</h3>
-        <p>Pelajari struktur HTML, styling dengan CSS dan logika interaktif dengan JavaScript untuk membangun website modern di Lanzz Informatika.</p>
-        <span class="more">Lihat Detail <span>→</span></span>
+        <p data-i18n="informatika.card">Pelajari struktur HTML, styling dengan CSS dan logika interaktif dengan JavaScript untuk membangun website modern di Lanzz Informatika.</p>
+        <span class="more" data-i18n-html="card.more">Lihat Detail <span>→</span></span>
       </div>
     </div>
   </div>
@@ -1242,7 +1296,7 @@ body.theme-aurora{--red:#00ffaa;--red2:#c084fc;--glow:rgba(0,255,170,.32);--soft
         <div class="eyebrow">Skills</div>
         <h2>Core <span class="accent">Skills</span></h2>
       </div>
-      <p>Kombinasi skill teknis dan desain yang dipakai sehari-hari untuk membangun project digital.</p>
+      <p data-i18n="skills.desc">Kombinasi skill teknis dan desain yang dipakai sehari-hari untuk membangun project digital.</p>
     </div>
     <div class="skills">
       <div class="skill-row reveal"><div class="skill-meta"><span>Web Development</span><b>95%</b></div><div class="skill-level"><i data-w="95" style="width:0"></i></div></div>
@@ -1263,7 +1317,7 @@ body.theme-aurora{--red:#00ffaa;--red2:#c084fc;--glow:rgba(0,255,170,.32);--soft
         <div class="eyebrow">Experience</div>
         <h2>Work <span class="accent">Experience</span></h2>
       </div>
-      <p>Perjalanan profesional dari freelance sampai jadi content creator dan digital solutions.</p>
+      <p data-i18n="experience.desc">Perjalanan profesional dari freelance sampai jadi content creator dan digital solutions.</p>
     </div>
     <div class="lnz-timeline reveal">
       <div class="lnz-tl-item"><div class="lnz-tl-dot"></div><div class="lnz-tl-card"><div class="date">2020 - SEKARANG</div><h3>Freelance Web Developer</h3><p>Menangani 500+ project Website, APK dan Landing Page untuk UMKM, personal brand dan berbagai kebutuhan digital.</p><div class="lnz-tl-tags"><span class="lnz-tl-tag">HTML</span><span class="lnz-tl-tag">CSS</span><span class="lnz-tl-tag">JavaScript</span><span class="lnz-tl-tag">Responsive</span></div></div></div>
@@ -1280,14 +1334,14 @@ body.theme-aurora{--red:#00ffaa;--red2:#c084fc;--glow:rgba(0,255,170,.32);--soft
         <div class="eyebrow">Common Questions</div>
         <h2>Frequently <span class="accent">Asked</span></h2>
       </div>
-      <p>Beberapa pertanyaan yang paling sering ditanyakan sebelum memulai project.</p>
+      <p data-i18n="faq.desc">Beberapa pertanyaan yang paling sering ditanyakan sebelum memulai project.</p>
     </div>
     <div class="faq">
-      <div class="faq-item reveal"><button class="faq-q" type="button" aria-expanded="false"><span class="faq-icon"><svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg></span>Berapa lama proses pengerjaan satu website?</button><div class="faq-a"><div class="faq-a-inner">Proses pengerjaan 5 sampai 8 jam+ dan 1 sampai 3 hari+. Tergantung kepada tingkat kesulitan project yang dibuat.</div></div></div>
-      <div class="faq-item reveal"><button class="faq-q" type="button" aria-expanded="false"><span class="faq-icon"><svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg></span>Apakah bisa custom fitur sesuai kebutuhan?</button><div class="faq-a"><div class="faq-a-inner">Bisa. Hampir semua fitur custom bisa dibuat, mulai dari sistem login, dashboard admin, keranjang belanja, hingga integrasi API pihak ketiga.</div></div></div>
-      <div class="faq-item reveal"><button class="faq-q" type="button" aria-expanded="false"><span class="faq-icon"><svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg></span>Apakah hasilnya responsive di HP, tablet, dan desktop?</button><div class="faq-a"><div class="faq-a-inner">Ya, semua project dibuat responsive dari awal. Tampilan akan otomatis menyesuaikan di berbagai ukuran layar, dari HP kecil sampai monitor desktop besar.</div></div></div>
-      <div class="faq-item reveal"><button class="faq-q" type="button" aria-expanded="false"><span class="faq-icon"><svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg></span>Apakah ada garansi dan support setelah serah terima?</button><div class="faq-a"><div class="faq-a-inner">Ada. Setiap project mendapat garansi revisi dan support untuk bug fixing selama periode yang disepakati.</div></div></div>
-      <div class="faq-item reveal"><button class="faq-q" type="button" aria-expanded="false"><span class="faq-icon"><svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg></span>Bagaimana cara mulai kerja sama?</button><div class="faq-a"><div class="faq-a-inner">Cukup hubungi via WhatsApp atau Email di section Contact. Kirim brief singkat atau ide project, nanti akan dibalas dengan estimasi dan langkah selanjutnya.</div></div></div>
+      <div class="faq-item reveal"><button class="faq-q" type="button" aria-expanded="false"><span class="faq-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></span><span data-i18n="faq.q1">Berapa lama proses pengerjaan satu website?</span></button><div class="faq-a"><div class="faq-a-inner" data-i18n="faq.a1">Proses pengerjaan 5 sampai 8 jam+ dan 1 sampai 3 hari+. Tergantung kepada tingkat kesulitan project yang dibuat.</div></div></div>
+      <div class="faq-item reveal"><button class="faq-q" type="button" aria-expanded="false"><span class="faq-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></span><span data-i18n="faq.q2">Apakah bisa custom fitur sesuai kebutuhan?</span></button><div class="faq-a"><div class="faq-a-inner" data-i18n="faq.a2">Bisa. Hampir semua fitur custom bisa dibuat, mulai dari sistem login, dashboard admin, keranjang belanja, hingga integrasi API pihak ketiga.</div></div></div>
+      <div class="faq-item reveal"><button class="faq-q" type="button" aria-expanded="false"><span class="faq-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></span><span data-i18n="faq.q3">Apakah hasilnya responsive di HP, tablet, dan desktop?</span></button><div class="faq-a"><div class="faq-a-inner" data-i18n="faq.a3">Ya, semua project dibuat responsive dari awal. Tampilan akan otomatis menyesuaikan di berbagai ukuran layar, dari HP kecil sampai monitor desktop besar.</div></div></div>
+      <div class="faq-item reveal"><button class="faq-q" type="button" aria-expanded="false"><span class="faq-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></span><span data-i18n="faq.q4">Apakah ada garansi dan support setelah serah terima?</span></button><div class="faq-a"><div class="faq-a-inner" data-i18n="faq.a4">Ada. Setiap project mendapat garansi revisi dan support untuk bug fixing selama periode yang disepakati.</div></div></div>
+      <div class="faq-item reveal"><button class="faq-q" type="button" aria-expanded="false"><span class="faq-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></span><span data-i18n="faq.q5">Bagaimana cara mulai kerja sama?</span></button><div class="faq-a"><div class="faq-a-inner" data-i18n="faq.a5">Cukup hubungi via Email di section Contact. Kirim brief singkat atau ide project, nanti akan dibalas dengan estimasi dan langkah selanjutnya.</div></div></div>
     </div>
   </div>
 </section>
@@ -1297,12 +1351,12 @@ body.theme-aurora{--red:#00ffaa;--red2:#c084fc;--glow:rgba(0,255,170,.32);--soft
     <div class="lnz-news reveal">
       <div class="lnz-news-inner">
         <div>
-          <h3>Subscribe buat Update <span>Terbaru</span></h3>
-          <p>Dapatkan notifikasi project baru, tips digital, dan insight seputar web development langsung di inbox kamu.</p>
+          <h3 data-i18n-html="news.title">Subscribe buat Update <span>Terbaru</span></h3>
+          <p data-i18n="news.desc">Dapatkan notifikasi project baru, tips digital, dan insight seputar web development langsung di inbox kamu.</p>
         </div>
         <form class="lnz-news-form" id="lnzNewsForm">
           <input type="email" placeholder="email@example.com" required aria-label="Email">
-          <button type="submit">SUBSCRIBE</button>
+          <button type="submit" data-i18n="news.btn">SUBSCRIBE</button>
         </form>
       </div>
     </div>
@@ -1317,17 +1371,17 @@ body.theme-aurora{--red:#00ffaa;--red2:#c084fc;--glow:rgba(0,255,170,.32);--soft
         <h2>Contact <span class="accent">Me</span></h2>
         <span class="lnz-section-tag"><i></i> OPEN FOR PROJECTS</span>
       </div>
-      <p>Punya ide atau project? Kirim pesan lewat form, nanti akan dibalas secepatnya.</p>
+      <p data-i18n="contact.desc">Punya ide atau project? Kirim pesan lewat form, nanti akan dibalas secepatnya.</p>
     </div>
     <div class="contact-card reveal">
       <form class="contact-form" id="contactForm" novalidate>
         <div class="form-row">
-          <div class="form-field"><label for="cfName">Nama</label><input id="cfName" name="name" type="text" placeholder="Nama kamu" required maxlength="60"></div>
-          <div class="form-field"><label for="cfEmail">Email</label><input id="cfEmail" name="email" type="email" placeholder="email@example.com" required maxlength="80"></div>
+          <div class="form-field"><label for="cfName" data-i18n="form.name">Nama</label><input id="cfName" name="name" type="text" placeholder="Nama kamu" required maxlength="60" autocomplete="name"></div>
+          <div class="form-field"><label for="cfEmail" data-i18n="form.email">Email</label><input id="cfEmail" name="email" type="email" placeholder="email@example.com" required maxlength="80" autocomplete="email"></div>
         </div>
-        <div class="form-field"><label for="cfSubject">Subjek</label><input id="cfSubject" name="subject" type="text" placeholder="Topik project" required maxlength="120"></div>
-        <div class="form-field"><label for="cfMsg">Pesan</label><textarea id="cfMsg" name="message" placeholder="Ceritakan kebutuhan atau ide project kamu..." required maxlength="1500"></textarea></div>
-        <button class="form-submit" type="submit"><svg viewBox="0 0 24 24"><path d="m3 3 18 9-18 9 4-9-4-9Z"/></svg> Kirim Pesan</button>
+        <div class="form-field"><label for="cfSubject" data-i18n="form.subject">Subjek</label><input id="cfSubject" name="subject" type="text" placeholder="Topik project" required maxlength="120"></div>
+        <div class="form-field"><label for="cfMsg" data-i18n="form.message">Pesan</label><textarea id="cfMsg" name="message" placeholder="Ceritakan kebutuhan atau ide project kamu..." required maxlength="1500"></textarea></div>
+        <button class="form-submit" type="submit"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m3 3 18 9-18 9 4-9-4-9Z"/></svg> <span data-i18n="form.send">Kirim Pesan</span></button>
       </form>
     </div>
   </div>
@@ -1343,8 +1397,8 @@ body.theme-aurora{--red:#00ffaa;--red2:#c084fc;--glow:rgba(0,255,170,.32);--soft
     </div>
     <div class="about">
       <div class="reveal">
-        <p>Hello, I'm <b>LANZZ</b>, Web &amp; App Developer, Modder &amp; Creator with experience in the IT field. My specializations include website development, APK app creation, landing pages, UI/UX design, and various digital solutions for personal and business needs.</p>
-        <p style="margin-top:16px">Based in <b>Lebak - Banten - Indonesia</b>, I am dedicated to creating modern, lightweight, responsive, and user-friendly digital products. My goal is to deliver digital solutions that are not only functional but also provide the best experience for every user, whether for personal projects or business needs.</p>
+        <p data-i18n-html="about.p1">Hello, I'm <b>LANZZ</b>, Web &amp; App Developer, Modder &amp; Creator with experience in the IT field. My specializations include website development, APK app creation, landing pages, UI/UX design, and various digital solutions for personal and business needs.</p>
+        <p style="margin-top:16px" data-i18n-html="about.p2">Based in <b>Lebak - Banten - Indonesia</b>, I am dedicated to creating modern, lightweight, responsive, and user-friendly digital products. My goal is to deliver digital solutions that are not only functional but also provide the best experience for every user, whether for personal projects or business needs.</p>
       </div>
     </div>
   </div>
@@ -1356,17 +1410,17 @@ body.theme-aurora{--red:#00ffaa;--red2:#c084fc;--glow:rgba(0,255,170,.32);--soft
     <div class="footer-grid">
       <div class="footer-brand">
         <div class="brand" style="cursor:default">
-          <div class="brand-mark"><img src="https://i.imgur.com/FEf8DRG.png" alt="Lanzz"></div>
-          <div class="brand-txt"><b>R - <span>Lanzz</span></b><small>Portfolio App</small></div>
+          <div class="brand-mark"><img src="https://i.imgur.com/FEf8DRG.png" alt="Lanzz" width="34" height="34" loading="lazy"></div>
+          <div class="brand-txt"><b>R - <span>Lanzz</span></b><small data-i18n="brand.sub">Portfolio App</small></div>
         </div>
-        <p>Developer, Modder &amp; Creator - membangun produk digital modern yang fungsional, cepat, dan enak dipakai.</p>
-        <div class="footer-status" style="margin-top:12px"><i></i><span style="color:#7dff9c;font-size:10px;font-weight:700;letter-spacing:.4px">Available for projects</span></div>
+        <p data-i18n="footer.tag">Developer, Modder &amp; Creator - membangun produk digital modern yang fungsional, cepat, dan enak dipakai.</p>
+        <div class="footer-status" style="margin-top:12px"><i></i><span style="color:#7dff9c;font-size:10px;font-weight:700;letter-spacing:.4px" data-i18n="footer.status">Available for projects</span></div>
       </div>
-      <div class="footer-col"><h5>Explore</h5><a data-goto="home">Home</a><a data-goto="services">Services</a><a data-goto="space">Space</a><a data-goto="ai">Assistant</a><a data-goto="tools">Tools</a><a data-goto="informatika">Informatika</a></div>
-      <div class="footer-col"><h5>Content</h5><a data-goto="game">Library</a><a data-goto="io">Snake.io</a><a data-goto="blase">Puzzle</a><a data-goto="bros">Retro</a><a data-goto="newsletter">Newsletter</a></div>
-      <div class="footer-col"><h5>Connect</h5><a href="https://www.instagram.com/lanzz.offcl" target="_blank" rel="noopener noreferrer">Instagram</a><a href="https://www.facebook.com/profile.php?id=61593681814129" target="_blank" rel="noopener noreferrer">Facebook</a><a href="https://www.tiktok.com/@lanzz.offcl" target="_blank" rel="noopener noreferrer">TikTok</a><a href="mailto:id.erlan.maulana@gmail.com">Email</a><a href="mailto:lanzz.project.id@gmail.com">Email Project</a></div>
+      <div class="footer-col"><h5 data-i18n="footer.explore">Explore</h5><a data-goto="home">Home</a><a data-goto="services">Services</a><a data-goto="space">Space</a><a data-goto="ai">Assistant</a><a data-goto="tools">Tools</a><a data-goto="informatika">Informatika</a></div>
+      <div class="footer-col"><h5 data-i18n="footer.content">Content</h5><a data-goto="game">Library</a><a data-goto="io">Snake.io</a><a data-goto="blase">Puzzle</a><a data-goto="bros">Retro</a><a data-goto="newsletter">Newsletter</a></div>
+      <div class="footer-col"><h5 data-i18n="footer.connect">Connect</h5><a href="https://www.instagram.com/lanzz.offcl" target="_blank" rel="noopener noreferrer">Instagram</a><a href="https://www.facebook.com/profile.php?id=61593681814129" target="_blank" rel="noopener noreferrer">Facebook</a><a href="https://www.tiktok.com/@lanzz.offcl" target="_blank" rel="noopener noreferrer">TikTok</a><a href="mailto:id.erlan.maulana@gmail.com">Email</a><a href="mailto:lanzz.project.id@gmail.com">Email Project</a></div>
     </div>
-    <div class="footer-bottom"><span>© 2026 Lanzz. All Rights Reserved.</span><span>Designed &amp; Developed by Lanzz. Made with HTML, CSS, JavaScript</span></div>
+    <div class="footer-bottom"><span>© 2026 Lanzz. All Rights Reserved.</span><span data-i18n="footer.made">Designed &amp; Developed by Lanzz. Made with HTML, CSS, JavaScript</span></div>
   </div>
 </footer>
 
@@ -1381,10 +1435,10 @@ body.theme-aurora{--red:#00ffaa;--red2:#c084fc;--glow:rgba(0,255,170,.32);--soft
       </div>
       <div class="lnz-preview-actions">
         <a class="lnz-preview-btn" id="lnzPreviewExternal" href="#" target="_blank" rel="noopener noreferrer" aria-label="Buka di tab baru" title="Buka di tab baru">
-          <svg viewBox="0 0 24 24"><path d="M15 3h6v6M10 14 21 3M21 14v5a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5"/></svg>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 3h6v6M10 14 21 3M21 14v5a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5"/></svg>
         </a>
         <button class="lnz-preview-btn close" id="lnzPreviewClose" type="button" aria-label="Tutup" title="Tutup (ESC)">
-          <svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
         </button>
       </div>
     </div>
@@ -1394,13 +1448,232 @@ body.theme-aurora{--red:#00ffaa;--red2:#c084fc;--glow:rgba(0,255,170,.32);--soft
         <span class="lnz-preview-loading-text">Memuat halaman...</span>
         <div class="lnz-preview-progress"><i></i></div>
       </div>
-      <iframe class="lnz-preview-frame" id="lnzPreviewFrame" title="Preview" referrerpolicy="no-referrer-when-downgrade" allow="clipboard-write; fullscreen"></iframe>
+      <div class="lnz-preview-error" id="lnzPreviewError">
+        <h4>Tidak Bisa Preview</h4>
+        <p>Situs target memblokir preview di iframe (X-Frame-Options). Silakan buka di tab baru.</p>
+        <a id="lnzPreviewErrorLink" href="#" target="_blank" rel="noopener noreferrer">Buka di Tab Baru</a>
+      </div>
+      <iframe class="lnz-preview-frame" id="lnzPreviewFrame" title="Preview" referrerpolicy="no-referrer-when-downgrade" allow="clipboard-write; fullscreen" sandbox="allow-scripts allow-same-origin allow-forms allow-popups allow-popups-to-escape-sandbox"></iframe>
     </div>
   </div>
 </div>
 
 <script>
 "use strict";
+
+/* ============================================================
+   BOOT PERFORMANCE AUTO-DETECT
+   ============================================================ */
+(() => {
+  const cores = navigator.hardwareConcurrency || 4;
+  const mem = navigator.deviceMemory || 4;
+  const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const conn = navigator.connection || {};
+  const slowNet = /2g|slow-2g/.test(conn.effectiveType || '');
+  const saved = (() => { try { return localStorage.getItem('lnz_perf'); } catch(_) { return null; } })();
+  // Kalau user sudah pernah set manual, hormati
+  if (saved === '1' || (saved === null && (cores <= 4 || mem <= 2 || reduced || slowNet))) {
+    document.body.classList.add('performance-mode');
+  }
+})();
+
+/* ============================================================
+   I18N
+   ============================================================ */
+const I18N = {
+  id: {
+    'brand.sub':'Portfolio App',
+    'nav.home':'Home','nav.services':'Services','nav.skills':'Skills','nav.experience':'Experience','nav.about':'About',
+    'nav.games':'Games Library','nav.puzzle':'Puzzle','nav.retro':'Retro','nav.ai':'AI Assistant','nav.tools':'Tools','nav.newsletter':'Newsletter','nav.contact':'Contact','nav.emailPersonal':'Email Personal','nav.emailProject':'Email Project',
+    'drawer.group.explore':'Jelajahi','drawer.group.play':'Play & Explore','drawer.group.digital':'Digital','drawer.group.info':'Info','drawer.install':'Install Aplikasi',
+    'tab.home':'Home','tab.play':'Play','tab.tools':'Tools','tab.more':'More',
+    'btn.share':'Share','btn.secret':'Secret','btn.contact':'Contact','btn.about':'About',
+    'hero.kicker':'Hello, <span>I am</span>','hero.desc':'I create modern websites, digital applications, smart tools, and innovative solutions to bring ideas into powerful digital experiences. With focus on modern design, high performance, and seamless user experience, I build products that are simple, functional, and impactful.',
+    'stat.websites':'Website dibuat','stat.years':'Pengalaman','stat.projects':'Project selesai',
+    'theme.title':'Tema','theme.sub':'Warna','theme.count':'14 tema tersedia',
+    'services.desc':'Beberapa layanan utama untuk kebutuhan personal, bisnis maupun project digital.',
+    'services.card':'Buat website sesuai kebutuhan dengan fitur dan database yang dapat disesuaikan. Cocok untuk personal brand, bisnis, landing page, dashboard dan custom project.',
+    'games.desc':'Games Library dengan 1000+ pilihan game gratis yang dapat dimainkan langsung dari browser. Gratis dan tanpa instalasi tambahan.',
+    'games.card':'Jelajahi ribuan game dari berbagai genre, pilih favoritmu dan mainkan kapan saja langsung dari browser.',
+    'io.desc':'Game .io yang dapat dimainkan langsung dari browser. Gratis dan tanpa instalasi tambahan.',
+    'io.card':'Makan, tempur dan raih Top 1 leaderboard. Mainkan Lanzz.io - Snake Arena.',
+    'blase.desc':'Game Puzzle Block Blast yang dapat dimainkan langsung dari browser. Gratis dan tanpa instalasi tambahan.',
+    'blase.card':'Selesaikan teka-teki seru Block Blase dengan berbagai mode pilihan. Block Puzzle, Bubble Shooter dan Link Puzzle. Mainkan Lanzz Blase - Block Puzzle.',
+    'bros.desc':'Game retro yang dapat dimainkan langsung dari browser. Gratis dan tanpa instalasi tambahan.',
+    'bros.card':'Lari, lompat dan hadapi berbagai tantangan di setiap world. Dengan tampilan karakter yang lucu. Mainkan Lanzz Bros - Pixel Game.',
+    'space.desc':'Jelajahi galaksi dan nikmati pengalaman simulasi interaktif langsung dari browser.',
+    'space.card':'Terbang bebas melintasi tata surya, amati planet, bintang dan berbagai objek luar angkasa sambil menjelajahi luasnya semesta tanpa batas di Lanzz Space.',
+    'ai.desc':'Asisten Ai untuk membantu pekerjaan, belajar, mencari ide dan berbagai kebutuhan digital kamu.',
+    'ai.card':'Tanyakan apa saja ke Lanzz.Ai, asisten Ai by Lanzz Project yang siap membantu berbagai kebutuhanmu di Lanzz Assistant.',
+    'tools.desc':'Kumpulan 100+ tools digital praktis dalam satu tempat.',
+    'tools.card':'Gratis dan bisa digunakan tanpa login untuk berbagai kebutuhan sehari-hari di Lanzz Tools.',
+    'informatika.desc':'Belajar dasar pengembangan website menggunakan HTML, CSS dan JavaScript dari dasar hingga membuat website interaktif.',
+    'informatika.card':'Pelajari struktur HTML, styling dengan CSS dan logika interaktif dengan JavaScript untuk membangun website modern di Lanzz Informatika.',
+    'card.more':'Lihat Detail <span>→</span>',
+    'skills.desc':'Kombinasi skill teknis dan desain yang dipakai sehari-hari untuk membangun project digital.',
+    'experience.desc':'Perjalanan profesional dari freelance sampai jadi content creator dan digital solutions.',
+    'faq.desc':'Beberapa pertanyaan yang paling sering ditanyakan sebelum memulai project.',
+    'faq.q1':'Berapa lama proses pengerjaan satu website?',
+    'faq.a1':'Proses pengerjaan 5 sampai 8 jam+ dan 1 sampai 3 hari+. Tergantung kepada tingkat kesulitan project yang dibuat.',
+    'faq.q2':'Apakah bisa custom fitur sesuai kebutuhan?',
+    'faq.a2':'Bisa. Hampir semua fitur custom bisa dibuat, mulai dari sistem login, dashboard admin, keranjang belanja, hingga integrasi API pihak ketiga.',
+    'faq.q3':'Apakah hasilnya responsive di HP, tablet, dan desktop?',
+    'faq.a3':'Ya, semua project dibuat responsive dari awal. Tampilan akan otomatis menyesuaikan di berbagai ukuran layar, dari HP kecil sampai monitor desktop besar.',
+    'faq.q4':'Apakah ada garansi dan support setelah serah terima?',
+    'faq.a4':'Ada. Setiap project mendapat garansi revisi dan support untuk bug fixing selama periode yang disepakati.',
+    'faq.q5':'Bagaimana cara mulai kerja sama?',
+    'faq.a5':'Cukup hubungi via Email di section Contact. Kirim brief singkat atau ide project, nanti akan dibalas dengan estimasi dan langkah selanjutnya.',
+    'news.title':'Subscribe buat Update <span>Terbaru</span>',
+    'news.desc':'Dapatkan notifikasi project baru, tips digital, dan insight seputar web development langsung di inbox kamu.',
+    'news.btn':'SUBSCRIBE',
+    'contact.desc':'Punya ide atau project? Kirim pesan lewat form, nanti akan dibalas secepatnya.',
+    'form.name':'Nama','form.email':'Email','form.subject':'Subjek','form.message':'Pesan','form.send':'Kirim Pesan',
+    'about.p1':'Hello, I\'m <b>LANZZ</b>, Web &amp; App Developer, Modder &amp; Creator with experience in the IT field. My specializations include website development, APK app creation, landing pages, UI/UX design, and various digital solutions for personal and business needs.',
+    'about.p2':'Based in <b>Lebak - Banten - Indonesia</b>, I am dedicated to creating modern, lightweight, responsive, and user-friendly digital products. My goal is to deliver digital solutions that are not only functional but also provide the best experience for every user, whether for personal projects or business needs.',
+    'footer.tag':'Developer, Modder &amp; Creator - membangun produk digital modern yang fungsional, cepat, dan enak dipakai.',
+    'footer.status':'Available for projects','footer.explore':'Explore','footer.content':'Content','footer.connect':'Connect',
+    'footer.made':'Designed &amp; Developed by Lanzz. Made with HTML, CSS, JavaScript'
+  },
+  en: {
+    'brand.sub':'Portfolio App',
+    'nav.home':'Home','nav.services':'Services','nav.skills':'Skills','nav.experience':'Experience','nav.about':'About',
+    'nav.games':'Games Library','nav.puzzle':'Puzzle','nav.retro':'Retro','nav.ai':'AI Assistant','nav.tools':'Tools','nav.newsletter':'Newsletter','nav.contact':'Contact','nav.emailPersonal':'Personal Email','nav.emailProject':'Project Email',
+    'drawer.group.explore':'Explore','drawer.group.play':'Play & Explore','drawer.group.digital':'Digital','drawer.group.info':'Info','drawer.install':'Install App',
+    'tab.home':'Home','tab.play':'Play','tab.tools':'Tools','tab.more':'More',
+    'btn.share':'Share','btn.secret':'Secret','btn.contact':'Contact','btn.about':'About',
+    'hero.kicker':'Hello, <span>I am</span>','hero.desc':'I create modern websites, digital applications, smart tools, and innovative solutions to bring ideas into powerful digital experiences. With focus on modern design, high performance, and seamless user experience, I build products that are simple, functional, and impactful.',
+    'stat.websites':'Websites built','stat.years':'Years exp','stat.projects':'Projects done',
+    'theme.title':'Theme','theme.sub':'Color','theme.count':'14 themes available',
+    'services.desc':'Main services for personal, business, or digital project needs.',
+    'services.card':'Build websites tailored to your needs with customizable features and databases. Perfect for personal brands, businesses, landing pages, dashboards, and custom projects.',
+    'games.desc':'Games Library with 1000+ free games playable directly from the browser. Free and no additional installation.',
+    'games.card':'Explore thousands of games from various genres, pick your favorite, and play anytime right in your browser.',
+    'io.desc':'.io games playable directly from the browser. Free and no additional installation.',
+    'io.card':'Eat, battle, and reach the Top 1 leaderboard. Play Lanzz.io - Snake Arena.',
+    'blase.desc':'Block Blast Puzzle game playable directly from the browser. Free and no additional installation.',
+    'blase.card':'Solve fun Block Blase puzzles across multiple modes. Block Puzzle, Bubble Shooter, and Link Puzzle. Play Lanzz Blase.',
+    'bros.desc':'Retro games playable directly from the browser. Free and no additional installation.',
+    'bros.card':'Run, jump, and face challenges in every world with cute characters. Play Lanzz Bros - Pixel Game.',
+    'space.desc':'Explore the galaxy and enjoy an interactive simulation experience right in your browser.',
+    'space.card':'Fly freely across the solar system, observe planets, stars, and various space objects while exploring the boundless universe in Lanzz Space.',
+    'ai.desc':'AI assistant to help with work, study, ideas, and various digital needs.',
+    'ai.card':'Ask anything to Lanzz.Ai, AI assistant by Lanzz Project, ready to help with various needs in Lanzz Assistant.',
+    'tools.desc':'A collection of 100+ practical digital tools in one place.',
+    'tools.card':'Free and usable without login for various daily needs in Lanzz Tools.',
+    'informatika.desc':'Learn website development basics using HTML, CSS, and JavaScript from scratch to building interactive sites.',
+    'informatika.card':'Learn HTML structure, CSS styling, and interactive logic with JavaScript to build modern websites in Lanzz Informatika.',
+    'card.more':'View Detail <span>→</span>',
+    'skills.desc':'A combination of technical and design skills used daily to build digital projects.',
+    'experience.desc':'Professional journey from freelance to content creator and digital solutions.',
+    'faq.desc':'Frequently asked questions before starting a project.',
+    'faq.q1':'How long does it take to build one website?',
+    'faq.a1':'Build time is 5-8+ hours and 1-3+ days, depending on the complexity of the project.',
+    'faq.q2':'Can features be customized as needed?',
+    'faq.a2':'Yes. Almost any custom feature can be built, from login systems, admin dashboards, shopping carts, to third-party API integrations.',
+    'faq.q3':'Is the result responsive on phone, tablet, and desktop?',
+    'faq.a3':'Yes, every project is built responsive from the start. Layout automatically adapts from small phones to large desktop monitors.',
+    'faq.q4':'Is there any warranty and support after handover?',
+    'faq.a4':'Yes. Every project gets revision warranty and bug-fixing support during the agreed period.',
+    'faq.q5':'How do we get started?',
+    'faq.a5':'Just reach out via Email in the Contact section. Send a short brief or project idea, and you will get an estimate and next steps.',
+    'news.title':'Subscribe for <span>Latest</span> Updates',
+    'news.desc':'Get notifications for new projects, digital tips, and web development insights straight to your inbox.',
+    'news.btn':'SUBSCRIBE',
+    'contact.desc':'Have an idea or project? Send a message through the form and get a reply as soon as possible.',
+    'form.name':'Name','form.email':'Email','form.subject':'Subject','form.message':'Message','form.send':'Send Message',
+    'about.p1':'Hello, I\'m <b>LANZZ</b>, Web &amp; App Developer, Modder &amp; Creator with experience in the IT field. My specializations include website development, APK app creation, landing pages, UI/UX design, and various digital solutions for personal and business needs.',
+    'about.p2':'Based in <b>Lebak - Banten - Indonesia</b>, I am dedicated to creating modern, lightweight, responsive, and user-friendly digital products. My goal is to deliver digital solutions that are not only functional but also provide the best experience for every user, whether for personal projects or business needs.',
+    'footer.tag':'Developer, Modder &amp; Creator - building modern digital products that are functional, fast, and enjoyable to use.',
+    'footer.status':'Available for projects','footer.explore':'Explore','footer.content':'Content','footer.connect':'Connect',
+    'footer.made':'Designed & Developed by Lanzz. Made with HTML, CSS, JavaScript'
+  }
+};
+const getLang = () => {
+  try { return localStorage.getItem('lnz_lang') || 'id'; } catch(_) { return 'id'; }
+};
+const applyLang = (lang) => {
+  document.documentElement.lang = lang;
+  const dict = I18N[lang] || I18N.id;
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    if (!el.dataset.i18nOrig) el.dataset.i18nOrig = el.textContent;
+    const t = dict[el.dataset.i18n];
+    if (t != null) el.textContent = t; else el.textContent = el.dataset.i18nOrig;
+  });
+  document.querySelectorAll('[data-i18n-html]').forEach(el => {
+    if (!el.dataset.i18nOrigHtml) el.dataset.i18nOrigHtml = el.innerHTML;
+    const t = dict[el.dataset.i18nHtml];
+    if (t != null) el.innerHTML = t; else el.innerHTML = el.dataset.i18nOrigHtml;
+  });
+  const lb = document.getElementById('lnzLangLabel');
+  if (lb) lb.textContent = lang.toUpperCase();
+};
+
+/* ============================================================
+   HAPTIC + LIVE REGION
+   ============================================================ */
+const lnzHaptic = (ms) => { try { navigator.vibrate && navigator.vibrate(ms || 8); } catch (_) {} };
+const lnzAnnounce = (msg) => {
+  const lr = document.getElementById('lnzLiveRegion');
+  if (!lr) return;
+  lr.textContent = '';
+  setTimeout(() => { lr.textContent = msg; }, 30);
+};
+
+/* ============================================================
+   TOAST QUEUE
+   ============================================================ */
+const showToast = (() => {
+  const toast = document.getElementById('toast');
+  const queue = [];
+  let busy = false;
+  const process = () => {
+    if (busy || !queue.length || !toast) return;
+    busy = true;
+    const { msg, ms } = queue.shift();
+    toast.textContent = msg;
+    toast.classList.add('show');
+    setTimeout(() => {
+      toast.classList.remove('show');
+      setTimeout(() => { busy = false; process(); }, 260);
+    }, ms || 1900);
+  };
+  return (m, opts) => {
+    queue.push({ msg: m, ms: opts?.ms });
+    if (queue.length > 5) queue.splice(0, queue.length - 5);
+    process();
+  };
+})();
+
+/* ============================================================
+   FOCUS TRAP UTILITY
+   ============================================================ */
+const trapFocus = (container) => {
+  if (!container) return () => {};
+  const focusables = () => [...container.querySelectorAll('a[href]:not([tabindex="-1"]), button:not([disabled]):not([tabindex="-1"]), input:not([disabled]):not([tabindex="-1"]), textarea:not([disabled]):not([tabindex="-1"]), select:not([disabled]):not([tabindex="-1"]), [tabindex]:not([tabindex="-1"])')].filter(el => el.offsetParent !== null || el === document.activeElement);
+  const handler = (e) => {
+    if (e.key !== 'Tab') return;
+    const list = focusables();
+    if (!list.length) return;
+    const first = list[0], last = list[list.length - 1];
+    if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+    else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+  };
+  container.addEventListener('keydown', handler);
+  const first = focusables()[0];
+  if (first) setTimeout(() => { try { first.focus({ preventScroll: true }); } catch(_) {} }, 60);
+  return () => container.removeEventListener('keydown', handler);
+};
+
+/* ============================================================
+   VIEW TRANSITION HELPER
+   ============================================================ */
+const withVT = (cb) => {
+  if (document.startViewTransition && !document.body.classList.contains('performance-mode') && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    return document.startViewTransition(cb);
+  }
+  cb();
+  return null;
+};
 
 /* ============================================================
    PWA
@@ -1422,9 +1695,9 @@ body.theme-aurora{--red:#00ffaa;--red2:#c084fc;--glow:rgba(0,255,170,.32);--soft
       dir: "ltr",
       categories: ["portfolio", "developer", "entertainment"],
       icons: [
-        { src: "/logo/android-chrome-192x192.png", sizes: "192x192", type: "image/png", purpose: "any" },
-        { src: "/logo/android-chrome-512x512.png", sizes: "512x512", type: "image/png", purpose: "any" },
-        { src: "/logo/apple-touch-icon.png", sizes: "180x180", type: "image/png", purpose: "maskable" }
+        { src: "logo/android-chrome-192x192.png", sizes: "192x192", type: "image/png", purpose: "any" },
+        { src: "logo/android-chrome-512x512.png", sizes: "512x512", type: "image/png", purpose: "any" },
+        { src: "logo/apple-touch-icon.png", sizes: "180x180", type: "image/png", purpose: "maskable" }
       ]
     };
     const blob = new Blob([JSON.stringify(manifest)], { type: "application/manifest+json" });
@@ -1441,7 +1714,7 @@ body.theme-aurora{--red:#00ffaa;--red2:#c084fc;--glow:rgba(0,255,170,.32);--soft
 })();
 
 /* ============================================================
-   SPLASH SCREEN
+   SPLASH
    ============================================================ */
 (() => {
   const boot = document.getElementById('lnzBoot');
@@ -1450,8 +1723,7 @@ body.theme-aurora{--red:#00ffaa;--red2:#c084fc;--glow:rgba(0,255,170,.32);--soft
   const msg = document.getElementById('lnzBootMsg');
   if (!boot || !fill) return;
   const steps = ['Memuat', 'Menyiapkan', 'Hampir siap'];
-  let p = 0;
-  let done = false;
+  let p = 0, done = false;
   const finish = () => {
     if (done) return;
     done = true;
@@ -1482,6 +1754,8 @@ const lnzGetRedRgb = () => {
       const n = h.length === 3 ? h.split('').map(c => c + c).join('') : h;
       return [parseInt(n.slice(0, 2), 16), parseInt(n.slice(2, 4), 16), parseInt(n.slice(4, 6), 16)];
     }
+    const m = v.match(/rgba?\((\d+)[,\s]+(\d+)[,\s]+(\d+)/);
+    if (m) return [+m[1], +m[2], +m[3]];
   } catch (_) {}
   return [255, 22, 22];
 };
@@ -1489,16 +1763,11 @@ let lnzRedRgb = lnzGetRedRgb();
 window.addEventListener('lnz-theme-change', () => { lnzRedRgb = lnzGetRedRgb(); });
 
 /* ============================================================
-   HAPTIC
-   ============================================================ */
-const lnzHaptic = (ms) => { try { navigator.vibrate && navigator.vibrate(ms || 8); } catch (_) {} };
-
-/* ============================================================
    PARTICLES
    ============================================================ */
 (() => {
   const canvas = document.getElementById('lnzParticles');
-  if (!canvas) return;
+  if (!canvas || document.body.classList.contains('performance-mode')) return;
   const ctx = canvas.getContext('2d');
   let w, h, particles = [], mouse = { x: -9999, y: -9999 }, running = true;
   const DPR = Math.min(window.devicePixelRatio || 1, 2);
@@ -1510,11 +1779,7 @@ const lnzHaptic = (ms) => { try { navigator.vibrate && navigator.vibrate(ms || 8
     const count = Math.min(20, Math.floor(innerWidth * innerHeight / 52000));
     particles = [];
     for (let i = 0; i < count; i++) {
-      particles.push({
-        x: Math.random() * w, y: Math.random() * h,
-        vx: (Math.random() - .5) * .3 * DPR, vy: (Math.random() - .5) * .3 * DPR,
-        r: (Math.random() * 1.3 + .4) * DPR, a: Math.random() * .5 + .15
-      });
+      particles.push({ x: Math.random() * w, y: Math.random() * h, vx: (Math.random() - .5) * .3 * DPR, vy: (Math.random() - .5) * .3 * DPR, r: (Math.random() * 1.3 + .4) * DPR, a: Math.random() * .5 + .15 });
     }
   };
   resize();
@@ -1595,7 +1860,7 @@ const lnzHaptic = (ms) => { try { navigator.vibrate && navigator.vibrate(ms || 8
 (() => {
   const glow = document.getElementById('lnzCursorGlow');
   if (!glow) return;
-  if (!matchMedia('(hover: none)').matches) {
+  if (!matchMedia('(hover: none)').matches && !document.body.classList.contains('performance-mode')) {
     let x = innerWidth / 2, y = innerHeight / 2, cx = x, cy = y;
     document.addEventListener('pointermove', e => { x = e.clientX; y = e.clientY; }, { passive: true });
     const loop = () => {
@@ -1642,8 +1907,22 @@ const lnzGoto = (id, silent) => {
   const closeBtn = document.getElementById('lnzDrawerClose');
   const tabMore = document.getElementById('lnzTabMore');
   if (!drawer) return;
-  const open = () => { drawer.classList.add('open'); backdrop.classList.add('open'); document.body.classList.add('lnz-drawer-open'); lnzHaptic(8); };
-const close = () => { drawer.classList.remove('open'); backdrop.classList.remove('open'); document.body.classList.remove('lnz-drawer-open'); };
+  let untrap = null;
+  const open = () => {
+    drawer.classList.add('open');
+    backdrop.classList.add('open');
+    drawer.setAttribute('aria-hidden', 'false');
+    document.body.classList.add('lnz-drawer-open');
+    untrap = trapFocus(drawer);
+    lnzHaptic(8);
+  };
+  const close = () => {
+    drawer.classList.remove('open');
+    backdrop.classList.remove('open');
+    drawer.setAttribute('aria-hidden', 'true');
+    document.body.classList.remove('lnz-drawer-open');
+    if (untrap) { untrap(); untrap = null; }
+  };
   openBtn?.addEventListener('click', open);
   tabMore?.addEventListener('click', open);
   closeBtn?.addEventListener('click', close);
@@ -1656,6 +1935,7 @@ const close = () => { drawer.classList.remove('open'); backdrop.classList.remove
       const id = el.dataset.goto;
       close();
       lnzGoto(id);
+      if (id === 'ai') setTimeout(() => window.dispatchEvent(new CustomEvent('lnz-open-chat')), 400);
     });
   });
 
@@ -1668,13 +1948,8 @@ const close = () => { drawer.classList.remove('open'); backdrop.classList.remove
     const sc = scrollY + 180;
     sections.forEach(s => { if (sc >= s.offsetTop) cur = s.id; });
     let activeTab = null;
-    for (const k in tabMap) {
-      const id = tabMap[k];
-      if (cur === id) activeTab = id;
-    }
-    if (!activeTab) {
-      if (['io','blase','bros','space'].includes(cur)) activeTab = 'game';
-    }
+    for (const k in tabMap) if (cur === tabMap[k]) activeTab = tabMap[k];
+    if (!activeTab && ['io','blase','bros','space'].includes(cur)) activeTab = 'game';
     tabs.forEach(t => t.classList.toggle('active', t.dataset.goto === activeTab));
     ticking = false;
   };
@@ -1683,7 +1958,7 @@ const close = () => { drawer.classList.remove('open'); backdrop.classList.remove
 })();
 
 /* ============================================================
-   REVEAL + SKILL BARS + COUNTERS
+   REVEAL / SKILLS / COUNTERS
    ============================================================ */
 (() => {
   const obs = new IntersectionObserver(entries => {
@@ -1723,22 +1998,7 @@ const close = () => { drawer.classList.remove('open'); backdrop.classList.remove
 })();
 
 /* ============================================================
-   TOAST
-   ============================================================ */
-const showToast = (() => {
-  const toast = document.getElementById('toast');
-  let t;
-  return (m) => {
-    if (!toast) return;
-    toast.textContent = m;
-    toast.classList.add('show');
-    clearTimeout(t);
-    t = setTimeout(() => toast.classList.remove('show'), 1900);
-  };
-})();
-
-/* ============================================================
-   CONTACT FORM
+   CONTACT FORM (rate-limited)
    ============================================================ */
 (() => {
   const form = document.getElementById('contactForm');
@@ -1749,19 +2009,24 @@ const showToast = (() => {
 
   const WEB3FORMS_KEY = 'a0d745b0-d656-4b06-92ee-7606fb5ae7d4';
   const WEB3FORMS_ENDPOINT = 'https://api.web3forms.com/submit';
+  const RL_KEY = 'lnz_contact_last';
+  const RL_MS = 60000;
   const submitBtn = form.querySelector('.form-submit');
   const originalBtnHTML = submitBtn ? submitBtn.innerHTML : '';
+  let untrap = null;
 
   const openModal = (name) => {
     if (modalName) modalName.textContent = name || 'Sobat';
     if (modal) modal.classList.add('open');
     document.body.classList.add('lnz-preview-open');
+    untrap = trapFocus(modal);
     lnzHaptic([25, 50, 80]);
     if (window.lnzConfetti) window.lnzConfetti();
   };
   const closeModal = () => {
     if (modal) modal.classList.remove('open');
     document.body.classList.remove('lnz-preview-open');
+    if (untrap) { untrap(); untrap = null; }
   };
 
   modalOk?.addEventListener('click', closeModal);
@@ -1772,6 +2037,12 @@ const showToast = (() => {
 
   form.addEventListener('submit', async e => {
     e.preventDefault();
+    const last = Number(localStorage.getItem(RL_KEY) || 0);
+    if (Date.now() - last < RL_MS) {
+      const sisa = Math.ceil((RL_MS - (Date.now() - last)) / 1000);
+      showToast(`Tunggu ${sisa}s sebelum kirim lagi`);
+      return;
+    }
     const name = form.cfName.value.trim();
     const email = form.cfEmail.value.trim();
     const subject = form.cfSubject.value.trim();
@@ -1781,7 +2052,7 @@ const showToast = (() => {
 
     if (submitBtn) {
       submitBtn.disabled = true;
-      submitBtn.innerHTML = '<svg viewBox="0 0 24 24" style="animation:formSpin .8s linear infinite"><circle cx="12" cy="12" r="9" stroke-dasharray="45 100" stroke-linecap="round"/></svg> Mengirim...';
+      submitBtn.innerHTML = '<svg viewBox="0 0 24 24" style="animation:formSpin .8s linear infinite" aria-hidden="true"><circle cx="12" cy="12" r="9" stroke-dasharray="45 100" stroke-linecap="round"/></svg> Mengirim...';
     }
     lnzHaptic(10);
 
@@ -1799,6 +2070,8 @@ const showToast = (() => {
       const data = await res.json().catch(() => ({}));
       if (!res.ok || !data.success) throw new Error((data && data.message) || 'Gagal mengirim');
 
+      try { localStorage.setItem(RL_KEY, String(Date.now())); } catch(_) {}
+
       try {
         const key = 'lnz_messages';
         const list = JSON.parse(localStorage.getItem(key) || '[]');
@@ -1811,13 +2084,11 @@ const showToast = (() => {
       form.reset();
       openModal(sentName);
       showToast('Pesan berhasil terkirim!');
+      lnzAnnounce('Pesan berhasil terkirim');
     } catch (err) {
       showToast('Gagal kirim: ' + (err.message || 'Coba lagi ya'));
     } finally {
-      if (submitBtn) {
-        submitBtn.disabled = false;
-        submitBtn.innerHTML = originalBtnHTML;
-      }
+      if (submitBtn) { submitBtn.disabled = false; submitBtn.innerHTML = originalBtnHTML; }
     }
   });
 })();
@@ -1839,14 +2110,14 @@ const showToast = (() => {
       if (!list.includes(email)) list.push(email);
       localStorage.setItem(key, JSON.stringify(list));
     } catch (_) {}
-    showToast('Terima kasih! Update akan dikirim ke ' + email);
+    showToast('Terima kasih! Email tercatat: ' + email);
     lnzHaptic(12);
     form.reset();
   });
 })();
 
 /* ============================================================
-   FAQ ACCORDION
+   FAQ
    ============================================================ */
 (() => {
   document.querySelectorAll('.faq-item').forEach(item => {
@@ -1950,10 +2221,8 @@ const showToast = (() => {
   stage.addEventListener('pointerenter', () => pointerInside = true);
   stage.addEventListener('pointerleave', () => { if (!dragging) pointerInside = false; });
   stage.addEventListener('pointerdown', e => {
-    dragging = true;
-    pointerInside = true;
-    startX = e.clientX;
-    startY = e.clientY;
+    dragging = true; pointerInside = true;
+    startX = e.clientX; startY = e.clientY;
     velZ = velX = velY = 0;
     stage.classList.add('dragging');
     try { stage.setPointerCapture(e.pointerId); } catch(_) {}
@@ -1978,8 +2247,7 @@ const showToast = (() => {
     targetY = clamp(angleY + dx * 0.2, -22, 22);
     velZ = clamp(dx * 0.1, -6, 6);
     velX = clamp(-dy * 0.1, -4, 4);
-    startX = e.clientX;
-    startY = e.clientY;
+    startX = e.clientX; startY = e.clientY;
   });
   const release = e => {
     if (!dragging) return;
@@ -2015,7 +2283,7 @@ const showToast = (() => {
 })();
 
 /* ============================================================
-   THEME PICKER
+   THEME PICKER (fix accent override)
    ============================================================ */
 (() => {
   const openBtn = document.getElementById('lnzThemeOpenBtn');
@@ -2025,7 +2293,13 @@ const showToast = (() => {
   if (!openBtn || !popup || !grid) return;
   const themes = ['maroon','navy','gold','coffee','ocean','deepblue','purple','gray','cyber','mint','frost','rose','sunset','aurora'];
   const saved = (() => { try { return localStorage.getItem('lnz_theme') || 'maroon'; } catch (_) { return 'maroon'; } })();
+  let untrap = null;
   const apply = t => {
+    // clear custom accent inline style from body so theme class kicks in
+    document.body.style.removeProperty('--red');
+    document.body.style.removeProperty('--red2');
+    document.body.style.removeProperty('--glow');
+    document.body.style.removeProperty('--soft');
     themes.forEach(x => document.body.classList.remove('theme-' + x));
     document.body.classList.add('theme-' + t);
     grid.querySelectorAll('[data-theme]').forEach(b => b.classList.toggle('active', b.dataset.theme === t));
@@ -2034,14 +2308,17 @@ const showToast = (() => {
   };
   apply(themes.includes(saved) ? saved : 'maroon');
 
-  const closeOthers = () => {
-    document.getElementById('lnzChatPanel')?.classList.remove('show');
-  };
-  const close = () => popup.classList.remove('show');
+  const closeOthers = () => { document.getElementById('lnzChatPanel')?.classList.remove('show'); };
+  const close = () => { popup.classList.remove('show'); if (untrap) { untrap(); untrap = null; } };
   openBtn.addEventListener('click', e => {
     e.stopPropagation();
     if (popup.classList.contains('show')) close();
-    else { closeOthers(); popup.classList.add('show'); lnzHaptic(6); }
+    else {
+      closeOthers();
+      popup.classList.add('show');
+      untrap = trapFocus(popup);
+      lnzHaptic(6);
+    }
   });
   popup.querySelectorAll('[data-close]').forEach(b => b.addEventListener('click', close));
   document.addEventListener('click', e => {
@@ -2054,13 +2331,12 @@ const showToast = (() => {
     lnzHaptic(8);
   }));
   if (perfBtn) {
-    const perfSaved = (() => { try { return localStorage.getItem('lnz_perf') === '1'; } catch (_) { return false; } })();
     const setPerf = on => {
       document.body.classList.toggle('performance-mode', on);
       perfBtn.classList.toggle('active', on);
       try { localStorage.setItem('lnz_perf', on ? '1' : '0'); } catch (_) {}
     };
-    setPerf(perfSaved);
+    setPerf(document.body.classList.contains('performance-mode'));
     perfBtn.addEventListener('click', e => {
       e.stopPropagation();
       const on = !document.body.classList.contains('performance-mode');
@@ -2072,7 +2348,7 @@ const showToast = (() => {
 })();
 
 /* ============================================================
-   CHAT ASSISTANT
+   CHAT ASSISTANT (streaming + fallback)
    ============================================================ */
 (() => {
   const panel = document.getElementById('lnzChatPanel');
@@ -2081,16 +2357,59 @@ const showToast = (() => {
   const input = document.getElementById('lnzChatInput');
   const send = document.getElementById('lnzChatSend');
   const quick = document.getElementById('lnzChatQuick');
+  const cfgBtn = document.getElementById('lnzChatCfgBtn');
+  const cfgPanel = document.getElementById('lnzChatCfg');
   if (!panel || !body) return;
-  const push = (t, who) => {
+
+  const CFG_KEY = 'lnz_ai_cfg';
+  const getCfg = () => { try { return JSON.parse(localStorage.getItem(CFG_KEY) || '{}'); } catch(_) { return {}; } };
+  const setCfg = (c) => { try { localStorage.setItem(CFG_KEY, JSON.stringify(c)); } catch(_) {} };
+
+  // config UI
+  const cEndpoint = document.getElementById('cfgEndpoint');
+  const cKey = document.getElementById('cfgKey');
+  const cModel = document.getElementById('cfgModel');
+  const loadCfgUI = () => {
+    const c = getCfg();
+    if (cEndpoint) cEndpoint.value = c.endpoint || '';
+    if (cKey) cKey.value = c.key || '';
+    if (cModel) cModel.value = c.model || '';
+  };
+  loadCfgUI();
+  cfgBtn?.addEventListener('click', () => {
+    if (cfgPanel) cfgPanel.hidden = !cfgPanel.hidden;
+  });
+  document.getElementById('cfgSave')?.addEventListener('click', () => {
+    setCfg({ endpoint: cEndpoint.value.trim(), key: cKey.value.trim(), model: cModel.value.trim() });
+    showToast('AI config disimpan');
+    if (cfgPanel) cfgPanel.hidden = true;
+  });
+  document.getElementById('cfgClear')?.addEventListener('click', () => {
+    setCfg({});
+    loadCfgUI();
+    showToast('AI config dihapus. Pakai fallback.');
+  });
+
+  const history = []; // {role, content}
+
+  const pushEl = (text, who) => {
     const m = document.createElement('div');
     m.className = 'msg ' + who;
-    m.textContent = t;
+    m.textContent = text;
     body.appendChild(m);
     body.scrollTop = body.scrollHeight;
+    return m;
   };
-  const bot = (t, delay) => setTimeout(() => push(t, 'bot'), delay || 550);
-  const reply = (userText) => {
+  const pushTyping = () => {
+    const m = document.createElement('div');
+    m.className = 'msg bot typing';
+    m.innerHTML = '<i></i><i></i><i></i>';
+    body.appendChild(m);
+    body.scrollTop = body.scrollHeight;
+    return m;
+  };
+
+  const ruleReply = (userText) => {
     const t = userText.toLowerCase();
     if (/halo|hai|hey|hello/.test(t)) return 'Halo! Ada yang bisa saya bantu?';
     if (/layanan|service|jasa/.test(t)) return 'Kita menyediakan: Website Development, Portfolio, Landing Page, UI/UX Design, CV PDF, App & Game Creation, AI Assistant, Tools, Website Custom dan lain-lain.';
@@ -2100,22 +2419,97 @@ const showToast = (() => {
     if (/terima kasih|makasih|thanks/.test(t)) return 'Sama-sama!';
     return 'Terima kasih pesannya! Untuk respon cepat, isi form di section Contact atau email ke lanzz.project.id@gmail.com.';
   };
+
+  const streamChat = async (userText, onChunk) => {
+    const cfg = getCfg();
+    if (!cfg.endpoint || !cfg.key || !cfg.model) return false;
+    const messages = [
+      { role: 'system', content: 'You are Lanzz Assistant, a helpful, concise AI on Erlan Maulana\'s portfolio site (Lanzz Project). Answer in the same language as the user. Contact: lanzz.project.id@gmail.com.' },
+      ...history.slice(-10),
+      { role: 'user', content: userText }
+    ];
+    const res = await fetch(cfg.endpoint, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + cfg.key },
+      body: JSON.stringify({ model: cfg.model, messages, stream: true })
+    });
+    if (!res.ok) throw new Error('HTTP ' + res.status);
+    const reader = res.body.getReader();
+    const decoder = new TextDecoder();
+    let buffer = '';
+    while (true) {
+      const { done, value } = await reader.read();
+      if (done) break;
+      buffer += decoder.decode(value, { stream: true });
+      const lines = buffer.split('\n');
+      buffer = lines.pop() || '';
+      for (const line of lines) {
+        const trimmed = line.trim();
+        if (!trimmed.startsWith('data:')) continue;
+        const data = trimmed.slice(5).trim();
+        if (data === '[DONE]') return true;
+        try {
+          const json = JSON.parse(data);
+          const delta = json.choices?.[0]?.delta?.content;
+          if (delta) onChunk(delta);
+        } catch(_) {}
+      }
+    }
+    return true;
+  };
+
   let firstOpen = true;
   window.addEventListener('lnz-open-chat', () => {
     document.getElementById('lnzThemePopup')?.classList.remove('show');
     panel.classList.add('show');
     lnzHaptic(6);
-    if (firstOpen) { firstOpen = false; bot('Halo! Saya Lanzz Assistant. Ada yang bisa dibantu?', 400); }
+    if (firstOpen) {
+      firstOpen = false;
+      setTimeout(() => pushEl('Halo! Saya Lanzz Assistant. Ada yang bisa dibantu?', 'bot'), 400);
+    }
   });
   close?.addEventListener('click', () => panel.classList.remove('show'));
-  const submit = () => {
+
+  const submit = async () => {
     const v = input.value.trim();
     if (!v) return;
-    push(v, 'user');
+    pushEl(v, 'user');
+    history.push({ role: 'user', content: v });
     input.value = '';
     input.style.height = 'auto';
-    bot(reply(v), 700);
     lnzHaptic(6);
+
+    const typing = pushTyping();
+    const cfg = getCfg();
+    const hasCfg = cfg.endpoint && cfg.key && cfg.model;
+
+    if (hasCfg) {
+      let acc = '';
+      let botEl = null;
+      try {
+        typing.remove();
+        botEl = document.createElement('div');
+        botEl.className = 'msg bot';
+        body.appendChild(botEl);
+        body.scrollTop = body.scrollHeight;
+        await streamChat(v, (chunk) => {
+          acc += chunk;
+          botEl.textContent = acc;
+          body.scrollTop = body.scrollHeight;
+        });
+        history.push({ role: 'assistant', content: acc });
+      } catch (err) {
+        if (botEl) botEl.textContent = 'Error: ' + err.message + ' — fallback: ' + ruleReply(v);
+        else pushEl('Error: ' + err.message, 'bot');
+      }
+    } else {
+      setTimeout(() => {
+        typing.remove();
+        const reply = ruleReply(v);
+        pushEl(reply, 'bot');
+        history.push({ role: 'assistant', content: reply });
+      }, 550);
+    }
   };
   send?.addEventListener('click', submit);
   input?.addEventListener('keydown', e => {
@@ -2134,11 +2528,12 @@ const showToast = (() => {
 })();
 
 /* ============================================================
-   ACHIEVEMENT + CONFETTI + KONAMI
+   ACHIEVEMENT / CONFETTI / KONAMI
    ============================================================ */
 (() => {
   window.lnzUnlockAch = (title, desc) => {
     showToast('Achievement: ' + title);
+    lnzAnnounce('Achievement unlocked: ' + title);
   };
   const code = ['ArrowUp','ArrowUp','ArrowDown','ArrowDown','ArrowLeft','ArrowRight','ArrowLeft','ArrowRight','b','a'];
   let kpos = 0;
@@ -2165,21 +2560,16 @@ const showToast = (() => {
   resize();
   window.addEventListener('resize', resize);
   window.lnzConfetti = () => {
-    canvas.classList.add('active');
     canvas.style.opacity = '1';
     parts = [];
     const [r, g, b] = lnzRedRgb;
     const colors = [`rgb(${r},${g},${b})`, `rgba(${r},${g},${b},.6)`, '#ffffff', '#ffd750'];
     for (let i = 0; i < 160; i++) {
       parts.push({
-        x: innerWidth / 2 + (Math.random() - .5) * 220,
-        y: innerHeight / 2,
-        vx: (Math.random() - .5) * 14,
-        vy: -Math.random() * 16 - 4,
-        g: .45 + Math.random() * .25,
-        s: 4 + Math.random() * 6,
-        rot: Math.random() * Math.PI,
-        rs: (Math.random() - .5) * .28,
+        x: innerWidth / 2 + (Math.random() - .5) * 220, y: innerHeight / 2,
+        vx: (Math.random() - .5) * 14, vy: -Math.random() * 16 - 4,
+        g: .45 + Math.random() * .25, s: 4 + Math.random() * 6,
+        rot: Math.random() * Math.PI, rs: (Math.random() - .5) * .28,
         c: colors[Math.floor(Math.random() * colors.length)],
         life: 130 + Math.random() * 40
       });
@@ -2189,10 +2579,8 @@ const showToast = (() => {
   const loop = () => {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     parts.forEach(p => {
-      p.vy += p.g;
-      p.x += p.vx; p.y += p.vy;
-      p.rot += p.rs;
-      p.life--;
+      p.vy += p.g; p.x += p.vx; p.y += p.vy;
+      p.rot += p.rs; p.life--;
       ctx.save();
       ctx.translate(p.x, p.y);
       ctx.rotate(p.rot);
@@ -2202,113 +2590,87 @@ const showToast = (() => {
     });
     parts = parts.filter(p => p.life > 0 && p.y < canvas.height + 60);
     if (parts.length) requestAnimationFrame(loop);
-    else { canvas.classList.remove('active'); canvas.style.opacity = '0'; }
+    else canvas.style.opacity = '0';
   };
 })();
 
 /* ============================================================
-   SPA - PROJECT DETAIL
+   SPA DETAIL + SKELETON + VIEW TRANSITIONS
    ============================================================ */
 (() => {
   const PROJECT_DATA = {
     services: {
-      title: 'Website Development',
-      eyebrow: 'Digital Solutions',
+      title: 'Website Development', eyebrow: 'Digital Solutions',
       subtitle: 'Layanan pembuatan website profesional dengan fitur dan database yang dapat disesuaikan.',
       icon: '<circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.5 3.8 5.5 3.8 9S14.5 17.5 12 21M12 3c-2.5 2.5-3.8 5.5-3.8 9S9.5 18.5 12 21"/>',
       features: ['Landing page modern dan responsive','Custom fitur sesuai kebutuhan','Integrasi database dan API','SEO friendly','Support dan garansi revisi'],
-      tech: ['HTML', 'CSS', 'JavaScript', 'Responsive', 'SEO'],
+      tech: ['HTML','CSS','JavaScript','Responsive','SEO'],
       category: 'Digital Solutions',
-      url: 'https://lanzz-project.github.io/halaman.design.html',
-      cta: 'Lihat Services'
+      url: 'https://lanzz-project.github.io/halaman.design.html', cta: 'Lihat Services'
     },
     game: {
-      title: '1000+ Games Library',
-      eyebrow: 'Games Library',
+      title: '1000+ Games Library', eyebrow: 'Games Library',
       subtitle: 'Koleksi 1000+ game gratis dari berbagai genre yang bisa langsung dimainkan di browser.',
       icon: '<path d="M6 8h12a4 4 0 0 1 3.8 5.2l-1.1 4A2.3 2.3 0 0 1 16.2 19L13.8 16h-3.6l-2.4 3a2.3 2.3 0 0 1-4.5-1.8l-1.1-4A4 4 0 0 1 6 8Z"/><path d="M8 11v4M6 13h4M16 12h.01M18 14h.01"/>',
       features: ['Action, puzzle, arcade, casual','Multiplayer online support','Tanpa install dan tanpa login','Gratis selamanya','Update game baru tiap minggu'],
-      tech: ['HTML5', 'Canvas', 'WebGL', 'Multiplayer'],
-      category: 'Games Library',
-      url: 'https://lanzz-project.github.io/lanzz-play.html',
-      cta: 'Play Games'
+      tech: ['HTML5','Canvas','WebGL','Multiplayer'], category: 'Games Library',
+      url: 'https://lanzz-project.github.io/lanzz-play.html', cta: 'Play Games'
     },
     io: {
-      title: 'Snake Arena',
-      eyebrow: 'Arcade Game',
+      title: 'Snake Arena', eyebrow: 'Arcade Game',
       subtitle: 'Game Snake multiplayer klasik dengan sentuhan modern.',
-      icon: '<path d="M18.7 5.3c-2.5-1.4-6.3-.9-8.8.6-2.6 1.6-3.9 4.1-2.8 6.1 1 1.9 3.7 2.3 6.2 2.9 2.5.6 3.8 1.7 3.1 3.3-.8 1.8-4.2 2.5-7 1.2"/><circle cx="18.8" cy="5.1" r="1.8" fill="currentColor" stroke="none"/>',
+      icon: '<path d="M18.7 5.3c-2.5-1.4-6.3-.9-8.8.6-2.6 1.6-3.9 4.1-2.8 6.1 1 1.9 3.7 2.3 6.2 2.9 2.5.6 3.8 1.7 3.1 3.3-.8 1.8-4.2 2.5-7 1.2"/><circle cx="18.8" cy="5.1" r="1.8" fill="currentColor"/>',
       features: ['Multiplayer real-time','Leaderboard global','Skin dan powerup','Server 24/7 online','Cross-platform'],
-      tech: ['Canvas', 'WebSocket', 'Node.js'],
-      category: 'Arcade Game',
-      url: 'https://lanzz-project.github.io/lanzz-io.html',
-      cta: 'Play Game'
+      tech: ['Canvas','WebSocket','Node.js'], category: 'Arcade Game',
+      url: 'https://lanzz-project.github.io/lanzz-io.html', cta: 'Play Game'
     },
     blase: {
-      title: 'Block Puzzle',
-      eyebrow: 'Arcade Game',
+      title: 'Block Puzzle', eyebrow: 'Arcade Game',
       subtitle: 'Game puzzle Block Blast dengan berbagai mode: Block Puzzle, Bubble Shooter, dan Link Puzzle.',
-      icon: '<g fill="currentColor" stroke="none"><rect x="4" y="4" width="5" height="5" rx="1"/><rect x="10" y="4" width="5" height="5" rx="1"/><rect x="4" y="10" width="5" height="5" rx="1"/><rect x="4" y="16" width="5" height="5" rx="1"/><rect x="10" y="16" width="5" height="5" rx="1"/><rect x="16" y="16" width="4" height="5" rx="1"/></g>',
+      icon: '<g fill="currentColor"><rect x="4" y="4" width="5" height="5" rx="1"/><rect x="10" y="4" width="5" height="5" rx="1"/><rect x="4" y="10" width="5" height="5" rx="1"/><rect x="4" y="16" width="5" height="5" rx="1"/><rect x="10" y="16" width="5" height="5" rx="1"/><rect x="16" y="16" width="4" height="5" rx="1"/></g>',
       features: ['3 mode puzzle berbeda','Level bertingkat','Offline mode support','Save dan resume','Haptic feedback'],
-      tech: ['Canvas', 'Web Audio'],
-      category: 'Arcade Game',
-      url: 'https://lanzz-project.github.io/lanzz-blase.html',
-      cta: 'Play Game'
+      tech: ['Canvas','Web Audio'], category: 'Arcade Game',
+      url: 'https://lanzz-project.github.io/lanzz-blase.html', cta: 'Play Game'
     },
     bros: {
-      title: 'Pixel Game',
-      eyebrow: 'Arcade Game',
+      title: 'Pixel Game', eyebrow: 'Arcade Game',
       subtitle: 'Game retro platformer dengan karakter lucu.',
       icon: '<path d="M4 12.2C4 7.3 7.5 4 12 4s8 3.3 8 8.2H4Z"/><circle cx="8" cy="8.5" r="1.5"/><circle cx="12" cy="6.8" r="1.5"/><circle cx="16" cy="8.5" r="1.5"/><path d="M7.5 12.2v3.7c0 2.2 1.5 3.6 4.5 3.6s4.5-1.4 4.5-3.6v-3.7"/>',
       features: ['Multi-world platformer','Karakter pixel art custom','Sound effect retro','Boss battle','Raih skor tertinggi'],
-      tech: ['Canvas', 'Sprite Animation', 'Retro'],
-      category: 'Arcade Game',
-      url: 'https://lanzz-project.github.io/lanzz-bros.html',
-      cta: 'Play Game'
+      tech: ['Canvas','Sprite Animation','Retro'], category: 'Arcade Game',
+      url: 'https://lanzz-project.github.io/lanzz-bros.html', cta: 'Play Game'
     },
     space: {
-      title: 'Galaxy Simulator',
-      eyebrow: 'Galaxy Simulator',
+      title: 'Galaxy Simulator', eyebrow: 'Galaxy Simulator',
       subtitle: 'Jelajahi galaksi, amati planet, bintang, dan objek luar angkasa.',
       icon: '<ellipse cx="12" cy="12" rx="9.2" ry="4.1" transform="rotate(-18 12 12)"/><circle cx="12" cy="12" r="5.1"/><path d="M9.2 10.2c1.2-.7 2.7-.8 4-.3M10.1 13.3c1.1.6 2.4.8 3.7.4"/>',
       features: ['3D space exploration','Detail planet dan bintang','Free fly camera','Kontrol sentuh','Edukasi astronomi'],
-      tech: ['Three.js', 'WebGL', '3D'],
-      category: 'Galaxy Simulator',
-      url: 'https://lanzz-project.github.io/lanzz-space.html',
-      cta: 'Explore Space'
+      tech: ['Three.js','WebGL','3D'], category: 'Galaxy Simulator',
+      url: 'https://lanzz-project.github.io/lanzz-space.html', cta: 'Explore Space'
     },
     ai: {
-      title: 'Lanzz.Ai Assistant',
-      eyebrow: 'AI Assistant',
+      title: 'Lanzz.Ai Assistant', eyebrow: 'AI Assistant',
       subtitle: 'Asisten AI pintar untuk membantu pekerjaan, belajar, cari ide, dan berbagai kebutuhan digital.',
-      icon: '<path d="M8 7h8a3 3 0 0 1 3 3v6a3 3 0 0 1-3 3H8a3 3 0 0 1-3-3v-6a3 3 0 0 1 3-3Z"/><path d="M12 7V4M10.5 4h3"/><circle cx="9.5" cy="11.5" r=".9" fill="currentColor" stroke="none"/><circle cx="14.5" cy="11.5" r=".9" fill="currentColor" stroke="none"/><path d="M9.5 15h5M3 11v4M21 11v4"/>',
+      icon: '<path d="M8 7h8a3 3 0 0 1 3 3v6a3 3 0 0 1-3 3H8a3 3 0 0 1-3-3v-6a3 3 0 0 1 3-3Z"/><path d="M12 7V4M10.5 4h3"/><circle cx="9.5" cy="11.5" r=".9" fill="currentColor"/><circle cx="14.5" cy="11.5" r=".9" fill="currentColor"/><path d="M9.5 15h5M3 11v4M21 11v4"/>',
       features: ['Natural conversation','Multi-purpose assistant','Respons cepat','Gratis unlimited','Support bahasa Indonesia'],
-      tech: ['AI', 'LLM', 'API'],
-      category: 'AI Assistant',
-      url: 'https://assistant-theta-pied.vercel.app/',
-      cta: 'Explore AI'
+      tech: ['AI','LLM','API'], category: 'AI Assistant',
+      url: 'https://assistant-theta-pied.vercel.app/', cta: 'Explore AI'
     },
     tools: {
-      title: 'Digital Tools',
-      eyebrow: 'Tools All In One',
+      title: 'Digital Tools', eyebrow: 'Tools All In One',
       subtitle: 'Kumpulan 100+ tools digital praktis dalam satu tempat. Gratis, tanpa login.',
       icon: '<path d="m14.7 6.3 3-3a5 5 0 0 0-6.1 6.1l-7.2 7.2a2.1 2.1 0 0 0 3 3l7.2-7.2a5 5 0 0 0 6.1-6.1l-3 3-3-3Z"/>',
       features: ['100+ tools siap pakai','Gratis tanpa login','Berbagai kategori','Mobile friendly','Update rutin'],
-      tech: ['HTML', 'CSS', 'JavaScript'],
-      category: 'Tools',
-      url: 'https://lanzz-project.github.io/lanzz-tools.html',
-      cta: 'Try the Tools'
+      tech: ['HTML','CSS','JavaScript'], category: 'Tools',
+      url: 'https://lanzz-project.github.io/lanzz-tools.html', cta: 'Try the Tools'
     },
     informatika: {
-      title: 'Study Coding',
-      eyebrow: 'Learn Web',
+      title: 'Study Coding', eyebrow: 'Learn Web',
       subtitle: 'Belajar dasar pengembangan website dengan HTML, CSS, dan JavaScript dari nol sampai mahir.',
       icon: '<path d="m8 7-5 5 5 5"/><path d="m16 7 5 5-5 5"/><path d="m14 4-4 16"/>',
       features: ['Materi basic sampai advanced','Praktik langsung','Studi kasus real project','Quiz dan challenge','Gratis akses semua materi'],
-      tech: ['HTML', 'CSS', 'JavaScript'],
-      category: 'Learn',
-      url: 'https://lanzz-project.github.io/lanzz-informatika.html',
-      cta: 'Learn Lab'
+      tech: ['HTML','CSS','JavaScript'], category: 'Learn',
+      url: 'https://lanzz-project.github.io/lanzz-informatika.html', cta: 'Learn Lab'
     }
   };
 
@@ -2318,19 +2680,25 @@ const showToast = (() => {
   const detailCat = document.getElementById('lnzDetailCat');
   const backBtn = document.getElementById('lnzDetailBack');
   if (!detail || !detailBody) return;
+  let untrap = null;
 
-  const checkIcon = '<svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg>';
-  const arrowIcon = '<svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg>';
+  const checkIcon = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>';
+  const arrowIcon = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>';
 
-  const render = (id) => {
-    const p = PROJECT_DATA[id];
-    if (!p) return false;
-    detailTitle.textContent = p.title;
-    detailCat.textContent = p.category;
+  const renderSkeleton = () => {
+    detailBody.innerHTML = `
+      <div class="lnz-detail-inner">
+        <div class="skel-hero skeleton"></div>
+        <div class="skel-section skeleton"></div>
+        <div class="skel-section skeleton"></div>
+      </div>`;
+  };
+
+  const renderContent = (p) => {
     detailBody.innerHTML = `
       <div class="lnz-detail-inner">
         <div class="lnz-detail-hero">
-          <div class="lnz-detail-hero-icon"><svg viewBox="0 0 24 24">${p.icon}</svg></div>
+          <div class="lnz-detail-hero-icon"><svg viewBox="0 0 24 24" aria-hidden="true">${p.icon}</svg></div>
           <div class="eyebrow">${p.eyebrow}</div>
           <h1>${p.title}</h1>
           <p class="sub">${p.subtitle}</p>
@@ -2348,20 +2716,32 @@ const showToast = (() => {
         </div>
       </div>`;
     const cta = detailBody.querySelector('#lnzDetailCta');
-    if (cta) {
-      cta.addEventListener('click', () => {
-        lnzHaptic(10);
-        window.dispatchEvent(new CustomEvent('lnz-open-preview', { detail: { url: p.url, title: p.title } }));
-      });
-    }
+    if (cta) cta.addEventListener('click', () => {
+      lnzHaptic(10);
+      window.dispatchEvent(new CustomEvent('lnz-open-preview', { detail: { url: p.url, title: p.title } }));
+    });
+  };
+
+  const render = (id) => {
+    const p = PROJECT_DATA[id];
+    if (!p) return false;
+    detailTitle.textContent = p.title;
+    detailCat.textContent = p.category;
+    renderSkeleton();
+    requestAnimationFrame(() => {
+      setTimeout(() => { if (detail.classList.contains('open')) renderContent(p); }, 120);
+    });
     return true;
   };
 
   const open = (id, push) => {
     if (!render(id)) return;
-    detail.classList.add('open');
-    document.body.classList.add('lnz-detail-open');
-    detailBody.scrollTop = 0;
+    withVT(() => {
+      detail.classList.add('open');
+      document.body.classList.add('lnz-detail-open');
+      detailBody.scrollTop = 0;
+    });
+    untrap = trapFocus(detail);
     lnzHaptic(10);
     if (push !== false) {
       try { history.pushState({ lnzDetail: id }, '', '#project=' + id); } catch (_) {}
@@ -2369,8 +2749,11 @@ const showToast = (() => {
   };
   const close = (skipHistory) => {
     if (!detail.classList.contains('open')) return;
-    detail.classList.remove('open');
-    document.body.classList.remove('lnz-detail-open');
+    withVT(() => {
+      detail.classList.remove('open');
+      document.body.classList.remove('lnz-detail-open');
+    });
+    if (untrap) { untrap(); untrap = null; }
     if (!skipHistory) {
       try { if (history.state && history.state.lnzDetail) history.back(); } catch (_) {}
     }
@@ -2388,25 +2771,26 @@ const showToast = (() => {
   });
 
   document.querySelectorAll('.app-card[data-project]').forEach(card => {
+    const openIt = () => open(card.dataset.project);
+    card.addEventListener('click', e => {
+      if (e.target.closest('.more')) return;
+      openIt();
+    });
+    card.addEventListener('keydown', e => {
+      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openIt(); }
+    });
     const moreBtn = card.querySelector('.more');
-    if (moreBtn) {
-      moreBtn.addEventListener('click', e => {
-        e.preventDefault();
-        e.stopPropagation();
-        open(card.dataset.project);
-      });
-    }
+    if (moreBtn) moreBtn.addEventListener('click', e => { e.preventDefault(); e.stopPropagation(); openIt(); });
   });
 
-  const initialHash = location.hash || '';
-  const initM = initialHash.match(/#project=([\w-]+)/);
+  const initM = (location.hash || '').match(/#project=([\w-]+)/);
   if (initM && PROJECT_DATA[initM[1]]) setTimeout(() => open(initM[1], false), 400);
 
   window.lnzOpenDetail = open;
 })();
 
 /* ============================================================
-   SEARCH / COMMAND PALETTE
+   COMMAND PALETTE (fuzzy)
    ============================================================ */
 (() => {
   const cmdk = document.getElementById('lnzCmdk');
@@ -2414,47 +2798,43 @@ const showToast = (() => {
   const listEl = document.getElementById('lnzCmdkList');
   const openBtn = document.getElementById('lnzSearchBtn');
   if (!cmdk || !input || !listEl) return;
+  let untrap = null;
   const commands = [
     { g: 'Navigasi', items: [
-      { l: 'Home', h: 'home', icon: '<path d="m3 11 9-8 9 8v9a2 2 0 0 1-2 2h-4v-7h-6v7H5a2 2 0 0 1-2-2Z"/>' },
-      { l: 'Services', h: 'services', icon: '<rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/>' },
-      { l: 'Games Library', h: 'game', icon: '<path d="M6 8h12a4 4 0 0 1 3.8 5.2l-1.1 4A2.3 2.3 0 0 1 16.2 19L13.8 16h-3.6l-2.4 3a2.3 2.3 0 0 1-4.5-1.8l-1.1-4A4 4 0 0 1 6 8Z"/>' },
-      { l: 'Snake.io', h: 'io', icon: '<circle cx="12" cy="12" r="3"/>' },
-      { l: 'Puzzle', h: 'blase', icon: '<rect x="4" y="4" width="6" height="6" rx="1"/><rect x="4" y="14" width="6" height="6" rx="1"/><rect x="14" y="14" width="6" height="6" rx="1"/>' },
-      { l: 'Retro', h: 'bros', icon: '<circle cx="12" cy="12" r="3"/>' },
-      { l: 'Space', h: 'space', icon: '<circle cx="12" cy="12" r="9"/><path d="M3 12h18"/>' },
-      { l: 'AI Assistant', h: 'ai', icon: '<circle cx="12" cy="12" r="3"/><path d="M12 3v3M12 18v3M3 12h3M18 12h3"/>' },
-      { l: 'Tools', h: 'tools', icon: '<path d="m14.7 6.3 3-3a5 5 0 0 0-6.1 6.1l-7.2 7.2a2.1 2.1 0 0 0 3 3l7.2-7.2a5 5 0 0 0 6.1-6.1l-3 3-3-3Z"/>' },
-      { l: 'Informatika', h: 'informatika', icon: '<path d="M4 5h16v14H4z"/><path d="M8 9h8M8 13h5"/>' },
-      { l: 'Skills', h: 'skills', icon: '<path d="M5 19V9M12 19V5M19 19v-7"/><path d="M3 19h18"/>' },
-      { l: 'Experience', h: 'experience', icon: '<rect x="3" y="5" width="18" height="14" rx="2"/><path d="M8 5V3M16 5V3M3 11h18"/>' },
-      { l: 'FAQ', h: 'faq', icon: '<circle cx="12" cy="12" r="9"/><path d="M9.5 9a2.6 2.6 0 1 1 4.7 1.5c-.8 1-2.2 1.2-2.2 2.5M12 16h.01"/>' },
-      { l: 'Newsletter', h: 'newsletter', icon: '<rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/>' },
-      { l: 'Contact', h: 'contact', icon: '<rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/>' },
-      { l: 'About', h: 'about', icon: '<circle cx="12" cy="8" r="3"/><path d="M5 21a7 7 0 0 1 14 0"/>' }
-    ] },
+      { l: 'Home', h: 'home' }, { l: 'Services', h: 'services' }, { l: 'Games Library', h: 'game' },
+      { l: 'Snake.io', h: 'io' }, { l: 'Puzzle', h: 'blase' }, { l: 'Retro', h: 'bros' },
+      { l: 'Space', h: 'space' }, { l: 'AI Assistant', h: 'ai' }, { l: 'Tools', h: 'tools' },
+      { l: 'Informatika', h: 'informatika' }, { l: 'Skills', h: 'skills' }, { l: 'Experience', h: 'experience' },
+      { l: 'FAQ', h: 'faq' }, { l: 'Newsletter', h: 'newsletter' }, { l: 'Contact', h: 'contact' }, { l: 'About', h: 'about' }
+    ]},
     { g: 'Aksi', items: [
-      { l: 'Toggle Matrix Rain', a: 'matrix', icon: '<path d="M4 6h16v12H4zM4 10h16"/>' },
-      { l: 'Toggle Particle BG', a: 'particles', icon: '<circle cx="12" cy="12" r="3"/><circle cx="5" cy="5" r="1.5"/><circle cx="19" cy="19" r="1.5"/>' },
-      { l: 'Buka Theme Picker', a: 'theme', icon: '<circle cx="12" cy="12" r="9"/><circle cx="9" cy="9.5" r="1.2"/><circle cx="15" cy="9.5" r="1.2"/>' },
-      { l: 'Toggle Performance', a: 'perf', icon: '<path d="M13 2 3 14h9l-1 8 10-12h-9l1-8Z"/>' },
-      { l: 'Secret Room', a: 'secret', icon: '<path d="M12 3l1.9 5.1L19 10l-5.1 1.9L12 17l-1.9-5.1L5 10l5.1-1.9L12 3Z"/>' },
-      { l: 'Print CV', a: 'print', icon: '<path d="M6 9V2h12v7M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2M6 14h12v8H6z"/>' },
-      { l: 'Scroll ke Atas', a: 'top', icon: '<path d="M12 19V5M5 12l7-7 7 7"/>' }
-    ] }
+      { l: 'Toggle Matrix Rain', a: 'matrix' }, { l: 'Toggle Particle BG', a: 'particles' },
+      { l: 'Buka Theme Picker', a: 'theme' }, { l: 'Toggle Performance', a: 'perf' },
+      { l: 'Secret Room', a: 'secret' }, { l: 'Print CV', a: 'print' }, { l: 'Scroll ke Atas', a: 'top' },
+      { l: 'Buka Chat Assistant', a: 'chat' }
+    ]}
   ];
+  // fuzzy score
+  const score = (needle, hay) => {
+    needle = needle.toLowerCase(); hay = hay.toLowerCase();
+    if (!needle) return 1;
+    if (hay.includes(needle)) return 100 - hay.indexOf(needle);
+    let i = 0, s = 0;
+    for (const c of hay) { if (c === needle[i]) { s += 2; i++; } }
+    return i === needle.length ? s : 0;
+  };
   let selected = 0, flat = [];
   const render = (q) => {
-    q = (q || '').toLowerCase().trim();
+    q = (q || '').trim();
     let html = ''; flat = [];
     commands.forEach(g => {
-      const items = g.items.filter(it => !q || it.l.toLowerCase().includes(q));
-      if (!items.length) return;
+      const scored = g.items.map(it => ({ it, sc: score(q, it.l) })).filter(x => !q || x.sc > 0).sort((a, b) => b.sc - a.sc);
+      if (!scored.length) return;
       html += '<div style="padding:9px 11px 5px;font-size:8px;letter-spacing:1.7px;color:#555;font-weight:800;text-transform:uppercase">' + g.g + '</div>';
-      items.forEach(it => {
+      scored.forEach(({ it }) => {
         const idx = flat.length; flat.push(it);
-        html += `<button style="width:100%;display:flex;align-items:center;gap:11px;padding:11px 13px;border:0;border-radius:12px;background:${idx === selected ? 'var(--soft)' : 'transparent'};color:${idx === selected ? '#fff' : '#b8bdbd'};text-align:left;cursor:pointer;font:inherit;font-size:12px;transition:.15s" data-idx="${idx}" type="button">
-          <svg viewBox="0 0 24 24" style="width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;color:var(--red);flex:0 0 16px">${it.icon || '<circle cx="12" cy="12" r="3"/>'}</svg>
+        html += `<button role="option" style="width:100%;display:flex;align-items:center;gap:11px;padding:11px 13px;border:0;border-radius:12px;background:${idx === selected ? 'var(--soft)' : 'transparent'};color:${idx === selected ? '#fff' : '#b8bdbd'};text-align:left;cursor:pointer;font:inherit;font-size:12px;transition:.15s" data-idx="${idx}" type="button">
+          <svg viewBox="0 0 24 24" style="width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;color:var(--red);flex:0 0 16px" aria-hidden="true"><circle cx="12" cy="12" r="3"/></svg>
           <span>${it.l}</span></button>`;
       });
     });
@@ -2463,30 +2843,26 @@ const showToast = (() => {
   };
   const open = () => {
     cmdk.style.display = 'flex';
-    input.value = '';
-    selected = 0;
-    render('');
+    input.value = ''; selected = 0; render('');
+    untrap = trapFocus(cmdk);
     setTimeout(() => input.focus(), 60);
     lnzHaptic(6);
   };
-  const close = () => { cmdk.style.display = 'none'; };
+  const close = () => { cmdk.style.display = 'none'; if (untrap) { untrap(); untrap = null; } };
   const run = (idx) => {
     const it = flat[idx];
     if (!it) return;
     close();
-    if (it.h) { lnzGoto(it.h); return; }
+    if (it.h) { lnzGoto(it.h); if (it.h === 'ai') setTimeout(() => window.dispatchEvent(new CustomEvent('lnz-open-chat')), 400); return; }
     switch (it.a) {
       case 'matrix': document.body.classList.toggle('matrix-on'); showToast('Matrix ' + (document.body.classList.contains('matrix-on') ? 'ON' : 'OFF')); break;
-      case 'particles': {
-        const p = document.getElementById('lnzParticles');
-        if (p) p.style.display = p.style.display === 'none' ? 'block' : 'none';
-        showToast('Particles ' + (p && p.style.display === 'none' ? 'OFF' : 'ON')); break;
-      }
+      case 'particles': { const p = document.getElementById('lnzParticles'); if (p) p.style.display = p.style.display === 'none' ? 'block' : 'none'; showToast('Particles ' + (p && p.style.display === 'none' ? 'OFF' : 'ON')); break; }
       case 'theme': document.getElementById('lnzThemeOpenBtn').click(); break;
       case 'perf': document.getElementById('lnzPerfToggle')?.click(); break;
       case 'secret': window.dispatchEvent(new CustomEvent('lnz-open-secret')); break;
       case 'print': window.print(); break;
       case 'top': window.scrollTo({ top: 0, behavior: 'smooth' }); break;
+      case 'chat': window.dispatchEvent(new CustomEvent('lnz-open-chat')); break;
     }
   };
   document.addEventListener('keydown', e => {
@@ -2512,16 +2888,14 @@ const showToast = (() => {
 })();
 
 /* ============================================================
-   SECRET PANEL v2 — MEGA UPGRADE
+   SECRET PANEL (bug fixed + accent fix)
    ============================================================ */
 (() => {
-  // ============ STORAGE ============
   const SK = 'lnz_secret_v2';
   const getS = () => { try { return JSON.parse(localStorage.getItem(SK) || '{}'); } catch(_) { return {}; } };
   const setS = (p) => { try { localStorage.setItem(SK, JSON.stringify({ ...getS(), ...p })); } catch(_) {} };
   const has = (k) => !!getS()[k];
 
-  // ============ XP / LEVEL ============
   const XP_VALS = { control:50, system:75, terminal:100, nav:60, mode:80, theme:40, stats:70, accent:55, sound:45, puzzle:150, lnz:200, favorite:40 };
   const getXP = () => getS().xp || 0;
   const getLevel = () => Math.floor(Math.sqrt(getXP() / 50)) + 1;
@@ -2540,11 +2914,11 @@ const showToast = (() => {
       window.lnzUnlockAch && window.lnzUnlockAch('Level Up!', 'Level ' + newLvl + ' tercapai');
       window.lnzConfetti && window.lnzConfetti();
       showToast('🎉 LEVEL UP → ' + newLvl);
+      lnzAnnounce('Level up ke ' + newLvl);
     }
     updateLevelUI();
   };
 
-  // ============ UI SOUND ============
   const playUISound = (freq, dur) => {
     if (!has('ui_sound')) return;
     try {
@@ -2554,8 +2928,7 @@ const showToast = (() => {
       const gain = ctx.createGain();
       osc.connect(gain); gain.connect(ctx.destination);
       osc.type = 'sine';
-      const f = freq || 800;
-      const d = dur || 0.08;
+      const f = freq || 800, d = dur || 0.08;
       osc.frequency.setValueAtTime(f, ctx.currentTime);
       osc.frequency.exponentialRampToValueAtTime(f * 1.4, ctx.currentTime + d);
       gain.gain.setValueAtTime(vol, ctx.currentTime);
@@ -2564,15 +2937,14 @@ const showToast = (() => {
     } catch(_) {}
   };
 
-  // ============ BUILD PANEL ============
   const secretPanel = document.createElement('div');
   secretPanel.className = 'secret-panel-backdrop';
   secretPanel.innerHTML = `
     <div class="secret-panel" role="dialog" aria-modal="true" aria-labelledby="secretTitle">
       <div class="secret-head">
-        <button class="secret-close" type="button" aria-label="Tutup"><svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+        <button class="secret-close" type="button" aria-label="Tutup"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
         <div class="secret-topline">
-          <span class="secret-badge"><svg viewBox="0 0 24 24"><path d="M12 3l1.9 5.1L19 10l-5.1 1.9L12 17l-1.9-5.1L5 10l5.1-1.9L12 3Z"/></svg> SECRET MODE</span>
+          <span class="secret-badge"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l1.9 5.1L19 10l-5.1 1.9L12 17l-1.9-5.1L5 10l5.1-1.9L12 3Z"/></svg> SECRET MODE</span>
           <span class="secret-status">UNLOCKED</span>
         </div>
         <h3 id="secretTitle">Lanzz Control Room</h3>
@@ -2588,18 +2960,18 @@ const showToast = (() => {
       <div class="secret-body">
         <div class="secret-kicker"><span>CONTROL DECK</span><span id="secretSession">SESSION 01</span></div>
         <div class="secret-actions">
-          <button class="secret-action" data-secret="performance" type="button"><span class="secret-icon"><svg viewBox="0 0 24 24"><path d="M13 2 3 14h9l-1 8 10-12h-9l1-8Z"/></svg></span><span><b>Performance Mode</b><small>FPS counter + ringankan efek.</small></span><em class="secret-toggle">OFF</em></button>
-          <button class="secret-action" data-secret="focus" type="button"><span class="secret-icon"><svg viewBox="0 0 24 24"><path d="M8 4H5a1 1 0 0 0-1 1v3M16 4h3a1 1 0 0 1 1 1v3M8 20H5a1 1 0 0 1-1-1v-3M16 20h3a1 1 0 0 0 1-1v-3"/></svg></span><span><b>Focus Mode</b><small>Pomodoro &amp; Zen mode.</small></span><em class="secret-toggle">OFF</em></button>
-          <button class="secret-action" data-secret="system" type="button"><span class="secret-icon"><svg viewBox="0 0 24 24"><rect x="4" y="5" width="16" height="11" rx="1.5"/><path d="M9 20h6M12 16v4"/></svg></span><span><b>System Info</b><small>Battery, GPU, Network.</small></span><em class="secret-toggle">VIEW</em></button>
-          <button class="secret-action" data-secret="jump" type="button"><span class="secret-icon"><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span><span><b>Quick Jump</b><small>Search &amp; favorit section.</small></span><em class="secret-toggle">GO</em></button>
-          <button class="secret-action" data-secret="terminal" type="button"><span class="secret-icon"><svg viewBox="0 0 24 24"><path d="m7 8 4 4-4 4M13 16h4"/></svg></span><span><b>Hidden Terminal</b><small>25+ command rahasia.</small></span><em class="secret-toggle">RUN</em></button>
-          <button class="secret-action" data-secret="achievements" type="button"><span class="secret-icon"><svg viewBox="0 0 24 24"><path d="M7 4h10v5a5 5 0 0 1-10 0V4Z"/><path d="M7 6H4v2a4 4 0 0 0 4 4M17 6h3v2a4 4 0 0 1-4 4M12 14v5M8 20h8"/></svg></span><span><b>Achievements</b><small>15 badge + XP system.</small></span><em class="secret-toggle">VIEW</em></button>
-          <button class="secret-action" data-secret="puzzle" type="button"><span class="secret-icon"><svg viewBox="0 0 24 24"><path d="M9 4h6v3a2 2 0 1 0 0 4v3H9a2 2 0 1 0-4 0V9a2 2 0 1 0 4 0V4Z"/></svg></span><span><b>Secret Code</b><small>3 level challenge.</small></span><em class="secret-toggle">LOCK</em></button>
-          <button class="secret-action" data-secret="lnz" type="button"><span class="secret-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"/><path d="M8 15V9l4 6 4-6v6"/></svg></span><span><b>LNZ Mode</b><small>Rainbow &amp; trail FX.</small></span><em class="secret-toggle">LOCK</em></button>
-          <button class="secret-action" data-secret="accent" type="button"><span class="secret-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg></span><span><b>Accent Color</b><small>10 warna + custom.</small></span><em class="secret-toggle">PICK</em></button>
-          <button class="secret-action" data-secret="sound" type="button"><span class="secret-icon"><svg viewBox="0 0 24 24"><path d="M11 5 6 9H2v6h4l5 4V5Z"/><path d="M15.5 8.5a5 5 0 0 1 0 7"/><path d="M19 5a9 9 0 0 1 0 14"/></svg></span><span><b>UI Sounds</b><small>Volume &amp; efek suara.</small></span><em class="secret-toggle">OFF</em></button>
-          <button class="secret-action" data-secret="theme" type="button"><span class="secret-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg></span><span><b>Theme Info</b><small>Custom theme maker.</small></span><em class="secret-toggle">VIEW</em></button>
-          <button class="secret-action" data-secret="stats" type="button"><span class="secret-icon"><svg viewBox="0 0 24 24"><path d="M5 19V9M12 19V5M19 19v-7"/><path d="M3 19h18"/></svg></span><span><b>Session Stats</b><small>Charts &amp; heatmap.</small></span><em class="secret-toggle">LIVE</em></button>
+          <button class="secret-action" data-secret="performance" type="button"><span class="secret-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M13 2 3 14h9l-1 8 10-12h-9l1-8Z"/></svg></span><span><b>Performance Mode</b><small>FPS counter + ringankan efek.</small></span><em class="secret-toggle">OFF</em></button>
+          <button class="secret-action" data-secret="focus" type="button"><span class="secret-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 4H5a1 1 0 0 0-1 1v3M16 4h3a1 1 0 0 1 1 1v3M8 20H5a1 1 0 0 1-1-1v-3M16 20h3a1 1 0 0 0 1-1v-3"/></svg></span><span><b>Focus Mode</b><small>Pomodoro &amp; Zen mode.</small></span><em class="secret-toggle">OFF</em></button>
+          <button class="secret-action" data-secret="system" type="button"><span class="secret-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="5" width="16" height="11" rx="1.5"/><path d="M9 20h6M12 16v4"/></svg></span><span><b>System Info</b><small>Battery, GPU, Network.</small></span><em class="secret-toggle">VIEW</em></button>
+          <button class="secret-action" data-secret="jump" type="button"><span class="secret-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span><span><b>Quick Jump</b><small>Search &amp; favorit section.</small></span><em class="secret-toggle">GO</em></button>
+          <button class="secret-action" data-secret="terminal" type="button"><span class="secret-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m7 8 4 4-4 4M13 16h4"/></svg></span><span><b>Hidden Terminal</b><small>25+ command rahasia.</small></span><em class="secret-toggle">RUN</em></button>
+          <button class="secret-action" data-secret="achievements" type="button"><span class="secret-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 4h10v5a5 5 0 0 1-10 0V4Z"/><path d="M7 6H4v2a4 4 0 0 0 4 4M17 6h3v2a4 4 0 0 1-4 4M12 14v5M8 20h8"/></svg></span><span><b>Achievements</b><small>15 badge + XP system.</small></span><em class="secret-toggle">VIEW</em></button>
+          <button class="secret-action" data-secret="puzzle" type="button"><span class="secret-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 4h6v3a2 2 0 1 0 0 4v3H9a2 2 0 1 0-4 0V9a2 2 0 1 0 4 0V4Z"/></svg></span><span><b>Secret Code</b><small>3 level challenge.</small></span><em class="secret-toggle">LOCK</em></button>
+          <button class="secret-action" data-secret="lnz" type="button"><span class="secret-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8"/><path d="M8 15V9l4 6 4-6v6"/></svg></span><span><b>LNZ Mode</b><small>Rainbow &amp; trail FX.</small></span><em class="secret-toggle">LOCK</em></button>
+          <button class="secret-action" data-secret="accent" type="button"><span class="secret-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg></span><span><b>Accent Color</b><small>10 warna + custom.</small></span><em class="secret-toggle">PICK</em></button>
+          <button class="secret-action" data-secret="sound" type="button"><span class="secret-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M11 5 6 9H2v6h4l5 4V5Z"/><path d="M15.5 8.5a5 5 0 0 1 0 7"/><path d="M19 5a9 9 0 0 1 0 14"/></svg></span><span><b>UI Sounds</b><small>Volume &amp; efek suara.</small></span><em class="secret-toggle">OFF</em></button>
+          <button class="secret-action" data-secret="theme" type="button"><span class="secret-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg></span><span><b>Theme Info</b><small>Custom theme maker.</small></span><em class="secret-toggle">VIEW</em></button>
+          <button class="secret-action" data-secret="stats" type="button"><span class="secret-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 19V9M12 19V5M19 19v-7"/><path d="M3 19h18"/></svg></span><span><b>Session Stats</b><small>Charts &amp; heatmap.</small></span><em class="secret-toggle">LIVE</em></button>
         </div>
         <div class="secret-output" id="secretOutput" hidden></div>
       </div>
@@ -2612,13 +2984,14 @@ const showToast = (() => {
   const lvlEl = secretPanel.querySelector('#secretLvl');
   const xpEl = secretPanel.querySelector('#secretXP');
   const xpFill = secretPanel.querySelector('#secretXPFill');
+  let untrap = null;
 
   updateLevelUI = () => {
     const lvl = getLevel();
     const xp = getXP();
     const curBase = xpForLevel(lvl);
     const nextBase = xpForLevel(lvl + 1);
-    const pct = Math.min(100, ((xp - curBase) / (nextBase - curBase)) * 100);
+    const pct = Math.min(100, ((xp - curBase) / Math.max(1, nextBase - curBase)) * 100);
     if (lvlEl) lvlEl.textContent = lvl;
     if (xpEl) xpEl.textContent = xp;
     if (xpFill) xpFill.style.width = pct.toFixed(1) + '%';
@@ -2632,6 +3005,7 @@ const showToast = (() => {
   };
   const openSecret = () => {
     secretPanel.classList.add('open');
+    untrap = trapFocus(secretPanel.querySelector('.secret-panel'));
     const n = Number(secretSession.dataset.n || '0') + 1;
     secretSession.dataset.n = String(n);
     secretSession.textContent = 'SESSION ' + String(n).padStart(2, '0');
@@ -2641,18 +3015,21 @@ const showToast = (() => {
     lnzHaptic(10);
     playUISound(1000, 0.1);
   };
-  const closeSecret = () => { secretPanel.classList.remove('open'); secretOutput.hidden = true; };
+  const closeSecret = () => {
+    secretPanel.classList.remove('open');
+    secretOutput.hidden = true;
+    if (untrap) { untrap(); untrap = null; }
+  };
   const showDetail = (html) => { secretOutput.innerHTML = html; secretOutput.hidden = false; };
-  const arrowIcon = '<svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>';
+  const arrowIcon = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>';
 
-  // ============ 1. PERFORMANCE MODE (FPS counter) ============
-  let fpsRaf = null;
-  let fpsPill = null;
+  // FPS
+  let fpsRaf = null, fpsPill = null;
   const startFPS = () => {
     if (fpsPill) return;
     fpsPill = document.createElement('div');
     fpsPill.className = 'fps-pill';
-    fpsPill.id = 'fpsCounter';
+    fpsPill.setAttribute('aria-hidden', 'true');
     fpsPill.textContent = '-- FPS';
     document.body.appendChild(fpsPill);
     let frames = 0, last = performance.now();
@@ -2672,14 +3049,10 @@ const showToast = (() => {
     if (fpsRaf) { cancelAnimationFrame(fpsRaf); fpsRaf = null; }
     if (fpsPill) { fpsPill.remove(); fpsPill = null; }
   };
+  if (document.body.classList.contains('performance-mode')) startFPS();
 
-  // ============ 2. FOCUS / POMODORO ============
-  let pomoInterval = null;
-  let pomoRemaining = 25 * 60;
-  let pomoTotal = 25 * 60;
-  let pomoRunning = false;
-  let pomoMode = 'work';
-  let pomoPill = null;
+  // Pomodoro
+  let pomoInterval = null, pomoRemaining = 25 * 60, pomoTotal = 25 * 60, pomoRunning = false, pomoMode = 'work', pomoPill = null;
   const PRESETS = { work: 25 * 60, short: 5 * 60, long: 15 * 60 };
   const fmtTime = (s) => String(Math.floor(s / 60)).padStart(2, '0') + ':' + String(s % 60).padStart(2, '0');
   const updatePomoPill = () => {
@@ -2694,6 +3067,7 @@ const showToast = (() => {
       pomoPill = document.createElement('button');
       pomoPill.className = 'pomo-pill';
       pomoPill.type = 'button';
+      pomoPill.setAttribute('aria-label', 'Buka Pomodoro');
       pomoPill.onclick = () => { openSecret(); openFocus(); };
       document.body.appendChild(pomoPill);
     }
@@ -2708,9 +3082,7 @@ const showToast = (() => {
         showToast('⏰ ' + (pomoMode === 'work' ? 'Sesi fokus selesai! Waktunya break.' : 'Break selesai!'));
         pomoRemaining = PRESETS[pomoMode];
         updatePomoPill();
-      } else {
-        updatePomoPill();
-      }
+      } else updatePomoPill();
     }, 1000);
   };
   const stopPomo = () => {
@@ -2778,7 +3150,6 @@ const showToast = (() => {
         }, 300);
       }
     };
-    // Live update while panel open
     if (disp) {
       const liveTicker = setInterval(() => {
         if (!document.body.contains(disp)) { clearInterval(liveTicker); return; }
@@ -2787,7 +3158,7 @@ const showToast = (() => {
     }
   };
 
-  // ============ 3. SYSTEM INFO ============
+  // System info
   const getBrowserInfo = () => {
     const ua = navigator.userAgent;
     const b = /Edg\//.test(ua) ? 'Edge' : /OPR\//.test(ua) ? 'Opera' : /Chrome\//.test(ua) ? 'Chrome' : /Firefox\//.test(ua) ? 'Firefox' : /Safari\//.test(ua) ? 'Safari' : 'Unknown';
@@ -2805,29 +3176,16 @@ const showToast = (() => {
     const lang = navigator.language || 'id-ID';
     const tz = Intl.DateTimeFormat().resolvedOptions().timeZone || '-';
     let batt = '-';
-    try {
-      if (navigator.getBattery) {
-        const b = await navigator.getBattery();
-        batt = Math.round(b.level * 100) + '% ' + (b.charging ? '⚡' : '');
-      }
-    } catch(_) {}
+    try { if (navigator.getBattery) { const b = await navigator.getBattery(); batt = Math.round(b.level * 100) + '% ' + (b.charging ? '⚡' : ''); } } catch(_) {}
     const conn = navigator.connection || {};
     const net = conn.effectiveType ? conn.effectiveType.toUpperCase() + (conn.downlink ? ' · ' + conn.downlink + 'Mbps' : '') : '-';
     const mem = navigator.deviceMemory ? navigator.deviceMemory + ' GB' : '-';
     const cores = navigator.hardwareConcurrency || '-';
     let gpu = '-';
-    try {
-      const c = document.createElement('canvas');
-      const gl = c.getContext('webgl') || c.getContext('experimental-webgl');
-      if (gl) {
-        const dbg = gl.getExtension('WEBGL_debug_renderer_info');
-        if (dbg) gpu = gl.getParameter(dbg.UNMASKED_RENDERER_WEBGL).slice(0, 42);
-      }
-    } catch(_) {}
+    try { const c = document.createElement('canvas'); const gl = c.getContext('webgl') || c.getContext('experimental-webgl'); if (gl) { const dbg = gl.getExtension('WEBGL_debug_renderer_info'); if (dbg) gpu = gl.getParameter(dbg.UNMASKED_RENDERER_WEBGL).slice(0, 42); } } catch(_) {}
     const cookies = navigator.cookieEnabled ? 'Enabled' : 'Disabled';
     const online = navigator.onLine ? 'Online' : 'Offline';
     const ua = navigator.userAgent.slice(0, 60) + (navigator.userAgent.length > 60 ? '…' : '');
-
     showDetail(`
       <div class="secret-detail-title"><span>SYSTEM SNAPSHOT</span><span class="secret-chip">LIVE</span></div>
       <div class="sys-row"><b>Browser</b><span>${browser} · ${os}</span></div>
@@ -2849,22 +3207,17 @@ const showToast = (() => {
     if (btn) {
       btn.onclick = () => {
         const txt = `Lanzz System Info\nBrowser: ${browser} (${os})\nViewport: ${innerWidth}x${innerHeight}\nScreen: ${screen.width}x${screen.height}\nDPR: ${dpr}\nLang: ${lang}\nTZ: ${tz}\nBattery: ${batt}\nNetwork: ${net} (${online})\nMemory: ${mem}\nCores: ${cores}\nGPU: ${gpu}\nCookies: ${cookies}`;
-        try {
-          navigator.clipboard.writeText(txt).then(() => showToast('System info dicopy!'));
-        } catch(_) {}
+        try { navigator.clipboard.writeText(txt).then(() => showToast('System info dicopy!')); } catch(_) {}
       };
     }
     addXP('system');
   };
 
-  // ============ 4. QUICK JUMP (search + favorites + recent) ============
+  // Quick jump
   const QJ_SECTIONS = ['home','services','game','io','blase','bros','space','ai','tools','informatika','skills','experience','faq','newsletter','contact','about'];
   const getFavs = () => getS().qj_favs || [];
   const getRecent = () => getS().qj_recent || [];
-  const pushRecent = (id) => {
-    const r = [id, ...getRecent().filter(x => x !== id)].slice(0, 6);
-    setS({ qj_recent: r });
-  };
+  const pushRecent = (id) => { const r = [id, ...getRecent().filter(x => x !== id)].slice(0, 6); setS({ qj_recent: r }); };
   const quickJump = () => {
     const favs = getFavs();
     const recent = getRecent();
@@ -2872,13 +3225,13 @@ const showToast = (() => {
     const all = QJ_SECTIONS.filter(id => !filter || id.includes(filter));
     showDetail(`
       <div class="secret-detail-title"><span>QUICK NAVIGATION</span><span class="secret-chip">${QJ_SECTIONS.length} TARGETS</span></div>
-      <div class="qj-search"><input type="text" id="qjInput" placeholder="Search section..." value="${getS().qj_q || ''}" autocomplete="off"></div>
+      <div class="qj-search"><input type="text" id="qjInput" placeholder="Search section..." value="${getS().qj_q || ''}" autocomplete="off" aria-label="Cari section"></div>
       ${recent.length ? `<div style="font-size:9px;color:#666;font-weight:800;letter-spacing:1.2px;margin:8px 0 6px">RECENT</div><div class="qj-grid">${recent.map(id => `<button class="qj-item" data-jump="${id}">${id.toUpperCase()}</button>`).join('')}</div>` : ''}
       <div style="font-size:9px;color:#666;font-weight:800;letter-spacing:1.2px;margin:10px 0 6px">ALL SECTIONS</div>
       <div class="qj-grid" id="qjGrid">${all.map(id => `
         <button class="qj-item" data-jump="${id}">
           ${id.toUpperCase()}
-          <span class="qj-star ${favs.includes(id) ? 'on' : ''}" data-fav="${id}">★</span>
+          <span class="qj-star ${favs.includes(id) ? 'on' : ''}" data-fav="${id}" aria-label="Favoritkan">★</span>
         </button>`).join('')}</div>
     `);
     const input = secretOutput.querySelector('#qjInput');
@@ -2913,7 +3266,7 @@ const showToast = (() => {
     addXP('nav');
   };
 
-  // ============ 5. TERMINAL ============
+  // Terminal
   const termHistory = [];
   let termHistIdx = -1;
   const termLog = (msg, cls) => {
@@ -2932,11 +3285,10 @@ const showToast = (() => {
     termLog('<span class="cmd">$</span> ' + raw.replace(/[<>]/g, ''));
     let out = null;
     switch (cmd) {
-      case 'help':
-        out = `<span class="hl">Commands:</span> help, about, skills, projects, contact, system, whoami, ls, echo [text], matrix, particles, theme [name], accent [#hex], perf, focus, lnz, secret, confetti, toast [msg], time, date, clear, exit, banner, credits, version`; break;
+      case 'help': out = `<span class="hl">Commands:</span> help, about, skills, projects, contact, system, whoami, ls, echo [text], matrix, particles, theme [name], accent [#hex], perf, focus, lnz, secret, confetti, toast [msg], time, date, clear, exit, banner, credits, version`; break;
       case 'about': out = 'Lanzz — Web & App Developer, Modder, Creator from Lebak, Banten, Indonesia.'; break;
       case 'skills': out = 'HTML, CSS, JavaScript, Web Dev, UI/UX, Game Dev, App Dev, AI Integration'; break;
-      case 'projects': out = 'services, game, io, blase, bros, space, ai, tools, informatika — ketik nama section untuk jump.'; break;
+      case 'projects': out = 'services, game, io, blase, bros, space, ai, tools, informatika.'; break;
       case 'contact': out = 'Email: lanzz.project.id@gmail.com | Personal: id.erlan.maulana@gmail.com'; break;
       case 'system': systemDetail(); return;
       case 'whoami': out = 'guest@lanzz — Level ' + getLevel() + ' · ' + getXP() + ' XP'; break;
@@ -2944,35 +3296,21 @@ const showToast = (() => {
       case 'time': out = new Date().toLocaleString('id-ID', { timeZone: 'Asia/Jakarta' }); break;
       case 'date': out = new Date().toLocaleDateString('id-ID', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' }); break;
       case 'matrix': document.body.classList.toggle('matrix-on'); out = 'Matrix rain: ' + (document.body.classList.contains('matrix-on') ? 'ON' : 'OFF'); break;
-      case 'particles': {
-        const p = document.getElementById('lnzParticles');
-        if (p) { p.style.display = p.style.display === 'none' ? 'block' : 'none'; out = 'Particles: ' + (p.style.display === 'none' ? 'OFF' : 'ON'); }
-        break;
-      }
+      case 'particles': { const p = document.getElementById('lnzParticles'); if (p) { p.style.display = p.style.display === 'none' ? 'block' : 'none'; out = 'Particles: ' + (p.style.display === 'none' ? 'OFF' : 'ON'); } break; }
       case 'perf': document.getElementById('lnzPerfToggle')?.click(); out = 'Performance mode toggled.'; break;
       case 'focus': openFocus(); return;
-      case 'lnz': {
-        const lnzBtn = secretPanel.querySelector('[data-secret="lnz"]');
-        if (lnzBtn) lnzBtn.click();
-        out = 'LNZ Mode triggered.';
-        break;
-      }
+      case 'lnz': { const lnzBtn = secretPanel.querySelector('[data-secret="lnz"]'); if (lnzBtn) lnzBtn.click(); out = 'LNZ Mode triggered.'; break; }
       case 'secret': out = 'You already found the secret. 😏 Try the Secret Code.'; break;
       case 'confetti': window.lnzConfetti && window.lnzConfetti(); out = '🎉'; break;
       case 'credits': out = 'Lanzz Control Room v2 · Made by Erlan Maulana'; break;
       case 'version': out = 'v2.0.0-mega · ' + new Date().getFullYear(); break;
-      case 'banner':
-        out = `<pre style="font-family:ui-monospace,monospace;font-size:8px;line-height:1.2;color:var(--red);margin:4px 0"> __      __     _   _ _______ _______\n|  |    /  \\   | \\ | |__   __|__   __|\n|  |   / /\\ \\  |  \\| |  | |     | |\n|  |__/ ____ \\ | . \` |  | |     | |\n|_____/_/    \\_\\|_|\\__|  |_|     |_|</pre>`;
-        break;
-      case 'clear': 
-        const log = secretOutput.querySelector('#termLog');
-        if (log) log.innerHTML = '';
-        return;
+      case 'banner': out = `<pre style="font-family:ui-monospace,monospace;font-size:8px;line-height:1.2;color:var(--red);margin:4px 0"> __      __     _   _ _______ _______\n|  |    /  \\   | \\ | |__   __|__   __|\n|  |   / /\\ \\  |  \\| |  | |     | |\n|  |__/ ____ \\ | . \` |  | |     | |\n|_____/_/    \\_\\|_|\\__|  |_|     |_|</pre>`; break;
+      case 'clear': { const log = secretOutput.querySelector('#termLog'); if (log) log.innerHTML = ''; return; }
       case 'exit': closeSecret(); return;
       default:
         if (cmd.startsWith('echo ')) out = raw.slice(5);
         else if (cmd.startsWith('theme ')) { const t = cmd.slice(6); const btn = document.querySelector(`[data-theme="${t}"]`); if (btn) { btn.click(); out = 'Theme → ' + t; } else out = 'Theme not found.'; }
-        else if (cmd.startsWith('accent ')) { const c = raw.slice(7).trim(); if (/^#[0-9a-f]{6}$/i.test(c)) { document.documentElement.style.setProperty('--red', c); out = 'Accent → ' + c; } else out = 'Format: accent #ff1616'; }
+        else if (cmd.startsWith('accent ')) { const c = raw.slice(7).trim(); if (/^#[0-9a-f]{6}$/i.test(c)) { applyAccentColor(c); out = 'Accent → ' + c; } else out = 'Format: accent #ff1616'; }
         else if (cmd.startsWith('toast ')) { showToast(raw.slice(6)); out = 'Toast sent.'; }
         else if (QJ_SECTIONS.includes(cmd)) { lnzGoto(cmd); out = 'Navigating to ' + cmd + '...'; }
         else out = `<span class="err">Command not found:</span> ${cmd.replace(/[<>]/g, '')}. Ketik <span class="hl">help</span>.`;
@@ -2986,7 +3324,7 @@ const showToast = (() => {
         <div><span class="ok">Lanzz Terminal v2.0</span> — ketik <span class="hl">help</span> untuk daftar command.</div>
         <div>Tip: ↑↓ history · Tab autocomplete · Enter execute</div>
       </div>
-      <div class="secret-terminal"><input id="termInput" autocomplete="off" spellcheck="false" placeholder="type command..."><button type="button" id="termRun">RUN</button></div>
+      <div class="secret-terminal"><input id="termInput" autocomplete="off" spellcheck="false" placeholder="type command..." aria-label="Terminal input"><button type="button" id="termRun">RUN</button></div>
     `);
     const input = secretOutput.querySelector('#termInput');
     const run = secretOutput.querySelector('#termRun');
@@ -3007,7 +3345,7 @@ const showToast = (() => {
     addXP('terminal');
   };
 
-  // ============ 6. ACHIEVEMENTS ============
+  // Achievements
   const ACHIEVEMENTS = [
     { k: 'control', name: 'Explorer', desc: 'Buka Control Room.' },
     { k: 'system', name: 'System Check', desc: 'Lihat System Info.' },
@@ -3027,21 +3365,13 @@ const showToast = (() => {
   ];
   const achievements = () => {
     const s = getS();
-    const unlockedCount = ACHIEVEMENTS.filter(a => {
-      if (a.k.startsWith('xp_')) {
-        const thresh = parseInt(a.k.slice(3), 10);
-        return getXP() >= thresh;
-      }
-      return !!s[a.k] || !!s['xp_' + a.k];
-    }).length;
+    const unlockedCount = ACHIEVEMENTS.filter(a => a.k.startsWith('xp_') ? getXP() >= parseInt(a.k.slice(3), 10) : (!!s[a.k] || !!s['xp_' + a.k])).length;
     const pct = Math.round((unlockedCount / ACHIEVEMENTS.length) * 100);
     showDetail(`
       <div class="secret-detail-title"><span>ACHIEVEMENTS</span><span class="secret-chip">${unlockedCount}/${ACHIEVEMENTS.length}</span></div>
       <div class="ach-progress"><i style="width:${pct}%"></i></div>
       <div class="secret-achievements">${ACHIEVEMENTS.map(a => {
-        let on = false;
-        if (a.k.startsWith('xp_')) on = getXP() >= parseInt(a.k.slice(3), 10);
-        else on = !!s[a.k] || !!s['xp_' + a.k];
+        const on = a.k.startsWith('xp_') ? getXP() >= parseInt(a.k.slice(3), 10) : (!!s[a.k] || !!s['xp_' + a.k]);
         return `<div class="achievement ${on ? 'unlocked' : ''}">
           <span class="achievement-icon">${arrowIcon}</span>
           <span><b>${a.name}</b><small>${a.desc}</small></span>
@@ -3050,11 +3380,10 @@ const showToast = (() => {
     `);
   };
 
-  // ============ 7. SECRET CODE (3-level puzzle) ============
+  // Puzzle (fix mark bug)
   let puzzleTimerInterval = null;
   let puzzleStart = 0;
   const puzzle = () => {
-    const stage = getS().puzzle_stage || 0;
     puzzleStart = Date.now();
     const renderPuzzle = () => {
       const s = getS().puzzle_stage || 0;
@@ -3099,10 +3428,9 @@ const showToast = (() => {
       if (v3) v3.onclick = () => {
         const val = secretOutput.querySelector('#p3').value.trim().toLowerCase();
         if (val === 'apple' || val === 'apel') {
-          setS({ puzzle_stage: 3 });
+          setS({ puzzle_stage: 3, mode: true }); // fix: ganti mark('mode') yg undefined
           const lnzBtn = secretPanel.querySelector('[data-secret="lnz"] .secret-toggle');
           if (lnzBtn) lnzBtn.textContent = 'UNLOCKED';
-          mark('mode');
           addXP('puzzle');
           showToast('🎉 PUZZLE COMPLETE! LNZ Mode unlocked!');
           window.lnzUnlockAch && window.lnzUnlockAch('Decoder', 'Kamu memecahkan 3-level challenge!');
@@ -3110,7 +3438,6 @@ const showToast = (() => {
           renderPuzzle();
         } else { showToast('✗ Riddle salah'); playUISound(300, 0.15); }
       };
-      // Input listeners
       ['p1','p2','p3'].forEach(id => {
         const inp = secretOutput.querySelector('#' + id);
         if (inp) inp.addEventListener('keydown', e => { if (e.key === 'Enter') secretOutput.querySelector('#v' + id.slice(1))?.click(); });
@@ -3118,7 +3445,6 @@ const showToast = (() => {
       });
     };
     renderPuzzle();
-    // Timer
     if (puzzleTimerInterval) clearInterval(puzzleTimerInterval);
     puzzleTimerInterval = setInterval(() => {
       const t = secretOutput.querySelector('#puzzleTimer');
@@ -3128,7 +3454,7 @@ const showToast = (() => {
     }, 500);
   };
 
-  // ============ 8. LNZ MODE ============
+  // LNZ Mode
   let trailActive = false;
   const lnzTrail = (e) => {
     const div = document.createElement('div');
@@ -3142,17 +3468,23 @@ const showToast = (() => {
   };
   const toggleLnz = (on) => {
     document.body.classList.toggle('lnz-mode', on);
-    if (on && !trailActive) {
-      trailActive = true;
-      document.addEventListener('pointermove', lnzTrail, { passive: true });
-      window.lnzConfetti && window.lnzConfetti();
-    } else if (!on && trailActive) {
-      trailActive = false;
-      document.removeEventListener('pointermove', lnzTrail);
-    }
+    if (on && !trailActive) { trailActive = true; document.addEventListener('pointermove', lnzTrail, { passive: true }); window.lnzConfetti && window.lnzConfetti(); }
+    else if (!on && trailActive) { trailActive = false; document.removeEventListener('pointermove', lnzTrail); }
   };
 
-  // ============ 9. ACCENT COLOR ============
+  // Accent color (FIX: set on body, bukan html)
+  const applyAccentColor = (color) => {
+    if (!/^#[0-9a-f]{6}$/i.test(color)) return false;
+    const [r, g, b] = [1,3,5].map(i => parseInt(color.slice(i, i + 2), 16));
+    // set di BODY supaya override theme class
+    document.body.style.setProperty('--red', color);
+    document.body.style.setProperty('--red2', color);
+    document.body.style.setProperty('--glow', `rgba(${r},${g},${b},.28)`);
+    document.body.style.setProperty('--soft', `rgba(${r},${g},${b},.08)`);
+    setS({ accent: color });
+    window.dispatchEvent(new CustomEvent('lnz-theme-change'));
+    return true;
+  };
   const accentDetail = () => {
     const COLORS = [
       { n: 'Maroon', c: '#ff1616' }, { n: 'Navy', c: '#2563eb' }, { n: 'Gold', c: '#d4af37' },
@@ -3164,7 +3496,7 @@ const showToast = (() => {
     showDetail(`
       <div class="secret-detail-title"><span>ACCENT COLOR</span><span class="secret-chip">CUSTOM</span></div>
       <div class="accent-grid">
-        ${COLORS.map(c => `<button type="button" class="accent-opt ${c.c.toLowerCase() === cur ? 'active' : ''}" data-color="${c.c}" style="background:${c.c};color:${c.c}" title="${c.n}"></button>`).join('')}
+        ${COLORS.map(c => `<button type="button" class="accent-opt ${c.c.toLowerCase() === cur ? 'active' : ''}" data-color="${c.c}" style="background:${c.c};color:${c.c}" title="${c.n}" aria-label="${c.n}"></button>`).join('')}
       </div>
       <div class="accent-custom-row">
         <input type="text" id="accentHex" placeholder="#ff1616" maxlength="7" value="${cur}">
@@ -3176,14 +3508,7 @@ const showToast = (() => {
       </div>
     `);
     const apply = (color) => {
-      if (!/^#[0-9a-f]{6}$/i.test(color)) { showToast('Format hex tidak valid'); return; }
-      document.documentElement.style.setProperty('--red', color);
-      document.documentElement.style.setProperty('--red2', color);
-      const [r, g, b] = [1,3,5].map(i => parseInt(color.slice(i, i + 2), 16));
-      document.documentElement.style.setProperty('--glow', `rgba(${r},${g},${b},.28)`);
-      document.documentElement.style.setProperty('--soft', `rgba(${r},${g},${b},.08)`);
-      setS({ accent: color });
-      window.dispatchEvent(new CustomEvent('lnz-theme-change'));
+      if (!applyAccentColor(color)) { showToast('Format hex tidak valid'); return; }
       accentDetail();
       showToast('Accent → ' + color);
       playUISound(1000);
@@ -3191,26 +3516,22 @@ const showToast = (() => {
     };
     secretOutput.querySelectorAll('.accent-opt').forEach(b => b.onclick = () => apply(b.dataset.color));
     secretOutput.querySelector('#accentApply').onclick = () => apply(secretOutput.querySelector('#accentHex').value.trim());
-    secretOutput.querySelector('#accentRandom').onclick = () => {
-      const rand = '#' + Math.floor(Math.random() * 0xffffff).toString(16).padStart(6, '0');
-      apply(rand);
-    };
-    secretOutput.querySelector('#accentReset').onclick = () => apply('#ff1616');
-  };
-  // Restore saved accent
-  const savedAccent = getS().accent;
-  if (savedAccent && /^#[0-9a-f]{6}$/i.test(savedAccent)) {
-    setTimeout(() => {
-      const [r, g, b] = [1,3,5].map(i => parseInt(savedAccent.slice(i, i + 2), 16));
-      document.documentElement.style.setProperty('--red', savedAccent);
-      document.documentElement.style.setProperty('--red2', savedAccent);
-      document.documentElement.style.setProperty('--glow', `rgba(${r},${g},${b},.28)`);
-      document.documentElement.style.setProperty('--soft', `rgba(${r},${g},${b},.08)`);
+    secretOutput.querySelector('#accentRandom').onclick = () => apply('#' + Math.floor(Math.random() * 0xffffff).toString(16).padStart(6, '0'));
+    secretOutput.querySelector('#accentReset').onclick = () => {
+      document.body.style.removeProperty('--red');
+      document.body.style.removeProperty('--red2');
+      document.body.style.removeProperty('--glow');
+      document.body.style.removeProperty('--soft');
+      setS({ accent: '' });
       window.dispatchEvent(new CustomEvent('lnz-theme-change'));
-    }, 500);
-  }
+      accentDetail();
+      showToast('Accent direset');
+    };
+  };
+  const savedAccent = getS().accent;
+  if (savedAccent && /^#[0-9a-f]{6}$/i.test(savedAccent)) setTimeout(() => applyAccentColor(savedAccent), 500);
 
-  // ============ 10. UI SOUNDS ============
+  // UI Sounds
   const soundDetail = () => {
     const on = has('ui_sound');
     const vol = getS().ui_vol ?? 50;
@@ -3219,7 +3540,7 @@ const showToast = (() => {
       <div style="font-size:10px;color:#888;line-height:1.6;margin-bottom:8px">Efek suara kecil setiap kali menu di panel ini ditekan. Menggunakan Web Audio API.</div>
       <div style="display:flex;align-items:center;gap:10px;margin-top:10px">
         <span style="font-size:10px;color:#bbb;font-weight:700">Volume</span>
-        <input type="range" class="sound-slider" id="soundVol" min="0" max="100" value="${vol}">
+        <input type="range" class="sound-slider" id="soundVol" min="0" max="100" value="${vol}" aria-label="Volume">
         <span id="soundVolVal" style="font-size:10px;color:var(--red);font-weight:800;min-width:32px;text-align:right">${vol}%</span>
       </div>
       <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-top:12px">
@@ -3229,13 +3550,9 @@ const showToast = (() => {
     `);
     const slider = secretOutput.querySelector('#soundVol');
     const volVal = secretOutput.querySelector('#soundVolVal');
-    slider.oninput = () => {
-      volVal.textContent = slider.value + '%';
-      setS({ ui_vol: Number(slider.value) });
-    };
+    slider.oninput = () => { volVal.textContent = slider.value + '%'; setS({ ui_vol: Number(slider.value) }); };
     slider.onchange = () => playUISound(900);
     secretOutput.querySelector('#soundTest').onclick = () => {
-      // Force temp enable for test
       const wasOn = has('ui_sound');
       if (!wasOn) setS({ ui_sound: true });
       playUISound(1000, 0.15);
@@ -3253,13 +3570,12 @@ const showToast = (() => {
       if (!wasOn) setTimeout(() => playUISound(1000, 0.15), 100);
     };
   };
-  // Restore sound state button
   setTimeout(() => {
     const btn = secretPanel.querySelector('[data-secret="sound"]');
     if (btn) setSecretState(btn, has('ui_sound'));
   }, 100);
 
-  // ============ 11. THEME INFO + THEME MAKER ============
+  // Theme info + maker
   const themeDetail = () => {
     const active = document.querySelector('.theme-opt.active');
     const name = active ? active.querySelector('b').textContent : 'Red Maroon';
@@ -3285,11 +3601,11 @@ const showToast = (() => {
     const syncColors = () => {
       mainHex.value = main.value;
       accHex.value = acc.value;
-      document.documentElement.style.setProperty('--red', main.value);
-      document.documentElement.style.setProperty('--red2', acc.value);
+      document.body.style.setProperty('--red', main.value);
+      document.body.style.setProperty('--red2', acc.value);
       const [r, g, b] = [1,3,5].map(i => parseInt(main.value.slice(i, i + 2), 16));
-      document.documentElement.style.setProperty('--glow', `rgba(${r},${g},${b},.28)`);
-      document.documentElement.style.setProperty('--soft', `rgba(${r},${g},${b},.08)`);
+      document.body.style.setProperty('--glow', `rgba(${r},${g},${b},.28)`);
+      document.body.style.setProperty('--soft', `rgba(${r},${g},${b},.08)`);
       window.dispatchEvent(new CustomEvent('lnz-theme-change'));
     };
     main.oninput = syncColors;
@@ -3305,7 +3621,7 @@ const showToast = (() => {
     addXP('theme');
   };
 
-  // ============ 12. SESSION STATS ============
+  // Session stats
   const sessionStart = Date.now();
   const visited = new Set(['home']);
   const heatData = getS().heatmap || new Array(24).fill(0);
@@ -3321,7 +3637,6 @@ const showToast = (() => {
     const pct = Math.round((count / total) * 100);
     const el = Math.floor((Date.now() - sessionStart) / 1000);
     const scrollPct = Math.round((scrollY / Math.max(1, document.body.scrollHeight - innerHeight)) * 100);
-    // Update heatmap
     const hr = new Date().getHours();
     if ((getS().heat_hr || -1) !== hr) {
       heatData[hr] = (heatData[hr] || 0) + 1;
@@ -3354,7 +3669,7 @@ const showToast = (() => {
     addXP('stats');
   };
 
-  // ============ ACTION ROUTER ============
+  // Router
   secretPanel.querySelector('.secret-close').onclick = closeSecret;
   secretPanel.addEventListener('click', e => { if (e.target === secretPanel) closeSecret(); });
 
@@ -3370,17 +3685,16 @@ const showToast = (() => {
       try { localStorage.setItem('lnz_perf', on ? '1' : '0'); } catch (_) {}
       document.getElementById('lnzPerfToggle')?.classList.toggle('active', on);
       if (on) startFPS(); else stopFPS();
-      showDetail('<div class="secret-detail-title"><span>PERFORMANCE MODE</span><span class="secret-chip">' + (on ? 'ACTIVE' : 'NORMAL') + '</span></div>' + (on ? 'Blur dan animasi berat dikurangi. FPS counter aktif di pojok kiri atas.' : 'Normal presentation.'));
-    } else if (type === 'focus') {
-      openFocus();
-      addXP('mode');
-    } else if (type === 'system') systemDetail();
+      showDetail('<div class="secret-detail-title"><span>PERFORMANCE MODE</span><span class="secret-chip">' + (on ? 'ACTIVE' : 'NORMAL') + '</span></div>' + (on ? 'Blur dan animasi berat dikurangi. FPS counter aktif.' : 'Normal presentation.'));
+    } else if (type === 'focus') { openFocus(); addXP('mode'); }
+    else if (type === 'system') systemDetail();
     else if (type === 'jump') quickJump();
     else if (type === 'terminal') terminal();
     else if (type === 'achievements') achievements();
     else if (type === 'puzzle') puzzle();
     else if (type === 'lnz') {
-      if (!has('mode') && (getS().puzzle_stage || 0) < 3) {
+      // fix: pakai puzzle_stage bukan has('mode')
+      if ((getS().puzzle_stage || 0) < 3) {
         showDetail('<div class="secret-detail-title"><span>LNZ MODE</span><span class="secret-chip">LOCKED</span></div>Unlock the Secret Code (3 levels) first untuk membuka LNZ Mode.');
         playUISound(300, 0.15);
         return;
@@ -3389,7 +3703,7 @@ const showToast = (() => {
       toggleLnz(on);
       setSecretState(btn, on);
       addXP('lnz');
-      showDetail('<div class="secret-detail-title"><span>LNZ SIGNATURE</span><span class="secret-chip">' + (on ? 'ACTIVE' : 'NORMAL') + '</span></div>' + (on ? 'Rainbow cursor trail + signature effects aktif. Gerakkan kursor!' : 'Signature accent disabled.'));
+      showDetail('<div class="secret-detail-title"><span>LNZ SIGNATURE</span><span class="secret-chip">' + (on ? 'ACTIVE' : 'NORMAL') + '</span></div>' + (on ? 'Rainbow cursor trail aktif. Gerakkan kursor!' : 'Signature accent disabled.'));
     }
     else if (type === 'accent') accentDetail();
     else if (type === 'sound') soundDetail();
@@ -3397,7 +3711,7 @@ const showToast = (() => {
     else if (type === 'stats') sessionStats();
   }));
 
-  // ============ TRIGGERS ============
+  // Triggers
   let logoClicks = 0, logoTimer;
   const logo = document.getElementById('lnzLogo');
   const secretBtn = document.getElementById('lnzSecretBtn');
@@ -3472,9 +3786,7 @@ const showToast = (() => {
     showToast('Lanzz berhasil dipasang!');
     if (btn) btn.style.display = 'none';
   });
-  if (matchMedia('(display-mode: standalone)').matches) {
-    if (btn) btn.style.display = 'none';
-  }
+  if (matchMedia('(display-mode: standalone)').matches) { if (btn) btn.style.display = 'none'; }
 })();
 
 /* ============================================================
@@ -3490,11 +3802,8 @@ const showToast = (() => {
       url: location.href
     };
     try {
-      if (navigator.share) { await navigator.share(data); }
-      else {
-        await navigator.clipboard.writeText(location.href);
-        showToast('Link disalin ke clipboard');
-      }
+      if (navigator.share) await navigator.share(data);
+      else { await navigator.clipboard.writeText(location.href); showToast('Link disalin ke clipboard'); }
     } catch (_) {}
     document.getElementById('lnzDrawer')?.classList.remove('open');
     document.getElementById('lnzDrawerBackdrop')?.classList.remove('open');
@@ -3502,42 +3811,55 @@ const showToast = (() => {
 })();
 
 /* ============================================================
-   PREVIEW IFRAME
+   PREVIEW IFRAME (with error handling)
    ============================================================ */
 (() => {
   const preview = document.getElementById('lnzPreview');
   const frame = document.getElementById('lnzPreviewFrame');
   const loader = document.getElementById('lnzPreviewLoader');
+  const errorBox = document.getElementById('lnzPreviewError');
+  const errorLink = document.getElementById('lnzPreviewErrorLink');
   const titleEl = document.getElementById('lnzPreviewTitle');
   const externalBtn = document.getElementById('lnzPreviewExternal');
   const closeBtn = document.getElementById('lnzPreviewClose');
   if (!preview || !frame) return;
-  let lastFocus = null;
-  let loadTimer = null;
+  let lastFocus = null, loadTimer = null, errorTimer = null, untrap = null;
+
+  const showError = (url) => {
+    loader.classList.add('hide');
+    errorBox?.classList.add('show');
+    if (errorLink) errorLink.href = url;
+  };
   const open = (url, title) => {
     lastFocus = document.activeElement;
     externalBtn.href = url;
+    if (errorLink) errorLink.href = url;
     loader.classList.remove('hide');
+    errorBox?.classList.remove('show');
     frame.src = 'about:blank';
     setTimeout(() => { frame.src = url; }, 40);
     titleEl.textContent = title || 'Preview';
     preview.classList.add('open');
     document.body.classList.add('lnz-preview-open');
-    clearTimeout(loadTimer);
-    loadTimer = setTimeout(() => loader.classList.add('hide'), 12000);
+    untrap = trapFocus(preview);
+    clearTimeout(loadTimer); clearTimeout(errorTimer);
+    loadTimer = setTimeout(() => { if (!loader.classList.contains('hide')) showError(url); }, 10000);
   };
   const close = () => {
     if (!preview.classList.contains('open')) return;
     preview.classList.remove('open');
     document.body.classList.remove('lnz-preview-open');
-    clearTimeout(loadTimer);
+    clearTimeout(loadTimer); clearTimeout(errorTimer);
     setTimeout(() => { try { frame.src = 'about:blank'; } catch(_) {} }, 320);
+    if (untrap) { untrap(); untrap = null; }
     lastFocus?.focus?.();
   };
   frame.addEventListener('load', () => {
     if (!frame.src || frame.src === 'about:blank') return;
     loader.classList.add('hide');
+    errorBox?.classList.remove('show');
   });
+  frame.addEventListener('error', () => showError(externalBtn.href));
   preview.querySelectorAll('[data-preview-close]').forEach(el => el.addEventListener('click', close));
   closeBtn?.addEventListener('click', close);
   document.addEventListener('keydown', e => {
@@ -3550,21 +3872,35 @@ const showToast = (() => {
 })();
 
 /* ============================================================
-   YEAR UPDATE
+   YEAR + SAFETY
    ============================================================ */
 (() => {
   const y = new Date().getFullYear();
-  document.querySelectorAll('footer').forEach(f => {
-    f.innerHTML = f.innerHTML.replace(/©\s*\d{4}/, '© ' + y);
+  document.querySelectorAll('footer').forEach(f => { f.innerHTML = f.innerHTML.replace(/©\s*\d{4}/, '© ' + y); });
+  document.querySelectorAll('a[target="_blank"]').forEach(a => { if (!a.hasAttribute('rel')) a.setAttribute('rel', 'noopener noreferrer'); });
+})();
+
+/* ============================================================
+   LANGUAGE TOGGLE
+   ============================================================ */
+(() => {
+  const btn = document.getElementById('lnzLangBtn');
+  if (!btn) return;
+  applyLang(getLang());
+  btn.addEventListener('click', () => {
+    const next = getLang() === 'id' ? 'en' : 'id';
+    try { localStorage.setItem('lnz_lang', next); } catch(_) {}
+    withVT(() => applyLang(next));
+    showToast('Language: ' + next.toUpperCase());
+    lnzHaptic(8);
   });
 })();
 
 /* ============================================================
-   SAFETY
+   NETWORK STATUS
    ============================================================ */
-document.querySelectorAll('a[target="_blank"]').forEach(a => {
-  if (!a.hasAttribute('rel')) a.setAttribute('rel', 'noopener noreferrer');
-});
+window.addEventListener('offline', () => showToast('Kamu sedang offline'));
+window.addEventListener('online', () => showToast('Kembali online'));
 </script>
 </body>
 </html>
