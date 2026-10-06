@@ -1,0 +1,22 @@
+{
+  "name": "Lanzz Blase - Block Puzzle Arena",
+  "short_name": "Lanzz Blase",
+  "description": "Game Block Puzzle dan Game Arcade seru dari Lanzz Play.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#7eb3ff",
+  "theme_color": "#7eb3ff",
+  "lang": "id",
+  "dir": "ltr",
+  "categories": ["games", "entertainment"],
+  "icons": [
+    { "src": "/icon-blase/favicon-16x16.png",           "sizes": "16x16",   "type": "image/png" },
+    { "src": "/icon-blase/favicon-32x32.png",           "sizes": "32x32",   "type": "image/png" },
+    { "src": "/icon-blase/apple-touch-icon.png",        "sizes": "180x180", "type": "image/png" },
+    { "src": "/icon-blase/android-chrome-192x192.png",  "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "/icon-blase/android-chrome-512x512.png",  "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "/icon-blase/android-chrome-512x512.png",  "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ]
+}
