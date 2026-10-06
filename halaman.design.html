@@ -127,6 +127,17 @@
 html{
     height:100%;
     -webkit-text-size-adjust:100%;
+    /* FIX SCROLLBAR: cegah scroll horizontal + sembunyikan scrollbar */
+    overflow-x:hidden;
+    scrollbar-width:none;
+    -ms-overflow-style:none;
+}
+
+html::-webkit-scrollbar{
+    /* FIX SCROLLBAR */
+    display:none;
+    width:0;
+    height:0;
 }
 
 body{
@@ -141,6 +152,18 @@ body{
 
     position:relative;
     animation:bodyFade .6s var(--ease) both;
+
+    /* FIX SCROLLBAR */
+    overflow-x:hidden;
+    scrollbar-width:none;
+    -ms-overflow-style:none;
+}
+
+body::-webkit-scrollbar{
+    /* FIX SCROLLBAR */
+    display:none;
+    width:0;
+    height:0;
 }
 
 @keyframes bodyFade{
@@ -257,13 +280,11 @@ ul{list-style:none}
     inset:0;
     z-index:9999;
 
-    padding-top:60px;
-
     display:flex;
     flex-direction:column;
     align-items:center;
     justify-content:center;
-    gap:14px;
+    gap:0px;
 
     background:
         radial-gradient(circle at 50% 45%, #1a0508 0%, #080405 65%);
@@ -281,7 +302,6 @@ ul{list-style:none}
 
 .sp-logo{
     position:relative;
-    top:70px;
     width:210px;height:210px;
     display:grid;
     place-items:center;
@@ -329,6 +349,7 @@ ul{list-style:none}
     font-size:15px;
     font-weight:900;
     letter-spacing:4px;
+    margin-top:-30px;
 }
 
 .sp-name .nw{color:#fff}
@@ -740,6 +761,10 @@ ul{list-style:none}
         opacity .32s var(--ease),
         transform .32s var(--ease),
         visibility .32s var(--ease);
+
+    /* FIX SCROLLBAR */
+    scrollbar-width:none;
+    -ms-overflow-style:none;
 }
 
 .view.active{
@@ -748,7 +773,12 @@ ul{list-style:none}
     transform:none;
 }
 
-.view::-webkit-scrollbar{width:0}
+/* FIX SCROLLBAR: sembunyikan vertikal + horizontal */
+.view::-webkit-scrollbar{
+    width:0;
+    height:0;
+    display:none;
+}
 
 /* =========================================================
    7. BOTTOM TAB BAR
@@ -1307,7 +1337,12 @@ ul{list-style:none}
     mask-image:linear-gradient(90deg,#000 92%,transparent 100%);
 }
 
-.chip-row::-webkit-scrollbar{display:none}
+.chip-row::-webkit-scrollbar{
+    /* FIX SCROLLBAR */
+    display:none;
+    width:0;
+    height:0;
+}
 
 .chip{
     flex:0 0 auto;
@@ -2338,6 +2373,17 @@ ul{list-style:none}
     transition:
         transform .4s var(--ease),
         opacity .4s var(--ease);
+
+    /* FIX SCROLLBAR */
+    scrollbar-width:none;
+    -ms-overflow-style:none;
+}
+
+.modal-panel::-webkit-scrollbar{
+    /* FIX SCROLLBAR */
+    display:none;
+    width:0;
+    height:0;
 }
 
 .modal.show .modal-panel{
@@ -4174,7 +4220,6 @@ function navigate(name, push){
     if(push !== false){
         try{
             if(wasDesign){
-                /* tutup reader + pindah tab: replace biar history gak numpuk */
                 history.replaceState({view:name}, "", "#" + name);
             }else{
                 history.pushState({view:name}, "", "#" + name);
@@ -4676,7 +4721,6 @@ Array.prototype.forEach.call(langBtns, function(btn){
 
 Array.prototype.forEach.call(tabEls, function(tab){
     tab.addEventListener("click", function(){
-        /* navigate() udah handle closeDesignReader di dalamnya */
         navigate(tab.dataset.view);
     });
 });
@@ -4758,7 +4802,6 @@ document.addEventListener("keydown", function(e){
         }
         if(state.designOpen){
             closeDesignReader();
-            /* bersihin hash #desain biar konsisten */
             try{
                 if(location.hash === "#desain"){
                     history.replaceState({view:state.view}, "", "#" + state.view);
