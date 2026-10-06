@@ -1,0 +1,28 @@
+{
+  "name": "LanzzPlay - Games Library",
+  "short_name": "LanzzPlay",
+  "description": "1000+ game online gratis langsung di browser tanpa download.",
+  "start_url": "./",
+  "scope": "./",
+  "id": "lanzzplay-pwa",
+  "display": "standalone",
+  "display_override": ["window-controls-overlay", "standalone", "minimal-ui"],
+  "orientation": "any",
+  "background_color": "#080405",
+  "theme_color": "#080405",
+  "lang": "id",
+  "dir": "ltr",
+  "categories": ["games", "entertainment"],
+  "icons": [
+    { "src": "icon-games/favicon-16x16.png", "sizes": "16x16", "type": "image/png" },
+    { "src": "icon-games/favicon-32x32.png", "sizes": "32x32", "type": "image/png" },
+    { "src": "icon-games/apple-touch-icon.png", "sizes": "180x180", "type": "image/png" },
+    { "src": "icon-games/android-chrome-192x192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "icon-games/android-chrome-512x512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "icon-games/android-chrome-512x512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ],
+  "shortcuts": [
+    { "name": "Random Game", "short_name": "Random", "url": "./#random" },
+    { "name": "Favorite", "short_name": "Fav", "url": "./#favorites" }
+  ]
+}
