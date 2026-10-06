@@ -1627,23 +1627,224 @@ body.theme-aurora{--red:#00ffaa;--red2:#c084fc;--glow:rgba(0,255,170,.32);--soft
 })();
 
 /* ============================================================
-   I18N
+   I18N v3 — Selector-based, SAFE (tidak hapus child element)
    ============================================================ */
-const lnzI18N = {
-  id: {
-    hero_desc: 'Saya membuat website modern, aplikasi digital, tools pintar, dan solusi inovatif untuk membawa ide menjadi pengalaman digital yang powerful. Dengan fokus pada desain modern, performa tinggi, dan pengalaman pengguna yang seamless, saya membangun produk yang simple, fungsional, dan impactful.'
-  },
-  en: {
-    hero_desc: 'I create modern websites, digital applications, smart tools, and innovative solutions to bring ideas into powerful digital experiences. With focus on modern design, high performance, and seamless user experience, I build products that are simple, functional, and impactful.'
-  }
-};
+const lnzI18NMap = [
+  /* ---------- APPBAR / DRAWER ---------- */
+  ['.appbar .brand-txt small', { id: 'Portfolio App', en: 'Portfolio App' }],
+  ['.drawer-head-txt small',   { id: 'Portfolio App', en: 'Portfolio App' }],
+  ['#lnzInstallBtn span', { id: 'Install Aplikasi<small>Pasang di layar utama</small>', en: 'Install App<small>Add to home screen</small>' }, true],
+  ['.drawer-group:nth-of-type(1) .drawer-group-title', { id: 'Jelajahi', en: 'Explore' }],
+  ['.drawer-group:nth-of-type(2) .drawer-group-title', { id: 'Play & Explore', en: 'Play & Explore' }],
+  ['.drawer-group:nth-of-type(3) .drawer-group-title', { id: 'Digital', en: 'Digital' }],
+  ['.drawer-group:nth-of-type(4) .drawer-group-title', { id: 'Info', en: 'Info' }],
+  ['.drawer-item[data-goto="home"]',         { id: 'Home', en: 'Home' }],
+  ['.drawer-item[data-goto="services"]',     { id: 'Services', en: 'Services' }],
+  ['.drawer-item[data-goto="skills"]',       { id: 'Skills', en: 'Skills' }],
+  ['.drawer-item[data-goto="experience"]',   { id: 'Experience', en: 'Experience' }],
+  ['.drawer-item[data-goto="about"]',        { id: 'About', en: 'About' }],
+  ['.drawer-item[data-goto="game"]',         { id: 'Games Library', en: 'Games Library' }],
+  ['.drawer-item[data-goto="io"]',           { id: 'Snake.io', en: 'Snake.io' }],
+  ['.drawer-item[data-goto="blase"]',        { id: 'Puzzle', en: 'Puzzle' }],
+  ['.drawer-item[data-goto="bros"]',         { id: 'Retro', en: 'Retro' }],
+  ['.drawer-item[data-goto="space"]',        { id: 'Space', en: 'Space' }],
+  ['.drawer-item[data-goto="ai"]',           { id: 'AI Assistant', en: 'AI Assistant' }],
+  ['.drawer-item[data-goto="tools"]',        { id: 'Tools', en: 'Tools' }],
+  ['.drawer-item[data-goto="informatika"]',  { id: 'Informatika', en: 'Informatics' }],
+  ['.drawer-item[data-goto="faq"]',          { id: 'FAQ', en: 'FAQ' }],
+  ['.drawer-item[data-goto="newsletter"]',   { id: 'Newsletter', en: 'Newsletter' }],
+  ['.drawer-item[data-goto="contact"]',      { id: 'Contact', en: 'Contact' }],
+  ['a.drawer-item[href^="mailto:id."]',      { id: 'Email Personal', en: 'Personal Email' }],
+  ['a.drawer-item[href^="mailto:lanzz."]',   { id: 'Email Project', en: 'Project Email' }],
+  ['#lnzShareBtn',  { id: 'Share', en: 'Share' }],
+  ['#lnzSecretBtn', { id: 'Secret', en: 'Secret' }],
+
+  /* ---------- TABBAR ---------- */
+  ['.tabbar .tab[data-goto="home"] span',  { id: 'Home', en: 'Home' }],
+  ['.tabbar .tab[data-goto="game"] span',  { id: 'Play', en: 'Play' }],
+  ['.tabbar .tab[data-goto="ai"] span',    { id: 'AI', en: 'AI' }],
+  ['.tabbar .tab[data-goto="tools"] span', { id: 'Tools', en: 'Tools' }],
+  ['#lnzTabMore span',                     { id: 'More', en: 'More' }],
+
+  /* ---------- HERO ---------- */
+  ['#home .hero-badge', {
+    id: '<i><svg viewBox="0 0 24 24"><path d="M12 2v4M12 18v4M4.9 4.9l2.8 2.8M16.3 16.3l2.8 2.8M2 12h4M18 12h4M4.9 19.1l2.8-2.8M16.3 7.7l2.8-2.8"/></svg></i><b>TERSEDIA</b> UNTUK PROJECT <em>ONLINE</em>',
+    en: '<i><svg viewBox="0 0 24 24"><path d="M12 2v4M12 18v4M4.9 4.9l2.8 2.8M16.3 16.3l2.8 2.8M2 12h4M18 12h4M4.9 19.1l2.8-2.8M16.3 7.7l2.8-2.8"/></svg></i><b>AVAILABLE</b> FOR PROJECTS <em>ONLINE</em>'
+  }, true],
+  ['#home .kicker', { id: 'Hello, <span>saya</span>', en: 'Hello, <span>I am</span>' }, true],
+  ['#home .role', {
+    id: 'Dari<span class="dot">Lebak</span>-<span class="dot">Banten</span>-<span class="dot">Indonesia</span>',
+    en: 'From<span class="dot">Lebak</span>-<span class="dot">Banten</span>-<span class="dot">Indonesia</span>'
+  }, true],
+  ['#home .hero-actions .btn',        { id: 'Kontak', en: 'Contact' }],
+  ['#home .hero-actions .btn.ghost',  { id: 'Tentang', en: 'About' }],
+
+  /* ---------- STATS ---------- */
+  ['#home .stats .stat:nth-child(1) small', { id: 'Website dibuat', en: 'Websites built' }],
+  ['#home .stats .stat:nth-child(2) small', { id: 'Pengalaman', en: 'Experience' }],
+  ['#home .stats .stat:nth-child(3) small', { id: 'Project selesai', en: 'Projects done' }],
+
+  /* ---------- SERVICES ---------- */
+  ['#services .section-head p', { id: 'Beberapa layanan utama untuk kebutuhan personal, bisnis maupun project digital.', en: 'Key services for personal, business, and digital project needs.' }],
+  ['#services .app-card p',     { id: 'Buat website sesuai kebutuhan dengan fitur dan database yang dapat disesuaikan. Cocok untuk personal brand, bisnis, landing page, dashboard dan custom project.', en: 'Build websites tailored to your needs with customizable features and database. Great for personal brand, business, landing page, dashboard and custom projects.' }],
+
+  /* ---------- GAMES ---------- */
+  ['#game .section-head p', { id: 'Games Library dengan 1000+ pilihan game gratis yang dapat dimainkan langsung dari browser. Gratis dan tanpa instalasi tambahan.', en: 'Games Library with 1000+ free game picks you can play directly from the browser. Free, no extra install.' }],
+  ['#game .app-card p',     { id: 'Jelajahi ribuan game dari berbagai genre, pilih favoritmu dan mainkan kapan saja langsung dari browser.', en: 'Explore thousands of games across genres, pick your favorite and play anytime right in your browser.' }],
+
+  /* ---------- SNAKE ---------- */
+  ['#io .section-head p', { id: 'Game .io yang dapat dimainkan langsung dari browser. Gratis dan tanpa instalasi tambahan.', en: '.io games you can play right in the browser. Free, no extra install.' }],
+  ['#io .app-card p',     { id: 'Makan, tempur dan raih Top 1 leaderboard. Mainkan Lanzz.io - Snake Arena.', en: 'Eat, battle and reach Top 1 on the leaderboard. Play Lanzz.io - Snake Arena.' }],
+
+  /* ---------- BLASE ---------- */
+  ['#blase .section-head p', { id: 'Game Puzzle Block Blast yang dapat dimainkan langsung dari browser. Gratis dan tanpa instalasi tambahan.', en: 'Block Blast puzzle game you can play right in the browser. Free, no extra install.' }],
+  ['#blase .app-card p',     { id: 'Selesaikan teka-teki seru Block Blase dengan berbagai mode pilihan. Block Puzzle, Bubble Shooter dan Link Puzzle. Mainkan Lanzz Blase - Block Puzzle.', en: 'Solve fun Block Blast puzzles with multiple modes. Block Puzzle, Bubble Shooter and Link Puzzle. Play Lanzz Blase - Block Puzzle.' }],
+
+  /* ---------- BROS ---------- */
+  ['#bros .section-head p', { id: 'Game retro yang dapat dimainkan langsung dari browser. Gratis dan tanpa instalasi tambahan.', en: 'Retro game you can play right in the browser. Free, no extra install.' }],
+  ['#bros .app-card p',     { id: 'Lari, lompat dan hadapi berbagai tantangan di setiap world. Dengan tampilan karakter yang lucu. Mainkan Lanzz Bros - Pixel Game.', en: 'Run, jump and face challenges in every world. With cute pixel characters. Play Lanzz Bros - Pixel Game.' }],
+
+  /* ---------- SPACE ---------- */
+  ['#space .section-head p', { id: 'Jelajahi galaksi dan nikmati pengalaman simulasi interaktif langsung dari browser.', en: 'Explore the galaxy and enjoy an interactive simulation right in the browser.' }],
+  ['#space .app-card p',     { id: 'Terbang bebas melintasi tata surya, amati planet, bintang dan berbagai objek luar angkasa sambil menjelajahi luasnya semesta tanpa batas di Lanzz Space.', en: 'Fly freely across the solar system, observe planets, stars and various space objects while exploring the boundless universe in Lanzz Space.' }],
+
+  /* ---------- AI ---------- */
+  ['#ai .section-head p', { id: 'Asisten Ai untuk membantu pekerjaan, belajar, mencari ide dan berbagai kebutuhan digital kamu.', en: 'AI assistant to help with work, learning, idea-finding and various digital needs.' }],
+  ['#ai .app-card p',     { id: 'Tanyakan apa saja ke Lanzz.Ai, asisten Ai by Lanzz Project yang siap membantu berbagai kebutuhanmu di Lanzz Assistant.', en: 'Ask anything to Lanzz.Ai, an AI assistant by Lanzz Project ready to help with your various needs in Lanzz Assistant.' }],
+
+  /* ---------- TOOLS ---------- */
+  ['#tools .section-head p', { id: 'Kumpulan 100+ tools digital praktis dalam satu tempat.', en: 'Collection of 100+ practical digital tools in one place.' }],
+  ['#tools .app-card p',     { id: 'Gratis dan bisa digunakan tanpa login untuk berbagai kebutuhan sehari-hari di Lanzz Tools.', en: 'Free and usable without login for various daily needs in Lanzz Tools.' }],
+
+  /* ---------- INFORMATIKA ---------- */
+  ['#informatika .section-head p', { id: 'Belajar dasar pengembangan website menggunakan HTML, CSS dan JavaScript dari dasar hingga membuat website interaktif.', en: 'Learn the basics of web development with HTML, CSS and JavaScript from scratch to building interactive sites.' }],
+  ['#informatika .app-card p',     { id: 'Pelajari struktur HTML, styling dengan CSS dan logika interaktif dengan JavaScript untuk membangun website modern di Lanzz Informatika.', en: 'Learn HTML structure, styling with CSS and interactive logic with JavaScript to build modern websites in Lanzz Informatics.' }],
+
+  /* ---------- SKILLS ---------- */
+  ['#skills .section-head p', { id: 'Kombinasi skill teknis dan desain yang dipakai sehari-hari untuk membangun project digital.', en: 'A blend of technical and design skills used daily to build digital projects.' }],
+
+  /* ---------- EXPERIENCE ---------- */
+  ['#experience .section-head p', { id: 'Perjalanan profesional dari freelance sampai jadi content creator dan digital solutions.', en: 'A professional journey from freelance to content creator and digital solutions.' }],
+  ['#experience .lnz-tl-item:nth-child(1) .date', { id: '2020 - SEKARANG', en: '2020 - PRESENT' }],
+  ['#experience .lnz-tl-item:nth-child(1) h3',    { id: 'Freelance Web Developer', en: 'Freelance Web Developer' }],
+  ['#experience .lnz-tl-item:nth-child(1) p',     { id: 'Menangani 500+ project Website, APK dan Landing Page untuk UMKM, personal brand dan berbagai kebutuhan digital.', en: 'Handled 500+ Website, APK and Landing Page projects for SMEs, personal brands and various digital needs.' }],
+  ['#experience .lnz-tl-item:nth-child(2) .date', { id: '2021 - SEKARANG', en: '2021 - PRESENT' }],
+  ['#experience .lnz-tl-item:nth-child(2) h3',    { id: 'Content Creator dan Digital Solutions', en: 'Content Creator & Digital Solutions' }],
+  ['#experience .lnz-tl-item:nth-child(2) p',     { id: 'Membantu pengguna melalui aplikasi dan konten digital di Instagram, TikTok dan Facebook.', en: 'Helping users through applications and digital content on Instagram, TikTok and Facebook.' }],
+  ['#experience .lnz-tl-item:nth-child(3) .date', { id: '2023 - SEKARANG', en: '2023 - PRESENT' }],
+  ['#experience .lnz-tl-item:nth-child(3) h3',    { id: 'Modder dan Creative Developer', en: 'Modder & Creative Developer' }],
+  ['#experience .lnz-tl-item:nth-child(3) p',     { id: 'Bereksperimen dengan mod, tools custom, dan project eksperimental yang menggabungkan AI dan creative coding.', en: 'Experimenting with mods, custom tools and experimental projects combining AI and creative coding.' }],
+
+  /* ---------- FAQ ---------- */
+  ['#faq .section-head p', { id: 'Beberapa pertanyaan yang paling sering ditanyakan sebelum memulai project.', en: 'Some questions most frequently asked before starting a project.' }],
+  ['#faq .faq-item:nth-child(1) .faq-q', { id: 'Berapa lama proses pengerjaan satu website?', en: 'How long does it take to build a website?' }],
+  ['#faq .faq-item:nth-child(1) .faq-a-inner', { id: 'Proses pengerjaan 5 sampai 8 jam+ dan 1 sampai 3 hari+. Tergantung kepada tingkat kesulitan project yang dibuat.', en: 'Development takes 5-8 hours+ and 1-3 days+. Depends on the project complexity.' }],
+  ['#faq .faq-item:nth-child(2) .faq-q', { id: 'Apakah bisa custom fitur sesuai kebutuhan?', en: 'Can features be customized?' }],
+  ['#faq .faq-item:nth-child(2) .faq-a-inner', { id: 'Bisa. Hampir semua fitur custom bisa dibuat, mulai dari sistem login, dashboard admin, keranjang belanja, hingga integrasi API pihak ketiga.', en: 'Yes. Almost all custom features can be built, from login systems, admin dashboards, shopping carts, to third-party API integration.' }],
+  ['#faq .faq-item:nth-child(3) .faq-q', { id: 'Apakah hasilnya responsive di HP, tablet, dan desktop?', en: 'Is it responsive on mobile, tablet and desktop?' }],
+  ['#faq .faq-item:nth-child(3) .faq-a-inner', { id: 'Ya, semua project dibuat responsive dari awal. Tampilan akan otomatis menyesuaikan di berbagai ukuran layar, dari HP kecil sampai monitor desktop besar.', en: 'Yes, all projects are responsive from the start. Layout adapts automatically from small phones to large desktop monitors.' }],
+  ['#faq .faq-item:nth-child(4) .faq-q', { id: 'Apakah ada garansi dan support setelah serah terima?', en: 'Is there warranty and support after delivery?' }],
+  ['#faq .faq-item:nth-child(4) .faq-a-inner', { id: 'Ada. Setiap project mendapat garansi revisi dan support untuk bug fixing selama periode yang disepakati.', en: 'Yes. Every project gets revision warranty and bug-fixing support during the agreed period.' }],
+  ['#faq .faq-item:nth-child(5) .faq-q', { id: 'Bagaimana cara mulai kerja sama?', en: 'How do we start collaborating?' }],
+  ['#faq .faq-item:nth-child(5) .faq-a-inner', { id: 'Cukup hubungi via WhatsApp atau Email di section Contact. Kirim brief singkat atau ide project, nanti akan dibalas dengan estimasi dan langkah selanjutnya.', en: 'Just reach out via WhatsApp or Email in the Contact section. Send a brief or project idea, and you will get an estimate and next steps.' }],
+
+  /* ---------- NEWSLETTER ---------- */
+  ['#newsletter .lnz-news h3', { id: 'Subscribe buat Update <span>Terbaru</span>', en: 'Subscribe for the <span>Latest</span> Updates' }, true],
+  ['#newsletter .lnz-news p',  { id: 'Dapatkan notifikasi project baru, tips digital, dan insight seputar web development langsung di inbox kamu.', en: 'Get notified about new projects, digital tips, and web development insights right in your inbox.' }],
+  ['#newsletter .lnz-news-form button', { id: 'SUBSCRIBE', en: 'SUBSCRIBE' }],
+
+  /* ---------- CONTACT ---------- */
+  ['#contact .section-head p', { id: 'Punya ide atau project? Kirim pesan lewat form, nanti akan dibalas secepatnya.', en: 'Got an idea or project? Send a message via the form, we will reply ASAP.' }],
+  ['label[for="cfName"]',   { id: 'Nama', en: 'Name' }],
+  ['label[for="cfEmail"]',  { id: 'Email', en: 'Email' }],
+  ['label[for="cfSubject"]',{ id: 'Subjek', en: 'Subject' }],
+  ['label[for="cfMsg"]',    { id: 'Pesan', en: 'Message' }],
+  ['#cfName',    { id: 'Nama kamu', en: 'Your name' }, false, 'placeholder'],
+  ['#cfMsg',     { id: 'Ceritakan kebutuhan atau ide project kamu...', en: 'Tell us your needs or project idea...' }, false, 'placeholder'],
+  ['#cfSubject', { id: 'Topik project', en: 'Project topic' }, false, 'placeholder'],
+  ['.subject-chip[data-subject="Website"]', { id: 'Website', en: 'Website' }],
+  ['.subject-chip[data-subject="App"]',     { id: 'App', en: 'App' }],
+  ['.subject-chip[data-subject="Game"]',    { id: 'Game', en: 'Game' }],
+  ['.subject-chip[data-subject="Ngobrol Santai"]', { id: 'Ngobrol Santai', en: 'Chit-chat' }],
+  ['#contact .form-submit', { id: 'Kirim Pesan', en: 'Send Message' }],
+
+  /* ---------- FOOTER ---------- */
+  ['.footer-brand p', { id: 'Developer, Modder & Creator - membangun produk digital modern yang fungsional, cepat, dan enak dipakai.', en: 'Developer, Modder & Creator - building modern digital products that are functional, fast and pleasant to use.' }],
+  ['.footer-status span', { id: 'Available for projects', en: 'Available for projects' }],
+  ['.footer-col:nth-of-type(1) h5', { id: 'Explore', en: 'Explore' }],
+  ['.footer-col:nth-of-type(2) h5', { id: 'Content', en: 'Content' }],
+  ['.footer-col:nth-of-type(3) h5', { id: 'Connect', en: 'Connect' }],
+  ['.footer-col:nth-of-type(1) a[data-goto="home"]',  { id: 'Home', en: 'Home' }],
+  ['.footer-col:nth-of-type(1) a[data-goto="services"]', { id: 'Services', en: 'Services' }],
+  ['.footer-col:nth-of-type(1) a[data-goto="space"]', { id: 'Space', en: 'Space' }],
+  ['.footer-col:nth-of-type(1) a[data-goto="ai"]',    { id: 'Assistant', en: 'Assistant' }],
+  ['.footer-col:nth-of-type(1) a[data-goto="tools"]', { id: 'Tools', en: 'Tools' }],
+  ['.footer-col:nth-of-type(1) a[data-goto="informatika"]', { id: 'Informatika', en: 'Informatics' }],
+  ['.footer-col:nth-of-type(2) a[data-goto="game"]',  { id: 'Library', en: 'Library' }],
+  ['.footer-col:nth-of-type(2) a[data-goto="io"]',    { id: 'Snake.io', en: 'Snake.io' }],
+  ['.footer-col:nth-of-type(2) a[data-goto="blase"]', { id: 'Puzzle', en: 'Puzzle' }],
+  ['.footer-col:nth-of-type(2) a[data-goto="bros"]',  { id: 'Retro', en: 'Retro' }],
+  ['.footer-col:nth-of-type(2) a[data-goto="newsletter"]', { id: 'Newsletter', en: 'Newsletter' }],
+
+  /* ---------- MORE BUTTON (text + <span> arrow) ---------- */
+  ['[data-project="services"] .more',    { id: 'Lihat Detail <span>→</span>', en: 'View Detail <span>→</span>' }, true],
+  ['[data-project="game"] .more',        { id: 'Lihat Detail <span>→</span>', en: 'View Detail <span>→</span>' }, true],
+  ['[data-project="io"] .more',          { id: 'Lihat Detail <span>→</span>', en: 'View Detail <span>→</span>' }, true],
+  ['[data-project="blase"] .more',       { id: 'Lihat Detail <span>→</span>', en: 'View Detail <span>→</span>' }, true],
+  ['[data-project="bros"] .more',        { id: 'Lihat Detail <span>→</span>', en: 'View Detail <span>→</span>' }, true],
+  ['[data-project="space"] .more',       { id: 'Lihat Detail <span>→</span>', en: 'View Detail <span>→</span>' }, true],
+  ['[data-project="ai"] .more',          { id: 'Lihat Detail <span>→</span>', en: 'View Detail <span>→</span>' }, true],
+  ['[data-project="tools"] .more',       { id: 'Lihat Detail <span>→</span>', en: 'View Detail <span>→</span>' }, true],
+  ['[data-project="informatika"] .more', { id: 'Lihat Detail <span>→</span>', en: 'View Detail <span>→</span>' }, true],
+
+  /* ---------- SKIP LINK ---------- */
+  ['.skip-link', { id: 'Lewati ke konten utama', en: 'Skip to main content' }]
+];
+
+/**
+ * Terapkan bahasa.
+ * - Mode `placeholder`: set attribute placeholder.
+ * - Mode `useHTML`: set innerHTML tapi SVG direct-children dipertahankan.
+ * - Default: hanya replace text node terakhir, semua element child (svg/span/small/em/b/i) DIPERTAHANKAN.
+ */
 const lnzApplyLang = (lang) => {
-  document.documentElement.lang = lang === 'en' ? 'en' : 'id';
-  document.querySelectorAll('[data-i18n]').forEach(el => {
-    const key = el.dataset.i18n;
-    if (lnzI18N[lang] && lnzI18N[lang][key]) el.textContent = lnzI18N[lang][key];
+  lang = (lang === 'en') ? 'en' : 'id';
+  document.documentElement.lang = lang;
+
+  lnzI18NMap.forEach(item => {
+    const [sel, texts, useHTML, mode] = item;
+    const el = document.querySelector(sel);
+    if (!el) return;
+    const val = texts[lang];
+    if (val == null) return;
+
+    // 1) Placeholder input
+    if (mode === 'placeholder') {
+      el.setAttribute('placeholder', val);
+      return;
+    }
+
+    // 2) innerHTML mode — preserve SVG direct-children
+    if (useHTML) {
+      const svgHTML = [...el.children]
+        .filter(c => c.tagName.toLowerCase() === 'svg')
+        .map(s => s.outerHTML)
+        .join('');
+      el.innerHTML = svgHTML + (svgHTML ? ' ' : '') + val;
+      return;
+    }
+
+    // 3) Default: ganti TEXT NODE saja, JANGAN sentuh element children
+    const textNodes = [...el.childNodes].filter(n => n.nodeType === 3);
+    if (textNodes.length) {
+      textNodes.forEach((n, i) => {
+        n.nodeValue = (i === textNodes.length - 1) ? val : '';
+      });
+    } else {
+      el.appendChild(document.createTextNode(val));
+    }
   });
-  // Update pill toggle
+
   document.querySelectorAll('.lang-opt').forEach(b => {
     b.classList.toggle('active', b.dataset.lang === lang);
   });
@@ -1725,14 +1926,12 @@ const lnzHaptic = (ms) => { try { navigator.vibrate && navigator.vibrate(ms || 8
   if (mq.matches && savedPerf === null) {
     document.body.classList.add('performance-mode');
     try { localStorage.setItem('lnz_perf', '1'); } catch (_) {}
-    // Sinkron ke tombol toggle
     setTimeout(() => {
       const btn = document.getElementById('lnzPerfToggle');
       if (btn) btn.classList.add('active');
     }, 200);
     setTimeout(() => showToastSafe('Reduce motion terdeteksi — Performance Mode aktif'), 3200);
   }
-  // Helper toast tanpa deps (karena showToast belum ada)
   const showToastSafe = (m) => {
     const toast = document.getElementById('toast');
     if (!toast) return;
@@ -2029,11 +2228,9 @@ const showToast = (() => {
   const subjectInput = form.querySelector('#cfSubject');
   let untrapModal = null;
 
-  // UPGRADE #8: subject chips
   form.querySelectorAll('.subject-chip').forEach(chip => {
     chip.addEventListener('click', () => {
       const val = chip.dataset.subject;
-      // Toggle kalau klik chip yang sama
       if (chip.classList.contains('active')) {
         chip.classList.remove('active');
         subjectInput.value = '';
@@ -2045,7 +2242,6 @@ const showToast = (() => {
       lnzHaptic(6);
     });
   });
-  // Kalau user ngetik manual, hapus active chip
   subjectInput?.addEventListener('input', () => {
     const val = subjectInput.value.trim();
     form.querySelectorAll('.subject-chip').forEach(c => {
@@ -2345,7 +2541,6 @@ const showToast = (() => {
   const apply = t => {
     themes.forEach(x => document.body.classList.remove('theme-' + x));
     document.body.classList.add('theme-' + t);
-    // Hapus custom accent biar tema menang
     ['--red','--red2','--glow','--soft'].forEach(p => document.body.style.removeProperty(p));
     grid.querySelectorAll('[data-theme]').forEach(b => b.classList.toggle('active', b.dataset.theme === t));
     try { localStorage.setItem('lnz_theme', t); } catch (_) {}
@@ -2409,7 +2604,6 @@ const showToast = (() => {
 
   openBtn.addEventListener('click', e => {
     e.stopPropagation();
-    // Tutup drawer dulu
     document.getElementById('lnzDrawer')?.classList.remove('open');
     document.getElementById('lnzDrawerBackdrop')?.classList.remove('open');
     document.body.classList.remove('lnz-drawer-open');
@@ -2439,7 +2633,6 @@ const showToast = (() => {
           await navigator.clipboard.writeText(shareUrl);
           showToast('Link disalin ke clipboard');
         } catch (_) {
-          // Fallback
           const ta = document.createElement('textarea');
           ta.value = shareUrl;
           ta.style.position = 'fixed';
@@ -2974,7 +3167,6 @@ const showToast = (() => {
     btn.classList.toggle('enabled', on);
   };
 
-  // UPGRADE: fix accent color (set di body, bukan documentElement)
   const applyAccent = (color) => {
     if (!/^#[0-9a-f]{6}$/i.test(color)) { showToast('Format hex tidak valid'); return; }
     const [r, g, b] = [1, 3, 5].map(i => parseInt(color.slice(i, i + 2), 16));
@@ -3010,7 +3202,7 @@ const showToast = (() => {
   const showDetail = (html) => { secretOutput.innerHTML = html; secretOutput.hidden = false; };
   const arrowIcon = '<svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>';
 
-  // ===== FPS COUNTER =====
+  // FPS COUNTER
   let fpsRaf = null;
   let fpsPill = null;
   const startFPS = () => {
@@ -3038,7 +3230,7 @@ const showToast = (() => {
     if (fpsPill) { fpsPill.remove(); fpsPill = null; }
   };
 
-  // ===== POMODORO =====
+  // POMODORO
   let pomoInterval = null;
   let pomoRemaining = 25 * 60;
   let pomoTotal = 25 * 60;
@@ -3151,7 +3343,7 @@ const showToast = (() => {
     }
   };
 
-  // ===== SYSTEM INFO =====
+  // SYSTEM INFO
   const getBrowserInfo = () => {
     const ua = navigator.userAgent;
     const b = /Edg\//.test(ua) ? 'Edge' : /OPR\//.test(ua) ? 'Opera' : /Chrome\//.test(ua) ? 'Chrome' : /Firefox\//.test(ua) ? 'Firefox' : /Safari\//.test(ua) ? 'Safari' : 'Unknown';
@@ -3221,7 +3413,7 @@ const showToast = (() => {
     addXP('system');
   };
 
-  // ===== QUICK JUMP =====
+  // QUICK JUMP
   const QJ_SECTIONS = ['home','services','game','io','blase','bros','space','ai','tools','informatika','skills','experience','faq','newsletter','contact','about'];
   const getFavs = () => getS().qj_favs || [];
   const getRecent = () => getS().qj_recent || [];
@@ -3277,7 +3469,7 @@ const showToast = (() => {
     addXP('nav');
   };
 
-  // ===== TERMINAL =====
+  // TERMINAL
   const termHistory = [];
   let termHistIdx = -1;
   const termLog = (msg, cls) => {
@@ -3371,7 +3563,7 @@ const showToast = (() => {
     addXP('terminal');
   };
 
-  // ===== ACHIEVEMENTS =====
+  // ACHIEVEMENTS
   const ACHIEVEMENTS = [
     { k: 'control', name: 'Explorer', desc: 'Buka Control Room.' },
     { k: 'system', name: 'System Check', desc: 'Lihat System Info.' },
@@ -3414,7 +3606,7 @@ const showToast = (() => {
     `);
   };
 
-  // ===== PUZZLE =====
+  // PUZZLE
   let puzzleTimerInterval = null;
   let puzzleStart = 0;
   const puzzle = () => {
@@ -3490,7 +3682,7 @@ const showToast = (() => {
     }, 500);
   };
 
-  // ===== LNZ MODE =====
+  // LNZ MODE
   let trailActive = false;
   const lnzTrail = (e) => {
     const div = document.createElement('div');
@@ -3514,7 +3706,7 @@ const showToast = (() => {
     }
   };
 
-  // ===== ACCENT COLOR =====
+  // ACCENT COLOR
   const accentDetail = () => {
     const COLORS = [
       { n: 'Maroon', c: '#ff1616' }, { n: 'Navy', c: '#2563eb' }, { n: 'Gold', c: '#d4af37' },
@@ -3546,7 +3738,6 @@ const showToast = (() => {
     secretOutput.querySelector('#accentReset').onclick = () => { applyAccent('#ff1616'); accentDetail(); };
   };
 
-  // Restore saved accent
   const savedAccent = getS().accent;
   if (savedAccent && /^#[0-9a-f]{6}$/i.test(savedAccent)) {
     setTimeout(() => {
@@ -3560,7 +3751,7 @@ const showToast = (() => {
     }, 500);
   }
 
-  // ===== SOUND =====
+  // SOUND
   const soundDetail = () => {
     const on = has('ui_sound');
     const vol = getS().ui_vol ?? 50;
@@ -3607,7 +3798,7 @@ const showToast = (() => {
     if (btn) setSecretState(btn, has('ui_sound'));
   }, 100);
 
-  // ===== THEME DETAIL =====
+  // THEME DETAIL
   const themeDetail = () => {
     const active = document.querySelector('.theme-opt.active');
     const name = active ? active.querySelector('b').textContent : 'Red Maroon';
@@ -3654,7 +3845,7 @@ const showToast = (() => {
     addXP('theme');
   };
 
-  // ===== SESSION STATS =====
+  // SESSION STATS
   const sessionStart = Date.now();
   const visited = new Set(['home']);
   const heatData = getS().heatmap || new Array(24).fill(0);
@@ -3702,7 +3893,7 @@ const showToast = (() => {
     addXP('stats');
   };
 
-  // ===== ROUTER =====
+  // ROUTER
   secretPanel.querySelector('.secret-close').onclick = closeSecret;
   secretPanel.addEventListener('click', e => { if (e.target === secretPanel) closeSecret(); });
 
@@ -3745,7 +3936,7 @@ const showToast = (() => {
     else if (type === 'stats') sessionStats();
   }));
 
-  // ===== TRIGGERS =====
+  // TRIGGERS
   let logoClicks = 0, logoTimer;
   const logo = document.getElementById('lnzLogo');
   const secretBtn = document.getElementById('lnzSecretBtn');
@@ -3888,7 +4079,6 @@ const showToast = (() => {
     btn.addEventListener('click', () => {
       const lang = btn.dataset.lang;
       lnzApplyLang(lang);
-      try { localStorage.setItem('lnz_lang', lang); } catch (_) {}
       showToast('Bahasa: ' + lang.toUpperCase());
       lnzHaptic(8);
     });
@@ -3899,9 +4089,6 @@ const showToast = (() => {
    PRINT CV (UPGRADE #11)
    ============================================================ */
 (() => {
-  // Print CV via Ctrl+P atau command palette "Print CV"
-  // Layout udah otomatis lewat CSS @media print
-  // Fungsi tambahan: tambah class body sebelum print
   const beforePrint = () => { document.body.classList.add('printing-cv'); };
   const afterPrint = () => { document.body.classList.remove('printing-cv'); };
   if (window.matchMedia) {
