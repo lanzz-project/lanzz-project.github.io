@@ -1,0 +1,55 @@
+{
+  "name": "Lanzz Tools - 100+ Tools Online Gratis",
+  "short_name": "LanzzTools",
+  "description": "Kumpulan 100+ tools online gratis dalam satu aplikasi.",
+  "id": "/",
+  "start_url": "./?source=pwa",
+  "scope": "./",
+  "display": "standalone",
+  "display_override": ["standalone", "minimal-ui"],
+  "orientation": "portrait-primary",
+  "background_color": "#0E0709",
+  "theme_color": "#E50914",
+  "lang": "id",
+  "dir": "ltr",
+  "categories": ["utilities", "productivity", "tools"],
+  "prefer_related_applications": false,
+  "icons": [
+    {
+      "src": "/icon-tools/android-chrome-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/icon-tools/android-chrome-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/icon-tools/android-chrome-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    },
+    {
+      "src": "https://i.imgur.com/XnGYzKm.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "https://i.imgur.com/XnGYzKm.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Command Palette",
+      "short_name": "Cari",
+      "url": "./#cmd",
+      "icons": [{ "src": "/icon-tools/android-chrome-192x192.png", "sizes": "192x192" }]
+    }
+  ]
+}
