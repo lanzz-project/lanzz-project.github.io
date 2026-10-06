@@ -1,0 +1,70 @@
+{
+  "name": "Lanzz Services - Jasa Website, Game, APK Android & Desain Grafis",
+  "short_name": "Lanzz Services",
+  "description": "Solusi digital terbaik untuk personal dan bisnis. Website, Game, APK Android, dan Desain Grafis.",
+  "lang": "id",
+  "dir": "ltr",
+  "start_url": "./halaman.design.html",
+  "scope": "./",
+  "display": "standalone",
+  "display_override": ["standalone", "minimal-ui"],
+  "orientation": "portrait",
+  "background_color": "#080405",
+  "theme_color": "#080405",
+  "categories": ["business", "productivity", "developer"],
+  "icons": [
+    {
+      "src": "./icon-lnz/favicon-16x16.png",
+      "sizes": "16x16",
+      "type": "image/png"
+    },
+    {
+      "src": "./icon-lnz/favicon-32x32.png",
+      "sizes": "32x32",
+      "type": "image/png"
+    },
+    {
+      "src": "./icon-lnz/apple-touch-icon.png",
+      "sizes": "180x180",
+      "type": "image/png"
+    },
+    {
+      "src": "./icon-lnz/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "./icon-lnz/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "./icon-lnz/icon-maskable-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Layanan",
+      "short_name": "Layanan",
+      "url": "./halaman.design.html#services",
+      "icons": [{ "src": "./icon-lnz/icon-192.png", "sizes": "192x192" }]
+    },
+    {
+      "name": "Favorit",
+      "short_name": "Favorit",
+      "url": "./halaman.design.html#fav",
+      "icons": [{ "src": "./icon-lnz/icon-192.png", "sizes": "192x192" }]
+    },
+    {
+      "name": "Kontak",
+      "short_name": "Kontak",
+      "url": "./halaman.design.html#contact",
+      "icons": [{ "src": "./icon-lnz/icon-192.png", "sizes": "192x192" }]
+    }
+  ]
+}
