@@ -85,6 +85,18 @@ html{
   -webkit-text-size-adjust:100%;
   background:#090003;
   scroll-behavior:smooth;
+
+  /* FIX SCROLLBAR: cegah scroll horizontal + sembunyikan scrollbar */
+  overflow-x:hidden;
+  scrollbar-width:none;
+  -ms-overflow-style:none;
+}
+
+html::-webkit-scrollbar{
+  /* FIX SCROLLBAR */
+  display:none;
+  width:0;
+  height:0;
 }
 
 body{
@@ -106,6 +118,17 @@ body{
   overflow-x:hidden;
   -webkit-font-smoothing:antialiased;
   -moz-osx-font-smoothing:grayscale;
+
+  /* FIX SCROLLBAR */
+  scrollbar-width:none;
+  -ms-overflow-style:none;
+}
+
+body::-webkit-scrollbar{
+  /* FIX SCROLLBAR */
+  display:none;
+  width:0;
+  height:0;
 }
 
 body.no-scroll{overflow:hidden;}
@@ -159,6 +182,17 @@ a{color:inherit;text-decoration:none;}
 .app-main{
   min-height:100vh;
   padding-top:var(--safe-top);
+
+  /* FIX SCROLLBAR */
+  scrollbar-width:none;
+  -ms-overflow-style:none;
+}
+
+.app-main::-webkit-scrollbar{
+  /* FIX SCROLLBAR */
+  display:none;
+  width:0;
+  height:0;
 }
 
 .view{
@@ -167,6 +201,17 @@ a{color:inherit;text-decoration:none;}
   max-width:1080px;
   margin:0 auto;
   animation:viewIn .28s var(--ease);
+
+  /* FIX SCROLLBAR */
+  scrollbar-width:none;
+  -ms-overflow-style:none;
+}
+
+.view::-webkit-scrollbar{
+  /* FIX SCROLLBAR */
+  display:none;
+  width:0;
+  height:0;
 }
 
 .view.active{
@@ -409,7 +454,12 @@ a{color:inherit;text-decoration:none;}
   padding-left:16px;
   padding-right:16px;
 }
-.chips::-webkit-scrollbar{display:none;}
+.chips::-webkit-scrollbar{
+  /* FIX SCROLLBAR */
+  display:none;
+  width:0;
+  height:0;
+}
 
 .chip{
   flex:0 0 auto;
