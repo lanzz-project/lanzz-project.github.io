@@ -1671,7 +1671,7 @@ const lnzI18NMap = [
     id: '<i><svg viewBox="0 0 24 24"><path d="M12 2v4M12 18v4M4.9 4.9l2.8 2.8M16.3 16.3l2.8 2.8M2 12h4M18 12h4M4.9 19.1l2.8-2.8M16.3 7.7l2.8-2.8"/></svg></i><b>TERSEDIA</b> UNTUK PROJECT <em>ONLINE</em>',
     en: '<i><svg viewBox="0 0 24 24"><path d="M12 2v4M12 18v4M4.9 4.9l2.8 2.8M16.3 16.3l2.8 2.8M2 12h4M18 12h4M4.9 19.1l2.8-2.8M16.3 7.7l2.8-2.8"/></svg></i><b>AVAILABLE</b> FOR PROJECTS <em>ONLINE</em>'
   }, true],
-  ['#home .kicker', { id: 'Hello, <span>saya</span>', en: 'Hello, <span>I am</span>' }, true],
+  ['#home .kicker', { id: 'Hallo, <span>saya</span>', en: 'Hello, <span>I am</span>' }, true],
   ['#home .role', {
     id: 'Dari<span class="dot">Lebak</span>-<span class="dot">Banten</span>-<span class="dot">Indonesia</span>',
     en: 'From<span class="dot">Lebak</span>-<span class="dot">Banten</span>-<span class="dot">Indonesia</span>'
@@ -4108,7 +4108,7 @@ const showToast = (() => {
 })();
 
 /* ============================================================
-   SAFETY 
+   SAFETY
    ============================================================ */
 document.querySelectorAll('a[target="_blank"]').forEach(a => {
   if (!a.hasAttribute('rel')) a.setAttribute('rel', 'noopener noreferrer');
