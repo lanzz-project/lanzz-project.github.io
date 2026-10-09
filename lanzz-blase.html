@@ -478,9 +478,6 @@ body{background:var(--bg);-webkit-font-smoothing:antialiased;text-rendering:opti
       <button type="button" class="icon-btn" id="btnThemeHome" data-action="themeHome" aria-label="Theme">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="13.5" cy="6.5" r=".5" fill="currentColor"/><circle cx="17.5" cy="10.5" r=".5" fill="currentColor"/><circle cx="8.5" cy="7.5" r=".5" fill="currentColor"/><circle cx="6.5" cy="12.5" r=".5" fill="currentColor"/><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10c.926 0 1.648-.746 1.648-1.688 0-.437-.18-.835-.437-1.125-.29-.289-.438-.652-.438-1.125a1.64 1.64 0 0 1 1.668-1.668h1.996c3.051 0 5.555-2.503 5.555-5.554C21.965 6.012 17.461 2 12 2z"/></svg>
       </button>
-      <button type="button" class="icon-btn hidden" id="btnInstallHome" data-action="installHome" aria-label="Install">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12"/><path d="M7 10l5 5 5-5"/><path d="M5 21h14"/></svg>
-      </button>
     </div>
   </div>
 
@@ -870,7 +867,7 @@ const el={
   themeGrid:$('#themeGrid'),skinGrid:$('#skinGrid'),langGrid:$('#langGrid'),lbList:$('#lbList'),
   bestRow:$('#bestRow'),
   xpLvl:$('#xpLvl'),xpFill:$('#xpFill'),coinDisplay:$('#coinDisplay'),
-  dailyTag:$('#dailyTag'),missionDot:$('#missionDot'),btnInstallHome:$('#btnInstallHome')
+  dailyTag:$('#dailyTag'),missionDot:$('#missionDot')
 };
 
 function calcPlayerLvl(xp){let l=1;for(let i=0;i<XP_TABLE.length;i++){if(xp>=XP_TABLE[i])l=i+1;else break;}return l;}
@@ -1109,17 +1106,6 @@ function updateSoundIcon(){const on=$('#icSoundOn'),off=$('#icSoundOff');if(!on|
 function syncSwitch(id,key){const node=$(id);if(!node)return;node.classList.toggle('on',!!state.settings[key]);}
 function renderShop(){const sc=$('#shopCoin');if(sc)sc.textContent=state.coins.toLocaleString();const list=$('#shopList');if(!list)return;const items=[{k:'bomb',name:'Bomb 3x3',desc:'Hapus area 3x3',price:POWER_PRICES.bomb,cls:'bomb'},{k:'rainbow',name:'Rainbow',desc:'Hapus warna sama',price:POWER_PRICES.rainbow,cls:'rainbow'},{k:'line',name:'Line Clear',desc:'Hapus baris & kolom',price:POWER_PRICES.line,cls:'line'}];list.innerHTML=items.map(it=>'<div class="shop-row"><div class="sr-icon '+it.cls+'">'+(it.k==='bomb'?'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="11" cy="14" r="7"/><path d="M16 9l3-3"/></svg>':it.k==='rainbow'?'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M3 12a9 9 0 0 1 18 0"/><path d="M6 12a6 6 0 0 1 12 0"/><path d="M9 12a3 3 0 0 1 6 0"/></svg>':'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><line x1="4" y1="6" x2="20" y2="6"/><line x1="4" y1="12" x2="20" y2="12"/><line x1="4" y1="18" x2="20" y2="18"/></svg>')+'</div><div class="sr-txt"><div class="sr-name">'+it.name+'</div><div class="sr-desc">'+it.desc+'</div></div><button type="button" class="sr-buy" data-buy="'+it.k+'" '+(state.coins<it.price?'disabled':'')+'>'+it.price+'</button></div>').join('');}
 function checkDaily(){const today=new Date().toDateString();if(state.lastDaily===today)return;if(state.lastDaily){const last=new Date(state.lastDaily);const now=new Date();const diff=Math.floor((now-last)/(1000*60*60*24));state.streak=diff===1?state.streak+1:1;}else state.streak=1;const bonus=30+state.streak*10;$('#dailyCoin').textContent='+'+bonus;$('#dailySub').textContent='Hari '+state.streak+'!';openModal(el.dailyModal);}
-function setupPWA(){
-  window.addEventListener('beforeinstallprompt',(e)=>{
-    e.preventDefault();
-    state.installPrompt=e;
-    el.btnInstallHome.classList.remove('hidden');
-  });
-  window.addEventListener('appinstalled',()=>{
-    el.btnInstallHome.classList.add('hidden');
-    showToast('Lanzz Blase terinstall!');
-  });
-}
 
 function handleAction(action){
   SFX.init();SFX.resume();
@@ -1133,10 +1119,6 @@ function handleAction(action){
     case 'statsHome': SFX.play('tap'); renderStats(); openModal(el.statsModal); break;
     case 'about': SFX.play('tap'); closeModal(el.settingsModal); openModal(el.aboutModal); break;
     case 'closeAbout': SFX.play('tap'); closeModal(el.aboutModal); break;
-    case 'installHome':
-      if(state.installPrompt){state.installPrompt.prompt();state.installPrompt.userChoice.then(r=>{if(r.outcome==='accepted'){showToast('Terinstall!');el.btnInstallHome.classList.add('hidden');}state.installPrompt=null;});}
-      else showToast('Menu browser - Add to Home Screen',true);
-      break;
     case 'play':
       SFX.play('tap');
       if(state.mode==='daily'){startDailyChallenge();}
@@ -1352,7 +1334,6 @@ function boot(){
   $$('#soundPackTabs .tab').forEach(t=>t.classList.toggle('active',t.dataset.pack===SFX.pack));
   renderBests();updateXpUI();initMissions();
   setupDelegation();
-  setupPWA();
   $$('.modal-back').forEach(m=>{
     m.addEventListener('click',e=>{
       if(e.target===m&&!['pauseModal','overModal','levelModal','tutorModal','dailyModal','dailyChallengeModal'].includes(m.id)){
@@ -1475,6 +1456,5 @@ if ('serviceWorker' in navigator) {
   });
 }
 </script>
-
 </body>
 </html>
