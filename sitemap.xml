@@ -1,39 +1,57 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://lanzz-project.github.io/</loc>
-    <lastmod>2026-09-20</lastmod>
+    <loc>https://lanzz.my.id/</loc>
+    <lastmod>2026-10-17</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://lanzz-project.github.io/halaman.design.html</loc>
-    <lastmod>2026-09-25</lastmod>
+    <loc>https://lanzz.my.id/halaman.design.html</loc>
+    <lastmod>2026-10-17</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://lanzz-project.github.io/lanzz-play.html</loc>
-    <lastmod>2026-09-25</lastmod>
+    <loc>https://lanzz.my.id/lanzz-play.html</loc>
+    <lastmod>2026-10-17</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://lanzz-project.github.io/lanzz-io.html</loc>
-    <lastmod>2026-09-25</lastmod>
+    <loc>https://lanzz.my.id/lanzz-io.html</loc>
+    <lastmod>2026-10-17</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://lanzz-project.github.io/lanzz-blase.html</loc>
-    <lastmod>2026-09-25</lastmod>
+    <loc>https://lanzz.my.id/lanzz-blase.html</loc>
+    <lastmod>2026-10-17</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://lanzz-project.github.io/lanzz-bros.html</loc>
-    <lastmod>2026-09-25</lastmod>
+    <loc>https://lanzz.my.id/lanzz-bros.html</loc>
+    <lastmod>2026-10-17</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://lanzz-project.github.io/lanzz-space.html</loc>
-    <lastmod>2026-09-25</lastmod>
+    <loc>https://lanzz.my.id/lanzz-space.html</loc>
+    <lastmod>2026-10-17</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://lanzz-project.github.io/lanzz-tools.html</loc>
-    <lastmod>2026-09-25</lastmod>
+    <loc>https://lanzz.my.id/lanzz-tools.html</loc>
+    <lastmod>2026-10-17</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://lanzz-project.github.io/lanzz-informatika.html</loc>
-    <lastmod>2026-09-25</lastmod>
+    <loc>https://lanzz.my.id/lanzz-informatika.html</loc>
+    <lastmod>2026-10-17</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
   </url>
 </urlset>
