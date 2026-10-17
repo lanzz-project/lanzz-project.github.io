@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://lanzz-project.github.io/sitemap.xml
+Sitemap: https://lanzz.my.id/sitemap.xml
