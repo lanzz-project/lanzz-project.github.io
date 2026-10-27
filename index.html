@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, viewport-fit=cover">
 <meta name="google-site-verification" content="j5JDNbcCJm0KHMQt2G6lReMwffMrg4M35eaBnAlSF7M">
-<meta name="description" content="Lanzz Project - Portfolio interaktif dan aplikasi web Erlan Maulana.">
+<meta name="description" content="Lanzz Project - Personal Web App interaktif dan aplikasi web Erlan Maulana.">
 <meta name="author" content="Erlan Maulana">
 <meta name="theme-color" content="#060707">
 <meta name="color-scheme" content="dark">
@@ -16,7 +16,7 @@
 <meta name="format-detection" content="telephone=no">
 <meta name="msapplication-TileColor" content="#060707">
 <meta name="robots" content="index,follow,max-image-preview:large">
-<link rel="canonical" href="https://lanzz-project.github.io/">
+<link rel="canonical" href="https://lanzz.my.id/">
 <link rel="icon" type="image/x-icon" href="/icon-lnz/favicon.ico">
 <link rel="icon" type="image/png" sizes="32x32" href="/icon-lnz/favicon-32x32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="/icon-lnz/favicon-16x16.png">
@@ -24,22 +24,22 @@
 <link rel="shortcut icon" type="image/x-icon" href="/icon-lnz/favicon.ico">
 <link rel="apple-touch-icon" sizes="180x180" href="/icon-lnz/apple-touch-icon.png">
 <link rel="mask-icon" href="/icon-lnz/favicon.ico" color="#ff1616">
-<link id="lnzManifest" rel="manifest">
+<link rel="manifest" href="manifest.json">
 <meta property="og:type" content="website">
-<meta property="og:url" content="https://lanzz-project.github.io/">
-<meta property="og:title" content="Lanzz Project - Portfolio Interaktif Erlan Maulana">
-<meta property="og:description" content="Portfolio interaktif dan web platform berisi profile, project website, games library, arcade, simulator luar angkasa, AI Assistant, tools, dan berbagai project digital.">
-<meta property="og:image" content="https://lanzz-project.github.io/icon-lnz/android-chrome-512x512.png">
+<meta property="og:url" content="https://lanzz.my.id/">
+<meta property="og:title" content="Lanzz Project - Personal Web App Erlan Maulana">
+<meta property="og:description" content="Personal Web App dan web platform berisi profile, project website, games library, arcade, simulator luar angkasa, AI Assistant, tools, dan berbagai project digital.">
+<meta property="og:image" content="https://lanzz.my.id/icon-lnz/android-chrome-512x512.png">
 <meta property="og:image:alt" content="Lanzz Project">
 <meta property="og:image:type" content="image/png">
 <meta property="og:image:width" content="512">
 <meta property="og:image:height" content="512">
 <meta property="og:site_name" content="Lanzz Project">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Lanzz Project - Portfolio Interaktif Erlan Maulana">
+<meta name="twitter:title" content="Lanzz Project - Personal Web App Erlan Maulana">
 <meta name="twitter:description" content="Jelajahi profile, project website, games library, arcade, simulator luar angkasa, AI Assistant, tools, dan berbagai project digital.">
-<meta name="twitter:image" content="https://lanzz-project.github.io/icon-lnz/android-chrome-512x512.png">
-<title>Lanzz Project - Portfolio Interaktif Erlan Maulana</title>
+<meta name="twitter:image" content="https://lanzz.my.id/icon-lnz/android-chrome-512x512.png">
+<title>Lanzz Project - Personal Web App Erlan Maulana</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;700&display=swap">
@@ -51,7 +51,7 @@
   "@type": "Person",
   "name": "Erlan Maulana",
   "alternateName": "Lanzz Project",
-  "url": "https://lanzz-project.github.io/",
+  "url": "https://lanzz.my.id/",
   "jobTitle": "Web Developer & Creator",
   "email": "id.erlan.maulana@gmail.com",
   "sameAs": [
@@ -268,6 +268,43 @@ h2{font-size:clamp(22px,2.6vw,30px);letter-spacing:-.8px;line-height:1.15;font-w
 .lnz-tl-tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}
 .lnz-tl-tag{padding:3px 9px;border:1px solid rgba(255,255,255,.09);border-radius:99px;font-size:8.5px;color:#999;font-weight:600}
 
+/* ---------- MOMENTS GALLERY ---------- */
+.moments-carousel{position:relative;width:100%;max-width:680px;margin:0 auto;height:360px;display:flex;align-items:center;justify-content:center;perspective:1000px;touch-action:pan-y;overflow:hidden;padding:10px 0}
+.moment-item{position:absolute;width:280px;height:280px;border-radius:20px;overflow:hidden;transition:all .5s cubic-bezier(.2,.8,.2,1);cursor:pointer;box-shadow:0 10px 30px rgba(0,0,0,.5);border:2px solid transparent;user-select:none}
+.moment-item img{width:100%;height:100%;object-fit:cover;pointer-events:none;transition:transform .5s ease}
+.moment-item.pos-0{transform:translateX(0) scale(1.15);z-index:3;border-color:var(--red);box-shadow:0 0 40px var(--glow),0 20px 40px rgba(0,0,0,.8);cursor:grab}
+.moment-item.pos-0 img{transform:scale(1.05)}
+.moment-item.pos-1{transform:translateX(85%) scale(.85);z-index:2;opacity:.5;filter:blur(3px) grayscale(40%)}
+.moment-item.pos-2{transform:translateX(-85%) scale(.85);z-index:2;opacity:.5;filter:blur(3px) grayscale(40%)}
+
+.moments-nav{position:absolute;top:50%;transform:translateY(-50%);width:44px;height:44px;border-radius:50%;background:rgba(11,13,13,.8);border:1px solid var(--line);color:#fff;display:grid;place-items:center;cursor:pointer;z-index:10;transition:.25s;backdrop-filter:blur(10px);opacity:0}
+.moments-carousel:hover .moments-nav{opacity:1}
+.moments-nav:hover{background:var(--red);border-color:var(--red);box-shadow:0 0 20px var(--glow)}
+.moments-nav.prev{left:10px}
+.moments-nav.next{right:10px}
+.moments-nav svg{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+
+.moments-dots{position:absolute;bottom:0px;display:flex;gap:8px;z-index:10}
+.moment-dot{width:8px;height:8px;border-radius:50%;background:var(--dim);border:0;cursor:pointer;transition:.3s;padding:0}
+.moment-dot.active{width:24px;border-radius:99px;background:var(--red);box-shadow:0 0 10px var(--glow)}
+
+/* Lightbox */
+.lnz-lightbox{position:fixed;inset:0;z-index:8500;background:rgba(0,0,0,.92);backdrop-filter:blur(10px);display:flex;align-items:center;justify-content:center;opacity:0;visibility:hidden;transition:.3s}
+.lnz-lightbox.open{opacity:1;visibility:visible}
+.lnz-lightbox img{max-width:90vw;max-height:90vh;border-radius:12px;box-shadow:0 30px 80px rgba(0,0,0,.8);transform:scale(.95);transition:.3s;object-fit:contain}
+.lnz-lightbox.open img{transform:scale(1)}
+.lnz-lightbox-close{position:absolute;top:20px;right:20px;width:44px;height:44px;border-radius:50%;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);color:#fff;display:grid;place-items:center;cursor:pointer;transition:.2s}
+.lnz-lightbox-close:hover{background:var(--red);border-color:var(--red);transform:rotate(90deg)}
+.lnz-lightbox-close svg{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round}
+
+@media(max-width:600px){
+  .moment-item{width:240px;height:240px}
+  .moment-item.pos-1{transform:translateX(80%) scale(.8)}
+  .moment-item.pos-2{transform:translateX(-80%) scale(.8)}
+  .moments-nav{display:none}
+  .moments-dots{bottom:-10px}
+}
+
 /* ---------- FAQ ---------- */
 .faq{max-width:800px;display:grid;gap:10px}
 .faq-item{border:1px solid var(--line);border-radius:var(--r);background:linear-gradient(150deg,rgba(19,22,22,.78),rgba(8,10,10,.92));overflow:hidden;transition:.3s}
@@ -292,7 +329,6 @@ h2{font-size:clamp(22px,2.6vw,30px);letter-spacing:-.8px;line-height:1.15;font-w
 .form-field textarea{min-height:120px}
 .form-field input:focus,.form-field textarea:focus{border-color:var(--red);box-shadow:0 0 0 3px var(--soft)}
 .form-field input::placeholder,.form-field textarea::placeholder{color:#494f4f}
-/* UPGRADE: subject preset chips */
 .subject-chips{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:6px}
 .subject-chip{padding:7px 12px;border:1px solid rgba(255,255,255,.1);border-radius:99px;background:rgba(255,255,255,.02);color:#b8bdbd;font:inherit;font-size:10px;font-weight:700;letter-spacing:.3px;cursor:pointer;transition:.22s}
 .subject-chip:hover{border-color:var(--red);color:#fff;background:var(--soft)}
@@ -357,7 +393,7 @@ h2{font-size:clamp(22px,2.6vw,30px);letter-spacing:-.8px;line-height:1.15;font-w
 .drawer-install svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
 .drawer-install small{display:block;font-size:9px;opacity:.8;font-weight:600;margin-top:2px}
 
-/* ---------- SHARE MENU (UPGRADE #6) ---------- */
+/* ---------- SHARE MENU ---------- */
 .share-menu{position:fixed;z-index:1300;right:16px;bottom:calc(var(--tab-h) + 22px + var(--sab));border:1px solid rgba(255,255,255,.1);border-radius:20px;background:rgba(11,13,13,.98);backdrop-filter:blur(22px);-webkit-backdrop-filter:blur(22px);box-shadow:0 28px 80px rgba(0,0,0,.7);opacity:0;visibility:hidden;transform:translateY(14px) scale(.97);transition:opacity .28s cubic-bezier(.2,.8,.2,1),visibility .28s,transform .28s cubic-bezier(.2,.8,.2,1);overflow:hidden;width:min(340px,calc(100vw - 32px))}
 .share-menu.show{opacity:1;visibility:visible;transform:none}
 .share-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;padding:15px}
@@ -679,33 +715,6 @@ body.focus-zen .appbar,body.focus-zen .tabbar,body.focus-zen footer{opacity:0;vi
 .performance-mode *{transition-duration:.15s!important}
 .focus-mode .scroll-progress{opacity:.65}
 
-/* ---------- PREVIEW (IFRAME) ---------- */
-.lnz-preview{position:fixed;inset:0;z-index:8000;display:flex;align-items:center;justify-content:center;padding:20px;opacity:0;visibility:hidden;pointer-events:none;transition:opacity .28s ease,visibility .28s ease}
-.lnz-preview.open{opacity:1;visibility:visible;pointer-events:auto}
-.lnz-preview-backdrop{position:absolute;inset:0;background:rgba(0,0,0,.78);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px)}
-.lnz-preview-shell{position:relative;width:min(1200px,100%);height:min(820px,calc(100vh - 40px));border:1px solid rgba(255,255,255,.1);border-radius:14px;background:#0a0c0c;box-shadow:0 30px 90px rgba(0,0,0,.7),0 0 40px var(--soft);display:flex;flex-direction:column;overflow:hidden;transform:translateY(12px) scale(.985);transition:transform .3s cubic-bezier(.2,.8,.2,1)}
-.lnz-preview.open .lnz-preview-shell{transform:none}
-.lnz-preview-bar{display:flex;align-items:center;gap:12px;padding:10px 12px;border-bottom:1px solid rgba(255,255,255,.06);background:linear-gradient(135deg,var(--soft),transparent);flex:0 0 auto}
-.lnz-preview-info{display:flex;align-items:center;gap:9px;min-width:0;flex:1}
-.lnz-preview-dot{width:8px;height:8px;border-radius:50%;background:var(--red);box-shadow:0 0 10px var(--red);flex:0 0 8px;animation:clockPulse 1.6s ease-in-out infinite}
-.lnz-preview-title{font-size:11px;font-weight:800;letter-spacing:1px;color:#ddd;text-transform:uppercase;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.lnz-preview-actions{display:flex;gap:6px;flex:0 0 auto}
-.lnz-preview-btn{width:34px;height:34px;border-radius:9px;border:1px solid rgba(255,255,255,.1);background:rgba(255,255,255,.03);color:#999;display:grid;place-items:center;cursor:pointer;transition:.2s}
-.lnz-preview-btn:hover{color:#fff;border-color:var(--red);background:var(--soft)}
-.lnz-preview-btn.close:hover{background:var(--red);color:#fff;border-color:var(--red)}
-.lnz-preview-btn svg{width:15px;height:15px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
-.lnz-preview-frame-wrap{position:relative;flex:1;background:#060707;overflow:hidden}
-.lnz-preview-frame{width:100%;height:100%;border:0;display:block;background:#060707}
-.lnz-preview-loader{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;background:#060707;z-index:2;transition:opacity .35s ease,visibility .35s ease}
-.lnz-preview-loader.hide{opacity:0;visibility:hidden}
-.lnz-preview-spinner{width:42px;height:42px;border-radius:50%;border:2px solid rgba(255,255,255,.08);border-top-color:var(--red);border-right-color:var(--red);animation:previewSpin .8s linear infinite;box-shadow:0 0 22px var(--glow)}
-@keyframes previewSpin{to{transform:rotate(360deg)}}
-.lnz-preview-loading-text{font-size:10px;letter-spacing:1.5px;color:#666;text-transform:uppercase;font-weight:700}
-.lnz-preview-progress{width:170px;height:2px;background:#141616;border-radius:99px;overflow:hidden;position:relative}
-.lnz-preview-progress i{display:block;height:100%;width:40%;background:linear-gradient(90deg,transparent,var(--red),transparent);border-radius:99px;animation:previewSlide 1.3s ease-in-out infinite}
-@keyframes previewSlide{0%{transform:translateX(-100%)}100%{transform:translateX(350%)}}
-body.lnz-preview-open{overflow:hidden}
-
 /* ---------- THEMES ---------- */
 body.theme-maroon{--red:#ff1616;--red2:#ff3b3b;--glow:rgba(255,22,22,.28);--soft:rgba(255,22,22,.08);background:radial-gradient(circle at 80% 10%,rgba(255,20,20,.07),transparent 30%),radial-gradient(circle at 10% 55%,rgba(255,20,20,.04),transparent 28%),#060707}
 body.theme-navy{--red:#2563eb;--red2:#3b82f6;--glow:rgba(37,99,235,.32);--soft:rgba(37,99,235,.1);background:radial-gradient(circle at 80% 10%,rgba(37,99,235,.1),transparent 30%),radial-gradient(circle at 10% 55%,rgba(37,99,235,.05),transparent 28%),#050a1c}
@@ -722,11 +731,11 @@ body.theme-rose{--red:#ec4899;--red2:#f472b6;--glow:rgba(236,72,153,.32);--soft:
 body.theme-sunset{--red:#f97316;--red2:#fb923c;--glow:rgba(249,115,22,.32);--soft:rgba(249,115,22,.1);background:radial-gradient(circle at 80% 10%,rgba(249,115,22,.1),transparent 30%),radial-gradient(circle at 10% 55%,rgba(249,115,22,.05),transparent 28%),#0f0603}
 body.theme-aurora{--red:#00ffaa;--red2:#c084fc;--glow:rgba(0,255,170,.32);--soft:rgba(0,255,170,.1);background:radial-gradient(circle at 20% 10%,rgba(0,255,170,.12),transparent 35%),radial-gradient(circle at 80% 60%,rgba(168,85,247,.12),transparent 35%),#030a0a}
 
-/* ---------- PRINT CV (UPGRADE #11) ---------- */
+/* ---------- PRINT CV ---------- */
 .cv-print{display:none}
 @media print{
   @page{margin:14mm 12mm;size:A4}
-  .appbar,.tabbar,.drawer,.drawer-backdrop,.sheet,.share-menu,.toast,.lnz-orb,.lnz-cursor-glow,#lnzParticles,#lnzMatrix,.scroll-progress,.secret-panel-backdrop,.lnz-preview,.lnz-modal,.lnz-detail,.pomo-pill,.fps-pill,.skip-link,.chat-fab,footer,.hero-actions,.socials,.profile-wrap,.stats{display:none!important}
+  .appbar,.tabbar,.drawer,.drawer-backdrop,.sheet,.share-menu,.toast,.lnz-orb,.lnz-cursor-glow,#lnzParticles,#lnzMatrix,.scroll-progress,.secret-panel-backdrop,.lnz-modal,.lnz-detail,.pomo-pill,.fps-pill,.skip-link,.chat-fab,footer,.hero-actions,.socials,.profile-wrap,.stats{display:none!important}
   body{background:#fff!important;color:#000!important;padding:0!important;font-family:Inter,Arial,sans-serif!important}
   body:before,body:after{display:none!important}
   .reveal{opacity:1!important;transform:none!important}
@@ -762,12 +771,6 @@ body.theme-aurora{--red:#00ffaa;--red2:#c084fc;--glow:rgba(0,255,170,.32);--soft
   .section-head p{margin-top:10px}
   #lnzParticles,#lnzMatrix,.lnz-orb,.lnz-cursor-glow{display:none!important}
   .stat:after,.skill-level i:after,.live-clock:before{animation:none!important}
-}
-@media(max-width:800px){
-  .lnz-preview{padding:0;align-items:stretch}
-  .lnz-preview-shell{width:100%;height:100%;border-radius:0;border-left:0;border-right:0;transform:translateY(20px)}
-  .lnz-preview-bar{padding:8px 10px}
-  .lnz-preview-btn{width:32px;height:32px}
 }
 @media(max-width:600px){
   .live-clock{display:none}
@@ -824,7 +827,7 @@ body.theme-aurora{--red:#00ffaa;--red2:#c084fc;--glow:rgba(0,255,170,.32);--soft
       <div class="brand-mark"><img src="https://i.imgur.com/8Yhb2o0.png" alt="Lanzz"></div>
       <div class="brand-txt">
         <b>R - <span>Lanzz</span></b>
-        <small>Portfolio App</small>
+        <small>Personal Web App</small>
       </div>
     </div>
     <div class="appbar-spacer"></div>
@@ -836,7 +839,6 @@ body.theme-aurora{--red:#00ffaa;--red2:#c084fc;--glow:rgba(0,255,170,.32);--soft
       </div>
     </div>
     <div class="appbar-actions">
-      <!-- UPGRADE: Lang toggle pill (Opsi C) -->
       <div class="lang-toggle" role="group" aria-label="Pilih bahasa">
         <button class="lang-opt active" data-lang="id" type="button" aria-label="Bahasa Indonesia">ID</button>
         <button class="lang-opt" data-lang="en" type="button" aria-label="English">EN</button>
@@ -864,7 +866,7 @@ body.theme-aurora{--red:#00ffaa;--red2:#c084fc;--glow:rgba(0,255,170,.32);--soft
     <div class="brand-mark"><img src="https://i.imgur.com/8Yhb2o0.png" alt="Lanzz"></div>
     <div class="drawer-head-txt">
       <b>R - <span>Lanzz</span></b>
-      <small>Portfolio App</small>
+      <small>Personal Web App</small>
     </div>
     <button class="drawer-close" id="lnzDrawerClose" type="button" aria-label="Tutup menu">
       <svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg>
@@ -880,6 +882,7 @@ body.theme-aurora{--red:#00ffaa;--red2:#c084fc;--glow:rgba(0,255,170,.32);--soft
       <div class="drawer-group-title">Jelajahi</div>
       <button class="drawer-item" data-goto="home" type="button"><svg viewBox="0 0 24 24"><path d="m3 11 9-8 9 8v9a2 2 0 0 1-2 2h-4v-7h-6v7H5a2 2 0 0 1-2-2Z"/></svg>Home</button>
       <button class="drawer-item" data-goto="services" type="button"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1.6"/><rect x="14" y="3" width="7" height="7" rx="1.6"/><rect x="3" y="14" width="7" height="7" rx="1.6"/><rect x="14" y="14" width="7" height="7" rx="1.6"/></svg>Services</button>
+      <button class="drawer-item" data-goto="moments" type="button"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>Moments</button>
       <button class="drawer-item" data-goto="skills" type="button"><svg viewBox="0 0 24 24"><path d="M5 19V9M12 19V5M19 19v-7"/><path d="M3 19h18"/></svg>Skills</button>
       <button class="drawer-item" data-goto="experience" type="button"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M8 5V3M16 5V3M3 11h18"/></svg>Experience</button>
       <button class="drawer-item" data-goto="about" type="button"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="3.4"/><path d="M5 21a7 7 0 0 1 14 0"/></svg>About</button>
@@ -941,7 +944,7 @@ body.theme-aurora{--red:#00ffaa;--red2:#c084fc;--glow:rgba(0,255,170,.32);--soft
 </nav>
 
 <!-- SEARCH / COMMAND -->
-<div class="lnz-cmdk" id="lnzCmdk" role="dialog" aria-label="Pencarian dan perintah" style="position:fixed;inset:0;z-index:4000;background:rgba(0,0,0,.75);display:none;align-items:flex-start;justify-content:center;padding:12vh 16px 20px;backdrop-filter:blur(8px)">
+<div class="lnz-cmdk" id="lnzCmdk" role="dialog" aria-modal="true" aria-hidden="true" aria-label="Pencarian dan perintah" style="position:fixed;inset:0;z-index:4000;background:rgba(0,0,0,.75);display:none;align-items:flex-start;justify-content:center;padding:12vh 16px 20px;backdrop-filter:blur(8px)">
   <div class="lnz-cmdk-box" style="width:min(600px,100%);border:1px solid var(--red);border-radius:20px;background:#0b0d0d;box-shadow:0 30px 80px rgba(0,0,0,.7);overflow:hidden">
     <div style="display:flex;align-items:center;gap:10px;padding:14px 16px;border-bottom:1px solid #252929">
       <svg viewBox="0 0 24 24" style="width:17px;height:17px;fill:none;stroke:#666;stroke-width:2;stroke-linecap:round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
@@ -988,12 +991,12 @@ body.theme-aurora{--red:#00ffaa;--red2:#c084fc;--glow:rgba(0,255,170,.32);--soft
   </div>
 </div>
 
-<!-- SHARE MENU (UPGRADE #6) -->
-<div class="share-menu" id="lnzShareMenu" role="dialog" aria-label="Bagikan portfolio">
+<!-- SHARE MENU -->
+<div class="share-menu" id="lnzShareMenu" role="dialog" aria-label="Bagikan personal web app">
   <div class="pop-head">
     <span class="pop-title">
       <svg viewBox="0 0 24 24"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="m8.6 13.5 6.8 4M15.4 6.5l-6.8 4"/></svg>
-      Bagikan <b>Portfolio</b>
+      Bagikan <b>Web App</b>
     </span>
     <button class="pop-close" type="button" aria-label="Tutup" id="lnzShareClose"><svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
   </div>
@@ -1039,7 +1042,7 @@ body.theme-aurora{--red:#00ffaa;--red2:#c084fc;--glow:rgba(0,255,170,.32);--soft
 </div>
 
 <!-- SPA DETAIL PAGE -->
-<div class="lnz-detail" id="lnzDetail" role="dialog" aria-modal="true" aria-label="Detail Project">
+<div class="lnz-detail" id="lnzDetail" role="dialog" aria-modal="true" aria-hidden="true" aria-label="Detail Project">
   <div class="lnz-detail-bar">
     <button class="lnz-detail-back" id="lnzDetailBack" aria-label="Kembali">
       <svg viewBox="0 0 24 24"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
@@ -1225,7 +1228,6 @@ body.theme-aurora{--red:#00ffaa;--red2:#c084fc;--glow:rgba(0,255,170,.32);--soft
   </div>
 </section>
 
-<!-- SECTION AI: CARD TETAP ADA (cuma FAB chat yang dihapus) -->
 <section id="ai">
   <div class="container">
     <div class="section-head reveal">
@@ -1286,6 +1288,44 @@ body.theme-aurora{--red:#00ffaa;--red2:#c084fc;--glow:rgba(0,255,170,.32);--soft
         <h3>Study Coding</h3>
         <p>Pelajari struktur HTML, styling dengan CSS dan logika interaktif dengan JavaScript untuk membangun website modern di Lanzz Informatika.</p>
         <button class="more" type="button" data-open-project="informatika">Lihat Detail <span>→</span></button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="moments">
+  <div class="container">
+    <div class="section-head reveal">
+      <div>
+        <div class="eyebrow">Gallery</div>
+        <h2>Lanzz <span class="accent">Moments</span></h2>
+        <span class="lnz-section-tag"><i></i> SNAPSHOTS</span>
+      </div>
+      <p>A little glimpse into my world. Same person, different angles.</p>
+    </div>
+
+    <div class="moments-carousel reveal" id="momentsCarousel">
+      <div class="moment-item active" data-index="0">
+        <img src="https://i.imgur.com/Vuohoda.jpg" alt="Moment 1" loading="lazy">
+      </div>
+      <div class="moment-item" data-index="1">
+        <img src="https://i.imgur.com/xfjFR9C.jpg" alt="Moment 2" loading="lazy">
+      </div>
+      <div class="moment-item" data-index="2">
+        <img src="https://i.imgur.com/entCAlq.jpg" alt="Moment 3" loading="lazy">
+      </div>
+
+      <button class="moments-nav prev" id="momentsPrev" aria-label="Previous">
+        <svg viewBox="0 0 24 24"><path d="M15 18l-6-6 6-6"/></svg>
+      </button>
+      <button class="moments-nav next" id="momentsNext" aria-label="Next">
+        <svg viewBox="0 0 24 24"><path d="M9 18l6-6-6-6"/></svg>
+      </button>
+
+      <div class="moments-dots" id="momentsDots">
+        <button class="moment-dot active" aria-label="Slide 1"></button>
+        <button class="moment-dot" aria-label="Slide 2"></button>
+        <button class="moment-dot" aria-label="Slide 3"></button>
       </div>
     </div>
   </div>
@@ -1383,7 +1423,6 @@ body.theme-aurora{--red:#00ffaa;--red2:#c084fc;--glow:rgba(0,255,170,.32);--soft
         </div>
         <div class="form-field">
           <label for="cfSubject">Subjek</label>
-          <!-- UPGRADE #8: subject chips -->
           <div class="subject-chips" role="group" aria-label="Pilih topik cepat">
             <button class="subject-chip" type="button" data-subject="Website">Website</button>
             <button class="subject-chip" type="button" data-subject="App">App</button>
@@ -1415,13 +1454,22 @@ body.theme-aurora{--red:#00ffaa;--red2:#c084fc;--glow:rgba(0,255,170,.32);--soft
     </div>
   </div>
 </section>
+
 </main>
 
-<!-- UPGRADE: SEO noscript -->
+<!-- Lightbox Galeri -->
+<div class="lnz-lightbox" id="lnzLightbox">
+  <button class="lnz-lightbox-close" id="lnzLightboxClose" aria-label="Tutup foto">
+    <svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg>
+  </button>
+  <img id="lnzLightboxImg" src="" alt="Fullscreen Photo">
+</div>
+
+<!-- SEO noscript -->
 <noscript>
 <div style="padding:40px 20px;max-width:900px;margin:0 auto;background:#0a0c0c;color:#eee;font-family:Inter,sans-serif">
-<h1 style="color:#ff1616;margin-bottom:16px">Lanzz Project - Portfolio Erlan Maulana</h1>
-<p style="margin-bottom:12px;line-height:1.7">Portfolio interaktif Erlan Maulana (Lanzz Project), Web &amp; App Developer dari Lebak - Banten - Indonesia. Menyediakan layanan website development, APK, landing page, UI/UX design, AI Assistant, tools digital, dan berbagai project digital lainnya.</p>
+<h1 style="color:#ff1616;margin-bottom:16px">Lanzz Project - Personal Web App Erlan Maulana</h1>
+<p style="margin-bottom:12px;line-height:1.7">Personal Web App Erlan Maulana (Lanzz Project), Web &amp; App Developer dari Lebak - Banten - Indonesia. Menyediakan layanan website development, APK, landing page, UI/UX design, AI Assistant, tools digital, dan berbagai project digital lainnya.</p>
 <h2 style="color:#ff1616;font-size:18px;margin:20px 0 10px">Project Tersedia:</h2>
 <ul style="line-height:1.9;padding-left:20px">
 <li><strong>Website Development</strong> - Custom fitur, database, landing page, dashboard</li>
@@ -1444,7 +1492,7 @@ body.theme-aurora{--red:#00ffaa;--red2:#c084fc;--glow:rgba(0,255,170,.32);--soft
       <div class="footer-brand">
         <div class="brand" style="cursor:default">
           <div class="brand-mark"><img src="https://i.imgur.com/8Yhb2o0.png" alt="Lanzz"></div>
-          <div class="brand-txt"><b>R - <span>Lanzz</span></b><small>Portfolio App</small></div>
+          <div class="brand-txt"><b>R - <span>Lanzz</span></b><small>Personal Web App</small></div>
         </div>
         <p>Developer, Modder &amp; Creator - membangun produk digital modern yang fungsional, cepat, dan enak dipakai.</p>
         <div class="footer-status" style="margin-top:12px"><i></i><span style="color:#7dff9c;font-size:10px;font-weight:700;letter-spacing:.4px">Available for projects</span></div>
@@ -1457,43 +1505,14 @@ body.theme-aurora{--red:#00ffaa;--red2:#c084fc;--glow:rgba(0,255,170,.32);--soft
   </div>
 </footer>
 
-<!-- PREVIEW IFRAME -->
-<div class="lnz-preview" id="lnzPreview" role="dialog" aria-modal="true" aria-label="Preview">
-  <div class="lnz-preview-backdrop" data-preview-close></div>
-  <div class="lnz-preview-shell">
-    <div class="lnz-preview-bar">
-      <div class="lnz-preview-info">
-        <span class="lnz-preview-dot"></span>
-        <span class="lnz-preview-title" id="lnzPreviewTitle">Preview</span>
-      </div>
-      <div class="lnz-preview-actions">
-        <a class="lnz-preview-btn" id="lnzPreviewExternal" href="#" target="_blank" rel="noopener noreferrer" aria-label="Buka di tab baru" title="Buka di tab baru">
-          <svg viewBox="0 0 24 24"><path d="M15 3h6v6M10 14 21 3M21 14v5a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5"/></svg>
-        </a>
-        <button class="lnz-preview-btn close" id="lnzPreviewClose" type="button" aria-label="Tutup" title="Tutup (ESC)">
-          <svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg>
-        </button>
-      </div>
-    </div>
-    <div class="lnz-preview-frame-wrap">
-      <div class="lnz-preview-loader" id="lnzPreviewLoader">
-        <div class="lnz-preview-spinner"></div>
-        <span class="lnz-preview-loading-text">Memuat halaman...</span>
-        <div class="lnz-preview-progress"><i></i></div>
-      </div>
-      <iframe class="lnz-preview-frame" id="lnzPreviewFrame" title="Preview" referrerpolicy="no-referrer-when-downgrade" allow="clipboard-write; fullscreen"></iframe>
-    </div>
-  </div>
-</div>
-
-<!-- UPGRADE #11: PRINT CV (hidden, muncul cuma saat print) -->
+<!-- PRINT CV -->
 <div class="cv-print" aria-hidden="true">
   <h1>ERLAN MAULANA <span>— Lanzz</span></h1>
   <p class="cv-subtitle">Web &amp; App Developer · Modder · Creator</p>
   <div class="cv-contact">
     <div><b>Lokasi:</b> Lebak, Banten, Indonesia</div>
     <div><b>Email:</b> id.erlan.maulana@gmail.com · lanzz.project.id@gmail.com</div>
-    <div><b>Website:</b> lanzz-project.github.io</div>
+    <div><b>Website:</b> lanzz.my.id</div>
     <div><b>Social:</b> Instagram @lanzz.offcl · TikTok @lanzz.offcl</div>
   </div>
 
@@ -1561,78 +1580,17 @@ body.theme-aurora{--red:#00ffaa;--red2:#c084fc;--glow:rgba(0,255,170,.32);--soft
     <li>AI Assistant Integration</li>
   </ul>
 
-  <div class="cv-footer">© Lanzz Project · Erlan Maulana · Dihasilkan otomatis dari lanzz-project.github.io</div>
+  <div class="cv-footer">© Lanzz Project · Erlan Maulana · Dihasilkan otomatis dari lanzz.my.id</div>
 </div>
 <script>
 "use strict";
 
 /* ============================================================
-   PWA + SERVICE WORKER (inline)
-   ============================================================ */
-(() => {
-  try {
-    const manifest = {
-      name: "Lanzz Project - Portfolio Interaktif Erlan Maulana",
-      short_name: "Lanzz",
-      description: "Portfolio interaktif Erlan Maulana.",
-      start_url: "./",
-      scope: "./",
-      display: "standalone",
-      display_override: ["standalone", "minimal-ui"],
-      orientation: "any",
-      background_color: "#060707",
-      theme_color: "#060707",
-      lang: "id-ID",
-      dir: "ltr",
-      categories: ["portfolio", "developer", "entertainment"],
-      icons: [
-        { src: "/icon-lnz/android-chrome-192x192.png", sizes: "192x192", type: "image/png", purpose: "any" },
-        { src: "/icon-lnz/android-chrome-512x512.png", sizes: "512x512", type: "image/png", purpose: "any" },
-        { src: "/icon-lnz/apple-touch-icon.png", sizes: "180x180", type: "image/png", purpose: "maskable" }
-      ]
-    };
-    const blob = new Blob([JSON.stringify(manifest)], { type: "application/manifest+json" });
-    const url = URL.createObjectURL(blob);
-    const link = document.getElementById("lnzManifest");
-    if (link) link.href = url;
-  } catch (_) {}
-
-  if ("serviceWorker" in navigator && location.protocol === "https:") {
-    try {
-      const swCode = `
-        const CACHE = 'lnz-v1';
-        self.addEventListener('install', e => {
-          e.waitUntil(caches.open(CACHE).then(c => c.addAll(['./'])));
-          self.skipWaiting();
-        });
-        self.addEventListener('activate', e => { e.waitUntil(self.clients.claim()); });
-        self.addEventListener('fetch', e => {
-          if (e.request.method !== 'GET') return;
-          e.respondWith(
-            caches.match(e.request).then(r => r || fetch(e.request).then(res => {
-              if (res.ok && new URL(e.request.url).origin === location.origin) {
-                const clone = res.clone();
-                caches.open(CACHE).then(c => c.put(e.request, clone));
-              }
-              return res;
-            }).catch(() => caches.match('./')))
-          );
-        });
-      `;
-      const swBlob = new Blob([swCode], { type: 'application/javascript' });
-      const swUrl = URL.createObjectURL(swBlob);
-      navigator.serviceWorker.register(swUrl, { scope: './' }).catch(() => {});
-    } catch (_) {}
-  }
-})();
-
-/* ============================================================
-   I18N v3 — Selector-based, SAFE (tidak hapus child element)
+   I18N v3 — Selector-based, SAFE
    ============================================================ */
 const lnzI18NMap = [
-  /* ---------- APPBAR / DRAWER ---------- */
-  ['.appbar .brand-txt small', { id: 'Portfolio App', en: 'Portfolio App' }],
-  ['.drawer-head-txt small',   { id: 'Portfolio App', en: 'Portfolio App' }],
+  ['.appbar .brand-txt small', { id: 'Personal Web App', en: 'Personal Web App' }],
+  ['.drawer-head-txt small',   { id: 'Personal Web App', en: 'Personal Web App' }],
   ['#lnzInstallBtn span', { id: 'Install Aplikasi<small>Pasang di layar utama</small>', en: 'Install App<small>Add to home screen</small>' }, true],
   ['.drawer-group:nth-of-type(1) .drawer-group-title', { id: 'Jelajahi', en: 'Explore' }],
   ['.drawer-group:nth-of-type(2) .drawer-group-title', { id: 'Play & Explore', en: 'Play & Explore' }],
@@ -1643,6 +1601,7 @@ const lnzI18NMap = [
   ['.drawer-item[data-goto="skills"]',       { id: 'Skills', en: 'Skills' }],
   ['.drawer-item[data-goto="experience"]',   { id: 'Experience', en: 'Experience' }],
   ['.drawer-item[data-goto="about"]',        { id: 'About', en: 'About' }],
+  ['.drawer-item[data-goto="moments"]',      { id: 'Moments', en: 'Moments' }],
   ['.drawer-item[data-goto="game"]',         { id: 'Games Library', en: 'Games Library' }],
   ['.drawer-item[data-goto="io"]',           { id: 'Snake.io', en: 'Snake.io' }],
   ['.drawer-item[data-goto="blase"]',        { id: 'Puzzle', en: 'Puzzle' }],
@@ -1659,14 +1618,12 @@ const lnzI18NMap = [
   ['#lnzShareBtn',  { id: 'Share', en: 'Share' }],
   ['#lnzSecretBtn', { id: 'Secret', en: 'Secret' }],
 
-  /* ---------- TABBAR ---------- */
   ['.tabbar .tab[data-goto="home"] span',  { id: 'Home', en: 'Home' }],
   ['.tabbar .tab[data-goto="game"] span',  { id: 'Play', en: 'Play' }],
   ['.tabbar .tab[data-goto="ai"] span',    { id: 'AI', en: 'AI' }],
   ['.tabbar .tab[data-goto="tools"] span', { id: 'Tools', en: 'Tools' }],
   ['#lnzTabMore span',                     { id: 'More', en: 'More' }],
 
-  /* ---------- HERO ---------- */
   ['#home .hero-badge', {
     id: '<i><svg viewBox="0 0 24 24"><path d="M12 2v4M12 18v4M4.9 4.9l2.8 2.8M16.3 16.3l2.8 2.8M2 12h4M18 12h4M4.9 19.1l2.8-2.8M16.3 7.7l2.8-2.8"/></svg></i><b>TERSEDIA</b> UNTUK PROJECT <em>ONLINE</em>',
     en: '<i><svg viewBox="0 0 24 24"><path d="M12 2v4M12 18v4M4.9 4.9l2.8 2.8M16.3 16.3l2.8 2.8M2 12h4M18 12h4M4.9 19.1l2.8-2.8M16.3 7.7l2.8-2.8"/></svg></i><b>AVAILABLE</b> FOR PROJECTS <em>ONLINE</em>'
@@ -1679,51 +1636,39 @@ const lnzI18NMap = [
   ['#home .hero-actions .btn',        { id: 'Kontak', en: 'Contact' }],
   ['#home .hero-actions .btn.ghost',  { id: 'Tentang', en: 'About' }],
 
-  /* ---------- STATS ---------- */
   ['#home .stats .stat:nth-child(1) small', { id: 'Website dibuat', en: 'Websites built' }],
   ['#home .stats .stat:nth-child(2) small', { id: 'Pengalaman', en: 'Experience' }],
   ['#home .stats .stat:nth-child(3) small', { id: 'Project selesai', en: 'Projects done' }],
 
-  /* ---------- SERVICES ---------- */
   ['#services .section-head p', { id: 'Beberapa layanan utama untuk kebutuhan personal, bisnis maupun project digital.', en: 'Key services for personal, business, and digital project needs.' }],
   ['#services .app-card p',     { id: 'Buat website sesuai kebutuhan dengan fitur dan database yang dapat disesuaikan. Cocok untuk personal brand, bisnis, landing page, dashboard dan custom project.', en: 'Build websites tailored to your needs with customizable features and database. Great for personal brand, business, landing page, dashboard and custom projects.' }],
 
-  /* ---------- GAMES ---------- */
   ['#game .section-head p', { id: 'Games Library dengan 1000+ pilihan game gratis yang dapat dimainkan langsung dari browser. Gratis dan tanpa instalasi tambahan.', en: 'Games Library with 1000+ free game picks you can play directly from the browser. Free, no extra install.' }],
   ['#game .app-card p',     { id: 'Jelajahi ribuan game dari berbagai genre, pilih favoritmu dan mainkan kapan saja langsung dari browser.', en: 'Explore thousands of games across genres, pick your favorite and play anytime right in your browser.' }],
 
-  /* ---------- SNAKE ---------- */
   ['#io .section-head p', { id: 'Game .io yang dapat dimainkan langsung dari browser. Gratis dan tanpa instalasi tambahan.', en: '.io games you can play right in the browser. Free, no extra install.' }],
   ['#io .app-card p',     { id: 'Makan, tempur dan raih Top 1 leaderboard. Mainkan Lanzz.io - Snake Arena.', en: 'Eat, battle and reach Top 1 on the leaderboard. Play Lanzz.io - Snake Arena.' }],
 
-  /* ---------- BLASE ---------- */
   ['#blase .section-head p', { id: 'Game Puzzle Block Blast yang dapat dimainkan langsung dari browser. Gratis dan tanpa instalasi tambahan.', en: 'Block Blast puzzle game you can play right in the browser. Free, no extra install.' }],
   ['#blase .app-card p',     { id: 'Selesaikan teka-teki seru Block Blase dengan berbagai mode pilihan. Block Puzzle, Bubble Shooter dan Link Puzzle. Mainkan Lanzz Blase - Block Puzzle.', en: 'Solve fun Block Blast puzzles with multiple modes. Block Puzzle, Bubble Shooter and Link Puzzle. Play Lanzz Blase - Block Puzzle.' }],
 
-  /* ---------- BROS ---------- */
   ['#bros .section-head p', { id: 'Game retro yang dapat dimainkan langsung dari browser. Gratis dan tanpa instalasi tambahan.', en: 'Retro game you can play right in the browser. Free, no extra install.' }],
   ['#bros .app-card p',     { id: 'Lari, lompat dan hadapi berbagai tantangan di setiap world. Dengan tampilan karakter yang lucu. Mainkan Lanzz Bros - Pixel Game.', en: 'Run, jump and face challenges in every world. With cute pixel characters. Play Lanzz Bros - Pixel Game.' }],
 
-  /* ---------- SPACE ---------- */
   ['#space .section-head p', { id: 'Jelajahi galaksi dan nikmati pengalaman simulasi interaktif langsung dari browser.', en: 'Explore the galaxy and enjoy an interactive simulation right in the browser.' }],
   ['#space .app-card p',     { id: 'Terbang bebas melintasi tata surya, amati planet, bintang dan berbagai objek luar angkasa sambil menjelajahi luasnya semesta tanpa batas di Lanzz Space.', en: 'Fly freely across the solar system, observe planets, stars and various space objects while exploring the boundless universe in Lanzz Space.' }],
 
-  /* ---------- AI ---------- */
   ['#ai .section-head p', { id: 'Asisten Ai untuk membantu pekerjaan, belajar, mencari ide dan berbagai kebutuhan digital kamu.', en: 'AI assistant to help with work, learning, idea-finding and various digital needs.' }],
   ['#ai .app-card p',     { id: 'Tanyakan apa saja ke Lanzz.Ai, asisten Ai by Lanzz Project yang siap membantu berbagai kebutuhanmu di Lanzz Assistant.', en: 'Ask anything to Lanzz.Ai, an AI assistant by Lanzz Project ready to help with your various needs in Lanzz Assistant.' }],
 
-  /* ---------- TOOLS ---------- */
   ['#tools .section-head p', { id: 'Kumpulan 100+ tools digital praktis dalam satu tempat.', en: 'Collection of 100+ practical digital tools in one place.' }],
   ['#tools .app-card p',     { id: 'Gratis dan bisa digunakan tanpa login untuk berbagai kebutuhan sehari-hari di Lanzz Tools.', en: 'Free and usable without login for various daily needs in Lanzz Tools.' }],
 
-  /* ---------- INFORMATIKA ---------- */
   ['#informatika .section-head p', { id: 'Belajar dasar pengembangan website menggunakan HTML, CSS dan JavaScript dari dasar hingga membuat website interaktif.', en: 'Learn the basics of web development with HTML, CSS and JavaScript from scratch to building interactive sites.' }],
   ['#informatika .app-card p',     { id: 'Pelajari struktur HTML, styling dengan CSS dan logika interaktif dengan JavaScript untuk membangun website modern di Lanzz Informatika.', en: 'Learn HTML structure, styling with CSS and interactive logic with JavaScript to build modern websites in Lanzz Informatics.' }],
 
-  /* ---------- SKILLS ---------- */
   ['#skills .section-head p', { id: 'Kombinasi skill teknis dan desain yang dipakai sehari-hari untuk membangun project digital.', en: 'A blend of technical and design skills used daily to build digital projects.' }],
 
-  /* ---------- EXPERIENCE ---------- */
   ['#experience .section-head p', { id: 'Perjalanan profesional dari freelance sampai jadi content creator dan digital solutions.', en: 'A professional journey from freelance to content creator and digital solutions.' }],
   ['#experience .lnz-tl-item:nth-child(1) .date', { id: '2020 - SEKARANG', en: '2020 - PRESENT' }],
   ['#experience .lnz-tl-item:nth-child(1) h3',    { id: 'Freelance Web Developer', en: 'Freelance Web Developer' }],
@@ -1735,7 +1680,6 @@ const lnzI18NMap = [
   ['#experience .lnz-tl-item:nth-child(3) h3',    { id: 'Modder dan Creative Developer', en: 'Modder & Creative Developer' }],
   ['#experience .lnz-tl-item:nth-child(3) p',     { id: 'Bereksperimen dengan mod, tools custom, dan project eksperimental yang menggabungkan AI dan creative coding.', en: 'Experimenting with mods, custom tools and experimental projects combining AI and creative coding.' }],
 
-  /* ---------- FAQ ---------- */
   ['#faq .section-head p', { id: 'Beberapa pertanyaan yang paling sering ditanyakan sebelum memulai project.', en: 'Some questions most frequently asked before starting a project.' }],
   ['#faq .faq-item:nth-child(1) .faq-q', { id: 'Berapa lama proses pengerjaan satu website?', en: 'How long does it take to build a website?' }],
   ['#faq .faq-item:nth-child(1) .faq-a-inner', { id: 'Proses pengerjaan 5 sampai 8 jam+ dan 1 sampai 3 hari+. Tergantung kepada tingkat kesulitan project yang dibuat.', en: 'Development takes 5-8 hours+ and 1-3 days+. Depends on the project complexity.' }],
@@ -1748,12 +1692,12 @@ const lnzI18NMap = [
   ['#faq .faq-item:nth-child(5) .faq-q', { id: 'Bagaimana cara mulai kerja sama?', en: 'How do we start collaborating?' }],
   ['#faq .faq-item:nth-child(5) .faq-a-inner', { id: 'Cukup hubungi via WhatsApp atau Email di section Contact. Kirim brief singkat atau ide project, nanti akan dibalas dengan estimasi dan langkah selanjutnya.', en: 'Just reach out via WhatsApp or Email in the Contact section. Send a brief or project idea, and you will get an estimate and next steps.' }],
 
-  /* ---------- NEWSLETTER ---------- */
+  ['#moments .section-head p', { id: 'Sedikit pandangan ke dunia saya. Orang yang sama, sudut pandang berbeda.', en: 'A little glimpse into my world. Same person, different angles.' }],
+
   ['#newsletter .lnz-news h3', { id: 'Subscribe buat Update <span>Terbaru</span>', en: 'Subscribe for the <span>Latest</span> Updates' }, true],
   ['#newsletter .lnz-news p',  { id: 'Dapatkan notifikasi project baru, tips digital, dan insight seputar web development langsung di inbox kamu.', en: 'Get notified about new projects, digital tips, and web development insights right in your inbox.' }],
   ['#newsletter .lnz-news-form button', { id: 'SUBSCRIBE', en: 'SUBSCRIBE' }],
 
-  /* ---------- CONTACT ---------- */
   ['#contact .section-head p', { id: 'Punya ide atau project? Kirim pesan lewat form, nanti akan dibalas secepatnya.', en: 'Got an idea or project? Send a message via the form, we will reply ASAP.' }],
   ['label[for="cfName"]',   { id: 'Nama', en: 'Name' }],
   ['label[for="cfEmail"]',  { id: 'Email', en: 'Email' }],
@@ -1768,7 +1712,6 @@ const lnzI18NMap = [
   ['.subject-chip[data-subject="Ngobrol Santai"]', { id: 'Ngobrol Santai', en: 'Chit-chat' }],
   ['#contact .form-submit', { id: 'Kirim Pesan', en: 'Send Message' }],
 
-  /* ---------- FOOTER ---------- */
   ['.footer-brand p', { id: 'Developer, Modder & Creator - membangun produk digital modern yang fungsional, cepat, dan enak dipakai.', en: 'Developer, Modder & Creator - building modern digital products that are functional, fast and pleasant to use.' }],
   ['.footer-status span', { id: 'Available for projects', en: 'Available for projects' }],
   ['.footer-col:nth-of-type(1) h5', { id: 'Explore', en: 'Explore' }],
@@ -1786,7 +1729,6 @@ const lnzI18NMap = [
   ['.footer-col:nth-of-type(2) a[data-goto="bros"]',  { id: 'Retro', en: 'Retro' }],
   ['.footer-col:nth-of-type(2) a[data-goto="newsletter"]', { id: 'Newsletter', en: 'Newsletter' }],
 
-  /* ---------- MORE BUTTON (text + <span> arrow) ---------- */
   ['[data-project="services"] .more',    { id: 'Lihat Detail <span>→</span>', en: 'View Detail <span>→</span>' }, true],
   ['[data-project="game"] .more',        { id: 'Lihat Detail <span>→</span>', en: 'View Detail <span>→</span>' }, true],
   ['[data-project="io"] .more',          { id: 'Lihat Detail <span>→</span>', en: 'View Detail <span>→</span>' }, true],
@@ -1797,16 +1739,9 @@ const lnzI18NMap = [
   ['[data-project="tools"] .more',       { id: 'Lihat Detail <span>→</span>', en: 'View Detail <span>→</span>' }, true],
   ['[data-project="informatika"] .more', { id: 'Lihat Detail <span>→</span>', en: 'View Detail <span>→</span>' }, true],
 
-  /* ---------- SKIP LINK ---------- */
   ['.skip-link', { id: 'Lewati ke konten utama', en: 'Skip to main content' }]
 ];
 
-/**
- * Terapkan bahasa.
- * - Mode `placeholder`: set attribute placeholder.
- * - Mode `useHTML`: set innerHTML tapi SVG direct-children dipertahankan.
- * - Default: hanya replace text node terakhir, semua element child (svg/span/small/em/b/i) DIPERTAHANKAN.
- */
 const lnzApplyLang = (lang) => {
   lang = (lang === 'en') ? 'en' : 'id';
   document.documentElement.lang = lang;
@@ -1818,13 +1753,11 @@ const lnzApplyLang = (lang) => {
     const val = texts[lang];
     if (val == null) return;
 
-    // 1) Placeholder input
     if (mode === 'placeholder') {
       el.setAttribute('placeholder', val);
       return;
     }
 
-    // 2) innerHTML mode — preserve SVG direct-children
     if (useHTML) {
       const svgHTML = [...el.children]
         .filter(c => c.tagName.toLowerCase() === 'svg')
@@ -1834,7 +1767,6 @@ const lnzApplyLang = (lang) => {
       return;
     }
 
-    // 3) Default: ganti TEXT NODE saja, JANGAN sentuh element children
     const textNodes = [...el.childNodes].filter(n => n.nodeType === 3);
     if (textNodes.length) {
       textNodes.forEach((n, i) => {
@@ -1918,9 +1850,16 @@ window.addEventListener('lnz-theme-change', () => { lnzRedRgb = lnzGetRedRgb(); 
 const lnzHaptic = (ms) => { try { navigator.vibrate && navigator.vibrate(ms || 8); } catch (_) {} };
 
 /* ============================================================
-   REDUCED MOTION AUTO-DETECT (UPGRADE #7)
+   REDUCED MOTION AUTO-DETECT
    ============================================================ */
 (() => {
+  const showToastSafe = (m) => {
+    const toast = document.getElementById('toast');
+    if (!toast) return;
+    toast.textContent = m;
+    toast.classList.add('show');
+    setTimeout(() => toast.classList.remove('show'), 2400);
+  };
   const mq = matchMedia('(prefers-reduced-motion: reduce)');
   const savedPerf = (() => { try { return localStorage.getItem('lnz_perf'); } catch (_) { return null; } })();
   if (mq.matches && savedPerf === null) {
@@ -1932,13 +1871,6 @@ const lnzHaptic = (ms) => { try { navigator.vibrate && navigator.vibrate(ms || 8
     }, 200);
     setTimeout(() => showToastSafe('Reduce motion terdeteksi — Performance Mode aktif'), 3200);
   }
-  const showToastSafe = (m) => {
-    const toast = document.getElementById('toast');
-    if (!toast) return;
-    toast.textContent = m;
-    toast.classList.add('show');
-    setTimeout(() => toast.classList.remove('show'), 2400);
-  };
 })();
 
 /* ============================================================
@@ -2068,12 +2000,16 @@ const lnzHaptic = (ms) => { try { navigator.vibrate && navigator.vibrate(ms || 8
 })();
 
 /* ============================================================
-   FOCUS TRAP HELPER
+   FOCUS TRAP HELPER (stack-aware)
    ============================================================ */
+const lnzTrapStack = [];
 const lnzTrapFocus = (container, onEscape) => {
   const selector = 'a[href],button:not([disabled]),input:not([disabled]),select:not([disabled]),textarea:not([disabled]),[tabindex]:not([tabindex="-1"])';
+  const trap = { onEscape };
+  lnzTrapStack.push(trap);
   const handler = (e) => {
-    if (e.key === 'Escape' && onEscape) { onEscape(); return; }
+    if (lnzTrapStack[lnzTrapStack.length - 1] !== trap) return;
+    if (e.key === 'Escape' && onEscape) { e.preventDefault(); onEscape(); return; }
     if (e.key !== 'Tab') return;
     const focusables = [...container.querySelectorAll(selector)].filter(el => el.offsetParent !== null);
     if (!focusables.length) return;
@@ -2083,7 +2019,11 @@ const lnzTrapFocus = (container, onEscape) => {
     else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
   };
   document.addEventListener('keydown', handler);
-  return () => document.removeEventListener('keydown', handler);
+  return () => {
+    document.removeEventListener('keydown', handler);
+    const i = lnzTrapStack.indexOf(trap);
+    if (i > -1) lnzTrapStack.splice(i, 1);
+  };
 };
 
 /* ============================================================
@@ -2105,6 +2045,7 @@ const lnzGoto = (id, silent) => {
   if (!drawer) return;
   let untrap = null;
   const open = () => {
+    if (untrap) { untrap(); untrap = null; }
     drawer.classList.add('open');
     backdrop.classList.add('open');
     document.body.classList.add('lnz-drawer-open');
@@ -2119,6 +2060,7 @@ const lnzGoto = (id, silent) => {
     if (untrap) { untrap(); untrap = null; }
     openBtn?.focus();
   };
+  window.lnzCloseDrawer = close;
   openBtn?.addEventListener('click', open);
   tabMore?.addEventListener('click', open);
   closeBtn?.addEventListener('click', close);
@@ -2149,7 +2091,12 @@ const lnzGoto = (id, silent) => {
     if (!activeTab) {
       if (['io','blase','bros','space'].includes(cur)) activeTab = 'game';
     }
-    tabs.forEach(t => t.classList.toggle('active', t.dataset.goto === activeTab));
+    tabs.forEach(t => {
+      const isActive = t.dataset.goto === activeTab;
+      t.classList.toggle('active', isActive);
+      if (isActive) t.setAttribute('aria-current', 'page');
+      else t.removeAttribute('aria-current');
+    });
     ticking = false;
   };
   window.addEventListener('scroll', () => { if (ticking) return; ticking = true; requestAnimationFrame(updateActive); }, { passive: true });
@@ -2212,7 +2159,92 @@ const showToast = (() => {
 })();
 
 /* ============================================================
-   CONTACT FORM (dengan subject chips + Web3Forms)
+   MOMENTS GALLERY (NEW)
+   ============================================================ */
+(() => {
+  const items = document.querySelectorAll('.moment-item');
+  const dots = document.querySelectorAll('.moment-dot');
+  const prevBtn = document.getElementById('momentsPrev');
+  const nextBtn = document.getElementById('momentsNext');
+  const carousel = document.getElementById('momentsCarousel');
+  if(!items.length || !carousel) return;
+
+  let idx = 0;
+  let autoTimer = null;
+  let isHovered = false;
+
+  const updateCarousel = () => {
+    items.forEach((item, i) => {
+      item.className = 'moment-item';
+      let diff = (i - idx + items.length) % items.length;
+      if (diff === 0) item.classList.add('pos-0');
+      else if (diff === 1) item.classList.add('pos-1');
+      else item.classList.add('pos-2');
+    });
+    dots.forEach((d, i) => d.classList.toggle('active', i === idx));
+  };
+
+  const next = () => { idx = (idx + 1) % items.length; updateCarousel(); };
+  const prev = () => { idx = (idx - 1 + items.length) % items.length; updateCarousel(); };
+
+  const startAuto = () => {
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    stopAuto();
+    autoTimer = setInterval(() => {
+      if (!isHovered) next();
+    }, 4000);
+  };
+  const stopAuto = () => { if (autoTimer) clearInterval(autoTimer); };
+
+  nextBtn?.addEventListener('click', () => { next(); startAuto(); });
+  prevBtn?.addEventListener('click', () => { prev(); startAuto(); });
+  dots.forEach((d, i) => d.addEventListener('click', () => { idx = i; updateCarousel(); startAuto(); }));
+
+  carousel.addEventListener('pointerenter', () => isHovered = true);
+  carousel.addEventListener('pointerleave', () => isHovered = false);
+
+  let startX = 0;
+  carousel.addEventListener('pointerdown', e => { startX = e.clientX; });
+  carousel.addEventListener('pointerup', e => {
+    const diff = e.clientX - startX;
+    if (diff > 50) { prev(); startAuto(); }
+    else if (diff < -50) { next(); startAuto(); }
+  });
+
+  const lightbox = document.getElementById('lnzLightbox');
+  const lbImg = document.getElementById('lnzLightboxImg');
+  const lbClose = document.getElementById('lnzLightboxClose');
+
+  items.forEach(item => {
+    item.addEventListener('click', () => {
+      if (!item.classList.contains('pos-0')) {
+        const i = parseInt(item.dataset.index);
+        idx = i; updateCarousel(); startAuto();
+        return;
+      }
+      const src = item.querySelector('img').src;
+      if (lbImg && lightbox) {
+        lbImg.src = src;
+        lightbox.classList.add('open');
+        document.body.style.overflow = 'hidden';
+      }
+    });
+  });
+
+  const closeLb = () => {
+    if (lightbox) lightbox.classList.remove('open');
+    document.body.style.overflow = '';
+  };
+  lbClose?.addEventListener('click', closeLb);
+  lightbox?.addEventListener('click', e => { if (e.target === lightbox) closeLb(); });
+  document.addEventListener('keydown', e => { if (e.key === 'Escape' && lightbox?.classList.contains('open')) closeLb(); });
+
+  updateCarousel();
+  startAuto();
+})();
+
+/* ============================================================
+   CONTACT FORM
    ============================================================ */
 (() => {
   const form = document.getElementById('contactForm');
@@ -2250,6 +2282,7 @@ const showToast = (() => {
   });
 
   const openModal = (name) => {
+    if (untrapModal) { untrapModal(); untrapModal = null; }
     if (modalName) modalName.textContent = name || 'Sobat';
     if (modal) modal.classList.add('open');
     document.body.classList.add('lnz-preview-open');
@@ -2289,7 +2322,7 @@ const showToast = (() => {
       fd.append('email', email);
       fd.append('subject', subject);
       fd.append('message', msg);
-      fd.append('from_name', 'Lanzz Portfolio');
+      fd.append('from_name', 'Lanzz Web App');
       fd.append('replyto', email);
 
       const res = await fetch(WEB3FORMS_ENDPOINT, { method: 'POST', body: fd });
@@ -2344,7 +2377,7 @@ const showToast = (() => {
 })();
 
 /* ============================================================
-   FAQ ACCORDION (pakai scrollHeight)
+   FAQ ACCORDION
    ============================================================ */
 (() => {
   document.querySelectorAll('.faq-item').forEach(item => {
@@ -2411,7 +2444,7 @@ const showToast = (() => {
 })();
 
 /* ============================================================
-   LANYARD 3D (pause kalau out of view)
+   LANYARD 3D
    ============================================================ */
 (() => {
   const stage = document.getElementById('lanyardStage');
@@ -2550,7 +2583,11 @@ const showToast = (() => {
   openBtn.addEventListener('click', e => {
     e.stopPropagation();
     if (popup.classList.contains('show')) close();
-    else { popup.classList.add('show'); lnzHaptic(6); }
+    else {
+      document.getElementById('lnzShareMenu')?.classList.remove('show');
+      popup.classList.add('show');
+      lnzHaptic(6);
+    }
   });
   popup.querySelectorAll('[data-close]').forEach(b => b.addEventListener('click', close));
   document.addEventListener('click', e => {
@@ -2581,7 +2618,7 @@ const showToast = (() => {
 })();
 
 /* ============================================================
-   SHARE MENU (UPGRADE #6)
+   SHARE MENU
    ============================================================ */
 (() => {
   const menu = document.getElementById('lnzShareMenu');
@@ -2590,8 +2627,8 @@ const showToast = (() => {
   if (!menu || !openBtn) return;
 
   const shareUrl = location.href;
-  const shareText = 'Cek portfolio interaktif Erlan Maulana (Lanzz Project)';
-  const shareTitle = 'Lanzz Project - Portfolio Interaktif';
+  const shareText = 'Cek personal web app Erlan Maulana (Lanzz Project)';
+  const shareTitle = 'Lanzz Project - Personal Web App';
 
   const open = () => {
     document.getElementById('lnzThemePopup')?.classList.remove('show');
@@ -2602,9 +2639,8 @@ const showToast = (() => {
 
   openBtn.addEventListener('click', e => {
     e.stopPropagation();
-    document.getElementById('lnzDrawer')?.classList.remove('open');
-    document.getElementById('lnzDrawerBackdrop')?.classList.remove('open');
-    document.body.classList.remove('lnz-drawer-open');
+    window.lnzCloseDrawer?.();
+    document.getElementById('lnzThemePopup')?.classList.remove('show');
     if (menu.classList.contains('show')) close();
     else open();
   });
@@ -2729,7 +2765,7 @@ const showToast = (() => {
 })();
 
 /* ============================================================
-   SPA - PROJECT DETAIL (history fix)
+   SPA - PROJECT DETAIL
    ============================================================ */
 (() => {
   const PROJECT_DATA = {
@@ -2741,7 +2777,7 @@ const showToast = (() => {
       features: ['Landing page modern dan responsive','Custom fitur sesuai kebutuhan','Integrasi database dan API','SEO friendly','Support dan garansi revisi'],
       tech: ['HTML', 'CSS', 'JavaScript', 'Responsive', 'SEO'],
       category: 'Digital Solutions',
-      url: 'https://lanzz-project.github.io/halaman.design.html',
+      url: 'https://lanzz.my.id/halaman.design.html',
       cta: 'Lihat Services'
     },
     game: {
@@ -2752,7 +2788,7 @@ const showToast = (() => {
       features: ['Action, puzzle, arcade, casual','Multiplayer online support','Tanpa install dan tanpa login','Gratis selamanya','Update game baru tiap minggu'],
       tech: ['HTML5', 'Canvas', 'WebGL', 'Multiplayer'],
       category: 'Games Library',
-      url: 'https://lanzz-project.github.io/lanzz-play.html',
+      url: 'https://lanzz.my.id/lanzz-play.html',
       cta: 'Play Games'
     },
     io: {
@@ -2763,7 +2799,7 @@ const showToast = (() => {
       features: ['Multiplayer real-time','Leaderboard global','Skin dan powerup','Server 24/7 online','Cross-platform'],
       tech: ['Canvas', 'WebSocket', 'Node.js'],
       category: 'Arcade Game',
-      url: 'https://lanzz-project.github.io/lanzz-io.html',
+      url: 'https://lanzz.my.id/lanzz-io.html',
       cta: 'Play Game'
     },
     blase: {
@@ -2774,7 +2810,7 @@ const showToast = (() => {
       features: ['3 mode puzzle berbeda','Level bertingkat','Offline mode support','Save dan resume','Haptic feedback'],
       tech: ['Canvas', 'Web Audio'],
       category: 'Arcade Game',
-      url: 'https://lanzz-project.github.io/lanzz-blase.html',
+      url: 'https://lanzz.my.id/lanzz-blase.html',
       cta: 'Play Game'
     },
     bros: {
@@ -2785,7 +2821,7 @@ const showToast = (() => {
       features: ['Multi-world platformer','Karakter pixel art custom','Sound effect retro','Boss battle','Raih skor tertinggi'],
       tech: ['Canvas', 'Sprite Animation', 'Retro'],
       category: 'Arcade Game',
-      url: 'https://lanzz-project.github.io/lanzz-bros.html',
+      url: 'https://lanzz.my.id/lanzz-bros.html',
       cta: 'Play Game'
     },
     space: {
@@ -2796,7 +2832,7 @@ const showToast = (() => {
       features: ['3D space exploration','Detail planet dan bintang','Free fly camera','Kontrol sentuh','Edukasi astronomi'],
       tech: ['Three.js', 'WebGL', '3D'],
       category: 'Galaxy Simulator',
-      url: 'https://lanzz-project.github.io/lanzz-space.html',
+      url: 'https://lanzz.my.id/lanzz-space.html',
       cta: 'Explore Space'
     },
     ai: {
@@ -2818,7 +2854,7 @@ const showToast = (() => {
       features: ['100+ tools siap pakai','Gratis tanpa login','Berbagai kategori','Mobile friendly','Update rutin'],
       tech: ['HTML', 'CSS', 'JavaScript'],
       category: 'Tools',
-      url: 'https://lanzz-project.github.io/lanzz-tools.html',
+      url: 'https://lanzz.my.id/lanzz-tools.html',
       cta: 'Try the Tools'
     },
     informatika: {
@@ -2829,7 +2865,7 @@ const showToast = (() => {
       features: ['Materi basic sampai advanced','Praktik langsung','Studi kasus real project','Quiz dan challenge','Gratis akses semua materi'],
       tech: ['HTML', 'CSS', 'JavaScript'],
       category: 'Learn',
-      url: 'https://lanzz-project.github.io/lanzz-informatika.html',
+      url: 'https://lanzz.my.id/lanzz-informatika.html',
       cta: 'Learn Lab'
     }
   };
@@ -2842,9 +2878,8 @@ const showToast = (() => {
   if (!detail || !detailBody) return;
 
   const checkIcon = '<svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg>';
-  const arrowIcon = '<svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg>';
+  const externalIcon = '<svg viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><path d="M15 3h6v6"/><path d="M10 14L21 3"/></svg>';
 
-  let pushedByUs = false;
   let untrapDetail = null;
 
   const render = (id) => {
@@ -2859,7 +2894,7 @@ const showToast = (() => {
           <div class="eyebrow">${p.eyebrow}</div>
           <h1>${p.title}</h1>
           <p class="sub">${p.subtitle}</p>
-          <button type="button" class="lnz-detail-cta" id="lnzDetailCta">${p.cta} ${arrowIcon}</button>
+          <button type="button" class="lnz-detail-cta" id="lnzDetailCta">${p.cta} ${externalIcon}</button>
         </div>
         <div class="lnz-detail-section">
           <h3>Fitur Utama</h3>
@@ -2876,7 +2911,7 @@ const showToast = (() => {
     if (cta) {
       cta.addEventListener('click', () => {
         lnzHaptic(10);
-        window.dispatchEvent(new CustomEvent('lnz-open-preview', { detail: { url: p.url, title: p.title } }));
+        window.open(p.url, '_blank', 'noopener,noreferrer');
       });
     }
     return true;
@@ -2884,42 +2919,38 @@ const showToast = (() => {
 
   const open = (id, push) => {
     if (!render(id)) return;
+    if (untrapDetail) { untrapDetail(); untrapDetail = null; }
     detail.classList.add('open');
+    detail.setAttribute('aria-hidden', 'false');
     document.body.classList.add('lnz-detail-open');
     detailBody.scrollTop = 0;
     lnzHaptic(10);
     untrapDetail = lnzTrapFocus(detail, () => close());
     setTimeout(() => backBtn?.focus(), 100);
     if (push !== false) {
-      try {
-        history.pushState({ lnzDetail: id }, '', '#project=' + id);
-        pushedByUs = true;
-      } catch (_) {}
+      try { history.pushState({ lnzDetail: id }, '', '#project=' + id); } catch (_) {}
     }
   };
   const close = (skipHistory) => {
     if (!detail.classList.contains('open')) return;
     detail.classList.remove('open');
+    detail.setAttribute('aria-hidden', 'true');
     document.body.classList.remove('lnz-detail-open');
     if (untrapDetail) { untrapDetail(); untrapDetail = null; }
-    if (!skipHistory && pushedByUs) {
-      pushedByUs = false;
-      try { history.back(); return; } catch (_) {}
-    }
-    if (!skipHistory && !pushedByUs) {
+    if (!skipHistory) {
       try { history.replaceState(null, '', location.pathname + location.search); } catch (_) {}
     }
   };
 
   backBtn?.addEventListener('click', () => close());
   window.addEventListener('popstate', () => {
-    if (detail.classList.contains('open')) {
-      pushedByUs = false;
-      close(true);
-    }
     const hash = location.hash || '';
     const m = hash.match(/#project=([\w-]+)/);
-    if (m && PROJECT_DATA[m[1]]) open(m[1], false);
+    if (m && PROJECT_DATA[m[1]]) {
+      open(m[1], false);
+    } else if (detail.classList.contains('open')) {
+      close(true);
+    }
   });
 
   document.querySelectorAll('[data-open-project]').forEach(btn => {
@@ -2963,13 +2994,14 @@ const showToast = (() => {
       { l: 'Informatika', h: 'informatika', icon: '<path d="M4 5h16v14H4z"/><path d="M8 9h8M8 13h5"/>' },
       { l: 'Skills', h: 'skills', icon: '<path d="M5 19V9M12 19V5M19 19v-7"/><path d="M3 19h18"/>' },
       { l: 'Experience', h: 'experience', icon: '<rect x="3" y="5" width="18" height="14" rx="2"/><path d="M8 5V3M16 5V3M3 11h18"/>' },
+      { l: 'Moments', h: 'moments', icon: '<rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/>' },
       { l: 'FAQ', h: 'faq', icon: '<circle cx="12" cy="12" r="9"/><path d="M9.5 9a2.6 2.6 0 1 1 4.7 1.5c-.8 1-2.2 1.2-2.2 2.5M12 16h.01"/>' },
       { l: 'Newsletter', h: 'newsletter', icon: '<rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/>' },
       { l: 'Contact', h: 'contact', icon: '<rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/>' },
       { l: 'About', h: 'about', icon: '<circle cx="12" cy="8" r="3"/><path d="M5 21a7 7 0 0 1 14 0"/>' }
     ] },
     { g: 'Aksi', items: [
-      { l: 'Bagikan Portfolio', a: 'share', icon: '<circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="m8.6 13.5 6.8 4M15.4 6.5l-6.8 4"/>' },
+      { l: 'Bagikan Web App', a: 'share', icon: '<circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="m8.6 13.5 6.8 4M15.4 6.5l-6.8 4"/>' },
       { l: 'Print CV', a: 'print', icon: '<path d="M6 9V2h12v7M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2M6 14h12v8H6z"/>' },
       { l: 'Toggle Matrix Rain', a: 'matrix', icon: '<path d="M4 6h16v12H4zM4 10h16"/>' },
       { l: 'Toggle Particle BG', a: 'particles', icon: '<circle cx="12" cy="12" r="3"/><circle cx="5" cy="5" r="1.5"/><circle cx="19" cy="19" r="1.5"/>' },
@@ -2999,13 +3031,17 @@ const showToast = (() => {
   };
   const open = () => {
     cmdk.style.display = 'flex';
+    cmdk.setAttribute('aria-hidden', 'false');
     input.value = '';
     selected = 0;
     render('');
     setTimeout(() => input.focus(), 60);
     lnzHaptic(6);
   };
-  const close = () => { cmdk.style.display = 'none'; };
+  const close = () => {
+    cmdk.style.display = 'none';
+    cmdk.setAttribute('aria-hidden', 'true');
+  };
   const run = (idx) => {
     const it = flat[idx];
     if (!it) return;
@@ -3165,12 +3201,22 @@ const showToast = (() => {
     btn.classList.toggle('enabled', on);
   };
 
+  const lnzShiftHex = (hex, delta) => {
+    let h = hex.replace('#', '');
+    if (h.length === 3) h = h.split('').map(c => c + c).join('');
+    const num = parseInt(h, 16);
+    const cl = v => Math.max(0, Math.min(255, v));
+    const r = cl((num >> 16) + delta);
+    const g = cl(((num >> 8) & 0xff) + delta);
+    const b = cl((num & 0xff) + delta);
+    return '#' + ((1 << 24) + (r << 16) + (g << 8) + b).toString(16).slice(1);
+  };
   const applyAccent = (color) => {
     if (!/^#[0-9a-f]{6}$/i.test(color)) { showToast('Format hex tidak valid'); return; }
     const [r, g, b] = [1, 3, 5].map(i => parseInt(color.slice(i, i + 2), 16));
     const s = document.body.style;
     s.setProperty('--red', color);
-    s.setProperty('--red2', color);
+    s.setProperty('--red2', lnzShiftHex(color, 40));
     s.setProperty('--glow', `rgba(${r},${g},${b},.28)`);
     s.setProperty('--soft', `rgba(${r},${g},${b},.08)`);
     setS({ accent: color });
@@ -3186,6 +3232,8 @@ const showToast = (() => {
     if (untrapSecret) { untrapSecret(); untrapSecret = null; }
   };
   const openSecret = () => {
+    if (secretPanel.classList.contains('open')) return;
+    if (untrapSecret) { untrapSecret(); untrapSecret = null; }
     secretPanel.classList.add('open');
     const n = Number(secretSession.dataset.n || '0') + 1;
     secretSession.dataset.n = String(n);
@@ -3196,6 +3244,7 @@ const showToast = (() => {
     lnzHaptic(10);
     playUISound(1000, 0.1);
     untrapSecret = lnzTrapFocus(secretPanel.querySelector('.secret-panel'), closeSecret);
+    setTimeout(() => secretPanel.querySelector('.secret-close')?.focus(), 100);
   };
   const showDetail = (html) => { secretOutput.innerHTML = html; secretOutput.hidden = false; };
   const arrowIcon = '<svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>';
@@ -3412,7 +3461,7 @@ const showToast = (() => {
   };
 
   // QUICK JUMP
-  const QJ_SECTIONS = ['home','services','game','io','blase','bros','space','ai','tools','informatika','skills','experience','faq','newsletter','contact','about'];
+  const QJ_SECTIONS = ['home','services','game','io','blase','bros','space','ai','tools','informatika','skills','experience','faq','newsletter','contact','about','moments'];
   const getFavs = () => getS().qj_favs || [];
   const getRecent = () => getS().qj_recent || [];
   const pushRecent = (id) => {
@@ -3742,7 +3791,7 @@ const showToast = (() => {
       const [r, g, b] = [1,3,5].map(i => parseInt(savedAccent.slice(i, i + 2), 16));
       const s = document.body.style;
       s.setProperty('--red', savedAccent);
-      s.setProperty('--red2', savedAccent);
+      s.setProperty('--red2', lnzShiftHex(savedAccent, 40));
       s.setProperty('--glow', `rgba(${r},${g},${b},.28)`);
       s.setProperty('--soft', `rgba(${r},${g},${b},.08)`);
       window.dispatchEvent(new CustomEvent('lnz-theme-change'));
@@ -3846,7 +3895,8 @@ const showToast = (() => {
   // SESSION STATS
   const sessionStart = Date.now();
   const visited = new Set(['home']);
-  const heatData = getS().heatmap || new Array(24).fill(0);
+  let heatData = getS().heatmap;
+  if (!Array.isArray(heatData) || heatData.length !== 24) heatData = new Array(24).fill(0);
   let clickCount = 0;
   document.addEventListener('click', () => { clickCount++; }, { passive: true });
   const sectionObserver = new IntersectionObserver(entries => {
@@ -3861,6 +3911,7 @@ const showToast = (() => {
     const scrollPct = Math.round((scrollY / Math.max(1, document.body.scrollHeight - innerHeight)) * 100);
     const hr = new Date().getHours();
     if ((getS().heat_hr || -1) !== hr) {
+      if (typeof heatData[hr] !== 'number') heatData[hr] = 0;
       heatData[hr] = (heatData[hr] || 0) + 1;
       setS({ heatmap: heatData, heat_hr: hr });
     }
@@ -3950,9 +4001,7 @@ const showToast = (() => {
     logo.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); logo.click(); } });
   }
   if (secretBtn) secretBtn.addEventListener('click', () => {
-    document.getElementById('lnzDrawer')?.classList.remove('open');
-    document.getElementById('lnzDrawerBackdrop')?.classList.remove('open');
-    document.body.classList.remove('lnz-drawer-open');
+    window.lnzCloseDrawer?.();
     openSecret();
   });
   window.addEventListener('lnz-open-secret', openSecret);
@@ -4016,58 +4065,6 @@ const showToast = (() => {
 })();
 
 /* ============================================================
-   PREVIEW IFRAME
-   ============================================================ */
-(() => {
-  const preview = document.getElementById('lnzPreview');
-  const frame = document.getElementById('lnzPreviewFrame');
-  const loader = document.getElementById('lnzPreviewLoader');
-  const titleEl = document.getElementById('lnzPreviewTitle');
-  const externalBtn = document.getElementById('lnzPreviewExternal');
-  const closeBtn = document.getElementById('lnzPreviewClose');
-  if (!preview || !frame) return;
-  let lastFocus = null;
-  let loadTimer = null;
-  let untrapPreview = null;
-  const open = (url, title) => {
-    lastFocus = document.activeElement;
-    externalBtn.href = url;
-    loader.classList.remove('hide');
-    frame.src = 'about:blank';
-    setTimeout(() => { frame.src = url; }, 40);
-    titleEl.textContent = title || 'Preview';
-    preview.classList.add('open');
-    document.body.classList.add('lnz-preview-open');
-    clearTimeout(loadTimer);
-    loadTimer = setTimeout(() => loader.classList.add('hide'), 12000);
-    untrapPreview = lnzTrapFocus(preview, close);
-    setTimeout(() => closeBtn?.focus(), 100);
-  };
-  const close = () => {
-    if (!preview.classList.contains('open')) return;
-    preview.classList.remove('open');
-    document.body.classList.remove('lnz-preview-open');
-    clearTimeout(loadTimer);
-    setTimeout(() => { try { frame.src = 'about:blank'; } catch(_) {} }, 320);
-    if (untrapPreview) { untrapPreview(); untrapPreview = null; }
-    lastFocus?.focus?.();
-  };
-  frame.addEventListener('load', () => {
-    if (!frame.src || frame.src === 'about:blank') return;
-    loader.classList.add('hide');
-  });
-  preview.querySelectorAll('[data-preview-close]').forEach(el => el.addEventListener('click', close));
-  closeBtn?.addEventListener('click', close);
-  document.addEventListener('keydown', e => {
-    if (e.key === 'Escape' && preview.classList.contains('open')) close();
-  });
-  window.addEventListener('lnz-open-preview', e => {
-    const { url, title } = e.detail || {};
-    if (url) open(url, title);
-  });
-})();
-
-/* ============================================================
    I18N INIT (pill toggle)
    ============================================================ */
 (() => {
@@ -4077,14 +4074,15 @@ const showToast = (() => {
     btn.addEventListener('click', () => {
       const lang = btn.dataset.lang;
       lnzApplyLang(lang);
-      showToast('Bahasa: ' + lang.toUpperCase());
+      try { localStorage.setItem('lnz_lang', lang); } catch (_) {}
+      showToast((lang === 'en' ? 'Language: ' : 'Bahasa: ') + lang.toUpperCase());
       lnzHaptic(8);
     });
   });
 })();
 
 /* ============================================================
-   PRINT CV (UPGRADE #11)
+   PRINT CV
    ============================================================ */
 (() => {
   const beforePrint = () => { document.body.classList.add('printing-cv'); };
@@ -4112,12 +4110,5 @@ document.querySelectorAll('a[target="_blank"]').forEach(a => {
   if (!a.hasAttribute('rel')) a.setAttribute('rel', 'noopener noreferrer');
 });
 </script>
-
-<script>
-  if ('serviceWorker' in navigator) {
-    navigator.serviceWorker.register('/sw.js');
-  }
-</script>
-
 </body>
 </html>
