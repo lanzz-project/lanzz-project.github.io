@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Desain Showcase - Lanzz Services</title>
+<meta name="theme-color" content="#080405">
+<meta name="color-scheme" content="dark">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&family=Rajdhani:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#080405; --text:#F5F5F5; --sub:#8A8585;
+  --primary:#FF0A1A; --primary-2:#E50914;
+  --line-soft:rgba(255,255,255,.08);
+  --safe-top:env(safe-area-inset-top,0px);
+  --ease:cubic-bezier(.22,1,.36,1);
+}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{height:100%;overflow:hidden;background:var(--bg)}
+body{font-family:Rajdhani,sans-serif;font-weight:600;color:var(--text);position:relative}
+body::before{
+  content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;
+  background:
+    radial-gradient(ellipse at 50% 0%, rgba(255,10,26,.10) 0%, transparent 55%),
+    linear-gradient(180deg, rgba(5,2,20,.72) 0%, rgba(5,2,20,.88) 100%);
+}
+button{font-family:inherit;font-weight:inherit;color:inherit;background:none;border:none;cursor:pointer}
+
+.shell{
+  display:flex;flex-direction:column;height:100vh;height:100dvh;
+  opacity:0;transform:translateY(14px) scale(.99);
+  animation:shellIn .38s var(--ease) forwards;
+}
+@keyframes shellIn{to{opacity:1;transform:none}}
+.shell.leaving{
+  opacity:0;transform:translateY(8px) scale(.99);
+  transition:opacity .26s var(--ease),transform .26s var(--ease);
+}
+
+.topbar{
+  flex:0 0 auto;height:calc(60px + var(--safe-top));
+  padding:var(--safe-top) 12px 0;
+  display:flex;align-items:center;gap:10px;
+  background:rgba(10,4,5,.78);
+  backdrop-filter:blur(18px) saturate(1.4);
+  -webkit-backdrop-filter:blur(18px) saturate(1.4);
+  border-bottom:1px solid rgba(255,10,26,.16);
+  z-index:10;
+}
+.pv-back{
+  flex:0 0 38px;width:38px;height:38px;display:grid;place-items:center;
+  border:1px solid var(--line-soft);border-radius:11px;
+  background:rgba(255,255,255,.03);color:#b8b2b2;font-size:14px;
+  transition:.24s var(--ease);
+}
+.pv-back:hover{color:var(--primary);border-color:rgba(255,10,26,.22);background:rgba(255,10,26,.08)}
+.pv-back:active{transform:scale(.92)}
+
+.pv-brand{flex:1;display:flex;align-items:center;gap:10px;min-width:0}
+.pv-logo{flex:0 0 46px;width:46px;height:46px;display:grid;place-items:center;border-radius:14px;overflow:hidden}
+.pv-logo img{width:100%;height:100%;object-fit:contain}
+.pv-meta{min-width:0;display:flex;flex-direction:column;gap:1px}
+.pv-name{font-family:Orbitron,sans-serif;font-size:12px;font-weight:900;letter-spacing:1.6px;color:#fff;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.pv-name .nr{color:var(--primary)}
+.pv-sub{font-size:9px;font-weight:700;letter-spacing:1.2px;color:var(--sub);text-transform:uppercase;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+
+.pv-icon{
+  width:35px;height:35px;display:grid;place-items:center;
+  border:1px solid var(--line-soft);border-radius:11px;
+  background:rgba(255,255,255,.03);color:#b8b2b2;font-size:13px;
+  transition:.24s var(--ease);
+}
+.pv-icon:hover{color:var(--primary);border-color:rgba(255,10,26,.22);background:rgba(255,10,26,.08)}
+.pv-icon:active{transform:scale(.9)}
+
+.body{flex:1 1 auto;position:relative;min-height:0;background:#0a0a0a;overflow:hidden}
+.frame{position:absolute;inset:0;width:100%;height:100%;border:none;background:#fff}
+
+.loader{
+  position:absolute;inset:0;z-index:2;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px;
+  background:radial-gradient(circle at 50% 45%, #1a0508 0%, #080405 65%);
+  text-align:center;padding:20px;
+  transition:opacity .45s var(--ease),visibility .45s var(--ease);
+}
+.loader.hide{opacity:0;visibility:hidden;pointer-events:none}
+.spin{position:relative;width:64px;height:64px;display:grid;place-items:center}
+.ring{position:absolute;inset:0;border-radius:50%;border:2px solid transparent;border-top-color:var(--primary);border-right-color:rgba(255,10,26,.25);animation:spin 1s linear infinite}
+.ring-2{inset:9px;border-top-color:var(--primary-2);border-right-color:rgba(229,9,20,.2);animation-duration:1.5s;animation-direction:reverse}
+.core{width:30px;height:30px;border-radius:50%;display:grid;place-items:center;background:linear-gradient(135deg,var(--primary),var(--primary-2));color:#fff;font-size:12px;box-shadow:0 0 20px rgba(255,10,26,.65);animation:pulse 1.4s ease-in-out infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+@keyframes pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.06)}}
+.l-text{font-family:Orbitron,sans-serif;font-size:10px;letter-spacing:3px;color:var(--sub);font-weight:700}
+
+.error{
+  position:absolute;inset:0;z-index:3;display:none;
+  flex-direction:column;align-items:center;justify-content:center;gap:14px;
+  background:radial-gradient(circle at 50% 45%, #1a0508 0%, #080405 65%);
+  padding:24px;text-align:center;
+}
+.error.show{display:flex}
+.error i{font-size:36px;color:var(--primary);filter:drop-shadow(0 0 14px rgba(255,10,26,.6))}
+.error h3{font-family:Orbitron,sans-serif;font-size:13px;font-weight:800;color:#fff;letter-spacing:.6px}
+.error p{font-size:11.5px;font-weight:500;color:var(--sub);line-height:1.6;max-width:280px}
+.error-btn{
+  margin-top:6px;padding:10px 20px;border-radius:50px;
+  background:linear-gradient(90deg,var(--primary),var(--primary-2));
+  color:#fff;font-family:Orbitron,sans-serif;font-size:10.5px;font-weight:800;letter-spacing:.5px;
+  display:inline-flex;align-items:center;gap:8px;
+  box-shadow:0 0 12px rgba(255,10,26,.4);transition:.26s var(--ease);
+}
+</style>
+</head>
+<body>
+<div class="shell" id="shell">
+  <header class="topbar">
+    <button class="pv-back" id="backBtn" aria-label="Kembali"><i class="fa-solid fa-arrow-left"></i></button>
+    <div class="pv-brand">
+      <div class="pv-logo"><img src="https://i.imgur.com/8Yhb2o0.png" alt="Lanzz"></div>
+      <div class="pv-meta">
+        <span class="pv-name">LANZZ <span class="nr">SERVICES</span></span>
+        <span class="pv-sub">DESAIN SHOWCASE</span>
+      </div>
+    </div>
+    <button class="pv-icon" id="reloadBtn" aria-label="Muat ulang"><i class="fa-solid fa-rotate-right"></i></button>
+  </header>
+
+  <div class="body">
+    <div class="loader" id="loader">
+      <div class="spin">
+        <div class="ring"></div>
+        <div class="ring ring-2"></div>
+        <div class="core"><i class="fa-solid fa-bolt"></i></div>
+      </div>
+      <div class="l-text">MEMUAT DESAIN…</div>
+    </div>
+
+    <div class="error" id="error">
+      <i class="fa-solid fa-triangle-exclamation"></i>
+      <h3>GAGAL MEMUAT</h3>
+      <p>Koneksi internet kamu bermasalah atau halaman sedang tidak tersedia.</p>
+      <button class="error-btn" id="retryBtn"><i class="fa-solid fa-rotate-right"></i> COBA LAGI</button>
+    </div>
+
+    <iframe class="frame" id="frame"
+      src="https://lanzz-project.github.io/contoh.design.html"
+      sandbox="allow-scripts allow-same-origin allow-popups allow-forms"
+      title="Desain Showcase Lanzz"></iframe>
+  </div>
+</div>
+
+<script>
+(function(){
+  "use strict";
+  var frame  = document.getElementById("frame");
+  var loader = document.getElementById("loader");
+  var err    = document.getElementById("error");
+  var shell  = document.getElementById("shell");
+  var loaded = false, timer = null;
+
+  function showLoader(){ loader.classList.remove("hide"); err.classList.remove("show"); }
+  function hideLoader(){ loader.classList.add("hide"); }
+  function showErr(){ err.classList.add("show"); hideLoader(); }
+
+  function load(){
+    showLoader(); loaded = false;
+    var src = frame.getAttribute("src");
+    frame.src = "about:blank";
+    setTimeout(function(){ frame.src = src; }, 50);
+    clearTimeout(timer);
+    timer = setTimeout(function(){ if(!loaded) hideLoader(); }, 8000);
+  }
+
+  frame.addEventListener("load",  function(){ loaded = true; hideLoader(); });
+  frame.addEventListener("error", showErr);
+  document.getElementById("retryBtn").addEventListener("click", load);
+  document.getElementById("reloadBtn").addEventListener("click", load);
+
+  document.getElementById("backBtn").addEventListener("click", function(){
+    shell.classList.add("leaving");
+    setTimeout(function(){
+      try{
+        if(document.referrer && new URL(document.referrer).origin === location.origin && history.length > 1){
+          history.back();
+        }else{
+          location.replace("./");
+        }
+      }catch(e){ location.replace("./"); }
+    }, 240);
+  });
+
+  setTimeout(hideLoader, 8000);
+})();
+</script>
+</body>
+</html>
