@@ -1,7 +1,7 @@
 {
-  "name": "Lanzz Project - Portfolio Interaktif",
-  "short_name": "Lanzz Project",
-  "description": "Portfolio interaktif Erlan Maulana - Web Developer, Modder & Creator.",
+  "name": "Lanzz Project - Personal Web App",
+  "short_name": "Lanzz",
+  "description": "Personal Web App Erlan Maulana - Web Developer, Modder & Creator.",
   "start_url": "./",
   "scope": "./",
   "id": "/",
@@ -12,7 +12,7 @@
   "theme_color": "#060707",
   "lang": "id-ID",
   "dir": "ltr",
-  "categories": ["portfolio", "developer", "entertainment", "games"],
+  "categories": ["developer", "entertainment", "games"],
   "icons": [
     {
       "src": "./icon-lnz/favicon-16x16.png",
