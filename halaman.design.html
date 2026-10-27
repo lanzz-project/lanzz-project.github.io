@@ -4732,7 +4732,7 @@ document.addEventListener("click", function(e){
     var designBtn = e.target.closest("#ctaDesign");
     if(designBtn){
         e.preventDefault();
-        openDesignReader(true);
+        location.href = "./preview.design.html";
         return;
     }
 });
