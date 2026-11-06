@@ -236,6 +236,19 @@ h2{font-size:clamp(22px,2.6vw,30px);letter-spacing:-.8px;line-height:1.15;font-w
 .app-card:hover .more{border-color:var(--red);gap:9px;background:rgba(255,22,22,.14)}
 .app-card:hover .more span{transform:translateX(3px)}
 
+/* ---------- CERTIFICATES ---------- */
+.cert-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:20px}
+.cert-card{border:1px solid var(--line);border-radius:var(--r-lg);background:linear-gradient(150deg,rgba(19,22,22,.92),rgba(8,10,10,.96));padding:12px;position:relative;overflow:hidden;transition:.3s;cursor:pointer;box-shadow:0 10px 28px rgba(0,0,0,.14);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}
+.cert-card:hover{transform:translateY(-5px);border-color:var(--red);box-shadow:0 22px 50px rgba(0,0,0,.42),0 0 30px var(--soft)}
+.cert-img-wrap{width:100%;aspect-ratio:3/2;border-radius:12px;overflow:hidden;position:relative;border:1px solid rgba(255,255,255,.05);background:#000}
+.cert-img-wrap img{width:100%;height:100%;object-fit:cover;transition:transform .5s ease}
+.cert-card:hover .cert-img-wrap img{transform:scale(1.03)}
+.cert-info{padding:16px 10px 8px;position:relative;z-index:2}
+.cert-info h3{font-size:15px;font-weight:800;letter-spacing:-.2px;margin-bottom:6px;color:#fff}
+.cert-info p{font-size:11.5px;color:#8b9191;line-height:1.6}
+.cert-meta{display:flex;justify-content:space-between;align-items:center;margin-top:12px;font-size:10px;font-weight:700;color:var(--red);text-transform:uppercase;letter-spacing:.5px}
+.cert-meta span{color:#555}
+
 /* ---------- ABOUT / SKILLS / TIMELINE ---------- */
 .about{display:grid;grid-template-columns:1.2fr .8fr;gap:40px;align-items:center}
 .about p{color:#858a8a;font-size:12px;line-height:1.9}
@@ -883,6 +896,7 @@ body.theme-aurora{--red:#00ffaa;--red2:#c084fc;--glow:rgba(0,255,170,.32);--soft
       <button class="drawer-item" data-goto="home" type="button"><svg viewBox="0 0 24 24"><path d="m3 11 9-8 9 8v9a2 2 0 0 1-2 2h-4v-7h-6v7H5a2 2 0 0 1-2-2Z"/></svg>Home</button>
       <button class="drawer-item" data-goto="services" type="button"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1.6"/><rect x="14" y="3" width="7" height="7" rx="1.6"/><rect x="3" y="14" width="7" height="7" rx="1.6"/><rect x="14" y="14" width="7" height="7" rx="1.6"/></svg>Services</button>
       <button class="drawer-item" data-goto="moments" type="button"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>Moments</button>
+      <button class="drawer-item" data-goto="certificates" type="button"><svg viewBox="0 0 24 24"><path d="M7 4h10v5a5 5 0 0 1-10 0V4Z"/><path d="M7 6H4v2a4 4 0 0 0 4 4M17 6h3v2a4 4 0 0 1-4 4M12 14v5M8 20h8"/></svg>Certificates</button>
       <button class="drawer-item" data-goto="skills" type="button"><svg viewBox="0 0 24 24"><path d="M5 19V9M12 19V5M19 19v-7"/><path d="M3 19h18"/></svg>Skills</button>
       <button class="drawer-item" data-goto="experience" type="button"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M8 5V3M16 5V3M3 11h18"/></svg>Experience</button>
       <button class="drawer-item" data-goto="about" type="button"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="3.4"/><path d="M5 21a7 7 0 0 1 14 0"/></svg>About</button>
@@ -1331,6 +1345,50 @@ body.theme-aurora{--red:#00ffaa;--red2:#c084fc;--glow:rgba(0,255,170,.32);--soft
   </div>
 </section>
 
+<!-- NEW SECTION: CERTIFICATES -->
+<section id="certificates">
+  <div class="container">
+    <div class="section-head reveal">
+      <div>
+        <div class="eyebrow">Pencapaian</div>
+        <h2>My <span class="accent">Certificates</span></h2>
+        <span class="lnz-section-tag"><i></i> VERIFIED</span>
+      </div>
+      <p>Sertifikat dan penghargaan yang saya dapatkan dari berbagai program pelatihan dan pengembangan skill.</p>
+    </div>
+    <div class="cert-grid reveal">
+      <!-- Card 1: Ruangguru -->
+      <div class="cert-card">
+        <div class="cert-img-wrap">
+          <img src="https://i.imgur.com/D83UNKR.jpg" alt="Sertifikat Web Development Fundamental - Ruangguru" loading="lazy">
+        </div>
+        <div class="cert-info">
+          <h3>Web Development Fundamental</h3>
+          <p>Atas partisipasinya dalam menyelesaikan program pelatihan dari Ruangguru.</p>
+          <div class="cert-meta">
+            <span>Ruangguru</span>
+            <span>15 Juli 2024</span>
+          </div>
+        </div>
+      </div>
+      <!-- Card 2: Tech Skills Academy -->
+      <div class="cert-card">
+        <div class="cert-img-wrap">
+          <img src="https://i.imgur.com/S3dt52i.jpg" alt="Sertifikat Developer Tools Innovation - Tech Skills Academy" loading="lazy">
+        </div>
+        <div class="cert-info">
+          <h3>Developer Tools Innovation</h3>
+          <p>Pengakuan atas upaya luar biasa dan penyelesaian pelatihan dari Tech Skills Academy.</p>
+          <div class="cert-meta">
+            <span>Tech Skills Academy</span>
+            <span>25 April 2025</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <section id="skills">
   <div class="container">
     <div class="section-head reveal">
@@ -1498,7 +1556,7 @@ body.theme-aurora{--red:#00ffaa;--red2:#c084fc;--glow:rgba(0,255,170,.32);--soft
         <div class="footer-status" style="margin-top:12px"><i></i><span style="color:#7dff9c;font-size:10px;font-weight:700;letter-spacing:.4px">Available for projects</span></div>
       </div>
       <div class="footer-col"><h5>Explore</h5><a data-goto="home">Home</a><a data-goto="services">Services</a><a data-goto="space">Space</a><a data-goto="ai">Assistant</a><a data-goto="tools">Tools</a><a data-goto="informatika">Informatika</a></div>
-      <div class="footer-col"><h5>Content</h5><a data-goto="game">Library</a><a data-goto="io">Snake.io</a><a data-goto="blase">Puzzle</a><a data-goto="bros">Retro</a><a data-goto="newsletter">Newsletter</a></div>
+      <div class="footer-col"><h5>Content</h5><a data-goto="game">Library</a><a data-goto="io">Snake.io</a><a data-goto="blase">Puzzle</a><a data-goto="bros">Retro</a><a data-goto="certificates">Certificates</a><a data-goto="newsletter">Newsletter</a></div>
       <div class="footer-col"><h5>Connect</h5><a href="https://www.instagram.com/prof.lanzz" target="_blank" rel="noopener noreferrer">Instagram</a><a href="https://www.facebook.com/profile.php?id=61593681814129" target="_blank" rel="noopener noreferrer">Facebook</a><a href="https://www.tiktok.com/@lanzz.offcl" target="_blank" rel="noopener noreferrer">TikTok</a><a href="mailto:id.erlan.maulana@gmail.com">Email</a><a href="mailto:lanzz.project.id@gmail.com">Email Project</a></div>
     </div>
     <div class="footer-bottom"><span>© 2026 Lanzz. All Rights Reserved.</span><span>Designed &amp; Developed by Lanzz. Made with HTML, CSS, JavaScript</span></div>
@@ -1600,6 +1658,7 @@ const lnzI18NMap = [
   ['.drawer-item[data-goto="services"]',     { id: 'Services', en: 'Services' }],
   ['.drawer-item[data-goto="skills"]',       { id: 'Skills', en: 'Skills' }],
   ['.drawer-item[data-goto="experience"]',   { id: 'Experience', en: 'Experience' }],
+  ['.drawer-item[data-goto="certificates"]', { id: 'Certificates', en: 'Certificates' }],
   ['.drawer-item[data-goto="about"]',        { id: 'About', en: 'About' }],
   ['.drawer-item[data-goto="moments"]',      { id: 'Moments', en: 'Moments' }],
   ['.drawer-item[data-goto="game"]',         { id: 'Games Library', en: 'Games Library' }],
@@ -1680,6 +1739,14 @@ const lnzI18NMap = [
   ['#experience .lnz-tl-item:nth-child(3) h3',    { id: 'Modder dan Creative Developer', en: 'Modder & Creative Developer' }],
   ['#experience .lnz-tl-item:nth-child(3) p',     { id: 'Bereksperimen dengan mod, tools custom, dan project eksperimental yang menggabungkan AI dan creative coding.', en: 'Experimenting with mods, custom tools and experimental projects combining AI and creative coding.' }],
 
+  /* I18N Certificates */
+  ['#certificates .section-head .eyebrow', { id: 'Pencapaian', en: 'Achievements' }],
+  ['#certificates .section-head p', { id: 'Sertifikat dan penghargaan yang saya dapatkan dari berbagai program pelatihan dan pengembangan skill.', en: 'Certificates and awards I received from various training and skill development programs.' }],
+  ['#certificates .cert-card:nth-child(1) h3', { id: 'Web Development Fundamental', en: 'Web Development Fundamental' }],
+  ['#certificates .cert-card:nth-child(1) p', { id: 'Atas partisipasinya dalam menyelesaikan program pelatihan dari Ruangguru.', en: 'For participation in completing the training program from Ruangguru.' }],
+  ['#certificates .cert-card:nth-child(2) h3', { id: 'Developer Tools Innovation', en: 'Developer Tools Innovation' }],
+  ['#certificates .cert-card:nth-child(2) p', { id: 'Pengakuan atas upaya luar biasa dan penyelesaian pelatihan dari Tech Skills Academy.', en: 'In recognition of outstanding effort and successful completion of the training from Tech Skills Academy.' }],
+
   ['#faq .section-head p', { id: 'Beberapa pertanyaan yang paling sering ditanyakan sebelum memulai project.', en: 'Some questions most frequently asked before starting a project.' }],
   ['#faq .faq-item:nth-child(1) .faq-q', { id: 'Berapa lama proses pengerjaan satu website?', en: 'How long does it take to build a website?' }],
   ['#faq .faq-item:nth-child(1) .faq-a-inner', { id: 'Proses pengerjaan 5 sampai 8 jam+ dan 1 sampai 3 hari+. Tergantung kepada tingkat kesulitan project yang dibuat.', en: 'Development takes 5-8 hours+ and 1-3 days+. Depends on the project complexity.' }],
@@ -1727,6 +1794,7 @@ const lnzI18NMap = [
   ['.footer-col:nth-of-type(2) a[data-goto="io"]',    { id: 'Snake.io', en: 'Snake.io' }],
   ['.footer-col:nth-of-type(2) a[data-goto="blase"]', { id: 'Puzzle', en: 'Puzzle' }],
   ['.footer-col:nth-of-type(2) a[data-goto="bros"]',  { id: 'Retro', en: 'Retro' }],
+  ['.footer-col:nth-of-type(2) a[data-goto="certificates"]', { id: 'Certificates', en: 'Certificates' }],
   ['.footer-col:nth-of-type(2) a[data-goto="newsletter"]', { id: 'Newsletter', en: 'Newsletter' }],
 
   ['[data-project="services"] .more',    { id: 'Lihat Detail <span>→</span>', en: 'View Detail <span>→</span>' }, true],
@@ -2241,6 +2309,27 @@ const showToast = (() => {
 
   updateCarousel();
   startAuto();
+})();
+
+/* ============================================================
+   CERTIFICATE LIGHTBOX
+   ============================================================ */
+(() => {
+  const certCards = document.querySelectorAll('.cert-card');
+  const lightbox = document.getElementById('lnzLightbox');
+  const lbImg = document.getElementById('lnzLightboxImg');
+  if (!certCards.length || !lightbox) return;
+
+  certCards.forEach(card => {
+    card.addEventListener('click', () => {
+      const src = card.querySelector('img').src;
+      if (lbImg) {
+        lbImg.src = src;
+        lightbox.classList.add('open');
+        document.body.style.overflow = 'hidden';
+      }
+    });
+  });
 })();
 
 /* ============================================================
@@ -2994,6 +3083,7 @@ const showToast = (() => {
       { l: 'Informatika', h: 'informatika', icon: '<path d="M4 5h16v14H4z"/><path d="M8 9h8M8 13h5"/>' },
       { l: 'Skills', h: 'skills', icon: '<path d="M5 19V9M12 19V5M19 19v-7"/><path d="M3 19h18"/>' },
       { l: 'Experience', h: 'experience', icon: '<rect x="3" y="5" width="18" height="14" rx="2"/><path d="M8 5V3M16 5V3M3 11h18"/>' },
+      { l: 'Certificates', h: 'certificates', icon: '<path d="M7 4h10v5a5 5 0 0 1-10 0V4Z"/><path d="M7 6H4v2a4 4 0 0 0 4 4M17 6h3v2a4 4 0 0 1-4 4M12 14v5M8 20h8"/>' },
       { l: 'Moments', h: 'moments', icon: '<rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/>' },
       { l: 'FAQ', h: 'faq', icon: '<circle cx="12" cy="12" r="9"/><path d="M9.5 9a2.6 2.6 0 1 1 4.7 1.5c-.8 1-2.2 1.2-2.2 2.5M12 16h.01"/>' },
       { l: 'Newsletter', h: 'newsletter', icon: '<rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/>' },
@@ -3461,7 +3551,7 @@ const showToast = (() => {
   };
 
   // QUICK JUMP
-  const QJ_SECTIONS = ['home','services','game','io','blase','bros','space','ai','tools','informatika','skills','experience','faq','newsletter','contact','about','moments'];
+  const QJ_SECTIONS = ['home','services','game','io','blase','bros','space','ai','tools','informatika','skills','experience','certificates','faq','newsletter','contact','about','moments'];
   const getFavs = () => getS().qj_favs || [];
   const getRecent = () => getS().qj_recent || [];
   const pushRecent = (id) => {
